@@ -891,7 +891,7 @@ ${schoolData ? 'For the most current information, choose a category below! 👇'
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-full p-4 shadow-lg transition-all hover:scale-100 active:scale-95"
+          className="bg-gradient-to-r from-emerald-900/95 via-teal-900/95 to-slate-900/95 text-white rounded-full p-4 shadow-lg transition-all hover:scale-100 active:scale-95"
           aria-label="Open chat assistant"
           style={{
             transform: 'translateZ(0)',
@@ -916,7 +916,7 @@ ${schoolData ? 'For the most current information, choose a category below! 👇'
           }}
         >
           {/* Header with logo */}
-<div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-3 sm:p-4 flex-shrink-0">
+<div className="bg-gradient-to-r from-emerald-900/95 via-teal-900/95 to-slate-900/95 text-white p-3 sm:p-4 flex-shrink-0">
   <div className="flex justify-between items-center gap-2">
     
     {/* LEFT: Branding Section */}
