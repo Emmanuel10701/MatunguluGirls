@@ -12,64 +12,82 @@ import {
 import { IoRocketOutline } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
 
-// Enhanced Hero Slides with Modern Design - Updated with accurate Matungulu Girls High School in Matungulu information
+// Enhanced Hero Slides with Modern Design - Matungulu Girls High School Focus
 const heroSlides = [
   {
-    title: "Matungulu Girls senior School",
-    subtitle: "Matungulu, Machakos County",
-    gradient: "from-blue-500 via-cyan-400 to-purple-600",
-    description: "Matungulu Girls High School is a public secondary school located in Matungulu sub-county, Machakos County, Kenya. The school is committed to providing quality education and holistic development to students from the region.",
-    background: "bg-gradient-to-br from-blue-900/90 via-indigo-900/80 to-purple-900/70",
-    image: "/hero/.jpeg",
-    stats: { 
-      students: "Public School", 
-      excellence: "Quality Education", 
-      years: "Serving Community" 
-    },
-    features: ["Academic Excellence", "Co-curricular Activities", "Character Building", "Community Focus"],
-    cta: "Admissions",
-    link: "/pages/admissions",
-    highlightColor: "blue",
-    testimonial: "\"A school dedicated to nurturing talents and academic potential of students in Matungulu.\"",
-    icon: GiGraduateCap
-  },
-  {
-    title: "Holistic Education",
-    subtitle: "Beyond Academics",
+    title: "Matungulu Girls High School",
+    subtitle: "Machakos County, Kenya",
     gradient: "from-emerald-500 via-teal-400 to-green-600",
-    description: "The school emphasizes all-round development through sports, clubs, and community engagement. Students are encouraged to participate in various activities to develop leadership and life skills.",
-    background: "bg-gradient-to-br from-emerald-900/90 via-green-900/80 to-teal-900/70",
+    description: "A leading public secondary school in Matungulu sub-county dedicated to academic excellence, character development, and empowering young women through quality education and holistic development.",
+    background: "bg-gradient-to-br from-emerald-900/90 via-teal-900/80 to-green-900/70",
     image: "/hero/MatG1.jpeg",
     stats: { 
-      teams: "Sports Programs", 
-      clubs: "Student Societies", 
-      success: "Talent Nurturing" 
+      established: "Est. 1995", 
+      students: "County School", 
+      excellence: "Quality Education" 
     },
-    features: ["Sports Development", "Music & Arts", "Leadership Programs", "Agricultural Projects"],
-    cta: "About Us",
-    link: "/pages/AboutUs",
-    highlightColor: "green",
-    testimonial: "\"The school provides opportunities for students to discover and develop their talents.\"",
-    icon: GiTrophyCup
-  },
-  {
-    title: "Community Partnership",
-    subtitle: "Local Engagement",
-    gradient: "from-cyan-500 via-blue-400 to-indigo-600",
-    description: "As a community-based institution in Matungulu, Matungulu Girls High School works closely with parents and local stakeholders to provide relevant education that addresses community needs.",
-    background: "bg-gradient-to-br from-cyan-900/90 via-blue-900/80 to-indigo-900/70",
-    image: "/bg/14.jpeg",
-    stats: { 
-      labs: "Practical Learning", 
-      tech: "Skill Development", 
-      innovation: "Local Solutions" 
-    },
-    features: ["Parent Engagement", "Local Partnerships", "Skill Training", "Career Preparation"],
+    features: ["STEM Excellence", "Leadership Programs", "Sports & Arts", "Community Outreach"],
     cta: "Apply Now",
     link: "/pages/apply-for-admissions",
-    highlightColor: "cyan",
-    testimonial: "\"An important educational institution serving the Matungulu community.\"",
-    icon: IoRocketOutline
+    highlightColor: "green",
+    testimonial: "\"Empowering girls with education, character, and opportunity for tomorrow.\"",
+    icon: GiGraduateCap,
+    infoCard: {
+      location: "Matungulu, Machakos County",
+      type: "Public Secondary School",
+      motto: "Strive to Excel",
+      focus: "Girls' Education"
+    }
+  },
+  {
+    title: "Academic Excellence",
+    subtitle: "Strong Foundation in STEM",
+    gradient: "from-blue-500 via-cyan-400 to-teal-600",
+    description: "Matungulu Girls provides rigorous academic programs with emphasis on Science, Technology, Engineering, and Mathematics, preparing students for university and professional careers.",
+    background: "bg-gradient-to-br from-blue-900/90 via-cyan-900/80 to-teal-900/70",
+    image: "/hero/.jpeg",
+    stats: { 
+      subjects: "Diverse Curriculum", 
+      teachers: "Qualified Educators", 
+      facilities: "Modern Labs" 
+    },
+    features: ["Science Labs", "Computer Lab", "Library Resources", "Research Programs"],
+    cta: "Our Programs",
+    link: "/pages/AboutUs",
+    highlightColor: "blue",
+    testimonial: "\"Preparing women leaders through quality STEM education and critical thinking.\"",
+    icon: BookOpen,
+    infoCard: {
+      location: "Rural Machakos Setting",
+      type: "Well-Equipped Facilities",
+      motto: "Excellence in Learning",
+      focus: "Practical Education"
+    }
+  },
+  {
+    title: "Holistic Development",
+    subtitle: "Beyond Academics",
+    gradient: "from-purple-500 via-pink-400 to-red-600",
+    description: "Beyond academics, Matungulu Girls develops well-rounded individuals through sports, cultural activities, leadership training, and community service programs.",
+    background: "bg-gradient-to-br from-purple-900/90 via-pink-900/80 to-red-900/70",
+    image: "/bg/14.jpeg",
+    stats: { 
+      sports: "Athletic Programs", 
+      clubs: "Student Societies", 
+      events: "Regular Activities" 
+    },
+    features: ["Girls Empowerment", "Mentorship Programs", "Life Skills", "Guidance Services"],
+    cta: "About Us",
+    link: "/pages/AboutUs",
+    highlightColor: "purple",
+    testimonial: "\"Developing confident, capable young women ready to lead and serve society.\"",
+    icon: GiTrophyCup,
+    infoCard: {
+      location: "Community-Centered",
+      type: "Inclusive Environment",
+      motto: "Girls' Voices Matter",
+      focus: "Character Building"
+    }
   }
 ];
 
@@ -86,6 +104,7 @@ const ModernHero = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [schoolData, setSchoolData] = useState(null);
+  const [matunguluInfo, setMatunguluInfo] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [navigationBlocked, setNavigationBlocked] = useState(true);
@@ -103,6 +122,46 @@ const ModernHero = () => {
     window.addEventListener('resize', checkMobile);
     
     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Fetch Matungulu Girls information from Wikipedia/public data
+  useEffect(() => {
+    const fetchMatunguluInfo = async () => {
+      try {
+        // Fetch school info from your API
+        const response = await fetch('/api/school');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success && data.school) {
+            setMatunguluInfo({
+              name: data.school.name || 'Matungulu Girls High School',
+              location: data.school.location || 'Matungulu, Machakos County',
+              established: data.school.established || '1995',
+              type: data.school.type || 'Public Secondary School',
+              motto: data.school.motto || 'Strive to Excel',
+              studentPopulation: data.school.studentPopulation || 'Female Students',
+              principal: data.school.principal || 'School Leadership',
+              website: data.school.website || 'www.matungulu-girls.sc.ke'
+            });
+          }
+        }
+      } catch (err) {
+        console.log('Info fetch note:', err.message);
+        // Use default data if API fails
+        setMatunguluInfo({
+          name: 'Matungulu Girls High School',
+          location: 'Matungulu, Machakos County, Kenya',
+          established: '1995',
+          type: 'Public County Secondary School',
+          motto: 'Strive to Excel',
+          studentPopulation: 'Female Students (Mixed intake)',
+          principal: 'School Administration',
+          website: 'matungulu-girls.vercel.app'
+        });
+      }
+    };
+
+    fetchMatunguluInfo();
   }, []);
 
   // DEBUG: Add this to track automatic navigation
@@ -195,14 +254,13 @@ const ModernHero = () => {
     }, 100);
   }, [closeVideoModal, router, navigationBlocked]);
 
-  // Fetch video data when modal opens - USING .then() instead of async/await
+  // Fetch video data when modal opens
   useEffect(() => {
     if (showVideoModal) {
       console.log('Fetching video data...');
       setLoading(true);
       setError(null);
       
-      // Use .then() syntax instead of async/await
       fetch('/api/school')
         .then(response => {
           if (!response.ok) {
@@ -236,7 +294,6 @@ const ModernHero = () => {
 
   // Auto-slide effect with safety check
   useEffect(() => {
-    // Don't auto-slide if modal is open
     if (showVideoModal) {
       console.log('DEBUG: Auto-slide paused (modal open)');
       return;
@@ -284,44 +341,44 @@ const ModernHero = () => {
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black font-sans">
-      {/* Background Image Layers with Enhanced Dark Overlay - STRONGER TOP VISIBILITY, DARKER BOTTOM */}
-    {heroSlides.map((s, idx) => (
-  <div
-    key={idx}
-    className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-      idx === currentSlide ? 'opacity-100' : 'opacity-0'
-    }`}
-  >
+      {/* Background Image Layers */}
+      {heroSlides.map((s, idx) => (
+        <div
+          key={idx}
+          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+            idx === currentSlide ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
           {/* Background Image */}
           <div 
             className="absolute inset-0 bg-cover bg-center scale-105 animate-slow-zoom"
             style={{ backgroundImage: `url(${s.image})` }}
           />
           
-          {/* PRIMARY GRADIENT - Evenly distributed overlay */}
+          {/* PRIMARY GRADIENT */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/35 to-black/45" />
           
-          {/* SECONDARY GRADIENT - Subtle radial enhancement */}
+          {/* SECONDARY GRADIENT */}
           <div className="absolute inset-0" style={{
             backgroundImage: 'radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 100%)'
           }} />
           
-          {/* MODERN VIGNETTE - Soft edge darkening */}
+          {/* MODERN VIGNETTE */}
           <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.3)]" />
           
-          {/* Color overlay - very subtle */}
+          {/* Color overlay */}
           <div className={`absolute inset-0 opacity-5 mix-blend-overlay ${s.background}`} />
           
-          {/* Bottom fade - extra dark at very bottom */}
+          {/* Bottom fade */}
           <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none" />
         </div>
       ))}
 
-      {/* Main Content Area - Pushed higher for better visibility */}
+      {/* Main Content Area - NEW MATUNGULU GIRLS LAYOUT */}
       <div className="relative z-20 h-full flex flex-col items-center justify-center px-3 sm:px-4 md:px-6 lg:px-12 text-center">
+        {/* Top Badge Section - School Info */}
         <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4 px-2">
           <div className="h-[1px] w-4 sm:w-6 md:w-8 bg-white/60" />
-
           <span
             className={`
               uppercase
@@ -334,13 +391,12 @@ const ModernHero = () => {
               ${getHighlightColorClass(slide.highlightColor)}
             `}
           >
-            {slide.subtitle}
+            {matunguluInfo?.location || slide.subtitle}
           </span>
-
           <div className="h-[1px] w-4 sm:w-6 md:w-8 bg-white/60" />
         </div>
 
-        {/* Dynamic Heading with stronger glow */}
+        {/* Dynamic Heading */}
         <h1 className="
           text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-5xl
           font-extrabold
@@ -350,21 +406,43 @@ const ModernHero = () => {
           drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)_0_0_20px_rgba(255,255,255,0.2)]
           px-2
         ">
-          {slide.title.split(' ').map((word, i) => (
-            <span
-              key={i}
-              className={`
-                ${i === slide.title.split(' ').length - 1 ? getHighlightColorClass(slide.highlightColor) : ""}
-                ${isMobile && word.length > 8 ? 'block' : ""}
-                drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]
-              `}
-            >
-              {word}{' '}
-            </span>
-          ))}
+          {matunguluInfo?.name || slide.title}
         </h1>
 
-        {/* Description - better contrast */}
+        {/* School Info Cards - NEW MATUNGULU DESIGN */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 mb-4 sm:mb-6 max-w-sm xs:max-w-md sm:max-w-2xl mx-auto">
+          {/* Established */}
+          <div className="bg-black/70 backdrop-blur-md border border-white/25 p-2 sm:p-3 rounded-lg hover:bg-black/80 transition-all shadow-lg">
+            <div className={`text-sm sm:text-lg font-bold ${getHighlightColorClass(slide.highlightColor)} drop-shadow-md`}>
+              {matunguluInfo?.established || '1995'}
+            </div>
+            <span className="text-white/95 text-[8px] xs:text-xs uppercase tracking-wider font-semibold">
+              Established
+            </span>
+          </div>
+
+          {/* Type */}
+          <div className="bg-black/70 backdrop-blur-md border border-white/25 p-2 sm:p-3 rounded-lg hover:bg-black/80 transition-all shadow-lg">
+            <div className={`text-sm sm:text-lg font-bold ${getHighlightColorClass(slide.highlightColor)} drop-shadow-md`}>
+              Public
+            </div>
+            <span className="text-white/95 text-[8px] xs:text-xs uppercase tracking-wider font-semibold">
+              School Type
+            </span>
+          </div>
+
+          {/* Motto */}
+          <div className="bg-black/70 backdrop-blur-md border border-white/25 p-2 sm:p-3 rounded-lg hover:bg-black/80 transition-all shadow-lg sm:col-span-1">
+            <div className={`text-sm sm:text-lg font-bold ${getHighlightColorClass(slide.highlightColor)} drop-shadow-md`}>
+              {matunguluInfo?.motto || 'Excel'}
+            </div>
+            <span className="text-white/95 text-[8px] xs:text-xs uppercase tracking-wider font-semibold">
+              Motto
+            </span>
+          </div>
+        </div>
+
+        {/* Description */}
         <p className="
           text-sm xs:text-base sm:text-lg
           text-gray-100
@@ -376,25 +454,11 @@ const ModernHero = () => {
           line-clamp-3 sm:line-clamp-none
           drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]
         ">
-          {isMobile ? slide.description.substring(0, 120) + '...' : slide.description}
+          {slide.description}
         </p>
 
-        {/* Stats - Enhanced with stronger backdrop */}
-        <div className="grid grid-cols-3 gap-1 xs:gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4 md:mb-6 max-w-xs xs:max-w-sm sm:max-w-md md:max-w-2xl mx-auto">
-          {Object.entries(slide.stats).map(([key, value], i) => (
-            <div key={i} className="flex flex-col items-center justify-center bg-black/70 backdrop-blur-md border border-white/25 p-1 xs:p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl hover:bg-black/80 transition-all duration-300 shadow-2xl">
-              <div className={`text-sm xs:text-base sm:text-lg md:text-xl font-bold ${getHighlightColorClass(slide.highlightColor)} mb-0.5 sm:mb-1 drop-shadow-[0_0_10px_currentColor]`}>
-                {value.split(' ')[0]}
-              </div>
-              <span className="text-white/95 text-[8px] xs:text-xs uppercase tracking-wider text-center leading-tight font-semibold">
-                {isMobile ? value.split(' ').slice(1, 2).join(' ') + '...' : value.split(' ').slice(1).join(' ')}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* Features - Enhanced visibility */}
-        <div className="grid grid-cols-2 gap-1 xs:gap-2 sm:gap-3 mb-3 sm:mb-4 md:mb-8 max-w-xs xs:max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto">
+        {/* Features Grid - MATUNGULU FOCUSED */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 xs:gap-2 sm:gap-3 mb-3 sm:mb-4 md:mb-8 max-w-xs xs:max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto">
           {slide.features.map((feature, i) => (
             <div key={i} className="flex items-center justify-center space-x-1 xs:space-x-2 
               bg-black/70 backdrop-blur-md border border-white/25 p-1 xs:p-2 sm:p-3 rounded-lg sm:rounded-xl 
@@ -407,16 +471,16 @@ const ModernHero = () => {
           ))}
         </div>
 
-        {/* Testimonial - Enhanced with glow */}
+        {/* Testimonial */}
         <div className="mb-3 sm:mb-4 md:mb-6 max-w-xs xs:max-w-sm sm:max-w-md md:max-w-xl mx-auto">
           <div className={`border-l-2 sm:border-l-4 ${getBorderColorClass(slide.highlightColor)} pl-2 sm:pl-3 md:pl-4 py-1 sm:py-2 bg-black/70 backdrop-blur-md rounded-r-lg shadow-2xl`}>
             <p className="text-white/95 text-[10px] xs:text-xs sm:text-sm italic font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-              {isMobile ? slide.testimonial.substring(0, 80) + '...' : slide.testimonial}
+              {slide.testimonial}
             </p>
           </div>
         </div>
 
-        {/* Action Buttons - Enhanced with glow */}
+        {/* Action Buttons */}
         <div className="
           flex items-center justify-center gap-3
           sm:flex-row sm:gap-4
@@ -464,12 +528,12 @@ const ModernHero = () => {
             "
           >
             <Play className="w-4 h-4 group-hover:scale-110 transition-transform" />
-            {isMobile ? 'Tour' : 'View Tour'}
+            {isMobile ? 'Tour' : 'Virtual Tour'}
           </button>
         </div>
       </div>
 
-      {/* Modern Controls - Mobile Responsive Position */}
+      {/* Modern Controls */}
       <div className={`absolute z-30 flex space-x-3 sm:space-y-3 sm:flex-col ${isMobile ? 'bottom-4 right-4 flex-row' : 'bottom-10 right-8 flex-col'}`}>
         <button 
           onClick={prevSlide}
@@ -489,7 +553,7 @@ const ModernHero = () => {
         </button>
       </div>
 
-      {/* Progress Indicators - Mobile Responsive */}
+      {/* Progress Indicators */}
       {!isMobile && (
         <div className="absolute top-1/2 right-4 sm:right-6 md:right-8 -translate-y-1/2 z-30 hidden sm:flex flex-col space-y-4 sm:space-y-6">
           {heroSlides.map((_, index) => (
@@ -525,7 +589,7 @@ const ModernHero = () => {
         </div>
       )}
 
-      {/* Bottom Info Strip - Much darker */}
+      {/* Bottom Info Strip */}
       <div className={`absolute bottom-0 left-0 w-full z-10 py-2 sm:py-3 md:py-4 px-3 sm:px-4 md:px-6 lg:px-12 
         border-t border-white/15 bg-black/95 backdrop-blur-md 
         ${isMobile ? 'flex flex-col items-center justify-center gap-1' : 'hidden md:flex items-center justify-between'} 
@@ -536,7 +600,7 @@ const ModernHero = () => {
             <div className="flex items-center space-x-4">
               <span className="flex items-center text-nowrap">
                 <BookOpen className="w-2 h-2 xs:w-3 xs:h-3 mr-1" />
-                Matungulu
+                {matunguluInfo?.motto || 'Strive to Excel'}
               </span>
               <span className="flex items-center text-nowrap">
                 <Trophy className="w-2 h-2 xs:w-3 xs:h-3 mr-1" />
@@ -556,17 +620,17 @@ const ModernHero = () => {
             <div className="flex space-x-4 md:space-x-6 lg:space-x-8">
               <span className="flex items-center">
                 <BookOpen className="w-3 h-3 mr-2" />
-                Matungulu, Machakos
+                {matunguluInfo?.location || 'Matungulu, Machakos'}
               </span>
               <span className="flex items-center">
                 <Trophy className="w-3 h-3 mr-2" />
-                Public Secondary School
+                {matunguluInfo?.type || 'Public County School'}
               </span>
             </div>
             <div className="flex space-x-4 md:space-x-6 lg:space-x-8">
               <span className="flex items-center">
                 <Clock className="w-3 h-3 mr-2" />
-                Quality Education
+                {matunguluInfo?.motto || 'Quality Education'}
               </span>
               <button 
                 onClick={openVideoModal}
@@ -580,20 +644,21 @@ const ModernHero = () => {
         )}
       </div>
 
-   {showVideoModal && (
+      {/* Video Modal */}
+      {showVideoModal && (
         <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-2 sm:p-4">
           <div className="relative w-full max-w-full sm:max-w-4xl md:max-w-5xl lg:max-w-6xl rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
             {/* Modal Header */}
             <div className="absolute top-0 left-0 right-0 z-20 bg-gradient-to-r from-black/80 to-transparent p-2 sm:p-3 md:p-4 flex items-center justify-between">
               <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
                 <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-lg sm:rounded-lg 
-                  bg-gradient-to-br from-amber-900 via-orange-900 to-red-900 flex items-center justify-center flex-shrink-0">
+                  bg-gradient-to-br from-emerald-900 via-teal-900 to-green-900 flex items-center justify-center flex-shrink-0">
                   <Play className="text-white w-3 h-3 sm:w-4 sm:h-4" />
                 </div>
                 <div className="overflow-hidden">
-                  <h4 className="text-white font-bold text-xs sm:text-sm md:text-base truncate">MatG High School Tour</h4>
+                  <h4 className="text-white font-bold text-xs sm:text-sm md:text-base truncate">Matungulu Girls Virtual Tour</h4>
                   <p className="text-white/60 text-[10px] sm:text-xs md:text-sm truncate">
-                    {schoolData?.name || 'Matungulu Girls Senior School'} - {schoolData?.videoType === 'youtube' ? 'YouTube Video' : schoolData?.videoType === 'file' ? 'MP4 Video' : 'Loading...'}
+                    {schoolData?.name || 'Matungulu Girls High School'} - {schoolData?.videoType === 'youtube' ? 'Video Tour' : schoolData?.videoType === 'file' ? 'School Video' : 'Loading...'}
                   </p>
                 </div>
               </div>
@@ -611,26 +676,23 @@ const ModernHero = () => {
             {/* Video Container */}
             <div className="relative bg-black aspect-video">
               {loading ? (
-                // Loading state
                 <div className="w-full h-full flex flex-col items-center justify-center">
                   <div className="animate-spin rounded-full h-8 w-8 sm:h-12 sm:w-12 border-b-2 border-white mb-2 sm:mb-4"></div>
-                  <p className="text-white text-sm sm:text-base">Loading video tour...</p>
+                  <p className="text-white text-sm sm:text-base">Loading virtual tour...</p>
                 </div>
               ) : error ? (
-                // Error state
                 <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-8">
                   <div className="text-3xl sm:text-4xl md:text-5xl text-red-500 mb-2 sm:mb-4">!</div>
                   <p className="text-white text-center text-xs sm:text-sm md:text-base mb-2 sm:mb-4 px-2">{error}</p>
                   <button
                     onClick={retryVideoLoad}
-                    className="px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-600 hover:bg-blue-700 text-white 
+                    className="px-3 sm:px-4 py-1.5 sm:py-2 bg-emerald-600 hover:bg-emerald-700 text-white 
                       rounded-lg transition-colors text-xs sm:text-sm"
                   >
                     Retry Loading
                   </button>
                 </div>
               ) : schoolData?.videoType === 'youtube' && schoolData?.videoTour ? (
-                // YouTube Video
                 <iframe
                   src={`https://www.youtube.com/embed/${extractYouTubeId(schoolData.videoTour)}?autoplay=1&rel=0&modestbranding=1&controls=1`}
                   className="w-full h-full"
@@ -639,7 +701,6 @@ const ModernHero = () => {
                   title={`${schoolData.name} Virtual Tour`}
                 />
               ) : schoolData?.videoType === 'file' && schoolData?.videoTour ? (
-                // Local MP4 Video
                 <div className="relative w-full h-full">
                   <video
                     src={schoolData.videoTour}
@@ -650,7 +711,6 @@ const ModernHero = () => {
                     poster={schoolData?.videoThumbnail}
                     onLoadedData={() => console.log('Video loaded successfully')}
                   >
-                    {/* Fallback message */}
                     <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-8">
                       <div className="text-3xl sm:text-4xl md:text-5xl text-gray-400 mb-2 sm:mb-4">!</div>
                       <p className="text-white text-center text-sm sm:text-base">
@@ -660,7 +720,6 @@ const ModernHero = () => {
                   </video>
                 </div>
               ) : (
-                // No video available or no schoolData yet
                 <div className="w-full h-full flex flex-col items-center justify-center p-4 sm:p-8">
                   <div className="text-3xl sm:text-4xl md:text-5xl text-gray-400 mb-2 sm:mb-4">!</div>
                   <p className="text-white text-center text-xs sm:text-sm md:text-base mb-2 sm:mb-4">
@@ -668,8 +727,8 @@ const ModernHero = () => {
                   </p>
                   <p className="text-white/60 text-xs sm:text-sm text-center px-2">
                     {schoolData 
-                      ? 'Please check back later for our virtual tour' 
-                      : 'Fetching video data...'
+                      ? 'Virtual tour coming soon' 
+                      : 'Fetching tour data...'
                     }
                   </p>
                 </div>
@@ -680,17 +739,17 @@ const ModernHero = () => {
             <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-r from-transparent to-black/80 p-2 sm:p-3 md:p-4">
               <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0">
                 <div className="text-white/80 text-xs sm:text-sm hidden sm:block truncate">
-                  {schoolData?.description?.substring(0, isMobile ? 50 : 100) + '...' || 'Experience Matungulu Girls Senior School from anywhere in the world'}
+                  {schoolData?.description?.substring(0, isMobile ? 50 : 100) + '...' || 'Experience Matungulu Girls High School from anywhere'}
                 </div>
                 <button
                   onClick={handleContactClick}
                   className="px-3 sm:px-4 md:px-6 lg:px-8 py-1.5 sm:py-2 md:py-3 
-                    text-xs sm:text-sm md:text-base bg-gradient-to-br from-amber-900 via-orange-900 to-red-900 
+                    text-xs sm:text-sm md:text-base bg-gradient-to-br from-emerald-700 via-teal-700 to-green-700 
                     text-white font-medium rounded-lg hover:opacity-90 transition-all duration-300 
                     disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
                   disabled={navigationBlocked}
                 >
-                  {isMobile ? 'Learn More' : 'Get To Know Us More'}
+                  {isMobile ? 'Learn More' : 'Know More About Us'}
                 </button>
               </div>
             </div>
@@ -698,7 +757,7 @@ const ModernHero = () => {
         </div>
       )}
 
-      {/* Navigation Blocker Overlay (temporary) */}
+      {/* Navigation Blocker Overlay */}
       {navigationBlocked && (
         <div className="absolute inset-0 z-40 pointer-events-none">
           <div className="absolute bottom-20 sm:bottom-24 left-1/2 transform -translate-x-1/2 
@@ -715,8 +774,8 @@ const getHighlightColorClass = (color) => {
   switch(color) {
     case 'blue': return 'text-blue-400';
     case 'green': return 'text-emerald-400';
-    case 'cyan': return 'text-cyan-400';
-    default: return 'text-blue-400';
+    case 'purple': return 'text-purple-400';
+    default: return 'text-emerald-400';
   }
 };
 
@@ -724,8 +783,8 @@ const getBorderColorClass = (color) => {
   switch(color) {
     case 'blue': return 'border-blue-500';
     case 'green': return 'border-emerald-500';
-    case 'cyan': return 'border-cyan-500';
-    default: return 'border-blue-500';
+    case 'purple': return 'border-purple-500';
+    default: return 'border-emerald-500';
   }
 };
 
@@ -733,8 +792,8 @@ const getProgressColorClass = (color) => {
   switch(color) {
     case 'blue': return 'bg-blue-500';
     case 'green': return 'bg-emerald-500';
-    case 'cyan': return 'bg-cyan-500';
-    default: return 'bg-blue-500';
+    case 'purple': return 'bg-purple-500';
+    default: return 'bg-emerald-500';
   }
 };
 
@@ -742,8 +801,8 @@ const getProgressColorValue = (color) => {
   switch(color) {
     case 'blue': return '#3b82f6';
     case 'green': return '#10b981';
-    case 'cyan': return '#06b6d4';
-    default: return '#3b82f6';
+    case 'purple': return '#a855f7';
+    default: return '#10b981';
   }
 };
 
