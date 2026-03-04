@@ -735,7 +735,7 @@ export default function ChatBot() {
   }, []);
 
   useEffect(() => {
-    const chatData = localStorage.getItem('Katwanyaa_chat');
+    const chatData = localStorage.getItem('MatG_chat');
     if (chatData) {
       const { messages: savedMessages, timestamp } = JSON.parse(chatData);
       const fourHoursAgo = Date.now() - (4 * 60 * 60 * 1000);
@@ -743,7 +743,7 @@ export default function ChatBot() {
       if (timestamp > fourHoursAgo) {
         setMessages(savedMessages);
       } else {
-        localStorage.removeItem('Katwanyaa_chat');
+        localStorage.removeItem('MatG_chat');
         setMessages([getWelcomeMessage()]);
       }
     } else {
@@ -762,10 +762,10 @@ export default function ChatBot() {
       role: 'assistant',
       content: `🎓 WELCOME TO ${schoolName.toUpperCase()}!${motto}
 
-Hello! I'm Katwa, your assistant.
+Hello! I'm MatG, your assistant.
 
 About Our School:
-• Public County School (Mixed - Day & Boarding)
+• Public Extra County School (Girl's Boarding)
 • Established: 1976
 • Location: Kambusu, Matungulu, Machakos County
 • Students: ${studentCount} | Teachers: ${staffCount}
@@ -788,7 +788,7 @@ ${schoolData ? 'For the most current information, choose a category below! 👇'
         messages: messages,
         timestamp: Date.now()
       };
-      localStorage.setItem('Katwanyaa_chat', JSON.stringify(chatData));
+      localStorage.setItem('MatG_chat', JSON.stringify(chatData));
     }
   }, [messages]);
 
@@ -863,7 +863,7 @@ ${schoolData ? 'For the most current information, choose a category below! 👇'
   };
 
   const clearChat = () => {
-    localStorage.removeItem('Katwanyaa_chat');
+    localStorage.removeItem('MatG_chat');
     setMessages([getWelcomeMessage()]);
     setShowCategories(true);
   };
