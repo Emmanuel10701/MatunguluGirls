@@ -201,8 +201,8 @@ export default function ModernNavbar() {
       <nav 
         className={`fixed w-full z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-gradient-to-r from-blue-700/95 via-indigo-700/95 to-purple-800/95 backdrop-blur-lg shadow-xl border-b border-white/10' 
-            : 'bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 shadow-lg'
+            ? 'bg-gradient-to-r from-emerald-900/95 via-teal-900/95 to-slate-900/95 backdrop-blur-lg shadow-xl border-b border-white/10' 
+            : 'bg-gradient-to-r from-emerald-800 via-teal-850 to-slate-800 shadow-lg'
         }`}
       >
         <div className="w-full px-3 xs:px-4 sm:px-6 lg:px-8">
@@ -231,7 +231,7 @@ export default function ModernNavbar() {
                 />
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent whitespace-nowrap tracking-tight">
+                <h1 className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent whitespace-nowrap tracking-tight">
                    MatG
                 </h1>
                 <p className="text-xs sm:text-sm text-white/90 font-medium tracking-wide whitespace-nowrap">
@@ -272,16 +272,16 @@ export default function ModernNavbar() {
                           
                           {/* Active underline indicator */}
                           {(isActive || isAcademicDropdownOpen) && (
-                            <span className="absolute bottom-1.5 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-white rounded-full"></span>
+                            <span className="absolute bottom-1.5 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-emerald-300 rounded-full"></span>
                           )}
                         </button>
 
                         {/* Academic Dropdown Menu */}
                         {isAcademicDropdownOpen && (
                           <div className="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 z-50">
-                            <div className="px-3 py-2 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-t-xl">
+                            <div className="px-3 py-2 border-b border-gray-100 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-t-xl">
                               <h3 className="font-bold text-gray-800 text-[0.7rem] uppercase tracking-wider flex items-center gap-1.5">
-                                <FiBook className="text-blue-600 text-xs" />
+                                <FiBook className="text-emerald-700 text-xs" />
                                 Academic Resources
                               </h3>
                             </div>
@@ -292,20 +292,20 @@ export default function ModernNavbar() {
                                 href={dropdownItem.href}
                                 className={`group flex items-center gap-2 px-3 py-2.5 text-xs font-medium transition-all hover:pl-3.5 ${
                                   isActiveLink(dropdownItem.href)
-                                    ? 'text-blue-700 bg-blue-50 border-l-3 border-blue-600'
-                                    : 'text-gray-700 hover:text-blue-700 hover:bg-blue-50/50'
+                                    ? 'text-emerald-700 bg-emerald-50 border-l-3 border-emerald-600'
+                                    : 'text-gray-700 hover:text-emerald-700 hover:bg-emerald-50/50'
                                 }`}
                                 onClick={() => setIsAcademicDropdownOpen(false)}
                               >
                                 <dropdownItem.icon className="text-xs flex-shrink-0" />
                                 <span className="flex-1 truncate">{dropdownItem.name}</span>
-                                <FiChevronRight className="text-gray-400 text-xs group-hover:text-blue-600 opacity-0 group-hover:opacity-100 transition-all" />
+                                <FiChevronRight className="text-gray-400 text-xs group-hover:text-emerald-600 opacity-0 group-hover:opacity-100 transition-all" />
                               </a>
                             ))}
                             
                             <a 
                               href="https://analytics.zeraki.app/" 
-                              className="group flex items-center gap-2 px-3 py-2.5 text-xs font-medium text-gray-700 hover:text-blue-700 hover:bg-blue-50/50 transition-all hover:pl-3.5"
+                              className="group flex items-center gap-2 px-3 py-2.5 text-xs font-medium text-gray-700 hover:text-emerald-700 hover:bg-emerald-50/50 transition-all hover:pl-3.5"
                               onClick={() => setIsAcademicDropdownOpen(false)}
                               target="_blank"
                               rel="noopener noreferrer"
@@ -314,11 +314,11 @@ export default function ModernNavbar() {
                                 <img 
                                   src="/zeraki.jpg" 
                                   alt="Zeraki Analytics" 
-                                  className="w-full h-full object-cover rounded-md border border-gray-200 group-hover:border-blue-300 transition-colors"
+                                  className="w-full h-full object-cover rounded-md border border-gray-200 group-hover:border-emerald-300 transition-colors"
                                 />
                               </div>
                               <span className="flex-1 truncate">Zeraki Analytics</span>
-                              <FiChevronRight className="text-gray-400 text-xs group-hover:text-blue-600 opacity-0 group-hover:opacity-100 transition-all" />
+                              <FiChevronRight className="text-gray-400 text-xs group-hover:text-emerald-600 opacity-0 group-hover:opacity-100 transition-all" />
                             </a>
                           </div>
                         )}
@@ -341,7 +341,7 @@ export default function ModernNavbar() {
                       
                       {/* Active underline indicator */}
                       {isActive && (
-                        <span className="absolute bottom-1.5 left-1/2 transform -translate-x-1/2 w-5 h-0.5 bg-white rounded-full"></span>
+                        <span className="absolute bottom-1.5 left-1/2 transform -translate-x-1/2 w-5 h-0.5 bg-emerald-300 rounded-full"></span>
                       )}
                       
                       {/* Hover underline indicator */}
@@ -380,16 +380,16 @@ export default function ModernNavbar() {
                       isActiveLink('/pages/staff') || 
                       isActiveLink('/pages/career') ||
                       isActiveLink('/pages/adminLogin')) && (
-                      <span className="absolute bottom-1.5 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-white rounded-full"></span>
+                      <span className="absolute bottom-1.5 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-emerald-300 rounded-full"></span>
                     )}
                   </button>
 
                   {/* Resources Dropdown Menu - INCLUDES ADMIN LOGIN */}
                   {isResourcesDropdownOpen && (
                     <div className="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 z-50">
-                      <div className="px-3 py-2 border-b border-gray-100 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-t-xl">
+                      <div className="px-3 py-2 border-b border-gray-100 bg-gradient-to-r from-teal-50 to-emerald-50 rounded-t-xl">
                         <h3 className="font-bold text-gray-800 text-[0.7rem] uppercase tracking-wider flex items-center gap-1.5">
-                          <FiGrid className="text-purple-600 text-xs" />
+                          <FiGrid className="text-teal-700 text-xs" />
                           Resources & Admin
                         </h3>
                       </div>
@@ -401,22 +401,22 @@ export default function ModernNavbar() {
                           className={`group flex items-center gap-2 px-3 py-2.5 text-xs font-medium transition-all hover:pl-3.5 ${
                             isActiveLink(dropdownItem.href)
                               ? dropdownItem.isHighlighted
-                                ? 'bg-gradient-to-r from-blue-50 to-blue-100 border-l-3 border-blue-600 text-blue-700'
-                                : 'text-purple-700 bg-purple-50 border-l-3 border-purple-600'
+                                ? 'bg-gradient-to-r from-emerald-50 to-emerald-100 border-l-3 border-emerald-600 text-emerald-700'
+                                : 'text-teal-700 bg-teal-50 border-l-3 border-teal-600'
                               : dropdownItem.isHighlighted
-                                ? 'text-blue-600 hover:text-blue-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100'
-                                : 'text-gray-700 hover:text-purple-700 hover:bg-purple-50/50'
+                                ? 'text-emerald-600 hover:text-emerald-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-emerald-100'
+                                : 'text-gray-700 hover:text-teal-700 hover:bg-teal-50/50'
                           }`}
                           onClick={() => setIsResourcesDropdownOpen(false)}
                         >
                           <dropdownItem.icon className={`text-xs flex-shrink-0 ${
-                            dropdownItem.isHighlighted ? 'text-blue-600' : ''
+                            dropdownItem.isHighlighted ? 'text-emerald-600' : ''
                           }`} />
                           <span className="flex-1 truncate">{dropdownItem.name}</span>
                           <FiChevronRight className={`text-xs ${
                             dropdownItem.isHighlighted 
-                              ? 'text-blue-400 group-hover:text-blue-600' 
-                              : 'text-gray-400 group-hover:text-purple-600'
+                              ? 'text-emerald-400 group-hover:text-emerald-600' 
+                              : 'text-gray-400 group-hover:text-teal-600'
                           } opacity-0 group-hover:opacity-100 transition-all`} />
                         </a>
                       ))}
@@ -445,7 +445,7 @@ export default function ModernNavbar() {
 
         {/* Mobile Menu - Responsive */}
         {isOpen && (
-          <div className="lg:hidden bg-gradient-to-b from-blue-700 to-purple-800 border-t border-white/10">
+          <div className="lg:hidden bg-gradient-to-b from-emerald-800 to-slate-800 border-t border-white/10">
             <div className="px-3 xs:px-4 sm:px-6 py-6 xs:py-8 max-w-2xl mx-auto">
               {/* Mobile Navigation */}
               <div className="space-y-1.5 xs:space-y-2 mb-6 xs:mb-8">
@@ -571,10 +571,10 @@ export default function ModernNavbar() {
                           className={`flex items-center gap-2 xs:gap-3 p-2.5 xs:p-3 rounded-lg ${
                             isActiveLink(dropdownItem.href)
                               ? dropdownItem.isHighlighted
-                                ? 'bg-gradient-to-r from-blue-500/20 to-blue-600/20 text-white'
+                                ? 'bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 text-white'
                                 : 'bg-white/20 text-white'
                               : dropdownItem.isHighlighted
-                                ? 'text-white hover:bg-gradient-to-r hover:from-blue-500/20 hover:to-blue-600/20'
+                                ? 'text-white hover:bg-gradient-to-r hover:from-emerald-500/20 hover:to-emerald-600/20'
                                 : 'text-white/80 hover:bg-white/10'
                           }`}
                           onClick={() => {
