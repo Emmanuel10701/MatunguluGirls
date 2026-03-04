@@ -998,104 +998,86 @@ ${schoolData ? 'For the most current information, choose a category below! 👇'
               overscrollBehavior: 'contain'
             }}
           >
-            <style jsx>{`
-              .flex-1::-webkit-scrollbar {
-                width: 6px;
-              }
-              .flex-1::-webkit-scrollbar-track {
-                background: transparent;
-              }
-              .flex-1::-webkit-scrollbar-thumb {
-                background-color: rgba(255, 255, 255, 0.2);
-                border-radius: 3px;
-              }
-              @media (max-width: 640px) {
-                .flex-1::-webkit-scrollbar {
-                  width: 4px;
-                }
-              }
-            `}</style>
+       <style jsx>{`
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+`}</style>
             
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
+{messages.map((message) => (
+  <div
+    key={message.id}
+    className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
+  >
+    <div
+      className={`max-w-[95%] w-full rounded-lg px-3 py-2 sm:px-4 sm:py-3 ${
+        message.role === 'user'
+          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-br-none'
+          : 'bg-slate-700/80 text-white rounded-bl-none'
+      }`}
+      style={{
+        wordBreak: 'break-word',
+        overflowWrap: 'break-word'
+      }}
+    >
+      {/* Show fetching state */}
+      {message.isGenerating && message.content === '' ? (
+        <div className="flex items-center space-x-2">
+          <div className="flex space-x-1">
+            <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce"></div>
+            <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+            <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+          </div>
+          <span className="text-xs text-gray-300">Generating response...</span>
+        </div>
+      ) : (
+        <div className="text-xs sm:text-sm leading-relaxed text-white w-full">
+          {formatMessage(message.content)}
+        </div>
+      )}
+      
+      {/* Links Section - only show when not generating */}
+      {message.links && message.role === 'assistant' && !message.isGenerating && message.content && (
+        <div className="mt-2 sm:mt-3 pt-2 border-t border-white/20 w-full animate-fade-in">
+          <p className="text-xs text-blue-300 mb-2 font-medium flex items-center gap-1">
+            <SafeIcon name="star" className="w-3 h-3 flex-shrink-0" />
+            Quick Links:
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {message.links.map((link, index) => (
+              <button
+                key={index}
+                onClick={() => handleLinkClick(link)}
+                className={`inline-flex items-center gap-1 text-xs px-2 py-1.5 rounded transition-all font-medium whitespace-nowrap flex-shrink-0 ${
+                  link.action === 'download'
+                    ? 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white'
+                    : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white'
+                }`}
               >
-                <style jsx>{`
-                  @keyframes fade-in {
-                    from {
-                      opacity: 0;
-                      transform: translateY(10px);
-                    }
-                    to {
-                      opacity: 1;
-                      transform: translateY(0);
-                    }
-                  }
-                  .animate-fade-in {
-                    animation: fade-in 0.3s ease-out;
-                  }
-                `}</style>
-
-                <div
-                  className={`max-w-[95%] w-full rounded-lg px-3 py-2 sm:px-4 sm:py-3 ${
-                    message.role === 'user'
-                      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-br-none'
-                      : 'bg-slate-700/80 text-white rounded-bl-none'
-                  }`}
-                  style={{
-                    wordBreak: 'break-word',
-                    overflowWrap: 'break-word'
-                  }}
-                >
-                  {/* Show fetching state */}
-                  {message.isGenerating && message.content === '' ? (
-                    <div className="flex items-center space-x-2">
-                      <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                        <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                      </div>
-                      <span className="text-xs text-gray-300">Generating response...</span>
-                    </div>
-                  ) : (
-                    <div className="text-xs sm:text-sm leading-relaxed text-white w-full">
-                      {formatMessage(message.content)}
-                    </div>
-                  )}
-                  
-                  {/* Links Section - only show when not generating */}
-                  {message.links && message.role === 'assistant' && !message.isGenerating && message.content && (
-                    <div className="mt-2 sm:mt-3 pt-2 border-t border-white/20 w-full animate-fade-in">
-                      <p className="text-xs text-blue-300 mb-2 font-medium flex items-center gap-1">
-                        <SafeIcon name="star" className="w-3 h-3 flex-shrink-0" />
-                        Quick Links:
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {message.links.map((link, index) => (
-                          <button
-                            key={index}
-                            onClick={() => handleLinkClick(link)}
-                            className={`inline-flex items-center gap-1 text-xs px-2 py-1.5 rounded transition-all font-medium whitespace-nowrap flex-shrink-0 ${
-                              link.action === 'download'
-                                ? 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white'
-                                : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white'
-                            }`}
-                          >
-                            {link.icon && <SafeIcon name={link.icon} className="w-3 h-3" />}
-                            {link.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  
-                  <p className={`text-xs mt-1 sm:mt-2 ${message.role === 'user' ? 'text-blue-100' : 'text-gray-400'}`}>
-                    {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                  </p>
-                </div>
-              </div>
+                {link.icon && <SafeIcon name={link.icon} className="w-3 h-3" />}
+                {link.label}
+              </button>
             ))}
+          </div>
+        </div>
+      )}
+      
+      <p className={`text-xs mt-1 sm:mt-2 ${message.role === 'user' ? 'text-blue-100' : 'text-gray-400'}`}>
+        {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+      </p>
+    </div>
+  </div>
+))}
 
             <div ref={messagesEndRef} style={{ height: '1px' }} />
           </div>
