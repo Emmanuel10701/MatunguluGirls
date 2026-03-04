@@ -30,7 +30,8 @@ import {
   FiShield,
   FiWifi,
   FiCoffee,
-  FiAward
+  FiAward,
+
 } from 'react-icons/fi';
 import { 
   IoNewspaperOutline,
