@@ -306,7 +306,6 @@ const ModernHero = () => {
     return () => clearInterval(timer);
   }, [currentSlide, nextSlide, showVideoModal]);
 
-  // Retry function for video loading
   const retryVideoLoad = useCallback(() => {
     setLoading(true);
     setError(null);
