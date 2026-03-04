@@ -156,7 +156,7 @@ const ModernHero = () => {
           motto: 'Strive to Excel',
           studentPopulation: 'Female Students (Mixed intake)',
           principal: 'School Administration',
-          website: 'matungulu-girls.vercel.app'
+          website: 'https://matungulu-girls.vercel.app'
         });
       }
     };
