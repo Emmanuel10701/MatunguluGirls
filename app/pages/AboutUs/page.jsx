@@ -24,11 +24,11 @@ const date = new Date(); // Add this line!
     <div className="bg-white text-slate-900">
       {/* Hero Section */}
       {/* Modern Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-amber-950 via-orange-950 to-red-950">
+      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-r from-emerald-900/95 via-teal-900/95 to-slate-900/95 ">
         {/* Background with Zoom Effect */}
     <div className="absolute inset-0 group overflow-hidden rounded-t-md">
   {/* Modern Gradient Overlay */}
-  <div className="absolute inset-0 bg-gradient-to-b from-orange-950/30 via-orange-950/80 to-orange-950 z-20"></div>
+  <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/95 via-teal-900/95 to-slate-900/95  z-20"></div>
   
   <Image
       src="/hero/matG1.jpg"
