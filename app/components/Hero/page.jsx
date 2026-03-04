@@ -20,9 +20,9 @@ const heroSlides = [
     gradient: "from-emerald-500 via-teal-400 to-green-600",
     description: "A leading public secondary school in Matungulu sub-county dedicated to academic excellence, character development, and empowering young women through quality education and holistic development.",
     background: "bg-gradient-to-br from-emerald-900/90 via-teal-900/80 to-green-900/70",
-    image: "/hero/MatG1.jpeg",
+    image: "/hero/matG.jpg",
     stats: { 
-      established: "Est. 1995", 
+      established: "Est. 1956", 
       students: "County School", 
       excellence: "Quality Education" 
     },
@@ -45,15 +45,15 @@ const heroSlides = [
     gradient: "from-blue-500 via-cyan-400 to-teal-600",
     description: "Matungulu Girls provides rigorous academic programs with emphasis on Science, Technology, Engineering, and Mathematics, preparing students for university and professional careers.",
     background: "bg-gradient-to-br from-blue-900/90 via-cyan-900/80 to-teal-900/70",
-    image: "/hero/.jpeg",
+    image: "/hero/matG.jpg",
     stats: { 
       subjects: "Diverse Curriculum", 
       teachers: "Qualified Educators", 
       facilities: "Modern Labs" 
     },
     features: ["Science Labs", "Computer Lab", "Library Resources", "Research Programs"],
-    cta: "Our Programs",
-    link: "/pages/AboutUs",
+    cta: "Admissions",
+    link: "/pages/admissions",
     highlightColor: "blue",
     testimonial: "\"Preparing women leaders through quality STEM education and critical thinking.\"",
     icon: BookOpen,

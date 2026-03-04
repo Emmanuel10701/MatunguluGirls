@@ -628,7 +628,7 @@ const jsonLd = {
                   <FiPlay className="text-white" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold">Virtual Campus Tour</h4>
+                  <h4 className="text-white font-bold">Virtual Tour</h4>
                   <p className="text-white/60 text-sm">
                     {schoolData?.name || 'Loading...'}
                   </p>
