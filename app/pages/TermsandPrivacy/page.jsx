@@ -185,18 +185,18 @@ export default function TermsAndConditions() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-orange-50 via-white to-amber-50 p-4 sm:p-6 md:p-8">
+    <div className="min-h-screen bg-gradient-to-r from-emerald-100/95 via-teal-100/95 to-slate-100/95 p-4 sm:p-6 md:p-8">
       {/* Modern Header */}
       <div className="max-w-6xl mx-auto">
         <div className="mb-8 sm:mb-12 md:mb-16">
           {/* School Logo and Info */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
             <div className="text-center md:text-left">
-              <div className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-orange-100 to-amber-100 rounded-2xl border border-orange-200 mb-3">
-                <div className="w-8 h-8 bg-gradient-to-r from-orange-600 to-amber-600 rounded-lg flex items-center justify-center">
+              <div className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-emerald-100 to-amber-100 rounded-2xl border border-emerald-200 mb-3">
+                <div className="w-8 h-8 bg-gradient-to-r from-emerald-600/95 via-teal-600/95 to-slate-600/95  rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">MI</span>
                 </div>
-                <span className="text-sm font-bold text-orange-900 uppercase tracking-wider">Matungulu Girls High</span>
+                <span className="text-sm font-bold text-emerald-900 uppercase tracking-wider">Matungulu Girls High</span>
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mb-2 leading-tight">
                 School Rules & Regulations
@@ -209,7 +209,7 @@ export default function TermsAndConditions() {
             {/* Stats */}
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-white rounded-xl p-3 border border-slate-200 shadow-sm text-center">
-                <div className="text-xl sm:text-2xl font-bold text-orange-700">{allTerms.length}</div>
+                <div className="text-xl sm:text-2xl font-bold text-emerald-700">{allTerms.length}</div>
                 <div className="text-xs font-medium text-slate-500">Total Sections</div>
               </div>
               <div className="bg-white rounded-xl p-3 border border-slate-200 shadow-sm text-center">
@@ -230,7 +230,7 @@ export default function TermsAndConditions() {
                   setCurrentPage(1);
                 }}
                 placeholder="Search rules and regulations..."
-                className="w-full px-4 py-3 pl-12 text-base sm:text-lg border-2 border-slate-300 rounded-2xl focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 bg-white shadow-sm"
+                className="w-full px-4 py-3 pl-12 text-base sm:text-lg border-2 border-slate-300 rounded-2xl focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 bg-white shadow-sm"
                 style={{ fontSize: '16px' }}
               />
               <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -253,11 +253,11 @@ export default function TermsAndConditions() {
           <div className="flex flex-wrap items-center justify-between gap-3 mb-6 px-2">
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1.5">
-                <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
                 <span className="text-xs font-medium text-slate-600">Showing {currentTerms.length} of {filteredTerms.length} rules</span>
               </div>
               {searchTerm && (
-                <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">
+                <span className="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full">
                   Search: "{searchTerm}"
                 </span>
               )}
@@ -277,7 +277,7 @@ export default function TermsAndConditions() {
                 className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
                 {/* Term Header with Gradient */}
-                <div className="bg-gradient-to-r from-orange-600 to-amber-600 p-4 sm:p-6 text-white">
+                <div className="bg-gradient-to-r from-emerald-600 to-amber-600 p-4 sm:p-6 text-white">
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="flex items-center gap-2 mb-2">
@@ -314,7 +314,7 @@ export default function TermsAndConditions() {
                       >
                         <div className="flex items-start gap-3">
                           <div className="flex-shrink-0">
-                            <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center">
+                            <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center">
                               <span className="text-xs font-bold">{index + 1}</span>
                             </div>
                           </div>
@@ -341,7 +341,7 @@ export default function TermsAndConditions() {
                 <p className="text-slate-600 mb-4">Try searching with different keywords or browse all sections</p>
                 <button
                   onClick={() => setSearchTerm("")}
-                  className="px-4 py-2 bg-gradient-to-r from-orange-600 to-amber-600 text-white rounded-lg font-bold hover:opacity-90 transition-opacity"
+                  className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-amber-600 text-white rounded-lg font-bold hover:opacity-90 transition-opacity"
                 >
                   Show All Rules
                 </button>
@@ -436,8 +436,8 @@ export default function TermsAndConditions() {
         {/* Footer */}
         <div className="mt-12 pt-8 border-t border-slate-200">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-4 border border-orange-100">
-              <h4 className="font-bold text-orange-900 mb-2">Important Notice</h4>
+            <div className="bg-gradient-to-br from-emerald-50 to-amber-50 rounded-2xl p-4 border border-emerald-100">
+              <h4 className="font-bold text-emerald-900 mb-2">Important Notice</h4>
               <p className="text-sm text-slate-700">These rules are binding for all students. Parents/guardians must ensure students understand and comply.</p>
             </div>
             <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-4 border border-emerald-100">
