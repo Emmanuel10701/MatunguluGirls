@@ -73,24 +73,24 @@ const staticCategories = {
   general: {
     name: "Overview",
     icon: 'school',
-    content: `🏫 A.I.C Matungulu Girls High School
+    content: `Matungulu Girls School
 
 **A Public County School in Machakos**
 
 Quick Facts:
-• Established: 1976
-• Location: Kambusu, Matungulu, Machakos County
+• Established: 1956
+• Location: Matungulu, Machakos County
 • Students: 1000+
 • Staff: 50+
 
 School Type:
 • Public County School
-• Mixed (Boys & Girls) - Day & Boarding
+• Mixed Girls Boarding
 • Competency-Based Curriculum (CBE)
 
 Contact:
 • Phone: +254 729 370 590
-• Email: katwanyaaschool@yahoo.com
+• Email: matungulugirls@gmial.com
 • Address: P.O. Box 363 – 90131 Tala, Kenya
 
 Hours:
@@ -134,8 +134,8 @@ Steps:
 • Arts & Sports Science Pathway
 
 **Technology Partnership:**
-• Angaza Center technology partnership
-• A.I.C  Matungulu Girls  Church support
+• CDF partnership
+• Matungulu Girls  Church support
 • Fully equipped computer lab
 • Internet access for all students`,
     links: [
@@ -752,25 +752,24 @@ export default function ChatBot() {
   }, [schoolData, documentData]);
 
   const getWelcomeMessage = () => {
-    const schoolName = schoolData?.name || 'A.I.C Matungulu Girls High School';
-    const motto = schoolData?.motto ? `\n\n**${schoolData.motto}** ✨` : '\n\n**Strive to Excel** ✨';
+    const schoolName = schoolData?.name || 'Matungulu Girls School';
+    const motto = schoolData?.motto ? `\n\n${schoolData.motto}✨` : '\n\nStrive to Excel✨';
     const studentCount = schoolData?.studentCount || '1000+';
     const staffCount = schoolData?.staffCount || '50+';
     
     return {
       id: 1,
       role: 'assistant',
-      content: `🎓 WELCOME TO ${schoolName.toUpperCase()}!${motto}
+      content: `WELCOME TO ${schoolName.toUpperCase()}!${motto}
 
 Hello! I'm MatG, your assistant.
 
 About Our School:
 • Public Extra County School (Girl's Boarding)
-• Established: 1976
-• Location: Kambusu, Matungulu, Machakos County
+• Established: 1956
+• Location: Kinyui, Matungulu, Machakos County
 • Students: ${studentCount} | Teachers: ${staffCount}
 • Competency-Based Curriculum (CBE)
-• Angaza Center Technology Partnership
 
 ${schoolData ? 'For the most current information, choose a category below! 👇' : 'Choose a category below to learn more! 👇'}`,
       links: [
