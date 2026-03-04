@@ -149,7 +149,6 @@ Steps:
     content: `💰 FEES STRUCTURE
 
 **School Fees (Per Term):**
-• Day School: KES 12,000 - 15,000
 • Boarding School: KES 25,000 - 30,000
 • Activities: KES 2,000 - 3,000
 
@@ -166,7 +165,7 @@ Steps:
 • Cash payments at bursar's office
 • Installment plans available
 
-**Scholarships:**
+**Awards:**
 • Academic excellence scholarships
 • Sports scholarships
 • Needy student support
@@ -196,7 +195,7 @@ Steps:
 • Computer Studies • Life Skills Education
 
 **Special Features:**
-• Angaza Center Technology Partnership
+• CDF partnership
 • Fully equipped computer laboratory
 • Science laboratories
 • Modern library
@@ -230,8 +229,7 @@ Steps:
     content: `⚽ CO-CURRICULAR ACTIVITIES
 
 **Sports:**
-• Football • Rugby
-• Basketball • Volleyball
+• Football • Basketball • Volleyball
 • Athletics • Netball
 • Table Tennis • Swimming
 
@@ -270,7 +268,7 @@ Steps:
   achievements: {
     name: "Achievements",
     icon: 'award',
-    content: `🏆 SCHOOL ACHIEVEMENTS
+    content: `SCHOOL ACHIEVEMENTS
 
 **Academic Excellence:**
 • Consistent improvement in KCSE results
@@ -297,7 +295,6 @@ Steps:
 • Leadership development programs
 
 **Technology Partnership:**
-• Angaza Center technology integration
 • Digital learning implementation
 • Computer literacy excellence`,
     links: [
@@ -644,8 +641,7 @@ const formatMessage = (content) => {
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isTyping, setIsTyping] = useState(false);
-  const [typedMessage, setTypedMessage] = useState('');
+  const [isFetching, setIsFetching] = useState(false);
   const [messages, setMessages] = useState([]);
   const [showCategories, setShowCategories] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
@@ -799,34 +795,46 @@ ${schoolData ? 'For the most current information, choose a category below! 👇'
     scrollToBottom();
   }, [messages, scrollToBottom]);
 
-  const typeMessage = (message, onComplete) => {
-    setIsTyping(true);
-    setTypedMessage('');
-    let index = 0;
+  // Stream message display like Gemini - smooth reveal
+  const streamMessage = (message, assistantMessageId, onComplete) => {
+    setIsLoading(true);
+    setIsFetching(false);
     
-    const typingInterval = setInterval(() => {
+    let index = 0;
+    const chunkSize = 3; // Display 3 characters at a time for smooth effect
+    
+    const streamInterval = setInterval(() => {
       if (index < message.length) {
-        setTypedMessage(prev => prev + message[index]);
-        index++;
+        const chunk = message.slice(index, index + chunkSize);
+        
+        setMessages(prev => prev.map(msg => 
+          msg.id === assistantMessageId 
+            ? { ...msg, content: msg.content + chunk }
+            : msg
+        ));
+        
+        index += chunkSize;
+        
+        // Auto-scroll to bottom
         if (messagesContainerRef.current) {
           const container = messagesContainerRef.current;
           const isAtBottom = 
-            container.scrollHeight - container.scrollTop <= container.clientHeight + 50;
+            container.scrollHeight - container.scrollTop <= container.clientHeight + 100;
           
           if (isAtBottom) {
-            scrollToBottom();
+            setTimeout(() => scrollToBottom(), 10);
           }
         }
       } else {
-        clearInterval(typingInterval);
-        setIsTyping(false);
+        clearInterval(streamInterval);
+        setIsLoading(false);
         onComplete();
         setTimeout(() => {
           setShowCategories(true);
           scrollToBottom();
         }, 300);
       }
-    }, 15);
+    }, 20); // Adjust speed - lower = faster
   };
 
   const handleCategoryClick = (categoryKey) => {
@@ -842,23 +850,34 @@ ${schoolData ? 'For the most current information, choose a category below! 👇'
     const assistantMessage = {
       id: Date.now() + 1,
       role: 'assistant',
-      content: '',
+      content: '', // Start with empty content
       links: category.links,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      isGenerating: true
     };
 
     setMessages(prev => [...prev, userMessage, assistantMessage]);
-    setIsLoading(true);
     setShowCategories(false);
+    setIsFetching(true); // Show fetching state
 
-    typeMessage(category.content, () => {
+    // Simulate API delay before streaming
+    setTimeout(() => {
+      setIsFetching(false);
       setMessages(prev => prev.map(msg => 
         msg.id === assistantMessage.id 
-          ? { ...msg, content: category.content, links: category.links }
+          ? { ...msg, isGenerating: true }
           : msg
       ));
-      setIsLoading(false);
-    });
+      
+      // Stream the response
+      streamMessage(category.content, assistantMessage.id, () => {
+        setMessages(prev => prev.map(msg => 
+          msg.id === assistantMessage.id 
+            ? { ...msg, isGenerating: false, links: category.links }
+            : msg
+        ));
+      });
+    }, 600); // Brief delay before showing response
   };
 
   const clearChat = () => {
@@ -915,58 +934,64 @@ ${schoolData ? 'For the most current information, choose a category below! 👇'
           }}
         >
           {/* Header with logo */}
-<div className="bg-gradient-to-r from-emerald-900/95 via-teal-900/95 to-slate-900/95 text-white p-3 sm:p-4 flex-shrink-0">
-  <div className="flex justify-between items-center gap-2">
-    
-    {/* LEFT: Branding Section */}
-    <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
-      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center shadow-lg bg-white shrink-0 overflow-hidden border border-white/20">
-        <img
-          src="/MatG.jpg"
-          alt="Logo"
-          className="w-full h-full object-cover"
-        />
-      </div>
+          <div className="bg-gradient-to-r from-emerald-900/95 via-teal-900/95 to-slate-900/95 text-white p-3 sm:p-4 flex-shrink-0">
+            <div className="flex justify-between items-center gap-2">
+              
+              {/* LEFT: Branding Section */}
+              <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center shadow-lg bg-white shrink-0 overflow-hidden border border-white/20">
+                  <img
+                    src="/MatG.jpg"
+                    alt="Logo"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-      <div className="min-w-0 flex flex-col">
-        <h3 className="text-sm sm:text-base font-black text-white truncate leading-tight">
-          {schoolData?.name || 'Matungulu Girls High School'}
-        </h3>
-        <p className="text-blue-200 text-[10px] sm:text-xs truncate opacity-80 font-medium">
-          {schoolData?.motto || 'Strive to Excel'}
-        </p>
-      </div>
-    </div>
+                <div className="min-w-0 flex flex-col">
+                  <h3 className="text-sm sm:text-base font-black text-white truncate leading-tight">
+                    {schoolData?.name || 'Matungulu Girls High School'}
+                  </h3>
+                  <p className="text-blue-200 text-[10px] sm:text-xs truncate opacity-80 font-medium">
+                    {schoolData?.motto || 'Strive to Excel'}
+                  </p>
+                </div>
+              </div>
 
-    {/* RIGHT: Action Buttons - Forced visibility */}
-    <div className="flex items-center space-x-1 sm:space-x-2 shrink-0">
-      {isFetchingData && (
-        <div className="flex items-center pr-1 sm:pr-2">
-          <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-        </div>
-      )}
-      
-      {/* Clear Button */}
-      <button
-        onClick={clearChat}
-        className="p-2 sm:p-2.5 hover:bg-white/10 active:bg-white/20 rounded-xl transition-all"
-        title="Clear chat"
-      >
-        <SafeIcon name="trash" className="w-4 h-4 sm:w-5 sm:h-5 opacity-80 hover:opacity-100" />
-      </button>
+              {/* RIGHT: Action Buttons */}
+              <div className="flex items-center space-x-1 sm:space-x-2 shrink-0">
+                {/* Fetching Indicator */}
+                {isFetching && (
+                  <div className="flex items-center px-2 sm:px-3 py-1 bg-emerald-500/20 rounded-lg border border-emerald-500/30">
+                    <div className="flex items-center gap-1">
+                      <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+                      <span className="text-[10px] sm:text-xs text-emerald-300 font-medium whitespace-nowrap">
+                        Fetching data...
+                      </span>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Clear Button */}
+                <button
+                  onClick={clearChat}
+                  className="p-2 sm:p-2.5 hover:bg-white/10 active:bg-white/20 rounded-xl transition-all"
+                  title="Clear chat"
+                >
+                  <SafeIcon name="trash" className="w-4 h-4 sm:w-5 sm:h-5 opacity-80 hover:opacity-100" />
+                </button>
 
-      {/* CLOSE BUTTON: Enlarged hit area for mobile thumb access */}
-      <button
-        onClick={() => setIsOpen(false)}
-        className="p-2 sm:p-2.5 bg-white/10 hover:bg-white/20 active:scale-90 rounded-xl transition-all border border-white/10"
-        aria-label="Close chat"
-      >
-        <SafeIcon name="close" className="w-4 h-4 sm:w-5 sm:h-5" />
-      </button>
-    </div>
+                {/* Close Button */}
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 sm:p-2.5 bg-white/10 hover:bg-white/20 active:scale-90 rounded-xl transition-all border border-white/10"
+                  aria-label="Close chat"
+                >
+                  <SafeIcon name="close" className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
+              </div>
 
-  </div>
-</div>
+            </div>
+          </div>
 
           {/* Messages Container */}
           <div 
@@ -1000,8 +1025,24 @@ ${schoolData ? 'For the most current information, choose a category below! 👇'
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
               >
+                <style jsx>{`
+                  @keyframes fade-in {
+                    from {
+                      opacity: 0;
+                      transform: translateY(10px);
+                    }
+                    to {
+                      opacity: 1;
+                      transform: translateY(0);
+                    }
+                  }
+                  .animate-fade-in {
+                    animation: fade-in 0.3s ease-out;
+                  }
+                `}</style>
+
                 <div
                   className={`max-w-[95%] w-full rounded-lg px-3 py-2 sm:px-4 sm:py-3 ${
                     message.role === 'user'
@@ -1013,9 +1054,15 @@ ${schoolData ? 'For the most current information, choose a category below! 👇'
                     overflowWrap: 'break-word'
                   }}
                 >
-                  {message.role === 'assistant' && isTyping && message.id === messages[messages.length - 1]?.id ? (
-                    <div className="text-xs sm:text-sm leading-relaxed text-white w-full">
-                      {formatMessage(typedMessage)}
+                  {/* Show fetching state */}
+                  {message.isGenerating && message.content === '' ? (
+                    <div className="flex items-center space-x-2">
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                        <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                      </div>
+                      <span className="text-xs text-gray-300">Generating response...</span>
                     </div>
                   ) : (
                     <div className="text-xs sm:text-sm leading-relaxed text-white w-full">
@@ -1023,9 +1070,9 @@ ${schoolData ? 'For the most current information, choose a category below! 👇'
                     </div>
                   )}
                   
-                  {/* Links Section */}
-                  {message.links && message.role === 'assistant' && !isTyping && (
-                    <div className="mt-2 sm:mt-3 pt-2 border-t border-white/20 w-full">
+                  {/* Links Section - only show when not generating */}
+                  {message.links && message.role === 'assistant' && !message.isGenerating && message.content && (
+                    <div className="mt-2 sm:mt-3 pt-2 border-t border-white/20 w-full animate-fade-in">
                       <p className="text-xs text-blue-300 mb-2 font-medium flex items-center gap-1">
                         <SafeIcon name="star" className="w-3 h-3 flex-shrink-0" />
                         Quick Links:
@@ -1056,27 +1103,12 @@ ${schoolData ? 'For the most current information, choose a category below! 👇'
               </div>
             ))}
 
-            {/* Typing Indicator */}
-            {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-slate-700/80 text-white rounded-lg rounded-bl-none px-3 py-2 sm:px-4 sm:py-3 max-w-[95%]">
-                  <div className="flex space-x-2 items-center">
-                    <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                    </div>
-                    <span className="text-xs text-gray-300">MatG Typing...</span>
-                  </div>
-                </div>
-              </div>
-            )}
             <div ref={messagesEndRef} style={{ height: '1px' }} />
           </div>
 
           {/* Categories Section */}
           {showCategories && (
-            <div className="border-t border-white/10 bg-slate-700/80 p-3 sm:p-4 flex-shrink-0">
+            <div className="border-t border-white/10 bg-slate-700/80 p-3 sm:p-4 flex-shrink-0 animate-fade-in">
               <div className="w-full">
                 <p className="text-xs text-blue-300 font-medium mb-2 flex items-center gap-1">
                   <SafeIcon name="help" className="w-3 h-3 flex-shrink-0" />
