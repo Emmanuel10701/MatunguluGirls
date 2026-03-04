@@ -324,7 +324,6 @@ export default function ModernFooter() {
                 </div>
               </div>
             </div>
-    {/* Column 2: Quick Links */}
             <div className="space-y-4 min-w-0 w-full">
               <div className="flex items-center gap-2 flex-wrap">
                 <FiGlobe className="text-white text-lg sm:text-xl flex-shrink-0" />
