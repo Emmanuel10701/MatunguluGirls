@@ -603,7 +603,7 @@ const jsonLd = {
 
       <Hero />
       {/* Modern Achievements & Stats Section */}
-      <section className="py-12  md:py-16 bg-white">
+      <section className="py-8  md:py-16 bg-white">
         <Why/>
       </section>
 
