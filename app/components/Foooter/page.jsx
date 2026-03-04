@@ -353,7 +353,7 @@ export default function ModernFooter() {
                 </div>
                 <div className="space-y-2">
                   {achievements.map((achievement, index) => (
-                    <div key={index} className="flex items-start gap-3 text-emerald-100/70 text-sm font-normal group">
+                    <div key={index} className="flex items-start gap-3 text-emerald-50/70 text-sm font-normal group">
                       <FiCheckCircle className="flex-shrink-0 text-lg mt-0.5 text-white" />
                       <span className="min-w-0 flex-1 break-words leading-relaxed">{achievement}</span>
                     </div>
