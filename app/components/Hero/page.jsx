@@ -407,29 +407,39 @@ const ModernHero = () => {
         ">
           {matunguluInfo?.name || slide.title}
         </h1>
+{/* School Info Cards - NEW MATUNGULU DESIGN */}
+<div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 mb-4 sm:mb-6 w-full max-w-xs xs:max-w-sm sm:max-w-2xl mx-auto place-items-center">
+  {/* Established */}
+  <div className="bg-black/70 backdrop-blur-md border border-white/25 p-2 sm:p-3 rounded-lg hover:bg-black/80 transition-all shadow-lg w-full flex flex-col items-center justify-center min-h-[80px] sm:min-h-[100px]">
+    <div className={`text-sm sm:text-lg font-bold ${getHighlightColorClass(slide.highlightColor)} drop-shadow-md text-center w-full truncate px-1`}>
+      {matunguluInfo?.established || '1956'}
+    </div>
+    <span className="text-white/95 text-[8px] xs:text-xs uppercase tracking-wider font-semibold text-center w-full">
+      Established
+    </span>
+  </div>
 
-        {/* School Info Cards - NEW MATUNGULU DESIGN */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 mb-4 sm:mb-6 max-w-sm xs:max-w-md sm:max-w-2xl mx-auto">
-          {/* Established */}
-          <div className="bg-black/70 backdrop-blur-md border border-white/25 p-2 sm:p-3 rounded-lg hover:bg-black/80 transition-all shadow-lg">
-            <div className={`text-sm sm:text-lg font-bold ${getHighlightColorClass(slide.highlightColor)} drop-shadow-md`}>
-              {matunguluInfo?.established || '1956'}
-            </div>
-            <span className="text-white/95 text-[8px] xs:text-xs uppercase tracking-wider font-semibold">
-              Established
-            </span>
-          </div>
+  {/* Motto */}
+  <div className="bg-black/70 backdrop-blur-md border border-white/25 p-2 sm:p-3 rounded-lg hover:bg-black/80 transition-all shadow-lg w-full flex flex-col items-center justify-center min-h-[80px] sm:min-h-[100px]">
+    <div className={`text-sm sm:text-lg font-bold ${getHighlightColorClass(slide.highlightColor)} drop-shadow-md text-center w-full truncate px-1`}>
+      {matunguluInfo?.motto || 'Excel'}
+    </div>
+    <span className="text-white/95 text-[8px] xs:text-xs uppercase tracking-wider font-semibold text-center w-full">
+      Motto
+    </span>
+  </div>
 
-          {/* Motto */}
-          <div className="bg-black/70 backdrop-blur-md border border-white/25 p-2 sm:p-3 rounded-lg hover:bg-black/80 transition-all shadow-lg sm:col-span-1">
-            <div className={`text-sm sm:text-lg font-bold ${getHighlightColorClass(slide.highlightColor)} drop-shadow-md`}>
-              {matunguluInfo?.motto || 'Excel'}
-            </div>
-            <span className="text-white/95 text-[8px] xs:text-xs uppercase tracking-wider font-semibold">
-              Motto
-            </span>
-          </div>
-        </div>
+  {/* You're missing the third card here - adding it */}
+  {/* School Type/Status */}
+  <div className="bg-black/70 backdrop-blur-md border border-white/25 p-2 sm:p-3 rounded-lg hover:bg-black/80 transition-all shadow-lg w-full flex flex-col items-center justify-center min-h-[80px] sm:min-h-[100px] col-span-2 sm:col-span-1 mx-auto">
+    <div className={`text-sm sm:text-lg font-bold ${getHighlightColorClass(slide.highlightColor)} drop-shadow-md text-center w-full truncate px-1`}>
+      County School
+    </div>
+    <span className="text-white/95 text-[8px] xs:text-xs uppercase tracking-wider font-semibold text-center w-full">
+      Status
+    </span>
+  </div>
+</div>
 
         {/* Description */}
         <p className="
