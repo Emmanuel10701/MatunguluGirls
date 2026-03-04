@@ -93,7 +93,7 @@ export default function ModernNavbar() {
       exact: true
     },
     { 
-      name: 'About', 
+      name: 'About Us', 
       href: '/pages/AboutUs',
       icon: FiInfo
     },
