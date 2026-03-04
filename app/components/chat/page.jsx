@@ -307,20 +307,14 @@ Steps:
     icon: 'phone',
     content: `📞 CONTACT US
 
-**School Administration:**
-• Principal: [Name to be updated]
-• Deputy Principal (Academics)
-• Deputy Principal (Administration)
-• Senior Teacher
-
 **Contact Information:**
 • Phone: +254 729 370 590
 • Email: katwanyaaschool@yahoo.com
 • Admissions: katwanyaaschool@yahoo.com
 
 **Physical Address:**
-A.I.C Matungulu Girls High School
-Kambusu, Matungulu Sub-County
+Matungulu Girls High School
+Matungulu Sub-County
 Machakos County
 P.O. Box 363 – 90131 Tala, Kenya
 
