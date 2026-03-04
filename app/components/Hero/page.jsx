@@ -70,7 +70,7 @@ const heroSlides = [
     gradient: "from-purple-500 via-pink-400 to-red-600",
     description: "Beyond academics, Matungulu Girls develops well-rounded individuals through sports, cultural activities, leadership training, and community service programs.",
     background: "bg-gradient-to-br from-purple-900/90 via-pink-900/80 to-red-900/70",
-    image: "/bg/14.jpeg",
+    image: "/bg/MatG1.jpg",
     stats: { 
       sports: "Athletic Programs", 
       clubs: "Student Societies", 
