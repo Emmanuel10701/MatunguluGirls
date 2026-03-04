@@ -134,7 +134,7 @@ const ModernHero = () => {
           const data = await response.json();
           if (data.success && data.school) {
             setMatunguluInfo({
-              name: data.school.name || 'Matungulu Girls High School',
+              name: 'Matungulu Girls School',
               location: data.school.location || 'Matungulu, Machakos County',
               established: data.school.established || '1995',
               type: data.school.type || 'Public Secondary School',
