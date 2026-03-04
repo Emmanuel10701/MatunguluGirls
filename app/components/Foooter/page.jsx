@@ -220,7 +220,7 @@ export default function ModernFooter() {
                 </div>
                 
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-emerald-200 to-teal-200 bg-clip-text text-transparent leading-tight break-words">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-emerald-100 to-teal-100 bg-clip-text text-transparent leading-tight break-words">
                     Matungulu Girls High School
                   </h3>
                   <div className="text-white text-sm font-medium flex items-center gap-2 mt-2 flex-wrap">
@@ -231,7 +231,7 @@ export default function ModernFooter() {
               </div>
 
               {/* Description */}
-              <p className="text-emerald-100/80 text-sm sm:text-base font-normal leading-relaxed break-words max-w-prose">
+              <p className="text-emerald-50 text-sm sm:text-base font-normal leading-relaxed break-words max-w-prose">
                 A Public Extra county learning institution in Matungulu, Machakos, dedicated to academic excellence, 
                 holistic development, and nurturing future leaders through quality education since 1995.
               </p>
@@ -244,7 +244,7 @@ export default function ModernFooter() {
                     <a
                       key={index}
                       href={item.href}
-                      className="flex items-start gap-3 text-emerald-100/70 hover:text-white transition-all text-sm sm:text-base font-normal group"
+                      className="flex items-start gap-3 text-emerald-50 hover:text-white transition-all text-sm sm:text-base font-normal group"
                     >
                       <div className="mt-1 p-1.5 bg-emerald-500/20 rounded-md group-hover:bg-emerald-500/30 transition-colors flex-shrink-0">
                         <ItemIcon className="text-lg text-white group-hover:scale-100 transition-transform" /> 
@@ -449,7 +449,7 @@ export default function ModernFooter() {
                 </button>
                 <button 
                   onClick={() => setShowPrivacy(true)} 
-                  className="text-emerald-100/70 hover:text-white transition-colors flex items-center gap-2 hover:scale-100 whitespace-nowrap flex-shrink-0 px-2 py-1"
+                  className="text-emerald-100/90 hover:text-white transition-colors flex items-center gap-2 hover:scale-100 whitespace-nowrap flex-shrink-0 px-2 py-1"
                 >
                   <FiShield className="text-lg" />
                   <span className="break-words">Terms & Privacy</span>
@@ -457,7 +457,7 @@ export default function ModernFooter() {
               </div>
             </div>
 
-            <div className="mt-6 text-center text-sm text-emerald-100/70 font-normal break-words px-4">
+            <div className="mt-6 text-center text-sm text-white font-normal break-words px-4">
               <p>Accredited by the Ministry of Education • KNEC Centre Code: 12345678</p>
               <div className="flex items-center justify-center gap-2 mt-3 flex-wrap">
                 <span>MatG....Commited to Excellence</span>
@@ -470,14 +470,14 @@ export default function ModernFooter() {
                   {/* Minimalist Brand Tag */}
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40">
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white">
                       System Architecture
                     </p>
                   </div>
 
                   {/* Modern Dev Credits */}
                   <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2">
-                    <p className="text-[11px] font-bold text-emerald-100/60 tracking-tight">
+                    <p className="text-[11px] font-bold text-white tracking-tight">
                       Developed by{" "}
                       <a 
                         href="https://www.linkedin.com/in/emmanuel-makau-40a12028b/" 
@@ -500,14 +500,14 @@ export default function ModernFooter() {
                       </a>
                       <a 
                         href="mailto:emmanuelmakau90@gmail.com" 
-                        className="text-white/50 hover:text-white transition-all hover:scale-110"
+                        className="text-white/90 hover:text-white transition-all hover:scale-110"
                         title="Email Developer"
                       >
                         <FiMail size={14} />
                       </a>
                       <a 
                         href="tel:+254793472960" 
-                        className="text-white/50 hover:text-white transition-all hover:scale-110"
+                        className="text-white/90 hover:text-white transition-all hover:scale-110"
                         title="Call"
                       >
                         <FiPhone size={14} />
