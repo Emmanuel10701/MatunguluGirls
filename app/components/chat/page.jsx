@@ -173,7 +173,9 @@ Steps:
 
 **Affordable quality education with flexible payment options!**`,
     links: [
-      { label: 'Student Portal', path: '/pages/StudentPortal', icon: 'book' }
+      { label: 'Student Portal', path: '/pages/StudentPortal', icon: 'book' },
+            { label: 'Student Fees', path: '/pages/fees', icon: 'help' }
+
     ]
   },
   academics: {
@@ -299,7 +301,6 @@ Steps:
 • Computer literacy excellence`,
     links: [
       { label: 'News & Events', path: '/pages/eventsandnews', icon: 'calendar' },
-      { label: 'Results', path: '/results', icon: 'award' }
     ]
   },
   contact: {
