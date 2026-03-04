@@ -393,7 +393,7 @@ export default function AdminDashboard() {
               {[...Array(3)].map((_, i) => (
                 <div
                   key={i}
-                  className="w-3 h-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full animate-bounce"
+                  className="w-3 h-3 bg-gradient-to-r from-emerald-700/95 via-teal-700/95 to-slate-700/95 rounded-full animate-bounce"
                   style={{ animationDelay: `${i * 0.2}s` }}
                 />
               ))}
