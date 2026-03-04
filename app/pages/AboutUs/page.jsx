@@ -31,7 +31,7 @@ const date = new Date(); // Add this line!
   <div className="absolute inset-0 bg-gradient-to-b from-orange-950/30 via-orange-950/80 to-orange-950 z-20"></div>
   
   <Image
-    src="/hero/MatG8.jpeg"
+      src="/hero/matG1.jpg"
     alt="School"
     fill
     className="object-cover opacity-50 transition-transform duration-[10s] ease-out "
@@ -203,7 +203,7 @@ const date = new Date(); // Add this line!
   
   <div className="relative overflow-hidden aspect-square sm:aspect-video lg:aspect-square rounded-md shadow-2xl border border-orange-100/20">
     <Image
-      src="/hero/MatG8.jpeg"
+      src="/hero/matG.jpg"
       alt="School"
       fill
       className="object-cover transition-transform duration-700 "
@@ -259,7 +259,7 @@ MatG        </div>
   
   <div className="relative overflow-hidden  aspect-square sm:aspect-video lg:aspect-square rounded-md shadow-2xl border border-orange-100/20">
     <Image
-      src="/bg/1.jpeg"
+      src="/hero/matG.jpg"
       alt="School"
       fill
       className="object-cover transition-transform duration-700 "
@@ -398,7 +398,7 @@ MatG        </div>
   
   <div className="relative overflow-hidden aspect-square sm:aspect-video lg:aspect-square rounded-md shadow-2xl border border-orange-100/20">
     <Image
-      src="/bg/14.jpeg"
+      src="/hero/matG1.jpg"
       alt="School"
       fill
       className="object-cover transition-transform duration-700 "
