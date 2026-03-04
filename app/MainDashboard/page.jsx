@@ -400,7 +400,7 @@ export default function AdminDashboard() {
             </div>
             
             <div className="w-48 md:w-64 h-2 bg-white/10 rounded-full overflow-hidden mx-auto">
-              <div className="h-full bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 animate-gradient-loading"></div>
+              <div className="h-full bg-gradient-to-r from-emerald-600/95 via-teal-600/95 to-slate-600/95 animate-gradient-loading"></div>
             </div>
             
             <p className="text-white/60 text-xs md:text-sm">Loading Admin Dashboard...</p>
