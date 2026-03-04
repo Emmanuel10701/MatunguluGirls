@@ -172,12 +172,6 @@ export default function ModernFooter() {
       detail: 'Main Office Line'
     },
     {
-      icon: FiPhone,
-      text: '+254 734 567 890',
-      href: 'tel:+254734567890',
-      detail: 'Admissions Office'
-    },
-    {
       icon: FiMail,
       text: 'info@matungulugirlshs.sc.ke',
       href: 'mailto:info@matungulugirlshs.sc.ke',
@@ -238,7 +232,7 @@ export default function ModernFooter() {
 
               {/* Description */}
               <p className="text-emerald-100/80 text-sm sm:text-base font-normal leading-relaxed break-words max-w-prose">
-                A county learning institution in Matungulu, Machakos, dedicated to academic excellence, 
+                A Public Extra county learning institution in Matungulu, Machakos, dedicated to academic excellence, 
                 holistic development, and nurturing future leaders through quality education since 1995.
               </p>
 
@@ -269,44 +263,7 @@ export default function ModernFooter() {
               </div>
             </div>
 
-            {/* Column 2: Quick Links */}
-            <div className="space-y-4 min-w-0 w-full">
-              <div className="flex items-center gap-2 flex-wrap">
-                <FiGlobe className="text-white text-lg sm:text-xl flex-shrink-0" />
-                <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-white break-words">Quick Links</h4>
-              </div>
-              <div className="space-y-3">
-                {quickLinks.map((link, index) => {
-                  const Icon = link.icon;
-                  return (
-                    <a 
-                      key={index} 
-                      href={link.href} 
-                      className="flex items-start gap-3 text-emerald-100/70 hover:text-white text-sm sm:text-base font-normal group break-words hover:translate-x-1 transition-transform"
-                    >
-                      <Icon className="flex-shrink-0 text-lg group-hover:scale-100 transition-transform mt-0.5 text-white/90" />
-                      <span className="min-w-0 flex-1 break-words leading-tight">{link.name}</span>
-                    </a>
-                  );
-                })}
-              </div>
-
-              {/* Achievements */}
-              <div className="mt-6 pt-6 border-t border-emerald-500/20 space-y-3">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <FiAward className="text-white text-lg flex-shrink-0" />
-                  <h4 className="text-sm sm:text-base lg:text-lg font-semibold text-white break-words">Achievements</h4>
-                </div>
-                <div className="space-y-2">
-                  {achievements.map((achievement, index) => (
-                    <div key={index} className="flex items-start gap-3 text-emerald-100/70 text-sm font-normal group">
-                      <FiCheckCircle className="flex-shrink-0 text-lg mt-0.5 text-white" />
-                      <span className="min-w-0 flex-1 break-words leading-relaxed">{achievement}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+        
 
             {/* Column 3: Resources */}
             <div className="space-y-4 min-w-0 w-full">
@@ -367,7 +324,44 @@ export default function ModernFooter() {
                 </div>
               </div>
             </div>
+    {/* Column 2: Quick Links */}
+            <div className="space-y-4 min-w-0 w-full">
+              <div className="flex items-center gap-2 flex-wrap">
+                <FiGlobe className="text-white text-lg sm:text-xl flex-shrink-0" />
+                <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-white break-words">Quick Links</h4>
+              </div>
+              <div className="space-y-3">
+                {quickLinks.map((link, index) => {
+                  const Icon = link.icon;
+                  return (
+                    <a 
+                      key={index} 
+                      href={link.href} 
+                      className="flex items-start gap-3 text-emerald-100/70 hover:text-white text-sm sm:text-base font-normal group break-words hover:translate-x-1 transition-transform"
+                    >
+                      <Icon className="flex-shrink-0 text-lg group-hover:scale-100 transition-transform mt-0.5 text-white/90" />
+                      <span className="min-w-0 flex-1 break-words leading-tight">{link.name}</span>
+                    </a>
+                  );
+                })}
+              </div>
 
+              {/* Achievements */}
+              <div className="mt-6 pt-6 border-t border-emerald-500/20 space-y-3">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <FiAward className="text-white text-lg flex-shrink-0" />
+                  <h4 className="text-sm sm:text-base lg:text-lg font-semibold text-white break-words">Achievements</h4>
+                </div>
+                <div className="space-y-2">
+                  {achievements.map((achievement, index) => (
+                    <div key={index} className="flex items-start gap-3 text-emerald-100/70 text-sm font-normal group">
+                      <FiCheckCircle className="flex-shrink-0 text-lg mt-0.5 text-white" />
+                      <span className="min-w-0 flex-1 break-words leading-relaxed">{achievement}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
             {/* Column 4: Newsletter */}
             <div className="space-y-4 min-w-0 w-full">
               <div className="flex items-center gap-2 flex-wrap">
@@ -382,7 +376,7 @@ export default function ModernFooter() {
                     <FiBell className="text-white text-lg" />
                   </div>
                   <div className="min-w-0">
-                    <h4 className="text-base sm:text-lg font-semibold text-white break-words">Newsletter</h4>
+                    <h4 className="text-base sm:text-lg font-semibold text-white break-words">School Newsletter</h4>
                     <p className="text-emerald-200/70 text-sm font-normal break-words">Get academic events & announcements</p>
                   </div>
                 </div>
@@ -392,7 +386,7 @@ export default function ModernFooter() {
                     <FiMail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-emerald-200/60 text-lg flex-shrink-0" />
                     <input
                       type="email"
-                      placeholder="you@example.com"
+                      placeholder="your Email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
@@ -411,7 +405,7 @@ export default function ModernFooter() {
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
-                        <span>Subscribing...</span>
+                        <span>submiting...</span>
                       </span>
                     ) : (
                       <span className="flex items-center justify-center gap-2">
@@ -519,9 +513,7 @@ export default function ModernFooter() {
                         <FiPhone size={14} />
                       </a>
                       <div className="w-[1px] h-3 bg-emerald-400/10 mx-1" />
-                      <span className="text-[9px] font-black text-white/30 tracking-widest uppercase">
-                        v2.0.26
-                      </span>
+    
                     </div>
                   </div>
                 </div>
@@ -616,7 +608,7 @@ export default function ModernFooter() {
                   onClick={() => setShowPrivacy(false)} 
                   className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95 text-center shadow-lg shadow-emerald-500/25"
                 >
-                  Accept
+                  Agree
                 </button>
               </div>
             </div>
