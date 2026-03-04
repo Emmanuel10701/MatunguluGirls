@@ -334,7 +334,7 @@ export default function ModernNavbar() {
                     <a
                       key={item.name}
                       href={item.href}
-                      className={`group flex items-center gap-0.5 xs:gap-1 font-bold transition-all text-[0.65rem] xs:text-[0.7rem] uppercase tracking-wide whitespace-nowrap px-2 xs:px-2.5 py-2 relative ${
+                      className={`group flex items-center gap-0.5 xs:gap-1 font-bold transition-all text-[0.85rem] xs:text-[0.9rem] uppercase tracking-wide whitespace-nowrap px-2 xs:px-2.5 py-2 relative ${
                         isActive 
                           ? 'text-white' 
                           : 'text-white/85 hover:text-white'
