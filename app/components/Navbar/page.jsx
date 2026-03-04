@@ -97,16 +97,27 @@ export default function ModernNavbar() {
       href: '/pages/AboutUs',
       icon: FiInfo
     },
+  
     { 
-      name: 'Academics', 
-      href: '/pages/academics',
-      icon: FiBook,
-      hasDropdown: true
+      name: 'Fees', 
+      href: '/pages/fees', 
+      icon: FiDollarSign 
     },
     { 
       name: 'Admissions', 
       href: '/pages/admissions',
       icon: FiUserPlus
+    },
+      { 
+      name: 'Academics', 
+      href: '/pages/academics',
+      icon: FiBook,
+      hasDropdown: true
+    },
+     { 
+      name: 'Contact', 
+      href: '/pages/contact', 
+      icon: FiMail 
     },
     { 
       name: 'Gallery', 
@@ -118,16 +129,7 @@ export default function ModernNavbar() {
       href: '/pages/eventsandnews', 
       icon: FiCalendar 
     },
-    { 
-      name: 'Contact', 
-      href: '/pages/contact', 
-      icon: FiMail 
-    },
-    { 
-      name: 'Fees', 
-      href: '/pages/fees', 
-      icon: FiDollarSign 
-    },
+   
   ];
 
   const academicDropdownItems = [
@@ -155,22 +157,24 @@ export default function ModernNavbar() {
 
   // Resources dropdown items - INCLUDES ADMIN LOGIN
   const resourcesDropdownItems = [
-    {
-      name: 'Staff Directory',
-      href: '/pages/staff',
-      icon: FiUsers
-    },
-    {
-      name: 'Careers',
-      href: '/pages/careers',
-      icon: FiBriefcase
-    },
-    {
+       {
       name: 'Admin Login',
       href: '/pages/adminLogin',
       icon: FiLock,
       isHighlighted: true
     }
+ ,
+    {
+      name: 'Our Jobs',
+      href: '/pages/careers',
+      icon: FiBriefcase
+    },
+     {
+      name: 'Staff Directory',
+      href: '/pages/staff',
+      icon: FiUsers
+    }
+ 
   ];
 
   // Function to check if a link is active

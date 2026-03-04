@@ -229,7 +229,7 @@ export default function ModernFooter() {
                   <h3 className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-emerald-200 to-teal-200 bg-clip-text text-transparent leading-tight break-words">
                     Matungulu Girls High School
                   </h3>
-                  <div className="text-emerald-300 text-sm font-medium flex items-center gap-2 mt-2 flex-wrap">
+                  <div className="text-white text-sm font-medium flex items-center gap-2 mt-2 flex-wrap">
                     <FiTarget className="flex-shrink-0 w-4 h-4" />
                     <span className="opacity-90">Strive to Excel</span>
                   </div>
@@ -250,15 +250,15 @@ export default function ModernFooter() {
                     <a
                       key={index}
                       href={item.href}
-                      className="flex items-start gap-3 text-emerald-100/70 hover:text-emerald-300 transition-all text-sm sm:text-base font-normal group"
+                      className="flex items-start gap-3 text-emerald-100/70 hover:text-white transition-all text-sm sm:text-base font-normal group"
                     >
                       <div className="mt-1 p-1.5 bg-emerald-500/20 rounded-md group-hover:bg-emerald-500/30 transition-colors flex-shrink-0">
-                        <ItemIcon className="text-lg text-emerald-400 group-hover:scale-100 transition-transform" /> 
+                        <ItemIcon className="text-lg text-white group-hover:scale-100 transition-transform" /> 
                       </div>
                       <div className="min-w-0 flex-1">
                         <span className="block break-all sm:break-words leading-tight">{item.text}</span>
                         {item.detail && (
-                          <p className="text-xs sm:text-sm text-emerald-200/50 font-normal mt-0.5 break-words">
+                          <p className="text-xs sm:text-sm text-white font-normal mt-0.5 break-words">
                             {item.detail}
                           </p> 
                         )}
@@ -272,8 +272,8 @@ export default function ModernFooter() {
             {/* Column 2: Quick Links */}
             <div className="space-y-4 min-w-0 w-full">
               <div className="flex items-center gap-2 flex-wrap">
-                <FiGlobe className="text-emerald-400 text-lg sm:text-xl flex-shrink-0" />
-                <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-emerald-300 break-words">Quick Links</h4>
+                <FiGlobe className="text-white text-lg sm:text-xl flex-shrink-0" />
+                <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-white break-words">Quick Links</h4>
               </div>
               <div className="space-y-3">
                 {quickLinks.map((link, index) => {
@@ -282,9 +282,9 @@ export default function ModernFooter() {
                     <a 
                       key={index} 
                       href={link.href} 
-                      className="flex items-start gap-3 text-emerald-100/70 hover:text-emerald-300 text-sm sm:text-base font-normal group break-words hover:translate-x-1 transition-transform"
+                      className="flex items-start gap-3 text-emerald-100/70 hover:text-white text-sm sm:text-base font-normal group break-words hover:translate-x-1 transition-transform"
                     >
-                      <Icon className="flex-shrink-0 text-lg group-hover:scale-100 transition-transform mt-0.5 text-emerald-400/70" />
+                      <Icon className="flex-shrink-0 text-lg group-hover:scale-100 transition-transform mt-0.5 text-white/90" />
                       <span className="min-w-0 flex-1 break-words leading-tight">{link.name}</span>
                     </a>
                   );
@@ -294,13 +294,13 @@ export default function ModernFooter() {
               {/* Achievements */}
               <div className="mt-6 pt-6 border-t border-emerald-500/20 space-y-3">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <FiAward className="text-emerald-400 text-lg flex-shrink-0" />
-                  <h4 className="text-sm sm:text-base lg:text-lg font-semibold text-emerald-300 break-words">Achievements</h4>
+                  <FiAward className="text-white text-lg flex-shrink-0" />
+                  <h4 className="text-sm sm:text-base lg:text-lg font-semibold text-white break-words">Achievements</h4>
                 </div>
                 <div className="space-y-2">
                   {achievements.map((achievement, index) => (
                     <div key={index} className="flex items-start gap-3 text-emerald-100/70 text-sm font-normal group">
-                      <FiCheckCircle className="flex-shrink-0 text-lg mt-0.5 text-emerald-400" />
+                      <FiCheckCircle className="flex-shrink-0 text-lg mt-0.5 text-white" />
                       <span className="min-w-0 flex-1 break-words leading-relaxed">{achievement}</span>
                     </div>
                   ))}
@@ -311,8 +311,8 @@ export default function ModernFooter() {
             {/* Column 3: Resources */}
             <div className="space-y-4 min-w-0 w-full">
               <div className="flex items-center gap-2 flex-wrap">
-                <FiActivity className="text-emerald-400 text-lg sm:text-xl flex-shrink-0" />
-                <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-emerald-300 break-words">Resources</h4>
+                <FiActivity className="text-white text-lg sm:text-xl flex-shrink-0" />
+                <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-white break-words">Resources</h4>
               </div>
               <div className="space-y-3">
                 {resources.map((resource, index) => {
@@ -321,9 +321,9 @@ export default function ModernFooter() {
                     <a
                       key={index}
                       href={resource.href}
-                      className="flex items-start gap-3 text-emerald-100/70 hover:text-emerald-300 text-sm sm:text-base font-normal group break-words hover:translate-x-1 transition-transform"
+                      className="flex items-start gap-3 text-emerald-100/70 hover:text-white text-sm sm:text-base font-normal group break-words hover:translate-x-1 transition-transform"
                     >
-                      <Icon className="flex-shrink-0 text-lg group-hover:scale-100 transition-transform mt-0.5 text-emerald-400/70" />
+                      <Icon className="flex-shrink-0 text-lg group-hover:scale-100 transition-transform mt-0.5 text-white/70" />
                       <span className="min-w-0 flex-1 break-words leading-tight">{resource.name}</span>
                     </a>
                   );
@@ -333,8 +333,8 @@ export default function ModernFooter() {
               {/* Social Media */}
               <div className="mt-6 pt-6 border-t border-emerald-500/20 space-y-3">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <FiUsers className="text-emerald-400 text-lg flex-shrink-0" />
-                  <h5 className="text-sm sm:text-base lg:text-lg font-semibold text-emerald-300 break-words">Connect With Us</h5>
+                  <FiUsers className="text-white text-lg flex-shrink-0" />
+                  <h5 className="text-sm sm:text-base lg:text-lg font-semibold text-white break-words">Connect With Us</h5>
                 </div>
                 <div className="flex flex-wrap gap-3 pt-1">
                   {socialLinks.map((social, index) => {
@@ -371,8 +371,8 @@ export default function ModernFooter() {
             {/* Column 4: Newsletter */}
             <div className="space-y-4 min-w-0 w-full">
               <div className="flex items-center gap-2 flex-wrap">
-                <FiBell className="text-emerald-400 text-lg sm:text-xl flex-shrink-0" />
-                <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-emerald-300 break-words">Stay Updated</h4>
+                <FiBell className="text-white text-lg sm:text-xl flex-shrink-0" />
+                <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-white break-words">Stay Updated</h4>
               </div>
               
               {/* Newsletter Subscription */}
@@ -382,14 +382,14 @@ export default function ModernFooter() {
                     <FiBell className="text-white text-lg" />
                   </div>
                   <div className="min-w-0">
-                    <h4 className="text-base sm:text-lg font-semibold text-emerald-300 break-words">Newsletter</h4>
+                    <h4 className="text-base sm:text-lg font-semibold text-white break-words">Newsletter</h4>
                     <p className="text-emerald-100/60 text-sm font-normal break-words">Get academic events & announcements</p>
                   </div>
                 </div>
 
                 <form onSubmit={handleSubscribe} className="space-y-4">
                   <div className="relative">
-                    <FiMail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-emerald-400/60 text-lg flex-shrink-0" />
+                    <FiMail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/60 text-lg flex-shrink-0" />
                     <input
                       type="email"
                       placeholder="you@example.com"
@@ -426,10 +426,10 @@ export default function ModernFooter() {
                 {showSuccess && (
                   <div className="mt-4 p-4 bg-emerald-600/30 border border-emerald-400 rounded-lg animate-pulse">
                     <div className="flex items-center gap-3 flex-wrap">
-                      <FiCheckCircle className="text-emerald-300 text-lg flex-shrink-0" />
+                      <FiCheckCircle className="text-white text-lg flex-shrink-0" />
                       <div className="min-w-0">
-                        <p className="text-emerald-300 font-medium text-sm sm:text-base break-words">Successfully subscribed!</p>
-                        <p className="text-emerald-200/80 text-sm font-normal break-words">You'll receive updates soon.</p>
+                        <p className="text-white font-medium text-sm sm:text-base break-words">Successfully subscribed!</p>
+                        <p className="text-white/80 text-sm font-normal break-words">You'll receive updates soon.</p>
                       </div>
                     </div>
                   </div>
@@ -448,14 +448,14 @@ export default function ModernFooter() {
               <div className="flex items-center justify-center gap-4 sm:gap-6 text-sm font-normal flex-wrap">
                 <button 
                   onClick={() => setShowSitemap(true)} 
-                  className="text-emerald-100/70 hover:text-emerald-300 transition-colors flex items-center gap-2 hover:scale-100 whitespace-nowrap flex-shrink-0 px-2 py-1"
+                  className="text-emerald-100/70 hover:text-white transition-colors flex items-center gap-2 hover:scale-100 whitespace-nowrap flex-shrink-0 px-2 py-1"
                 >
                   <FiGlobe className="text-lg" />
                   <span className="break-words">Sitemap</span>
                 </button>
                 <button 
                   onClick={() => setShowPrivacy(true)} 
-                  className="text-emerald-100/70 hover:text-emerald-300 transition-colors flex items-center gap-2 hover:scale-100 whitespace-nowrap flex-shrink-0 px-2 py-1"
+                  className="text-emerald-100/70 hover:text-white transition-colors flex items-center gap-2 hover:scale-100 whitespace-nowrap flex-shrink-0 px-2 py-1"
                 >
                   <FiShield className="text-lg" />
                   <span className="break-words">Terms & Privacy</span>
@@ -476,7 +476,7 @@ export default function ModernFooter() {
                   {/* Minimalist Brand Tag */}
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-200/40">
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40">
                       System Architecture
                     </p>
                   </div>
@@ -489,7 +489,7 @@ export default function ModernFooter() {
                         href="https://www.linkedin.com/in/emmanuel-makau-40a12028b/" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-emerald-300 hover:text-emerald-200 transition-colors duration-300 underline decoration-emerald-500/30 underline-offset-4"
+                        className="text-white hover:text-white transition-colors duration-300 underline decoration-emerald-500/30 underline-offset-4"
                       >
                         Emmanuel Makau
                       </a>
@@ -499,27 +499,27 @@ export default function ModernFooter() {
                     <div className="flex items-center gap-4 bg-emerald-500/5 backdrop-blur-md px-4 py-2 rounded-full border border-emerald-400/20 shadow-inner">
                       <a 
                         href="https://github.com/Emmanuel10701" 
-                        className="text-emerald-200/50 hover:text-emerald-300 transition-all hover:scale-110"
+                        className="text-white/50 hover:text-white transition-all hover:scale-110"
                         title="GitHub Profile"
                       >
                         <FiGithub size={14} />
                       </a>
                       <a 
                         href="mailto:emmanuelmakau90@gmail.com" 
-                        className="text-emerald-200/50 hover:text-emerald-300 transition-all hover:scale-110"
+                        className="text-white/50 hover:text-white transition-all hover:scale-110"
                         title="Email Developer"
                       >
                         <FiMail size={14} />
                       </a>
                       <a 
                         href="tel:+254793472960" 
-                        className="text-emerald-200/50 hover:text-emerald-300 transition-all hover:scale-110"
+                        className="text-white/50 hover:text-white transition-all hover:scale-110"
                         title="Call"
                       >
                         <FiPhone size={14} />
                       </a>
                       <div className="w-[1px] h-3 bg-emerald-400/10 mx-1" />
-                      <span className="text-[9px] font-black text-emerald-200/30 tracking-widest uppercase">
+                      <span className="text-[9px] font-black text-white/30 tracking-widest uppercase">
                         v2.0.26
                       </span>
                     </div>
@@ -544,8 +544,8 @@ export default function ModernFooter() {
             {/* Header */}
             <div className="flex justify-between items-center mb-6 border-b border-emerald-500/20 pb-4">
               <div className="flex items-center gap-2 min-w-0">
-                <FiShield className="text-xl text-emerald-400 shrink-0" />
-                <h2 className="text-base sm:text-xl font-black uppercase tracking-tight truncate text-emerald-300">Privacy & Terms</h2>
+                <FiShield className="text-xl text-white shrink-0" />
+                <h2 className="text-base sm:text-xl font-black uppercase tracking-tight truncate text-white">Privacy & Terms</h2>
               </div>
               <button 
                 onClick={() => setShowPrivacy(false)} 
@@ -558,10 +558,10 @@ export default function ModernFooter() {
             <div className="space-y-4 sm:space-y-6">
               {/* Commitment Section */}
               <section className="bg-emerald-500/10 rounded-2xl p-4 sm:p-6 border border-emerald-500/20 hover:bg-emerald-500/15 transition-colors">
-                <h3 className="text-[10px] font-black text-emerald-400 uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
+                <h3 className="text-[10px] font-black text-white uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
                   <FiShield size={14}/> Commitment
                 </h3>
-                <p className="text-emerald-100/80 text-xs sm:text-sm font-medium leading-relaxed italic">
+                <p className="text-white text-xs sm:text-sm font-medium leading-relaxed italic">
                   "We are committed to protecting the privacy and security of all personal information in compliance with the Data Protection Act."
                 </p>
               </section>
@@ -569,12 +569,12 @@ export default function ModernFooter() {
               {/* Info Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-emerald-500/10 rounded-2xl p-4 sm:p-6 border border-emerald-500/20">
-                  <h3 className="text-[10px] font-black text-emerald-300 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                  <h3 className="text-[10px] font-black text-white uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
                     <FiEye size={14} /> Collection
                   </h3>
                   <ul className="space-y-3">
                     {['Academic Records', 'Parent Contacts', 'Medical Info'].map((text, i) => (
-                      <li key={i} className="flex items-center gap-3 text-xs text-emerald-100/80 font-bold">
+                      <li key={i} className="flex items-center gap-3 text-xs text-white font-bold">
                         <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full shadow-[0_0_8px_rgba(52,211,153,0.5)]" />
                         {text}
                       </li>
@@ -583,7 +583,7 @@ export default function ModernFooter() {
                 </div>
 
                 <div className="bg-emerald-500/10 rounded-2xl p-4 sm:p-6 border border-emerald-500/20">
-                  <h3 className="text-[10px] font-black text-emerald-300 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                  <h3 className="text-[10px] font-black text-white uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
                     <FiDownload size={14} /> Protection
                   </h3>
                   <div className="grid grid-cols-2 gap-2">
@@ -595,7 +595,7 @@ export default function ModernFooter() {
                     ].map((item, i) => (
                       <div key={i} className="bg-emerald-950/50 rounded-xl p-2 text-center border border-emerald-500/20">
                         <div className="text-sm mb-0.5">{item.e}</div>
-                        <div className="text-[9px] font-black text-emerald-300/80 uppercase tracking-tighter">{item.t}</div>
+                        <div className="text-[9px] font-black text-white/80 uppercase tracking-tighter">{item.t}</div>
                       </div>
                     ))}
                   </div>
@@ -637,8 +637,8 @@ export default function ModernFooter() {
             {/* Header */}
             <div className="flex justify-between items-center mb-6 border-b border-emerald-500/20 pb-4">
               <div className="flex items-center gap-2">
-                <FiGlobe className="text-xl sm:text-2xl text-emerald-400" />
-                <h2 className="text-base sm:text-xl font-black uppercase tracking-tight text-emerald-300">Navigation</h2>
+                <FiGlobe className="text-xl sm:text-2xl text-white" />
+                <h2 className="text-base sm:text-xl font-black uppercase tracking-tight text-white">Navigation</h2>
               </div>
               <button 
                 onClick={() => setShowSitemap(false)} 
@@ -652,7 +652,7 @@ export default function ModernFooter() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {['Main Sections', 'Resources', 'Quick Links'].map((section, idx) => (
                 <div key={idx} className="space-y-4">
-                  <h3 className="text-[10px] font-black text-emerald-300 uppercase tracking-[0.2em] flex items-center gap-2">
+                  <h3 className="text-[10px] font-black text-white uppercase tracking-[0.2em] flex items-center gap-2">
                     <span className="w-4 h-[1px] bg-emerald-500/50" /> {section}
                   </h3>
                   <div className="flex flex-col gap-1">
@@ -664,11 +664,11 @@ export default function ModernFooter() {
                         <a
                           key={index}
                           href={item.href}
-                          className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-emerald-500/20 text-emerald-100/70 hover:text-emerald-300 transition-all group"
+                          className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-emerald-500/20 text-white hover:text-white transition-all group"
                           onClick={() => setShowSitemap(false)}
                         >
                           <div className="p-1.5 bg-emerald-500/10 rounded-lg group-hover:bg-emerald-500/30 transition-colors">
-                            <Icon size={14} className="shrink-0 text-emerald-400" />
+                            <Icon size={14} className="shrink-0 text-white" />
                           </div>
                           <span className="text-xs font-bold tracking-tight">{item.name}</span>
                         </a>
