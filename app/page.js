@@ -447,7 +447,7 @@ const jsonLd = {
   }, [router, closeVideoModal, navigationBlocked]);
 
   const LoadingScreen = () => (
-    <div className="fixed inset-0 bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 z-50 flex flex-col items-center justify-center">
+    <div className="fixed inset-0 bg-gradient-to-r from-emerald-900/95 via-teal-900/95 to-slate-900/95 z-50 flex flex-col items-center justify-center">
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(15)].map((_, i) => (
           <div
@@ -470,7 +470,7 @@ const jsonLd = {
           <div className="absolute inset-6 md:inset-8 border-4 border-white/40 rounded-full animate-spin"></div>
           
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center overflow-hidden">
+            <div className="w-16 h-16 bg-gradient-to-r from-emerald-900/95 via-teal-900/95 to-slate-900/95 rounded-2xl flex items-center justify-center overflow-hidden">
               <img 
                 src="/MatG.jpg" 
                 alt="Matungulu Girls High School Logo" 
