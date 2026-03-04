@@ -63,8 +63,8 @@ const ModernSchoolLayout = () => {
       gradient: "from-blue-500 to-cyan-500",
       description: "Matungulu Girls high  School maintains outstanding academic performance with consistent high KCSE results. Our dedicated faculty and rigorous curriculum ensure students excel in sciences, humanities, and technical subjects.",
       highlight: "Academic Distinction",
-      details: ["High KCSE Performance", "University Scholarships", "National Recognition", "Science & Arts Excellence"],
-      metrics: ["90%+ KCSE", "Merit Awards", "100+ Scholarships"]
+      details: ["High KCSE Performance", "Merit Awards", "National Recognition", "Science & Arts Excellence"],
+      metrics: ["90%+ KCSE", "Merit Awards", "10+ Bursaries"]
     },
     {
       title: "Experienced Teaching Faculty",
