@@ -20,7 +20,7 @@ const heroSlides = [
     gradient: "from-blue-500 via-cyan-400 to-purple-600",
     description: "Matungulu Girls High School is a public secondary school located in Matungulu sub-county, Machakos County, Kenya. The school is committed to providing quality education and holistic development to students from the region.",
     background: "bg-gradient-to-br from-blue-900/90 via-indigo-900/80 to-purple-900/70",
-    image: "/hero/MatG8.jpeg",
+    image: "/hero/.jpeg",
     stats: { 
       students: "Public School", 
       excellence: "Quality Education", 

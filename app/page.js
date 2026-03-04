@@ -116,21 +116,21 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'School',
   name: 'Matungulu Girls High School',
-  image: 'https://katwanyaa.vercel.app/MatG.jpg',
+  image: 'https://matungulu-girls.vercel.app/MatG.jpg',
   description: 'A secondary school committed to academic excellence, integrity, and holistic student development.',
   address: {
     '@type': 'PostalAddress',
-    'streetAddress': 'Katwanyaa',
+    'streetAddress': 'Matungulu, P.O. Box 12345', // Update with actual address
     'addressLocality': 'Machakos', // Adjust if the specific locality differs
     'addressRegion': 'Machakos County',
     'addressCountry': 'KE'
   },
-  url: 'https://katwanyaa.vercel.app',
+  url: 'https://matungulu-girls.vercel.app',
   telephone: '+254700000000', // Update with the actual school office line
   sameAs: [
-    'https://facebook.com/katwanyaahigh',
-    'https://twitter.com/katwanyaahigh',
-    'https://instagram.com/katwanyaahigh'
+    'https://facebook.com/matungulugirls',
+    'https://twitter.com/matungulugirls',
+    'https://instagram.com/matungulugirls',
   ],
   foundingDate: '1970', // Update with the actual founding year
   numberOfStudents: '500', // Update with current enrollment
