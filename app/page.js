@@ -516,29 +516,18 @@ const jsonLd = {
               Preparing an exceptional learning experience
             </p>
             
-            {/* Animated Dots */}
-            <div className="flex items-center justify-center gap-3">
+          <div className="flex items-center justify-center gap-2">
               {[...Array(3)].map((_, i) => (
                 <div
                   key={i}
-                  className="w-3 h-3 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full shadow-lg shadow-emerald-500/50"
-                  style={{ 
-                    animation: `bounce 0.7s infinite`,
-                    animationDelay: `${i * 0.1}s`
-                  }}
+                  className="w-3 h-3 bg-gradient-to-r from-emerald-700/95 via-teal-700/95 to-slate-700/95 rounded-full animate-bounce"
+                  style={{ animationDelay: `${i * 0.2}s` }}
                 />
               ))}
             </div>
             
-            {/* Progress Bar - FIXED width and appearance */}
-            <div className="w-56 md:w-72 h-2 bg-slate-700/50 rounded-full overflow-hidden border border-emerald-400/30 backdrop-blur-sm">
-              <div 
-                className="h-full bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-400 rounded-full shadow-lg shadow-emerald-500/50"
-                style={{ 
-                  width: '80%',
-                  animation: `loading-progress 1s ease-in-out infinite`
-                }}
-              />
+            <div className="w-48 md:w-64 h-2 bg-white/10 rounded-full overflow-hidden mx-auto">
+              <div className="h-full bg-gradient-to-r from-emerald-600/95 via-teal-600/95 to-slate-600/95 animate-gradient-loading"></div>
             </div>
             
             {/* Loading Text */}
