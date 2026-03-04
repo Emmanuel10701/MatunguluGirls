@@ -447,68 +447,146 @@ const jsonLd = {
   }, [router, closeVideoModal, navigationBlocked]);
 
   const LoadingScreen = () => (
-    <div className="fixed inset-0 bg-gradient-to-r from-emerald-900/95 via-teal-900/95 to-slate-900/95 z-50 flex flex-col items-center justify-center">
+    <div className="fixed inset-0 bg-gradient-to-br from-emerald-950 via-teal-950 to-slate-950 z-50 flex flex-col items-center justify-center overflow-hidden">
+      
+      {/* Animated Background Grid */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(68,187,153,.2)_25%,rgba(68,187,153,.2)_50%,transparent_50%,transparent_75%,rgba(68,187,153,.2)_75%,rgba(68,187,153,.2))] bg-[length:60px_60px] animate-pulse"></div>
+      </div>
+
+      {/* Floating Particles - FIXED opacity */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(15)].map((_, i) => (
+        {[...Array(12)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-white/10 rounded-full animate-float"
+            className="absolute w-1 h-1 bg-emerald-400/40 rounded-full blur-sm"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+              animation: `float ${4 + Math.random() * 4}s ease-in-out infinite`,
               animationDelay: `${i * 0.3}s`,
-              animationDuration: `${4 + Math.random() * 3}s`
+              boxShadow: '0 0 20px rgba(52, 211, 153, 0.6)'
             }}
           />
         ))}
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-md">
+      {/* Main Content Container - FIXED z-index and opacity */}
+      <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-md px-4">
+        
+        {/* Animated Logo Circle */}
         <div className="relative w-24 h-24 md:w-32 md:h-32 mb-6 md:mb-8">
-          <div className="absolute inset-0 border-4 border-orange-500/20 rounded-full"></div>
-          <div className="absolute inset-3 md:inset-4 border-4 border-amber-500/30 rounded-full animate-ping"></div>
-          <div className="absolute inset-6 md:inset-8 border-4 border-white/40 rounded-full animate-spin"></div>
           
+          {/* Outer rotating ring */}
+          <div className="absolute inset-0 border-3 border-transparent border-t-emerald-400 border-r-teal-400 rounded-full animate-spin" 
+            style={{ animationDuration: '3s' }}>
+          </div>
+          
+          {/* Middle pulsing ring */}
+          <div className="absolute inset-2 md:inset-3 border-2 border-emerald-400/50 rounded-full animate-pulse"></div>
+          
+          {/* Inner static ring */}
+          <div className="absolute inset-4 md:inset-6 border-2 border-teal-400/30 rounded-full"></div>
+          
+          {/* Logo Image Container */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-16 h-16 bg-gradient-to-r from-emerald-900/95 via-teal-900/95 to-slate-900/95 rounded-2xl flex items-center justify-center overflow-hidden">
+            <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-emerald-900 to-teal-900 rounded-2xl flex items-center justify-center overflow-hidden border-2 border-emerald-400/30 shadow-2xl shadow-emerald-500/20">
               <img 
                 src="/MatG.jpg" 
                 alt="Matungulu Girls High School Logo" 
-                className="w-full h-full object-contain p-2"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
         </div>
         
-        <div className="text-center space-y-4 md:space-y-6 px-2">
+        {/* Header Text - FIXED contrast */}
+        <div className="text-center space-y-4 md:space-y-6">
           <div>
-            <h2 className="text-xl md:text-3xl font-bold text-white mb-2 leading-tight">
+            <h2 className="text-2xl md:text-4xl font-black text-white mb-3 leading-tight drop-shadow-lg">
               Matungulu Girls High School
             </h2>
-            <div className="h-1 w-32 md:w-48 mx-auto bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
+            <p className="text-emerald-300 text-base md:text-lg font-semibold drop-shadow-md">
+              Strive to Excel
+            </p>
+            <div className="h-1.5 w-40 md:w-56 mx-auto mt-3 bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-400 rounded-full"></div>
           </div>
           
-          <div className="space-y-4">
-            <p className="text-white/80 text-base md:text-lg">Preparing an exceptional learning experience</p>
+          {/* Loading Status Section */}
+          <div className="space-y-4 pt-4">
+            <p className="text-white/90 text-base md:text-lg font-medium drop-shadow-md">
+              Preparing an exceptional learning experience
+            </p>
             
-            <div className="flex items-center justify-center gap-2">
+            {/* Animated Dots */}
+            <div className="flex items-center justify-center gap-3">
               {[...Array(3)].map((_, i) => (
                 <div
                   key={i}
-                  className="w-3 h-3 bg-gradient-to-r from-emerald-500/95 to-teal-500/95 rounded-full animate-bounce"
-                  style={{ animationDelay: `${i * 0.2}s` }}
+                  className="w-2.5 h-2.5 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full shadow-lg shadow-emerald-500/50"
+                  style={{ 
+                    animation: `bounce 1.4s infinite`,
+                    animationDelay: `${i * 0.2}s`
+                  }}
                 />
               ))}
             </div>
             
-            <div className="w-48 md:w-64 h-2 bg-white/10 rounded-full overflow-hidden mx-auto">
-              <div className="h-full bg-gradient-to-r from-emerald-700/95 via-teal-700/95 to-slate-700/95 animate-gradient-loading"></div>
+            {/* Progress Bar - FIXED width and appearance */}
+            <div className="w-56 md:w-72 h-2.5 bg-slate-700/50 rounded-full overflow-hidden border border-emerald-400/30 backdrop-blur-sm">
+              <div 
+                className="h-full bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-400 rounded-full shadow-lg shadow-emerald-500/50"
+                style={{ 
+                  width: '65%',
+                  animation: `loading-progress 2s ease-in-out infinite`
+                }}
+              />
             </div>
             
-            <p className="text-white/60 text-xs md:text-sm">Loading For school Website...</p>
+            {/* Loading Text */}
+            <p className="text-emerald-300/80 text-sm md:text-base font-semibold drop-shadow-md">
+              Loading school website...
+            </p>
           </div>
         </div>
       </div>
+
+      {/* Add custom animations */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px) translateX(0px) rotate(0deg);
+            opacity: 0.3;
+          }
+          50% {
+            transform: translateY(-30px) translateX(15px) rotate(180deg);
+            opacity: 0.6;
+          }
+        }
+
+        @keyframes bounce {
+          0%, 100% {
+            transform: translateY(0) scaleY(1);
+            opacity: 1;
+          }
+          50% {
+            transform: translateY(-12px) scaleY(1.2);
+            opacity: 0.8;
+          }
+        }
+
+        @keyframes loading-progress {
+          0% {
+            width: 0%;
+          }
+          50% {
+            width: 100%;
+          }
+          100% {
+            width: 0%;
+          }
+        }
+      `}</style>
     </div>
   );
 
