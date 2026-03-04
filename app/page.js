@@ -574,7 +574,6 @@ const jsonLd = {
                   <p className="text-white">Loading video tour...</p>
                 </div>
               ) : videoError ? (
-                // Error state
                 <div className="w-full h-full flex flex-col items-center justify-center p-8">
                   <FiAlertCircle className="text-5xl text-red-500 mb-4" />
                   <p className="text-white text-center mb-4">{videoError}</p>
