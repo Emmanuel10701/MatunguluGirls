@@ -1,7 +1,7 @@
 // Modern Loading Screen with Enhanced Design
 export default function LoadingScreen() {
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 z-50 flex flex-col items-center justify-center">
+    <div className="fixed inset-0 bg-gradient-to-r from-emerald-800 via-teal-850 to-slate-800 z-50 flex flex-col items-center justify-center">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(15)].map((_, i) => (
@@ -28,7 +28,7 @@ export default function LoadingScreen() {
           
           {/* Center Logo */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center overflow-hidden">
+            <div className="w-16 h-16 bg-gradient-to-r from-emerald-800 via-teal-850 to-slate-800 rounded-2xl flex items-center justify-center overflow-hidden">
               <img 
                 src="/MatG.jpg" 
                 alt="School Logo" 
@@ -57,7 +57,7 @@ export default function LoadingScreen() {
               {[...Array(3)].map((_, i) => (
                 <div
                   key={i}
-                  className="w-3 h-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full animate-bounce"
+                  className="w-3 h-3 bg-gradient-to-r from-emerald-800 via-teal-850 to-slate-800 rounded-full animate-bounce"
                   style={{ animationDelay: `${i * 0.2}s` }}
                 />
               ))}
