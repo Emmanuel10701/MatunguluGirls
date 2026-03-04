@@ -34,23 +34,22 @@ export const metadata = {
   metadataBase: new URL("https://katwanyaa.vercel.app"),
 
   title: {
-    default: "A.I.C Matungulu Girls Senior High School",
+    default: "Matungulu Girls High School",
     template: "%s | Matungulu Girls Senior High School",
   },
 
   description:
-    "The official website of A.I.C Matungulu Girls Senior High School in Matungulu, Machakos County. Dedicated to academic excellence, Christian values, and holistic student development in Kenya.",
+    "The official website of Matungulu Girls Senior High School in Matungulu, Machakos County. Dedicated to academic excellence, Christian values, and holistic student development in Kenya.",
   
   keywords: [
     "Matungulu Girls Senior High School",
     "Matungulu Girls Secondary School",
-    "AIC Katwanyaa",
+    "Matungulu g",
     "Matungulu Girls school",
     "Matungulu Girls High School",
     "MatG school",
     "MatG",
-    "A.I.C Katwanyaa",
-    "AIC Matungulu Girls Senior High",
+    "Matungulu Girls Senior High",
     "MatG senior high school",
     "Matungulu Girls High School Matungulu",
     "Machakos County Schools",
@@ -72,7 +71,7 @@ export const metadata = {
     
   ],
 
-  authors: [{ name: "A.I.C Matungulu Girls Senior High School" }],
+  authors: [{ name: "Matungulu Girls Senior High School" }],
   
   alternates: {
     canonical: "/",
@@ -80,9 +79,9 @@ export const metadata = {
 
   /* Open Graph (Social Media Sharing) */
   openGraph: {
-    title: "A.I.C Matungulu Girls High School",
+    title: "Matungulu Girls High School",
     description: "Official school website.",
-    url: "https://katwanyaa.vercel.app",
+    url: "https://matungulu-girls.vercel.app",
     siteName: "Matungulu Girls High School",
     locale: "en_KE",
     type: "website",
@@ -91,7 +90,7 @@ export const metadata = {
         url: "/MatG.jpg",
         width: 1200,
         height: 630,
-        alt: "A.I.C Matungulu Girls Senior High School",
+        alt: "Matungulu Girls Senior High School",
       },
     ],
   },
@@ -99,7 +98,7 @@ export const metadata = {
   /* Twitter Card */
   twitter: {
     card: "summary_large_image",
-    title: "A.I.C Matungulu Girls Senior High School",
+    title: "Matungulu Girls Senior High School",
     description: "Empowering students through education and faith in Machakos County.",
     images: ["/MatG.jpg"],
   },
@@ -134,11 +133,11 @@ export default function RootLayout({ children }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "School",
-    "name": "A.I.C Matungulu Girls Senior High School",
+    "name": "Matungulu Girls Senior High School",
     "alternateName": "Matungulu Girls High School",
-    "url": "https://katwanyaa.vercel.app",
-    "logo": "https://katwanyaa.vercel.app/MatG.jpg",
-    "image": "https://katwanyaa.vercel.app/MatG.jpg",
+    "url": "https://matungulu-girls.vercel.app",
+    "logo": "https://matungulu-girls.vercel.app/MatG.jpg",
+    "image": "https://matungulu-girls.vercel.app/MatG.jpg",
     "description": "A premier public secondary school in Matungulu, Machakos County, Kenya.",
     "address": {
       "@type": "PostalAddress",
@@ -151,7 +150,7 @@ export default function RootLayout({ children }) {
       "latitude": "-1.2825", // Optional: replace with your actual GPS coordinates
       "longitude": "37.2618"
     },
-    "hasMap": "https://www.google.com/maps?q=Katwanyaa+Secondary+School", 
+    "hasMap": "https://www.google.com/maps?q=matungulu+girls+School", 
     "telephone": "+254-000-000000", // Update with official school phone
     "priceRange": "N/A"
   };
