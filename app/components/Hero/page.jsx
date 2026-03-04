@@ -413,20 +413,10 @@ const ModernHero = () => {
           {/* Established */}
           <div className="bg-black/70 backdrop-blur-md border border-white/25 p-2 sm:p-3 rounded-lg hover:bg-black/80 transition-all shadow-lg">
             <div className={`text-sm sm:text-lg font-bold ${getHighlightColorClass(slide.highlightColor)} drop-shadow-md`}>
-              {matunguluInfo?.established || '1995'}
+              {matunguluInfo?.established || '1956'}
             </div>
             <span className="text-white/95 text-[8px] xs:text-xs uppercase tracking-wider font-semibold">
               Established
-            </span>
-          </div>
-
-          {/* Type */}
-          <div className="bg-black/70 backdrop-blur-md border border-white/25 p-2 sm:p-3 rounded-lg hover:bg-black/80 transition-all shadow-lg">
-            <div className={`text-sm sm:text-lg font-bold ${getHighlightColorClass(slide.highlightColor)} drop-shadow-md`}>
-              Public
-            </div>
-            <span className="text-white/95 text-[8px] xs:text-xs uppercase tracking-wider font-semibold">
-              School Type
             </span>
           </div>
 
