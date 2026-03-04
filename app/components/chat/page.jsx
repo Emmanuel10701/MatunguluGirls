@@ -365,7 +365,7 @@ const buildDynamicCategories = (schoolData, documentData) => {
     general: {
       name: "Overview",
       icon: 'school',
-      content: `🏫 ${schoolData.name}
+      content: `${schoolData.name}
 
 **Motto:** ${schoolData.motto || 'Strive to Excel'}
 
