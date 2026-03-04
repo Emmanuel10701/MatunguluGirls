@@ -460,9 +460,9 @@ export default function ModernFooter() {
             <div className="mt-6 text-center text-sm text-emerald-100/70 font-normal break-words px-4">
               <p>Accredited by the Ministry of Education • KNEC Centre Code: 12345678</p>
               <div className="flex items-center justify-center gap-2 mt-3 flex-wrap">
-                <span>Empowering Future Leaders with</span>
+                <span>MatG....Commited to Excellence</span>
                 <span className="text-lg">💚</span>
-                <span>since 1995 • Strive to Excel</span>
+                <span>since 1955 • Strive to Excel</span>
               </div>
 
               <div className="mt-12 py-6 border-t border-emerald-500/20">
