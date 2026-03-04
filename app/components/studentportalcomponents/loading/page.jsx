@@ -65,7 +65,7 @@ export default function LoadingScreen() {
             
             {/* Progress Bar */}
             <div className="w-64 h-2 bg-white/10 rounded-full overflow-hidden mx-auto">
-              <div className="h-full bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 animate-gradient-loading"></div>
+              <div className="h-full bg-gradient-to-r from-emerald-700/95 via-teal-700/95 to-slate-700/95 animate-gradient-loading"></div>
             </div>
             
             <p className="text-white/60 text-sm">Loading for your portal...</p>
