@@ -31,7 +31,7 @@ const date = new Date(); // Add this line!
   <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/95 via-teal-900/95 to-slate-900/95  z-20"></div>
   
   <Image
-      src="/hero/matG1.jpg"
+      src="/hero/MatG1.jpg"
     alt="School"
     fill
     className="object-cover opacity-50 transition-transform duration-[10s] ease-out "
@@ -41,23 +41,23 @@ const date = new Date(); // Add this line!
 
 
   {/* Animated Radial Glow */}
-  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-600/20 rounded-full blur-[120px] z-10"></div>
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-600/20 rounded-full blur-[120px] z-10"></div>
 </div>
 
         <div className="relative z-20 max-w-5xl mx-auto px-6 text-center">
           {/* Modern Static Badge */}
-          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-orange-500/10 border border-orange-400/20 backdrop-blur-md mb-8">
+          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/20 backdrop-blur-md mb-8">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span className="text-[10px] font-black tracking-[0.3em] text-orange-200 uppercase">
+            <span className="text-[10px] font-black tracking-[0.3em] text-emerald-200 uppercase">
            Registration Open • {new Date().getFullYear()} Academic Year      </span>
           </div>
 
           {/* Refined Title - Significantly Smaller & Tighter */}
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-6 tracking-tighter leading-none">
-            Matungulu Girls <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-300 to-white/70">High School.</span>
+            Matungulu Girls <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-emerald-300 to-white/70">High School.</span>
           </h1>
 
           {/* Expanded Rich Description */}
@@ -91,7 +91,7 @@ const date = new Date(); // Add this line!
 <div className="flex flex-row gap-2 sm:gap-4 justify-center items-center w-full px-2">
   
   <Link href="/pages/apply-for-admissions" passHref className="flex-1 sm:flex-none">
-    <button className="w-full sm:w-auto px-4 sm:px-10 py-3 bg-gradient-to-r from-amber-500 to-orange-600 text-white text-[11px] sm:text-sm font-black rounded-xl sm:rounded-2xl shadow-lg shadow-orange-900/20 flex items-center justify-center gap-2 transition-transform active:scale-95 whitespace-nowrap">
+    <button className="w-full sm:w-auto px-4 sm:px-10 py-3 bg-gradient-to-r from-amber-500 to-emerald-600 text-white text-[11px] sm:text-sm font-black rounded-xl sm:rounded-2xl shadow-lg shadow-emerald-900/20 flex items-center justify-center gap-2 transition-transform active:scale-95 whitespace-nowrap">
       Admission <ArrowRight size={16} className="shrink-0" />
     </button>
   </Link>
@@ -122,11 +122,11 @@ const date = new Date(); // Add this line!
         className="relative bg-white rounded-[1.5rem] sm:rounded-[2.5rem] p-4 sm:p-7 shadow-xl shadow-slate-900/5 border border-slate-100 flex flex-col items-start overflow-hidden transition-transform hover:-translate-y-1 duration-300"
       >
         {/* Subtle Background Accent - Scaled for mobile */}
-        <div className="absolute top-0 right-0 w-16 h-16 sm:w-24 sm:h-24 bg-orange-50/50 rounded-bl-[2.5rem] sm:rounded-bl-[4rem] -z-0" />
+        <div className="absolute top-0 right-0 w-16 h-16 sm:w-24 sm:h-24 bg-emerald-50/50 rounded-bl-[2.5rem] sm:rounded-bl-[4rem] -z-0" />
 
         <div className="relative z-10 w-full">
           {/* Icon Container - Scaled for mobile */}
-          <div className="w-9 h-9 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl sm:rounded-2xl text-white flex items-center justify-center mb-3 sm:mb-6 shadow-lg shadow-orange-900/20">
+          <div className="w-9 h-9 sm:w-12 sm:h-12 bg-gradient-to-br from-emerald-500 to-amber-500 rounded-xl sm:rounded-2xl text-white flex items-center justify-center mb-3 sm:mb-6 shadow-lg shadow-emerald-900/20">
             {React.cloneElement(stat.icon, { size: 16, className: "sm:w-[20px] sm:h-[20px]" })}
           </div>
           
@@ -137,7 +137,7 @@ const date = new Date(); // Add this line!
           
           {/* Label - Tightened for small screens */}
           <div className="flex items-center gap-1.5 sm:gap-2">
-            <div className="w-3 h-[2px] sm:w-4 bg-orange-500 rounded-full" />
+            <div className="w-3 h-[2px] sm:w-4 bg-emerald-500 rounded-full" />
             <div className="text-[8px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest sm:tracking-[0.2em] truncate">
               {stat.label}
             </div>
@@ -160,12 +160,12 @@ const date = new Date(); // Add this line!
     {/* Left Side: Content & Feature Grid */}
     <div className="order-2 lg:order-1 text-center lg:text-left">
       <div className="mb-8 sm:mb-10">
-        <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 mb-4 text-[9px] sm:text-[10px] font-black tracking-[0.2em] text-orange-600 uppercase bg-orange-50 rounded-full border border-orange-100">
+        <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 mb-4 text-[9px] sm:text-[10px] font-black tracking-[0.2em] text-emerald-600 uppercase bg-emerald-50 rounded-full border border-emerald-100">
           Future Outlook
         </span>
         <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-4 sm:mb-6 leading-[1.1]">
           Empowering Minds, <br />
-          <span className="text-orange-600">Enriching Lives.</span>
+          <span className="text-emerald-600">Enriching Lives.</span>
         </h3>
         <p className="text-sm sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
           Our vision is to bridge traditional education with 21st-century needs through holistic development.
@@ -175,12 +175,12 @@ const date = new Date(); // Add this line!
       {/* Expanded Vision Items - Optimized Padding */}
       <div className="grid gap-3 sm:gap-4 text-left">
         {[
-          { title: "Elite Faculty", icon: <Target size={18} />, desc: "Mentors from world-class institutions.", color: "orange" },
+          { title: "Elite Faculty", icon: <Target size={18} />, desc: "Mentors from world-class institutions.", color: "emerald" },
           { title: "Holistic Growth", icon: <Zap size={18} />, desc: "Emotional intelligence and academic mastery.", color: "amber" },
-          { title: "Infrastructure", icon: <Globe size={18} />, desc: "Smart classrooms and collaborative labs.", color: "orange" }
+          { title: "Infrastructure", icon: <Globe size={18} />, desc: "Smart classrooms and collaborative labs.", color: "emerald" }
         ].map((item, i) => (
-          <div key={i} className="group flex gap-4 p-4 sm:p-6 rounded-2xl bg-slate-50 border border-transparent transition-all hover:bg-white hover:shadow-xl hover:shadow-orange-900/5 hover:border-slate-100">
-            <div className={`shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl ${i % 2 === 0 ? 'bg-orange-600' : 'bg-amber-600'} text-white flex items-center justify-center shadow-lg transition-transform `}>
+          <div key={i} className="group flex gap-4 p-4 sm:p-6 rounded-2xl bg-slate-50 border border-transparent transition-all hover:bg-white hover:shadow-xl hover:shadow-emerald-900/5 hover:border-slate-100">
+            <div className={`shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl ${i % 2 === 0 ? 'bg-emerald-600' : 'bg-amber-600'} text-white flex items-center justify-center shadow-lg transition-transform `}>
               {item.icon}
             </div>
             <div>
@@ -194,14 +194,14 @@ const date = new Date(); // Add this line!
 
     {/* Right Side: Image Container */}
     <div className="relative order-1 lg:order-2 group px-2 sm:px-0">
-      <div className="absolute -inset-6 bg-gradient-to-tr from-orange-100 to-amber-100 rounded-full opacity-40 blur-3xl -z-10"></div>
+      <div className="absolute -inset-6 bg-gradient-to-tr from-emerald-100 to-amber-100 rounded-full opacity-40 blur-3xl -z-10"></div>
       
 <div className="relative group px-2">
  <div className="relative group px-2">
   {/* The "Off-kilter" Background Glow */}
-  <div className="absolute -inset-2 bg-orange-100/50 rounded-[2.5rem] -rotate-1 -z-10 transition-transform group-hover:rotate-1  duration-500"></div>
+  <div className="absolute -inset-2 bg-emerald-100/50 rounded-[2.5rem] -rotate-1 -z-10 transition-transform group-hover:rotate-1  duration-500"></div>
   
-  <div className="relative overflow-hidden aspect-square sm:aspect-video lg:aspect-square rounded-md shadow-2xl border border-orange-100/20">
+  <div className="relative overflow-hidden aspect-square sm:aspect-video lg:aspect-square rounded-md shadow-2xl border border-emerald-100/20">
     <Image
       src="/hero/matG.jpg"
       alt="School"
@@ -234,9 +234,9 @@ MatG        </div>
 
     {/* Floating Item 2: Top Right Badge */}
     <div className="absolute top-3 right-3 z-20">
-      <div className="bg-orange-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-md flex items-center gap-1.5">
+      <div className="bg-emerald-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-md flex items-center gap-1.5">
         <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-200 opacity-75"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-200 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
         </span>
         Featured
@@ -251,13 +251,13 @@ MatG        </div>
 
 {/* Mission Section */}
 <section className="py-12 sm:py-20 px-3 sm:px-8 max-w-7xl mx-auto">
-  <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-16 overflow-hidden">
+  <div className="bg-gradient-to-br from-emerald-50 to-amber-50 rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-16 overflow-hidden">
     <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
       
     <div className="relative group px-2">
-  <div className="absolute -inset-2 bg-orange-100/50 rounded-[2.5rem] -rotate-1 -z-10 transition-transform group-hover:rotate-1  duration-500"></div>
+  <div className="absolute -inset-2 bg-emerald-100/50 rounded-[2.5rem] -rotate-1 -z-10 transition-transform group-hover:rotate-1  duration-500"></div>
   
-  <div className="relative overflow-hidden  aspect-square sm:aspect-video lg:aspect-square rounded-md shadow-2xl border border-orange-100/20">
+  <div className="relative overflow-hidden  aspect-square sm:aspect-video lg:aspect-square rounded-md shadow-2xl border border-emerald-100/20">
     <Image
       src="/hero/matG.jpg"
       alt="School"
@@ -271,7 +271,7 @@ MatG        </div>
       <div className="bg-white/90 backdrop-blur-md px-3 py-2 rounded-xl shadow-lg border border-white/50 flex items-center justify-between">
         {/* Left side - Icon with label */}
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-orange-500 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center">
             <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
@@ -295,7 +295,7 @@ MatG        </div>
     
     {/* Optional: Top right small badge */}
     <div className="absolute top-3 right-3 z-20">
-      <div className="bg-orange-500 text-white px-2 py-1 rounded-full text-[10px] font-bold shadow-md">
+      <div className="bg-emerald-500 text-white px-2 py-1 rounded-full text-[10px] font-bold shadow-md">
         New
       </div>
     </div>
@@ -303,12 +303,12 @@ MatG        </div>
 </div>
 
       <div className="flex flex-col text-center lg:text-left items-center lg:items-start">
-        <h2 className="text-orange-600 font-black uppercase text-[9px] sm:text-xs tracking-[0.2em] mb-4 bg-white/80 border border-orange-100 w-fit px-3 py-1 rounded-full shadow-sm">
+        <h2 className="text-emerald-600 font-black uppercase text-[9px] sm:text-xs tracking-[0.2em] mb-4 bg-white/80 border border-emerald-100 w-fit px-3 py-1 rounded-full shadow-sm">
           Our Mission
         </h2>
         <h3 className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-4 sm:mb-6 leading-[1.2]">
           Fostering Excellence <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-600">Through Innovation.</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-amber-600">Through Innovation.</span>
         </h3>
         <p className="text-slate-600 text-sm sm:text-lg mb-8 sm:mb-10 leading-relaxed font-medium">
           We provide a supportive environment where students lead with integrity.
@@ -319,8 +319,8 @@ MatG        </div>
             { title: "Global Perspective", icon: <Globe size={20} />, text: "Preparing for a borderless future." },
             { title: "Agile Learning", icon: <Zap size={20} />, text: "Adapting to new technologies." }
           ].map((item, i) => (
-            <div key={i} className="group flex gap-4 p-4 rounded-xl sm:rounded-2xl transition-all hover:bg-white hover:shadow-xl hover:shadow-orange-900/5 border border-transparent">
-              <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white text-orange-600 flex items-center justify-center shadow-sm group-hover:bg-orange-600 group-hover:text-white transition-colors">
+            <div key={i} className="group flex gap-4 p-4 rounded-xl sm:rounded-2xl transition-all hover:bg-white hover:shadow-xl hover:shadow-emerald-900/5 border border-transparent">
+              <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white text-emerald-600 flex items-center justify-center shadow-sm group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                 {item.icon}
               </div>
               <div>
@@ -342,12 +342,12 @@ MatG        </div>
     {/* Left Side: Content & Values Grid */}
     <div className="order-2 lg:order-1">
       <div className="mb-8 sm:mb-10 text-center lg:text-left">
-        <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 mb-4 text-[9px] sm:text-[10px] font-black tracking-[0.2em] text-orange-700 uppercase bg-orange-50 rounded-full border border-orange-100">
+        <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 mb-4 text-[9px] sm:text-[10px] font-black tracking-[0.2em] text-emerald-700 uppercase bg-emerald-50 rounded-full border border-emerald-100">
           Our Foundation
         </span>
         <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-4 sm:mb-6 leading-[1.1]">
           Character Over <br />
-          <span className="text-orange-600 italic">Everything.</span>
+          <span className="text-emerald-600 italic">Everything.</span>
         </h3>
         <p className="text-sm sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
           Integrity, Discipline, and Resilience aren't just words here—they are the pillars of our community's DNA.
@@ -366,10 +366,10 @@ MatG        </div>
         ].map((val, i) => (
           <div 
             key={i} 
-            className="group flex flex-col p-3 sm:p-4 bg-white border border-slate-100 rounded-xl sm:rounded-2xl transition-all duration-300 hover:shadow-xl hover:shadow-orange-900/5 hover:-translate-y-1 hover:border-orange-100"
+            className="group flex flex-col p-3 sm:p-4 bg-white border border-slate-100 rounded-xl sm:rounded-2xl transition-all duration-300 hover:shadow-xl hover:shadow-emerald-900/5 hover:-translate-y-1 hover:border-emerald-100"
           >
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-orange-50 text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-colors duration-300 shrink-0">
+              <div className="p-2 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shrink-0">
                 {val.icon}
               </div>
               <span className="font-black text-xs sm:text-sm text-slate-800 tracking-tight">{val.title}</span>
@@ -384,21 +384,21 @@ MatG        </div>
     {/* Right Side: Image with Mobile-Friendly Scale */}
     <div className="relative order-1 lg:order-2 group">
       {/* Background decoration - dimmed for mobile focus */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-orange-100/50 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -z-10"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-emerald-100/50 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -z-10"></div>
       
       <div className="relative group px-2">
-        <div className="absolute -inset-2 bg-orange-100/50 rounded-[2.5rem] -rotate-1 -z-10"></div>
+        <div className="absolute -inset-2 bg-emerald-100/50 rounded-[2.5rem] -rotate-1 -z-10"></div>
 <div className="relative group px-2">
   {/* The "Off-kilter" Background Glow */}
-  <div className="absolute -inset-2 bg-orange-100/50 rounded-[2.5rem] -rotate-1 -z-10 transition-transform group-hover:rotate-1  duration-500"></div>
+  <div className="absolute -inset-2 bg-emerald-100/50 rounded-[2.5rem] -rotate-1 -z-10 transition-transform group-hover:rotate-1  duration-500"></div>
   
 <div className="relative group px-2">
   {/* The "Off-kilter" Background Glow */}
-  <div className="absolute -inset-2 bg-orange-100/50 rounded-[2.5rem] -rotate-1 -z-10 transition-transform group-hover:rotate-1  duration-500"></div>
+  <div className="absolute -inset-2 bg-emerald-100/50 rounded-[2.5rem] -rotate-1 -z-10 transition-transform group-hover:rotate-1  duration-500"></div>
   
-  <div className="relative overflow-hidden aspect-square sm:aspect-video lg:aspect-square rounded-md shadow-2xl border border-orange-100/20">
+  <div className="relative overflow-hidden aspect-square sm:aspect-video lg:aspect-square rounded-md shadow-2xl border border-emerald-100/20">
     <Image
-      src="/hero/matG1.jpg"
+      src="/hero/MatG1.jpg"
       alt="School"
       fill
       className="object-cover transition-transform duration-700 "
@@ -430,9 +430,9 @@ MatG        </div>
 
     {/* Floating Item 2: Top Right Badge - Smaller on mobile */}
     <div className="absolute top-2 sm:top-3 right-2 sm:right-3 z-20">
-      <div className="bg-orange-500 text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold shadow-md flex items-center gap-1 sm:gap-1.5">
+      <div className="bg-emerald-500 text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold shadow-md flex items-center gap-1 sm:gap-1.5">
         <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-200 opacity-75"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-200 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-full w-full bg-white"></span>
         </span>
         <span className="hidden xs:inline">Featured</span>
@@ -448,18 +448,18 @@ MatG        </div>
 </section>
 
       {/* Location Section */}
-<section className="py-12 sm:py-24 bg-gradient-to-br from-orange-50 to-amber-50 overflow-hidden">
+<section className="py-12 sm:py-24 bg-gradient-to-br from-emerald-50 to-amber-50 overflow-hidden">
   <div className="max-w-7xl mx-auto px-4 sm:px-6">
     <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
       
       {/* 1. Contact Card - High Contrast & Mobile Responsive */}
-      <div className="lg:col-span-4 group relative overflow-hidden bg-gradient-to-br from-orange-600 to-amber-600 p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-orange-200/50 flex flex-col justify-between transition-all duration-500 hover:-translate-y-2">
+      <div className="lg:col-span-4 group relative overflow-hidden bg-gradient-to-br from-emerald-600 to-amber-600 p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-emerald-200/50 flex flex-col justify-between transition-all duration-500 hover:-translate-y-2">
         
         {/* Decorative background circle - scaled for mobile */}
-        <div className="absolute -top-10 -right-10 w-40 h-40 sm:w-64 sm:h-64 bg-orange-500 rounded-full opacity-40 transition-transform duration-700 "></div>
+        <div className="absolute -top-10 -right-10 w-40 h-40 sm:w-64 sm:h-64 bg-emerald-500 rounded-full opacity-40 transition-transform duration-700 "></div>
         
         <div className="relative z-10">
-          <span className="inline-block px-3 py-1 mb-4 sm:mb-6 text-[9px] sm:text-[10px] font-black tracking-widest text-orange-100 uppercase bg-orange-700/50 rounded-full border border-orange-400/30">
+          <span className="inline-block px-3 py-1 mb-4 sm:mb-6 text-[9px] sm:text-[10px] font-black tracking-widest text-emerald-100 uppercase bg-emerald-700/50 rounded-full border border-emerald-400/30">
             Find Us
           </span>
           <h4 className="text-2xl sm:text-3xl font-black text-white mb-6 sm:mb-10 tracking-tight leading-tight">
@@ -468,11 +468,11 @@ MatG        </div>
           
           <div className="space-y-6 sm:space-y-8">
             <div className="flex gap-4 sm:gap-5 group/item items-start">
-              <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-orange-500/50 flex items-center justify-center text-white border border-orange-400/30 group-hover/item:bg-white group-hover/item:text-orange-600 transition-all shadow-lg">
+              <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-500/50 flex items-center justify-center text-white border border-emerald-400/30 group-hover/item:bg-white group-hover/item:text-emerald-600 transition-all shadow-lg">
                 <MapPin size={20} className="sm:w-[24px] sm:h-[24px]" />
               </div>
               <div>
-                <p className="text-orange-100 text-[9px] sm:text-xs uppercase font-black tracking-tighter mb-0.5 sm:mb-1 opacity-80">School  Address</p>
+                <p className="text-emerald-100 text-[9px] sm:text-xs uppercase font-black tracking-tighter mb-0.5 sm:mb-1 opacity-80">School  Address</p>
                 <p className="text-white text-sm sm:text-base font-bold leading-snug sm:leading-relaxed">
                  School, Matungulu, Machakos 
                 </p>
@@ -480,11 +480,11 @@ MatG        </div>
             </div>
 
             <div className="flex gap-4 sm:gap-5 group/item items-start">
-              <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-orange-500/50 flex items-center justify-center text-white border border-orange-400/30 group-hover/item:bg-white group-hover/item:text-orange-600 transition-all shadow-lg">
+              <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-500/50 flex items-center justify-center text-white border border-emerald-400/30 group-hover/item:bg-white group-hover/item:text-emerald-600 transition-all shadow-lg">
                 <Phone size={20} className="sm:w-[24px] sm:h-[24px]" />
               </div>
               <div>
-                <p className="text-orange-100 text-[9px] sm:text-xs uppercase font-black tracking-tighter mb-0.5 sm:mb-1 opacity-80">Direct Line</p>
+                <p className="text-emerald-100 text-[9px] sm:text-xs uppercase font-black tracking-tighter mb-0.5 sm:mb-1 opacity-80">Direct Line</p>
                 <p className="text-white text-sm sm:text-base font-bold">+254 123 456 789</p>
               </div>
             </div>
@@ -495,7 +495,7 @@ MatG        </div>
     href="https://www.google.com/maps/search/?api=1&query=MatunguluGirls+High+School" 
     target="_blank" 
     rel="noopener noreferrer"
-    className=" w-full py-3 sm:py-4 bg-white text-orange-600 font-black text-xs sm:text-sm rounded-xl sm:rounded-2xl shadow-xl transition-transform flex items-center justify-center gap-2 uppercase tracking-wider"
+    className=" w-full py-3 sm:py-4 bg-white text-emerald-600 font-black text-xs sm:text-sm rounded-xl sm:rounded-2xl shadow-xl transition-transform flex items-center justify-center gap-2 uppercase tracking-wider"
   >
     Google Maps
     <ExternalLink size={16} />
@@ -504,7 +504,7 @@ MatG        </div>
       </div>
 
       {/* 2. Map Container - Fully Optimized */}
-      <div className="lg:col-span-8 group relative bg-white rounded-[2rem] sm:rounded-[2.5rem] p-3 sm:p-4 border border-slate-200 shadow-xl shadow-slate-200/40 transition-all duration-500 hover:border-orange-200">
+      <div className="lg:col-span-8 group relative bg-white rounded-[2rem] sm:rounded-[2.5rem] p-3 sm:p-4 border border-slate-200 shadow-xl shadow-slate-200/40 transition-all duration-500 hover:border-emerald-200">
         
         <div className="flex items-center justify-between mb-3 sm:mb-4 px-2 sm:px-4 pt-1 sm:pt-2">
           <h3 className="text-sm sm:text-lg lg:text-xl font-black text-slate-900 flex items-center gap-2 tracking-tight uppercase">
@@ -536,28 +536,28 @@ MatG        </div>
 </section>
 
       {/* Modern Institutional Section - Refined Small Text Edition */}
-      <section className="py-12 sm:py-20 px-4 sm:px-6 overflow-hidden bg-gradient-to-br from-orange-950 via-amber-950 to-red-950">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 overflow-hidden bg-gradient-to-br from-emerald-950 via-amber-950 to-red-950">
         <div className="relative w-full bg-[#1a0f0a] rounded-[2rem] md:rounded-[3.5rem] p-8 sm:p-6 md:p-16 text-center border border-white/5 shadow-2xl overflow-hidden">
         
           {/* Small Refined Icon */}
           <div className="flex justify-center mb-6 md:mb-8">
             <div className="relative p-4 bg-slate-900/50 backdrop-blur-xl border border-white/10 rounded-2xl">
-              <ShieldCheck className="text-orange-400 w-6 h-6 md:w-7 md:h-7" />
+              <ShieldCheck className="text-emerald-400 w-6 h-6 md:w-7 md:h-7" />
             </div>
           </div>
 
           <div className="relative z-10 w-full">
             {/* Title - Reduced to Original Proportions */}
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-black text-white mb-6 md:mb-10 tracking-tighter leading-[1.1] md:leading-[0.95] max-w-4xl mx-auto">
-              Integrity & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-300 to-white/70">Wellbeing.</span>
+              Integrity & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-emerald-300 to-white/70">Wellbeing.</span>
             </h2>
             
             {/* Info Grid - Text sizes back to sm/base */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-10 md:mb-16 max-w-5xl mx-auto text-left items-start border-t border-white/5 pt-8 md:pt-12">
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <div className="w-1 h-4 bg-orange-500 rounded-full" />
-                  <h4 className="text-orange-400 font-black text-[10px] uppercase tracking-[0.2em]">Institutional Policy</h4>
+                  <div className="w-1 h-4 bg-emerald-500 rounded-full" />
+                  <h4 className="text-emerald-400 font-black text-[10px] uppercase tracking-[0.2em]">Institutional Policy</h4>
                 </div>
                 <p className="text-white text-base md:text-lg leading-tight font-bold">
                   Standardizing excellence through discipline.
@@ -609,7 +609,7 @@ MatG        </div>
               ].map((stat, i) => (
                 <div key={i} className="flex flex-col items-center lg:items-start text-center lg:text-left">
                   <span className="text-xl md:text-3xl font-black text-white tracking-tighter">{stat.val}</span>
-                  <span className="text-[9px] uppercase tracking-[0.2em] text-orange-400/80 font-bold mt-1">
+                  <span className="text-[9px] uppercase tracking-[0.2em] text-emerald-400/80 font-bold mt-1">
                     {stat.label}
                   </span>
                 </div>
