@@ -494,8 +494,7 @@ ${documentData?.curriculumPDF ? `**Curriculum:**
 **Academic Support:**
 • Regular assessments and evaluations
 • Remedial classes
-• Career guidance programs
-• Angaza Center Technology Partnership`,
+• Career guidance programs`,
       links: [
         ...staticCategories.academics.links,
         ...(documentData?.curriculumPDF ? [{ 
