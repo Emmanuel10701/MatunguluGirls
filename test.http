@@ -1,0 +1,93 @@
+### 1. Create Mathematics Teacher Job
+POST https://katwanyaa.vercel.app/api/career
+Content-Type: application/json
+
+{
+  "jobTitle": "Mathematics Teacher",
+  "department": "Mathematics Department",
+  "category": "teaching",
+  "jobType": "full-time",
+  "positionsAvailable": 2,
+  "jobDescription": "We are seeking an experienced and passionate Mathematics Teacher to join our academic team. The ideal candidate will have a strong background in teaching Mathematics at the secondary school level, with expertise in both theoretical concepts and practical applications. You will be responsible for preparing students for KCSE examinations and developing innovative teaching methods.",
+  "experience": "3+ years teaching experience",
+  "qualifications": "Bachelor of Education (Mathematics) with TSC registration. Master's degree preferred.",
+  "requirements": "TSC registered, excellent communication skills, ability to use modern teaching aids, proven track record of improving student performance in Mathematics.",
+  "applicationDeadline": "2026-03-15",
+  "contactEmail": "careers@katwanyaa.sch.ke",
+  "contactPhone": "+254712345678",
+  "location": "Katwanyaa, Machakos County"
+}
+
+### 2. Create Laboratory Technician Job
+POST https://katwanyaa.vercel.app/api/career
+Content-Type: application/json
+
+{
+  "jobTitle": "Science Laboratory Technician",
+  "department": "Sciences Department",
+  "category": "technical",
+  "jobType": "full-time",
+  "positionsAvailable": 1,
+  "jobDescription": "We are looking for a qualified Laboratory Technician to support our science departments. The role involves preparing laboratory equipment, maintaining inventory, ensuring safety standards, and assisting students and teachers during practical sessions.",
+  "experience": "2+ years laboratory experience",
+  "qualifications": "Diploma in Laboratory Technology or equivalent. Certificate in Laboratory Safety.",
+  "requirements": "Knowledge of laboratory equipment, safety protocols, chemical handling, ability to work with students and staff.",
+  "applicationDeadline": "2026-03-10",
+  "contactEmail": "hr@katwanyaa.sch.ke",
+  "contactPhone": "+254723456789",
+  "location": "Matungulu Girls High School, Matungulu Sub County"
+}
+
+### 3. Create ICT Support Staff Job
+POST https://katwanyaa.vercel.app/api/career
+Content-Type: application/json
+
+{
+  "jobTitle": "ICT Support Officer",
+  "department": "Administration",
+  "category": "technical",
+  "jobType": "contract",
+  "positionsAvailable": 1,
+  "jobDescription": "Join our team as an ICT Support Officer to maintain and support our school's technology infrastructure. You will be responsible for troubleshooting hardware/software issues, maintaining computer labs, supporting e-learning platforms, and training staff on technology use.",
+  "experience": "1+ years IT support experience",
+  "qualifications": "Diploma in IT/Computer Science. Certifications in networking or hardware maintenance preferred.",
+  "requirements": "Knowledge of Windows/Linux systems, networking, hardware troubleshooting, excellent problem-solving skills.",
+  "applicationDeadline": "2026-03-20",
+  "contactEmail": "ictsupport@katwanyaa.sch.ke",
+  "contactPhone": "+254734567890",
+  "location": "Matungulu Girls High School"
+}
+
+### 4. Create Guidance and Counseling Intern
+POST https://katwanyaa.vercel.app/api/career
+Content-Type: application/json
+
+{
+  "jobTitle": "Guidance and Counseling Intern",
+  "department": "Guidance Department",
+  "category": "support",
+  "jobType": "internship",
+  "positionsAvailable": 2,
+  "jobDescription": "Internship opportunity for recent graduates in Guidance and Counseling. Assist in student counseling sessions, career guidance, peer counseling programs, and mental health awareness initiatives under the supervision of senior counselors.",
+  "experience": "Fresh graduate or final year student",
+  "qualifications": "Bachelor's degree in Guidance and Counseling or Psychology.",
+  "requirements": "Strong interpersonal skills, empathy, confidentiality, ability to work with teenagers.",
+  "applicationDeadline": "2026-02-28",
+  "contactEmail": "guidance@katwanyaa.sch.ke",
+  "contactPhone": "+254745678901",
+  "location": "Matungulu Girls High School"
+}
+
+### 5. Create School Nurse (Part-time)
+POST https://katwanyaa.vercel.app/api/career
+Content-Type: application/json
+
+{
+  "jobTitle": "Part-time School Nurse",
+  "department": "Medical",
+  "category": "medical",
+  "jobType": "part-time",
+  "positionsAvailable": 1,
+  "jobDescription": "Part-time position for a registered nurse to provide basic healthcare services to students and staff. Duties include first aid, health screenings, medication administration, and maintaining health records.",
+  "experience": "2+ years nursing experience",
+  "qualifications": "Registered Nurse (KRCH

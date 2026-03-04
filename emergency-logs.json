@@ -1,0 +1,32 @@
+[
+  {
+    "referenceNumber": "EMERG-20260103-4946",
+    "emergencyType": "other",
+    "description": "dfghjkl;l i need assiance fromthe schol ",
+    "urgency": "high",
+    "contactPhone": "0793472960",
+    "contactEmail": "emmanuelmakau90@gmail.com",
+    "timestamp": "2026-01-03T18:24:31.597Z",
+    "submittedAt": "2026-01-03T18:24:18.442Z",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+    "status": "pending",
+    "assignedTo": null,
+    "notes": []
+  },
+  {
+    "referenceNumber": "EMERG-20260111-1949",
+    "emergencyType": "other",
+    "description": "etrygu;]'cypo",
+    "urgency": "low",
+    "contactPhone": "0793472960",
+    "contactEmail": "emmanuelmakau90@gmail.com",
+    "timestamp": "2026-01-11T12:33:34.761Z",
+    "submittedAt": "2026-01-11T12:33:28.909Z",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+    "status": "pending",
+    "assignedTo": null,
+    "notes": []
+  }
+]

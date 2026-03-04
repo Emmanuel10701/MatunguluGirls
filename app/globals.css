@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Apply 78% zoom to everything EXCEPT pages with 'no-zoom' class *
+
+
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-10px) translateX(10px);
+  }
+  50% {
+    transform: translateY(5px) translateX(-5px);
+  }
+  75% {
+    transform: translateY(-5px) translateX(-10px);
+  }
+}
+
+@keyframes gradient-loading {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-gradient-loading {
+  background-size: 200% 200%;
+  animation: gradient-loading 2s ease infinite;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+/* Add to existing modernScrollbarStyles */
+.modal-container {
+  width: 85%;
+  max-width: 1300px;
+  max-height: 85vh;
+}
+
+@media (max-width: 768px) {
+  .modal-container {
+    width: 95%;
+    max-height: 90vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-container {
+    width: 98%;
+    max-height: 95vh;
+    margin: 1%;
+  }
+}
+
+/* Active input effects */
+.active-input {
+  font-size: 16px !important;
+  padding: 14px 16px !important;
+  border-radius: 12px !important;
+  line-height: 1.5 !important;
+  min-height: 52px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.active-input:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3),
+              0 0 0 2px rgba(59, 130, 246, 0.2);
+  outline: none;
+}
+
+.active-input:hover:not(:focus) {
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.enhanced-textarea {
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  padding: 16px !important;
+  min-height: 200px !important;
+  resize: vertical !important;
+}
+
+.enhanced-select {
+  font-size: 16px !important;
+  padding: 14px 40px 14px 16px !important;
+  min-height: 52px !important;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+}
+
+/* Responsive modal adjustments */
+@media (min-width: 1024px) {
+  .responsive-modal {
+    width: min(95%, 1300px) !important;
+    max-width: 1300px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .responsive-modal {
+    width: 95% !important;
+    max-height: 90vh !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .responsive-modal {
+    width: 98% !important;
+    margin: 1% !important;
+    max-height: 95vh !important;
+  }
+}
+
+/* Zoom-friendly styles */
+@media screen and (min-resolution: 192dpi) {
+  .zoom-friendly {
+    min-width: min-content;
+    overflow-wrap: break-word;
+  }
+}
+
+/* Prevent overlapping on zoom */
+.zoom-safe {
+  min-height: 0;
+  overflow: auto;
+  contain: layout;
+}
+
+
+/* For modern browsers (Chrome, Safari, Edge) */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+/* For IE and Edge Legacy */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+}

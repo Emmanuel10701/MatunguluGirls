@@ -1,0 +1,867 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String          @id @default(cuid())
+  name           String
+  email          String          @unique
+  emailVerified  DateTime?
+  password       String?
+  phone          String?
+  role           UserRole        @default(TEACHER)
+  image          String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  passwordResets PasswordReset[]
+
+  // Add these relations to fix the error
+  loginAttempts LoginAttempt[]
+  deviceTokens  DeviceToken[]
+
+  @@map("users")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model PasswordReset {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  createdAt DateTime @default(now())
+  expires   DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "PasswordReset_userId_fkey")
+}
+
+model LoginAttempt {
+  id          String   @id @default(cuid())
+  userId      String?
+  email       String
+  ipAddress   String?
+  userAgent   String?
+  deviceHash  String? // Browser fingerprint hash
+  status      String // "success", "failed", "blocked"
+  reason      String? // "wrong_password", "verification_required"
+  attemptedAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([email])
+  @@index([attemptedAt])
+  @@map("login_attempts")
+}
+
+model DeviceToken {
+  id            String   @id @default(cuid())
+  userId        String
+  deviceHash    String
+  deviceName    String?
+  lastUsed      DateTime @default(now())
+  expiresAt     DateTime
+  isTrusted     Boolean  @default(false)
+  isBlocked     Boolean  @default(false)
+  loginCount    Int      @default(1)
+  countsResetAt DateTime?  // NEW: When counts were last reset
+  isCountsReset Boolean  @default(false)  // NEW: Flag indicating counts were reset
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, deviceHash])
+  @@index([userId])
+  @@index([deviceHash])
+  @@index([expiresAt])
+}
+
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+
+  @@map("subscribers")
+}
+
+model Assignment {
+  id                 Int      @id @default(autoincrement())
+  title              String
+  subject            String
+  className          String
+  teacher            String
+  dueDate            DateTime
+  dateAssigned       DateTime
+  status             String
+  description        String   @db.Text
+  instructions       String?  @db.Text
+  assignmentFiles    Json
+  attachments        Json
+  priority           String
+  estimatedTime      String?
+  additionalWork     String?  @db.Text
+  teacherRemarks     String?  @db.Text
+  feedback           String?  @db.Text
+  learningObjectives Json
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model Resource {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(400)
+  subject     String   @db.VarChar(100)
+  teacher     String   @db.VarChar(100)
+  className   String   @db.VarChar(50)
+  description String?  @db.Text
+  category    String   @default("general") @db.VarChar(100)
+  type        String   @default("document") @db.VarChar(50)
+  files       Json // Array of file objects (like assignmentFiles)
+  accessLevel String   @default("student") @db.VarChar(20)
+  uploadedBy  String   @default("System") @db.VarChar(100)
+  downloads   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([subject])
+  @@index([className])
+  @@index([category])
+  @@index([type])
+  @@index([accessLevel])
+  @@index([createdAt])
+  @@map("resources")
+}
+
+model CounselingEvent {
+  id          Int      @id @default(autoincrement())
+  counselor   String
+  category    String
+  description String   @db.Text
+  notes       String?  @db.Text
+  date        DateTime
+  time        String
+  type        String
+  priority    String
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Event {
+  id           Int      @id @default(autoincrement())
+  title        String
+  description  String?  @db.Text
+  date         DateTime
+  time         String
+  location     String
+  category     String
+  type         String
+  featured     Boolean  @default(false)
+  registration Boolean  @default(false)
+  attendees    String
+  speaker      String
+  image        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+   createdBy   String?
+  updatedBy   String?
+  updatedByName String?
+  updatedByRole String?
+}
+
+model News {
+  id          Int      @id @default(autoincrement())
+  title       String
+  excerpt     String?  @db.Text
+  fullContent String?  @db.Text
+  date        DateTime
+  category    String
+  isFeatured  Boolean  @default(false)
+  author      String
+  likes       Int      @default(0)
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdBy   String?
+  updatedBy   String?
+  updatedByName String?
+  updatedByRole String?
+  
+
+}
+
+model Staff {
+  id               Int      @id @default(autoincrement())
+  name             String
+  role             String
+  position         String?
+  department       String?
+  education        String?  @db.Text
+  experience       String?  @db.Text
+  email            String?
+  phone            String?
+  bio              String?  @db.Text
+  quote            String?  @db.Text
+  gender           String?  @default("male") // ← ADD THIS
+  status           String?  @default("active") // ← ADD THIS
+  joinDate         String? // ← ADD THIS
+  responsibilities Json?
+  expertise        Json?
+  achievements     Json?
+  image            String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model EmailCampaign {
+  id            String    @id @default(cuid())
+  title         String
+  subject       String
+  content       String    @db.Text
+  recipients    String    @db.Text
+  recipientType String    @default("all")
+  status        String    @default("draft")
+  sentAt        DateTime?
+  sentCount     Int?
+  failedCount   Int?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  attachments   String?   @db.Text
+
+  @@map("email_campaigns")
+}
+
+
+
+
+model SmsCampaign {
+  id              String    @id @default(cuid())
+  title           String
+  message         String
+  recipients      String    // Comma-separated phone numbers
+  recipientType   String?   @default("all")
+  status          String    @default("draft") // "draft" or "sent"
+  sentAt          DateTime?
+  sentCount       Int?      @default(0)
+  failedCount     Int?      @default(0)
+  lowCreditSaved  Boolean   @default(false) // Add this line
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  // Relations
+  logs            SmsLog[]
+  
+  @@map("sms_campaigns")
+}
+
+model SmsLog {
+  id              String   @id @default(cuid())
+  campaignId      String
+  userId          String?  // optional, if you track users
+  phoneNumber     String   // <-- Make sure this is String, not Int
+  message         String   @db.Text
+  providerMessageId String? // Africa's Talking messageId
+  status          String   // success, failed
+  errorMessage    String?
+  timestamp       DateTime @default(now())
+
+  campaign        SmsCampaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  @@map("sms_logs")
+}
+
+
+
+model GalleryImage {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?  @db.Text
+  category    Category
+  files       Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SchoolInfo {
+  id           Int      @id @default(autoincrement())
+  name         String   @db.VarChar(255)
+  description  String?  @db.Text
+  motto        String?  @db.Text
+  vision       String?  @db.Text
+  mission      String?  @db.Text
+  studentCount Int      @default(0)
+  staffCount   Int      @default(0)
+  openDate     DateTime
+  closeDate    DateTime
+
+  subjects    Json @default("[]")
+  departments Json @default("[]")
+
+  videoTour      String? @db.Text
+  videoType      String? @db.VarChar(20)
+  videoThumbnail String? @db.Text
+
+  feesDay      Float?
+  feesBoarding Float?
+  admissionFee Float?
+
+  admissionOpenDate          DateTime?
+  admissionCloseDate         DateTime?
+  admissionRequirements      String?   @db.Text
+  admissionCapacity          Int?
+  admissionContactEmail      String?   @db.VarChar(255)
+  admissionContactPhone      String?   @db.VarChar(50)
+  admissionWebsite           String?   @db.VarChar(255)
+  admissionLocation          String?   @db.Text
+  admissionOfficeHours       String?   @db.Text
+  admissionDocumentsRequired Json      @default("[]")
+  form1ResultsTerm           String?   @db.VarChar(50) // Add this
+  form2ResultsTerm           String?   @db.VarChar(50) // Add this
+  form3ResultsTerm           String?   @db.VarChar(50) // Add this
+  form4ResultsTerm           String?   @db.VarChar(50) // Add this
+  mockExamsTerm              String?   @db.VarChar(50) // Add this
+  kcseTerm                   String?   @db.VarChar(50) // Add this
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([name])
+  @@index([admissionOpenDate, admissionCloseDate])
+  @@map("SchoolInfo")
+}
+
+model SchoolDocument {
+  id Int @id @default(autoincrement())
+
+  // Curriculum PDF
+  curriculumPDF           String?   @db.Text
+  curriculumPdfName       String?   @db.VarChar(255)
+  curriculumPdfSize       Int?
+  curriculumPdfUploadDate DateTime?
+  curriculumDescription   String?   @db.Text
+  curriculumYear          Int?
+  curriculumTerm          String?   @db.VarChar(50)
+
+  // Day School Fees PDF
+  feesDayDistributionPdf String?   @db.Text
+  feesDayPdfName         String?   @db.VarChar(255)
+  feesDayPdfSize         Int?
+  feesDayPdfUploadDate   DateTime?
+  feesDayDescription     String?   @db.Text
+  feesDayYear            Int?
+  feesDayTerm            String?   @db.VarChar(50)
+
+  // Boarding School Fees PDF
+  feesBoardingDistributionPdf String?   @db.Text
+  feesBoardingPdfName         String?   @db.VarChar(255)
+  feesBoardingPdfSize         Int?
+  feesBoardingPdfUploadDate   DateTime?
+  feesBoardingDescription     String?   @db.Text
+  feesBoardingYear            Int?
+  feesBoardingTerm            String?   @db.VarChar(50)
+
+  // Admission Fee PDF
+  admissionFeePdf           String?   @db.Text
+  admissionFeePdfName       String?   @db.VarChar(255)
+  admissionFeePdfSize       Int?
+  admissionFeePdfUploadDate DateTime?
+  admissionFeeDescription   String?   @db.Text
+  admissionFeeYear          Int?
+  admissionFeeTerm          String?   @db.VarChar(50)
+
+  // Fee breakdown JSON fields
+  feesDayDistributionJson      Json?
+  feesBoardingDistributionJson Json?
+  admissionFeeDistribution     Json?
+
+  // Form 1 Results PDF
+  form1ResultsPdf         String?   @db.Text
+  form1ResultsPdfName     String?   @db.VarChar(255)
+  form1ResultsPdfSize     Int?
+  form1ResultsDescription String?   @db.Text
+  form1ResultsYear        Int?
+  form1ResultsTerm        String?   @db.VarChar(50)
+  form1ResultsUploadDate  DateTime?
+
+  // Form 2 Results PDF
+  form2ResultsPdf         String?   @db.Text
+  form2ResultsPdfName     String?   @db.VarChar(255)
+  form2ResultsPdfSize     Int?
+  form2ResultsDescription String?   @db.Text
+  form2ResultsYear        Int?
+  form2ResultsTerm        String?   @db.VarChar(50)
+  form2ResultsUploadDate  DateTime?
+
+  // Form 3 Results PDF
+  form3ResultsPdf         String?   @db.Text
+  form3ResultsPdfName     String?   @db.VarChar(255)
+  form3ResultsPdfSize     Int?
+  form3ResultsDescription String?   @db.Text
+  form3ResultsYear        Int?
+  form3ResultsTerm        String?   @db.VarChar(50)
+  form3ResultsUploadDate  DateTime?
+
+  // Form 4 Results PDF
+  form4ResultsPdf         String?   @db.Text
+  form4ResultsPdfName     String?   @db.VarChar(255)
+  form4ResultsPdfSize     Int?
+  form4ResultsDescription String?   @db.Text
+  form4ResultsYear        Int?
+  form4ResultsTerm        String?   @db.VarChar(50)
+  form4ResultsUploadDate  DateTime?
+
+  // Mock Exams PDF
+  mockExamsResultsPdf  String?   @db.Text
+  mockExamsPdfName     String?   @db.VarChar(255)
+  mockExamsPdfSize     Int?
+  mockExamsDescription String?   @db.Text
+  mockExamsYear        Int?
+  mockExamsTerm        String?   @db.VarChar(50)
+  mockExamsUploadDate  DateTime?
+
+  // KCSE Results PDF
+  kcseResultsPdf  String?   @db.Text
+  kcsePdfName     String?   @db.VarChar(255)
+  kcsePdfSize     Int?
+  kcseDescription String?   @db.Text
+  kcseYear        Int?
+  kcseTerm        String?   @db.VarChar(50)
+  kcseUploadDate  DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Add indexes for new term fields
+  @@index([curriculumTerm])
+  @@index([feesDayTerm])
+  @@index([feesBoardingTerm])
+  @@index([admissionFeeTerm])
+  @@index([curriculumYear])
+  @@index([feesDayYear])
+  @@index([feesBoardingYear])
+  @@index([admissionFeeYear])
+  @@index([form1ResultsYear])
+  @@index([form2ResultsYear])
+  @@index([form3ResultsYear])
+  @@index([form4ResultsYear])
+  @@index([mockExamsYear])
+  @@index([kcseYear])
+  @@map("SchoolDocument")
+}
+
+model AdmissionApplication {
+  id                     String    @id @default(cuid())
+  applicationNumber      String    @unique
+  firstName              String
+  middleName             String?
+  lastName               String
+  gender                 String
+  dateOfBirth            DateTime
+  nationality            String
+  county                 String
+  constituency           String
+  ward                   String
+  village                String?
+  email                  String?
+  phone                  String? // Changed to optional
+  alternativePhone       String?
+  postalAddress          String
+  postalCode             String?
+  fatherName             String?
+  fatherPhone            String?
+  fatherEmail            String?
+  fatherOccupation       String?
+  motherName             String?
+  motherPhone            String?
+  motherEmail            String?
+  motherOccupation       String?
+  guardianName           String?
+  guardianPhone          String?
+  guardianEmail          String?
+  guardianOccupation     String?
+  previousSchool         String
+  previousClass          String
+  kcpeYear               Int?
+  kcpeIndex              String?
+  kcpeMarks              Int?
+  meanGrade              String?
+  // Removed preferredStream field
+  medicalCondition       String?   @db.Text
+  allergies              String?   @db.Text
+  bloodGroup             String? // Still kept but not in form
+  sportsInterests        String?   @db.Text
+  clubsInterests         String?   @db.Text
+  talents                String?   @db.Text
+  status                 String?   @default("PENDING")
+  decisionNotes          String?   @db.Text
+  admissionOfficer       String?
+  decisionDate           DateTime?
+  admissionDate          DateTime?
+  assignedStream         String?
+  reportingDate          DateTime?
+  admissionLetterSent    Boolean?  @default(false)
+  rejectionDate          DateTime?
+  rejectionReason        String?
+  alternativeSuggestions String?
+  waitlistPosition       Int?
+  waitlistNotes          String?   @db.Text
+  interviewDate          DateTime?
+  interviewTime          String?
+  interviewVenue         String?
+  interviewNotes         String?   @db.Text
+  conditions             String?   @db.Text
+  conditionDeadline      DateTime?
+  houseAssigned          String?
+  admissionClass         String?
+  admissionType          String?
+  documentsVerified      Boolean?  @default(false)
+  documentsNotes         String?
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+
+  @@index([applicationNumber])
+  @@index([email])
+  @@index([phone])
+  @@index([status])
+  @@index([createdAt])
+  @@index([decisionDate])
+  @@index([county])
+  @@index([kcpeMarks])
+}
+
+model CareerJob {
+  id                  String   @id @default(cuid())
+  jobTitle            String
+  department          String
+  category            String
+  jobDescription      String   @db.Text
+  requirements        String   @db.Text
+  experience          String
+  qualifications      String   @db.Text
+  positionsAvailable  Int      @default(1)
+  jobType             String
+  applicationDeadline DateTime
+  contactEmail        String?
+  contactPhone        String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([jobTitle])
+  @@index([department])
+  @@index([category])
+  @@index([jobType])
+  @@index([applicationDeadline])
+  @@index([createdAt])
+}
+
+model StudentBulkUpload {
+  id            String            @id @default(cuid())
+  fileName      String
+  fileType      String
+  status        String            @default("pending")
+  uploadedBy    String
+  uploadDate    DateTime          @default(now())
+  processedDate DateTime?
+  totalRows     Int               @default(0)
+  validRows     Int               @default(0)
+  skippedRows   Int               @default(0)
+  errorRows     Int               @default(0)
+  errorLog      Json?
+  metadata      Json? // Add this line
+  students      databaseStudent[]
+
+  @@map("student_bulk_uploads")
+}
+
+model databaseStudent {
+  id              String       @id @default(cuid())
+  admissionNumber String       @unique @db.VarChar(50)
+  firstName       String       @db.VarChar(100)
+  middleName      String?      @db.VarChar(100)
+  lastName        String       @db.VarChar(100)
+  form            String       @db.VarChar(20)
+  status          String       @default("active")
+  stream          String?      @db.VarChar(50)
+  dateOfBirth     DateTime?
+  gender          String?      @db.VarChar(20)
+  parentPhone     String?      @db.VarChar(20)
+  email           String?      @db.VarChar(100)
+  address         String?      @db.VarChar(255)
+  uploadBatchId   String?
+  createdAt       DateTime     @default(now())
+  feeBalances     FeeBalance[] @relation("StudentFeeBalances")
+
+  results StudentResult[]
+
+  updatedAt   DateTime           @updatedAt
+  uploadBatch StudentBulkUpload? @relation(fields: [uploadBatchId], references: [id], onDelete: Cascade)
+
+  @@index([admissionNumber])
+  @@index([form])
+  @@index([uploadBatchId])
+  @@map("students")
+}
+
+model StudentStats {
+  id            String   @id @default("global_stats")
+  totalStudents Int      @default(0)
+  form1         Int      @default(0)
+  form2         Int      @default(0)
+  form3         Int      @default(0)
+  form4         Int      @default(0)
+  updatedAt     DateTime @updatedAt
+
+  @@map("student_stats")
+}
+
+enum UserRole {
+  TEACHER
+  PRINCIPAL
+  ADMIN
+}
+
+enum Category {
+  GENERAL
+  CLASSROOMS
+  LABORATORIES
+  DORMITORIES
+  DINING_HALL
+  SPORTS_FACILITIES
+  TEACHING
+  SCIENCE_LAB
+  COMPUTER_LAB
+  SPORTS_DAY
+  MUSIC_FESTIVAL
+  DRAMA_PERFORMANCE
+  ART_EXHIBITION
+  DEBATE_COMPETITION
+  SCIENCE_FAIR
+  ADMIN_OFFICES
+  STAFF
+  PRINCIPAL
+  BOARD
+  GRADUATION
+  AWARD_CEREMONY
+  PARENTS_DAY
+  OPEN_DAY
+  VISITORS
+  STUDENT_ACTIVITIES
+  CLUBS
+  COUNCIL
+  LEADERSHIP
+  OTHER
+}
+
+model StudentSession {
+  id              String   @id @default(cuid())
+  studentId       String
+  admissionNumber String
+  name            String
+  token           String   @db.Text
+  expiresAt       DateTime
+  ipAddress       String?
+  userAgent       String?
+  createdAt       DateTime @default(now())
+
+  @@index([studentId])
+  @@index([token(length: 191)]) // ✅ Prefix index for MySQL TEXT
+  @@index([expiresAt])
+}
+
+model FeeBalance {
+  id              String          @id @default(cuid())
+  admissionNumber String
+  student         databaseStudent @relation("StudentFeeBalances", fields: [admissionNumber], references: [admissionNumber], onDelete: Cascade)
+  form            String
+  term            String
+  academicYear    String
+  amount          Float           @default(0)
+  amountPaid      Float           @default(0)
+  balance         Float           @default(0)
+  paymentStatus   String          @default("pending")
+  dueDate         DateTime?
+
+  // Audit fields
+  isActive      Boolean @default(true) // <-- ADD THIS instead of status
+  uploadBatchId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  uploadBatch FeeBalanceUpload? @relation("UploadToFeeBalances", fields: [uploadBatchId], references: [id], onDelete: Cascade)
+
+  @@unique([admissionNumber, form, term, academicYear])
+  @@index([admissionNumber])
+  @@index([form, term, academicYear])
+  @@index([isActive])
+}
+
+model FeeBalanceUpload {
+  id            String    @id @default(cuid())
+  fileName      String
+  fileType      String
+  uploadedBy    String
+  uploadDate    DateTime  @default(now())
+  status        String // processing, completed, failed
+  processedDate DateTime?
+
+  // Upload parameters
+  targetForm   String
+  term         String?
+  academicYear String?
+  uploadType   String // new, update
+
+  // Statistics
+  totalRows   Int
+  validRows   Int
+  skippedRows Int
+  errorRows   Int
+  errorLog    String?
+  metadata    Json?
+
+  feeBalances FeeBalance[] @relation("UploadToFeeBalances")
+
+  @@map("fee_balance_uploads")
+}
+
+model ResultUpload {
+  id               String          @id @default(cuid())
+  fileName         String
+  fileType         String
+  status           String          @default("pending")
+  uploadedBy       String
+  uploadDate       DateTime        @default(now())
+  processedDate    DateTime?
+  totalRows        Int             @default(0)
+  validRows        Int             @default(0)
+  skippedRows      Int             @default(0)
+  errorRows        Int             @default(0)
+  errorLog         Json? // This should allow null
+  term             String?
+  academicYear     String?
+  uploadMode       String?         @default("create")
+  newRecords       Int?            @default(0) // Add this
+  updatedRecords   Int?            @default(0) // Add this
+  duplicateRecords Int?            @default(0) // Add this
+  warningLog       Json? // Add this
+  results          StudentResult[]
+
+  @@map("results_uploads")
+}
+
+model StudentResult {
+  id              String           @id @default(cuid())
+  admissionNumber String
+  student         databaseStudent? @relation(fields: [admissionNumber], references: [admissionNumber], onDelete: Cascade)
+  form            String
+  term            String?
+  academicYear    String?
+  subjects        Json
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  uploadBatchId String?
+  uploadBatch   ResultUpload? @relation(fields: [uploadBatchId], references: [id], onDelete: Cascade)
+
+  @@unique([admissionNumber, term, academicYear], name: "unique_student_term_year")
+  @@index([admissionNumber])
+  @@map("student_results")
+}
+
+// Add to your Prisma schema:
+model ResultsStats {
+  id                 String   @id @default("global_stats")
+  totalResults       Int      @default(0)
+  totalStudents      Int      @default(0)
+  averageScore       Float    @default(0)
+  topScore           Float    @default(0)
+  formDistribution   Json // Store JSON of form counts
+  termDistribution   Json // Store JSON of term counts
+  gradeDistribution  Json // Store JSON of grade distribution
+  subjectPerformance Json // Store JSON of subject averages
+  updatedAt          DateTime @updatedAt
+}
+
+// Add these models to your schema:
+
+model FeeBalanceAuditLog {
+  id              String   @id @default(cuid())
+  action          String // REPLACE_DELETE, CREATE, UPDATE, DELETE
+  feeId           String?
+  admissionNumber String
+  form            String
+  term            String
+  academicYear    String
+  oldAmount       Float?
+  oldAmountPaid   Float?
+  newAmount       Float?
+  newAmountPaid   Float?
+  uploadBatchId   String?
+  timestamp       DateTime @default(now())
+
+  @@index([admissionNumber])
+  @@index([uploadBatchId])
+  @@index([timestamp])
+  @@map("fee_balance_audit_logs")
+}
+
+model BatchDeletionLog {
+  id             String   @id @default(cuid())
+  batchId        String // The upload batch that caused deletion
+  entityType     String // 'FeeBalance' or 'Student'
+  form           String?
+  term           String?
+  academicYear   String?
+  deletedCount   Int
+  deletionReason String // 'replace_upload', 'manual_deletion', 'cleanup'
+  deletedAt      DateTime @default(now())
+
+  @@index([batchId])
+  @@index([entityType])
+  @@index([deletedAt])
+  @@map("batch_deletion_logs")
+}
+
+// Add this to your existing schema.prisma
+// ===================== Guidance & Counselling Teams (MySQL) =====================
+// SIMPLE Schema - Just one table for all team members
+model TeamMember {
+  id        Int      @id @default(autoincrement())
+  name      String
+  role      String // "patron", "matron", "teacher", "assistant"
+  title     String?
+  phone     String?
+  email     String?
+  bio       String?  @db.Text
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Optional: if you want to group members into teams
+  teamId Int?
+  team   Team? @relation(fields: [teamId], references: [id])
+
+  @@map("team_members")
+}
+
+// Optional team grouping
+model Team {
+  id        Int          @id @default(autoincrement())
+  name      String
+  members   TeamMember[]
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  @@map("teams")
+}

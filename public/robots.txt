@@ -1,0 +1,57 @@
+# ============================================
+# Matungulu Girls School - Search Engine Directives
+# ============================================
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /adminLogin
+Disallow: /pages/forgotpassword
+Disallow: /MainDashboard*
+Disallow: /admin/
+Disallow: /private/
+Disallow: /secure/
+Disallow: /*.php$
+Disallow: /*?*
+Disallow: /search/
+
+# ========== CRAWL DELAY ==========
+# For respectful crawling
+Crawl-delay: 2
+
+# ========== SITEMAP LOCATIONS ==========
+# Primary sitemap
+Sitemap: https://katwanyaa.vercel.app/sitemap.xml
+
+# Optional: Image sitemap (if available)
+Sitemap: https://katwanyaa.vercel.app/sitemap-images.xml
+
+# Optional: Video sitemap (if available)
+Sitemap: https://katwanyaa.vercel.app/sitemap-video.xml
+
+# ========== SPECIFIC BOTS ==========
+# GoogleBot Specific
+User-agent: Googlebot
+Allow: /pages/
+Allow: /images/
+Disallow: /api/*
+Disallow: /MainDashboard/*
+Disallow: /user/*/private
+
+# BingBot Specific
+User-agent: bingbot
+Crawl-delay: 3
+Disallow: /api/
+
+# ========== BAD BOTS ==========
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

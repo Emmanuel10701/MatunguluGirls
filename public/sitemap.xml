@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Home -->
+  <url>
+    <loc>https://katwanyaa.vercel.app/</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://katwanyaa.vercel.app/MatG.jpg</image:loc>
+      <image:title>Matungulu Girls School Home</image:title>
+    </image:image>
+  </url>
+
+  <!-- About Us -->
+  <url>
+    <loc>https://katwanyaa.vercel.app/pages/AboutUs</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://katwanyaa.vercel.app/MatG.jpg</image:loc>
+      <image:title>About Matungulu Girls School</image:title>
+    </image:image>
+  </url>
+
+  <!-- Admissions -->
+  <url>
+    <loc>https://katwanyaa.vercel.app/pages/admissions</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://katwanyaa.vercel.app/MatG.jpg</image:loc>
+      <image:title>Admissions Information</image:title>
+    </image:image>
+  </url>
+
+  <!-- Apply for Admissions -->
+  <url>
+    <loc>https://katwanyaa.vercel.app/pages/apply-for-admissions</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://katwanyaa.vercel.app/MatG.jpg</image:loc>
+      <image:title>Apply for Admissions</image:title>
+    </image:image>
+  </url>
+
+  <!-- Guidance & Counselling -->
+  <url>
+    <loc>https://katwanyaa.vercel.app/pages/Guidance-and-Coucelling</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://katwanyaa.vercel.app/MatG.jpg</image:loc>
+      <image:title>Guidance and Counselling</image:title>
+    </image:image>
+  </url>
+
+  <!-- Career -->
+  <url>
+    <loc>https://katwanyaa.vercel.app/pages/careers</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://katwanyaa.vercel.app/MatG.jpg</image:loc>
+      <image:title>Careers at Katwanyaa</image:title>
+    </image:image>
+  </url>
+
+  <!-- Events & News -->
+  <url>
+    <loc>https://katwanyaa.vercel.app/pages/eventsandnews</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://katwanyaa.vercel.app/MatG.jpg</image:loc>
+      <image:title>Events and News</image:title>
+    </image:image>
+  </url>
+
+  <!-- Staff -->
+  <url>
+    <loc>https://katwanyaa.vercel.app/pages/staff</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://katwanyaa.vercel.app/MatG.jpg</image:loc>
+      <image:title>Staff Profiles</image:title>
+    </image:image>
+  </url>
+
+  <!-- Gallery -->
+  <url>
+    <loc>https://katwanyaa.vercel.app/pages/gallery</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://katwanyaa.vercel.app/MatG.jpg</image:loc>
+      <image:title>School Gallery</image:title>
+    </image:image>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://katwanyaa.vercel.app/pages/contact</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <image:image>
+      <image:loc>https://katwanyaa.vercel.app/MatG.jpg</image:loc>
+      <image:title>Contact Us</image:title>
+    </image:image>
+  </url>
+
+  <!-- Terms & Privacy -->
+  <url>
+    <loc>https://katwanyaa.vercel.app/pages/TermsandPrivacy</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <image:image>
+      <image:loc>https://katwanyaa.vercel.app/MatG.jpg</image:loc>
+      <image:title>Terms and Privacy</image:title>
+    </image:image>
+  </url>
+
+  <!-- Student Portal -->
+  <url>
+    <loc>https://katwanyaa.vercel.app/pages/StudentPortal</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <image:image>
+      <image:loc>https://katwanyaa.vercel.app/MatG.jpg</image:loc>
+      <image:title>Student Portal</image:title>
+    </image:image>
+  </url>
+
+  <!-- Admin Login -->
+  <url>
+    <loc>https://katwanyaa.vercel.app/pages/adminLogin</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <image:image>
+      <image:loc>https://katwanyaa.vercel.app/MatG.jpg</image:loc>
+      <image:title>Admin Login</image:title>
+    </image:image>
+  </url>
+
+  <!-- Dashboard -->
+  <url>
+    <loc>https://katwanyaa.vercel.app/MainDashboard</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <image:image>
+      <image:loc>https://katwanyaa.vercel.app/MatG.jpg</image:loc>
+      <image:title>Admin Dashboard</image:title>
+    </image:image>
+  </url>
+
+</urlset>

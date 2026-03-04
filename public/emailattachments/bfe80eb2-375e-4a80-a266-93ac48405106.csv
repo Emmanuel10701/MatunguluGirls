@@ -1,0 +1,101 @@
+admissionNumber,studentName,firstName,middleName,lastName,form,stream,term,academicYear,totalAmount,amountPaid,balance,paymentStatus,dueDate,createdAt,updatedAt,parentPhone,email,status
+3000,Susan Muli Koech,Susan,Muli,Koech,Form 1,C,Term 1,2024/2025,42448,0,42448,pending,2024-02-07,2024-01-06 00:00:00,2024-01-08 00:00:00,254767169520,susan.koech98@gmail.com,active
+3001,Emma Rono Akinyi,Emma,Rono,Akinyi,Form 1,C,Term 1,2024/2025,39739,21116,18623,partial,2024-05-01,2024-03-01 00:00:00,2024-03-10 00:00:00,254798667572,emma.akinyi60@gmail.com,active
+3002,Alexander Ochieng Mutua,Alexander,Ochieng,Mutua,Form 1,C,Term 1,2024/2025,45511,45511,0,paid,2024-02-20,2024-01-11 00:00:00,2024-01-24 00:00:00,254715791680,alexander.mutua85@gmail.com,active
+3003,John  Ochieng,John,,Ochieng,Form 1,C,Term 1,2024/2025,46380,17208,29172,partial,2024-03-30,2024-03-03 00:00:00,2024-03-04 00:00:00,254763614372,john.ochieng37@gmail.com,active
+3004,Eric Njeri Akinyi,Eric,Njeri,Akinyi,Form 1,F,Term 1,2024/2025,43511,23607,19904,partial,2024-05-18,2024-03-12 00:00:00,2024-03-29 00:00:00,254734853138,eric.akinyi46@gmail.com,active
+3005,John  Ochieng,John,,Ochieng,Form 1,A,Term 1,2024/2025,42552,31137,11415,partial,2024-04-25,2024-02-17 00:00:00,2024-03-07 00:00:00,254764642173,john.ochieng10@gmail.com,active
+3006,Oliver  Chebet,Oliver,,Chebet,Form 1,E,Term 1,2024/2025,41424,41424,0,paid,2024-06-12,2024-03-20 00:00:00,2024-07-11 00:00:00,254767164977,oliver.chebet99@gmail.com,active
+3007,Isabella Musyoka Koech,Isabella,Musyoka,Koech,Form 1,A,Term 1,2024/2025,43161,29093,14068,partial,2024-04-09,2024-03-18 00:00:00,2024-03-21 00:00:00,254777501944,isabella.koech33@gmail.com,active
+3008,Noah Ochieng Musyoka,Noah,Ochieng,Musyoka,Form 1,F,Term 1,2024/2025,43100,0,43100,pending,2024-04-02,2024-02-24 00:00:00,2024-03-12 00:00:00,254738299330,noah.musyoka92@gmail.com,active
+3009,Elijah  Kamau,Elijah,,Kamau,Form 1,H,Term 1,2024/2025,40325,19572,20753,partial,2024-05-04,2024-02-25 00:00:00,2024-03-22 00:00:00,254765589018,elijah.kamau78@gmail.com,active
+3010,Lucas  Maina,Lucas,,Maina,Form 1,C,Term 1,2024/2025,42538,42538,0,paid,2024-02-27,2024-02-12 00:00:00,2024-03-11 00:00:00,254784569804,lucas.maina47@gmail.com,active
+3011,Elijah  Maina,Elijah,,Maina,Form 1,C,Term 1,2024/2025,40336,29977,10359,partial,2024-05-30,2024-04-02 00:00:00,2024-04-06 00:00:00,254759506134,elijah.maina89@gmail.com,active
+3012,Brian Wanjiku Odhiambo,Brian,Wanjiku,Odhiambo,Form 1,B,Term 1,2024/2025,39044,39044,0,paid,2024-05-07,2024-04-08 00:00:00,2024-05-23 00:00:00,254723227748,brian.odhiambo19@gmail.com,active
+3013,Benjamin Adhiambo Cheruiyot,Benjamin,Adhiambo,Cheruiyot,Form 1,C,Term 1,2024/2025,40890,0,40890,pending,2024-03-22,2024-02-21 00:00:00,2024-03-11 00:00:00,254717841163,benjamin.cheruiyot77@gmail.com,active
+3014,Emma Mutua Musyoka,Emma,Mutua,Musyoka,Form 1,D,Term 1,2024/2025,46325,0,46325,pending,2024-06-09,2024-04-11 00:00:00,2024-05-01 00:00:00,254724594254,emma.musyoka16@gmail.com,active
+3015,Henry Kiptoo Kariuki,Henry,Kiptoo,Kariuki,Form 1,E,Term 1,2024/2025,42095,0,42095,pending,2024-03-26,2024-02-13 00:00:00,2024-02-18 00:00:00,254798859198,henry.kariuki17@gmail.com,active
+3016,Charles Barasa Otieno,Charles,Barasa,Otieno,Form 1,H,Term 1,2024/2025,41940,14428,27512,partial,2024-06-29,2024-04-05 00:00:00,2024-04-28 00:00:00,254797967925,charles.otieno27@gmail.com,active
+3017,Elijah Wafula Otieno,Elijah,Wafula,Otieno,Form 1,D,Term 1,2024/2025,42022,0,42022,pending,2024-05-04,2024-04-18 00:00:00,2024-04-22 00:00:00,254779637536,elijah.otieno28@gmail.com,active
+3018,Steven Achieng Wafula,Steven,Achieng,Wafula,Form 1,B,Term 1,2024/2025,46400,21079,25321,partial,2024-05-17,2024-03-02 00:00:00,2024-03-11 00:00:00,254725676093,steven.wafula47@gmail.com,active
+3019,John Mwangi Kariuki,John,Mwangi,Kariuki,Form 1,G,Term 1,2024/2025,42561,0,42561,pending,2024-02-16,2024-01-13 00:00:00,2024-02-08 00:00:00,254740522633,john.kariuki46@gmail.com,active
+3020,Susan Chebet Wanjiku,Susan,Chebet,Wanjiku,Form 1,D,Term 1,2024/2025,42209,42209,0,paid,2024-01-27,2024-01-03 00:00:00,2024-01-30 00:00:00,254739847561,susan.wanjiku85@gmail.com,active
+3021,Patricia Mutua Kamau,Patricia,Mutua,Kamau,Form 1,B,Term 1,2024/2025,38773,0,38773,pending,2024-01-26,2024-01-05 00:00:00,2024-01-18 00:00:00,254727617798,patricia.kamau88@gmail.com,active
+3022,Isabella Ochieng Kariuki,Isabella,Ochieng,Kariuki,Form 1,F,Term 1,2024/2025,37943,37943,0,paid,2024-02-13,2024-01-07 00:00:00,2024-01-25 00:00:00,254791725799,isabella.kariuki10@gmail.com,active
+3023,Linda Rono Mwangi,Linda,Rono,Mwangi,Form 1,C,Term 1,2024/2025,36845,0,36845,pending,2024-03-12,2024-01-14 00:00:00,2024-01-16 00:00:00,254775641030,linda.mwangi37@gmail.com,active
+3024,Liam Akinyi Kamau,Liam,Akinyi,Kamau,Form 1,E,Term 1,2024/2025,39800,0,39800,pending,2024-03-23,2024-03-08 00:00:00,2024-03-08 00:00:00,254745520481,liam.kamau76@gmail.com,active
+3025,Christopher  Mutua,Christopher,,Mutua,Form 1,A,Term 1,2024/2025,42567,18448,24119,partial,2024-03-10,2024-02-03 00:00:00,2024-02-19 00:00:00,254739113055,christopher.mutua27@gmail.com,active
+3026,Patricia Wafula Mutua,Patricia,Wafula,Mutua,Form 1,E,Term 1,2024/2025,40183,40183,0,paid,2024-03-23,2024-01-29 00:00:00,2024-02-23 00:00:00,254723342306,patricia.mutua48@gmail.com,active
+3027,William  Maina,William,,Maina,Form 1,F,Term 1,2024/2025,40017,21598,18419,partial,2024-03-26,2024-02-03 00:00:00,2024-02-05 00:00:00,254723385185,william.maina61@gmail.com,active
+3028,Mary Ochieng Chebet,Mary,Ochieng,Chebet,Form 1,B,Term 1,2024/2025,40669,27733,12936,partial,2024-05-31,2024-03-14 00:00:00,2024-04-06 00:00:00,254767185376,mary.chebet73@gmail.com,active
+3029,William Chebet Otieno,William,Chebet,Otieno,Form 1,G,Term 1,2024/2025,46638,0,46638,pending,2024-05-30,2024-03-21 00:00:00,2024-03-31 00:00:00,254749395970,william.otieno40@gmail.com,active
+3030,Michael  Musyoka,Michael,,Musyoka,Form 2,E,Term 1,2024/2025,37728,37728,0,paid,2024-02-14,2024-01-25 00:00:00,2024-02-09 00:00:00,254723957332,michael.musyoka10@gmail.com,active
+3031,Isabella Otieno Otieno,Isabella,Otieno,Otieno,Form 2,H,Term 1,2024/2025,42978,42978,0,paid,2024-05-14,2024-04-22 00:00:00,2024-05-03 00:00:00,254797205898,isabella.otieno12@gmail.com,active
+3032,Charles  Mwangi,Charles,,Mwangi,Form 2,D,Term 1,2024/2025,40974,21816,19158,partial,2024-04-16,2024-01-18 00:00:00,2024-02-15 00:00:00,254738758792,charles.mwangi97@gmail.com,active
+3033,Abigail Kimani Mwangi,Abigail,Kimani,Mwangi,Form 2,A,Term 1,2024/2025,35882,0,35882,pending,2024-06-13,2024-04-06 00:00:00,2024-05-01 00:00:00,254790641188,abigail.mwangi72@gmail.com,active
+3034,John Kipchoge Kariuki,John,Kipchoge,Kariuki,Form 2,E,Term 1,2024/2025,35815,0,35815,pending,2024-04-25,2024-02-22 00:00:00,2024-03-17 00:00:00,254722728670,john.kariuki98@gmail.com,active
+3035,Elizabeth  Wafula,Elizabeth,,Wafula,Form 2,G,Term 1,2024/2025,37793,25224,12569,partial,2024-03-26,2024-03-09 00:00:00,2024-03-26 00:00:00,254764571972,elizabeth.wafula81@gmail.com,active
+3036,Karen Njeri Wanjiru,Karen,Njeri,Wanjiru,Form 2,B,Term 1,2024/2025,34268,0,34268,pending,2024-04-24,2024-02-25 00:00:00,2024-03-02 00:00:00,254731737314,karen.wanjiru72@gmail.com,active
+3037,Christopher Barasa Kariuki,Christopher,Barasa,Kariuki,Form 2,D,Term 1,2024/2025,41954,36861,5093,partial,2024-04-16,2024-02-06 00:00:00,2024-02-06 00:00:00,254767939976,christopher.kariuki38@gmail.com,active
+3038,Elizabeth  Cheruiyot,Elizabeth,,Cheruiyot,Form 2,B,Term 1,2024/2025,36840,0,36840,pending,2024-03-20,2024-02-05 00:00:00,2024-02-25 00:00:00,254738903608,elizabeth.cheruiyot75@gmail.com,active
+3039,Michael  Ochieng,Michael,,Ochieng,Form 2,B,Term 1,2024/2025,35839,14431,21408,partial,2024-03-23,2024-01-14 00:00:00,2024-01-18 00:00:00,254792519133,michael.ochieng82@gmail.com,active
+3040,Eric Cheruiyot Cheruiyot,Eric,Cheruiyot,Cheruiyot,Form 2,G,Term 1,2024/2025,37589,37589,0,paid,2024-04-02,2024-01-19 00:00:00,2024-02-09 00:00:00,254794117236,eric.cheruiyot80@gmail.com,active
+3041,Abigail Koech Odhiambo,Abigail,Koech,Odhiambo,Form 2,E,Term 1,2024/2025,38955,14307,24648,partial,2024-04-06,2024-01-16 00:00:00,2024-02-08 00:00:00,254793732203,abigail.odhiambo53@gmail.com,active
+3042,Kenneth Kilonzo Wafula,Kenneth,Kilonzo,Wafula,Form 2,C,Term 1,2024/2025,36731,21448,15283,partial,2024-03-20,2024-02-15 00:00:00,2024-02-17 00:00:00,254780903802,kenneth.wafula31@gmail.com,active
+3043,Karen Rono Achieng,Karen,Rono,Achieng,Form 2,E,Term 1,2024/2025,36088,27943,8145,partial,2024-04-12,2024-01-26 00:00:00,2024-01-31 00:00:00,254784938790,karen.achieng64@gmail.com,active
+3044,Timothy Wanjiru Musyoka,Timothy,Wanjiru,Musyoka,Form 2,A,Term 1,2024/2025,35111,13388,21723,partial,2024-03-21,2024-02-23 00:00:00,2024-02-27 00:00:00,254767502976,timothy.musyoka89@gmail.com,active
+3045,William  Wanjiku,William,,Wanjiku,Form 2,G,Term 1,2024/2025,41735,41735,0,paid,2024-05-26,2024-03-02 00:00:00,2024-03-19 00:00:00,254766380604,william.wanjiku50@gmail.com,active
+3046,Emily Kariuki Achieng,Emily,Kariuki,Achieng,Form 2,A,Term 1,2024/2025,38714,38714,0,paid,2024-05-23,2024-03-09 00:00:00,2024-03-22 00:00:00,254760773581,emily.achieng42@gmail.com,active
+3047,Ava  Kimani,Ava,,Kimani,Form 2,E,Term 1,2024/2025,38834,38834,0,paid,2024-05-08,2024-04-12 00:00:00,2024-05-05 00:00:00,254739478512,ava.kimani95@gmail.com,active
+3048,William Wanjiru Kiptoo,William,Wanjiru,Kiptoo,Form 2,B,Term 1,2024/2025,38067,38067,0,paid,2024-07-09,2024-04-26 00:00:00,2024-05-15 00:00:00,254711783650,william.kiptoo75@gmail.com,active
+3049,Thomas  Kimani,Thomas,,Kimani,Form 2,C,Term 1,2024/2025,40798,22402,18396,partial,2024-04-05,2024-01-11 00:00:00,2024-01-27 00:00:00,254734942013,thomas.kimani39@gmail.com,active
+3050,Thomas Mutiso Koech,Thomas,Mutiso,Koech,Form 2,A,Term 1,2024/2025,35252,35252,0,paid,2024-06-10,2024-03-15 00:00:00,2024-03-27 00:00:00,254728500188,thomas.koech74@gmail.com,active
+3051,Linda Wanjiru Adhiambo,Linda,Wanjiru,Adhiambo,Form 2,A,Term 1,2024/2025,37599,26541,11058,partial,2024-05-30,2024-03-02 00:00:00,2024-03-12 00:00:00,254753887007,linda.adhiambo79@gmail.com,active
+3052,Jason  Kilonzo,Jason,,Kilonzo,Form 2,B,Term 1,2024/2025,42768,32526,10242,partial,2024-05-23,2024-03-28 00:00:00,2024-04-24 00:00:00,254733906949,jason.kilonzo61@gmail.com,active
+3053,Lucas Mwangi Mbugua,Lucas,Mwangi,Mbugua,Form 2,F,Term 1,2024/2025,34268,34268,0,paid,2024-05-15,2024-04-07 00:00:00,2024-04-24 00:00:00,254733578125,lucas.mbugua64@gmail.com,active
+3054,William Wafula Njoroge,William,Wafula,Njoroge,Form 2,A,Term 1,2024/2025,37472,31937,5535,partial,2024-03-22,2024-01-06 00:00:00,2024-02-05 00:00:00,254778434146,william.njoroge47@gmail.com,active
+3055,Linda Njoroge Wafula,Linda,Njoroge,Wafula,Form 3,C,Term 1,2024/2025,36313,14872,21441,partial,2024-04-27,2024-02-23 00:00:00,2024-03-13 00:00:00,254726470160,linda.wafula50@gmail.com,active
+3056,Christopher Mbugua Maina,Christopher,Mbugua,Maina,Form 3,A,Term 1,2024/2025,33517,33517,0,paid,2024-05-27,2024-04-09 00:00:00,2024-06-09 00:00:00,254758604120,christopher.maina92@gmail.com,active
+3057,Jennifer  Musyoka,Jennifer,,Musyoka,Form 3,F,Term 1,2024/2025,34448,34448,0,paid,2024-05-19,2024-03-01 00:00:00,2024-03-30 00:00:00,254757554937,jennifer.musyoka48@gmail.com,active
+3058,Kevin Wanjiru Njeri,Kevin,Wanjiru,Njeri,Form 3,G,Term 1,2024/2025,32163,32163,0,paid,2024-06-16,2024-03-29 00:00:00,2024-07-10 00:00:00,254750920914,kevin.njeri91@gmail.com,active
+3059,Robert Wanjiru Cheruiyot,Robert,Wanjiru,Cheruiyot,Form 3,E,Term 1,2024/2025,38740,22086,16654,partial,2024-06-23,2024-04-23 00:00:00,2024-04-28 00:00:00,254790701044,robert.cheruiyot88@gmail.com,active
+3060,Alexander Adhiambo Kilonzo,Alexander,Adhiambo,Kilonzo,Form 3,F,Term 1,2024/2025,39289,25370,13919,partial,2024-06-23,2024-04-18 00:00:00,2024-05-13 00:00:00,254790844750,alexander.kilonzo90@gmail.com,active
+3061,Eric  Koech,Eric,,Koech,Form 3,C,Term 1,2024/2025,34192,22288,11904,partial,2024-04-05,2024-01-06 00:00:00,2024-01-09 00:00:00,254730157189,eric.koech54@gmail.com,active
+3062,Sophia Otieno Barasa,Sophia,Otieno,Barasa,Form 3,A,Term 1,2024/2025,35494,35494,0,paid,2024-06-03,2024-04-05 00:00:00,2024-04-22 00:00:00,254783421711,sophia.barasa31@gmail.com,active
+3063,Henry Muli Korir,Henry,Muli,Korir,Form 3,E,Term 1,2024/2025,37309,37309,0,paid,2024-06-22,2024-03-31 00:00:00,2024-04-12 00:00:00,254737744061,henry.korir80@gmail.com,active
+3064,Abigail Wanjiru Akinyi,Abigail,Wanjiru,Akinyi,Form 3,A,Term 1,2024/2025,36485,0,36485,pending,2024-06-09,2024-04-27 00:00:00,2024-05-24 00:00:00,254775794479,abigail.akinyi48@gmail.com,active
+3065,Elizabeth Njoroge Kariuki,Elizabeth,Njoroge,Kariuki,Form 3,E,Term 1,2024/2025,33821,0,33821,pending,2024-04-03,2024-02-19 00:00:00,2024-03-20 00:00:00,254747675263,elizabeth.kariuki83@gmail.com,active
+3066,Barbara Kariuki Muli,Barbara,Kariuki,Muli,Form 3,G,Term 1,2024/2025,33683,0,33683,pending,2024-02-26,2024-01-09 00:00:00,2024-01-14 00:00:00,254763986596,barbara.muli87@gmail.com,active
+3067,James Wafula Njoroge,James,Wafula,Njoroge,Form 3,A,Term 1,2024/2025,38251,15934,22317,partial,2024-07-02,2024-04-17 00:00:00,2024-04-26 00:00:00,254728325055,james.njoroge65@gmail.com,active
+3068,Richard Odhiambo Adhiambo,Richard,Odhiambo,Adhiambo,Form 3,B,Term 1,2024/2025,35922,0,35922,pending,2024-04-30,2024-02-18 00:00:00,2024-03-13 00:00:00,254779151719,richard.adhiambo61@gmail.com,active
+3069,Jennifer  Wanjiru,Jennifer,,Wanjiru,Form 3,D,Term 1,2024/2025,36541,32740,3801,partial,2024-06-07,2024-04-30 00:00:00,2024-05-26 00:00:00,254759399683,jennifer.wanjiru73@gmail.com,active
+3070,Kenneth  Korir,Kenneth,,Korir,Form 3,H,Term 1,2024/2025,40359,40359,0,paid,2024-03-30,2024-01-18 00:00:00,2024-04-15 00:00:00,254722466942,kenneth.korir65@gmail.com,active
+3071,Isabella Koech Mbugua,Isabella,Koech,Mbugua,Form 3,E,Term 1,2024/2025,34698,34698,0,paid,2024-06-15,2024-04-13 00:00:00,2024-04-20 00:00:00,254735682967,isabella.mbugua44@gmail.com,active
+3072,Jason  Wafula,Jason,,Wafula,Form 3,H,Term 1,2024/2025,37879,19502,18377,partial,2024-04-30,2024-03-13 00:00:00,2024-03-15 00:00:00,254777173908,jason.wafula60@gmail.com,active
+3073,Olivia Chebet Njoroge,Olivia,Chebet,Njoroge,Form 3,D,Term 1,2024/2025,32345,0,32345,pending,2024-04-01,2024-03-06 00:00:00,2024-03-17 00:00:00,254754864441,olivia.njoroge27@gmail.com,active
+3074,Robert Mbugua Koech,Robert,Mbugua,Koech,Form 3,D,Term 1,2024/2025,34564,34564,0,paid,2024-05-17,2024-04-03 00:00:00,2024-06-10 00:00:00,254759181513,robert.koech57@gmail.com,active
+3075,Steven Mutua Mwangi,Steven,Mutua,Mwangi,Form 3,H,Term 1,2024/2025,40899,40899,0,paid,2024-04-05,2024-01-19 00:00:00,2024-02-06 00:00:00,254793732726,steven.mwangi16@gmail.com,active
+3076,Liam  Mwangi,Liam,,Mwangi,Form 3,B,Term 1,2024/2025,36577,12695,23882,partial,2024-03-21,2024-01-17 00:00:00,2024-01-22 00:00:00,254771840980,liam.mwangi65@gmail.com,active
+3077,Oliver Adhiambo Wanjiku,Oliver,Adhiambo,Wanjiku,Form 3,D,Term 1,2024/2025,37524,22859,14665,partial,2024-07-04,2024-04-17 00:00:00,2024-05-11 00:00:00,254748902544,oliver.wanjiku57@gmail.com,active
+3078,Joseph Wanjiru Kiptoo,Joseph,Wanjiru,Kiptoo,Form 3,D,Term 1,2024/2025,35787,24823,10964,partial,2024-04-29,2024-03-13 00:00:00,2024-03-28 00:00:00,254718445618,joseph.kiptoo49@gmail.com,active
+3079,Mary Cheruiyot Rono,Mary,Cheruiyot,Rono,Form 3,D,Term 1,2024/2025,35888,0,35888,pending,2024-04-29,2024-04-03 00:00:00,2024-04-15 00:00:00,254755584316,mary.rono56@gmail.com,active
+3080,Linda Chebet Musyoka,Linda,Chebet,Musyoka,Form 4,C,Term 1,2024/2025,34371,0,34371,pending,2024-05-22,2024-04-12 00:00:00,2024-04-20 00:00:00,254789881441,linda.musyoka19@gmail.com,active
+3081,Karen  Wanjiku,Karen,,Wanjiku,Form 4,C,Term 1,2024/2025,35883,35883,0,paid,2024-02-09,2024-01-01 00:00:00,2024-03-02 00:00:00,254720643785,karen.wanjiku46@gmail.com,active
+3082,Isabella Korir Musyoka,Isabella,Korir,Musyoka,Form 4,D,Term 1,2024/2025,39661,39661,0,paid,2024-04-17,2024-03-07 00:00:00,2024-05-14 00:00:00,254713689238,isabella.musyoka97@gmail.com,active
+3083,Thomas Kilonzo Mwangi,Thomas,Kilonzo,Mwangi,Form 4,G,Term 1,2024/2025,37470,37470,0,paid,2024-05-29,2024-03-07 00:00:00,2024-06-18 00:00:00,254757303344,thomas.mwangi37@gmail.com,active
+3084,Robert Kiptoo Musyoka,Robert,Kiptoo,Musyoka,Form 4,C,Term 1,2024/2025,36697,36697,0,paid,2024-06-29,2024-04-14 00:00:00,2024-07-08 00:00:00,254718178418,robert.musyoka91@gmail.com,active
+3085,Lucas Ochieng Wafula,Lucas,Ochieng,Wafula,Form 4,C,Term 1,2024/2025,33964,17372,16592,partial,2024-06-29,2024-04-10 00:00:00,2024-04-12 00:00:00,254718188612,lucas.wafula49@gmail.com,active
+3086,Isabella  Cheruiyot,Isabella,,Cheruiyot,Form 4,E,Term 1,2024/2025,32019,32019,0,paid,2024-03-14,2024-02-28 00:00:00,2024-03-10 00:00:00,254792104921,isabella.cheruiyot10@gmail.com,active
+3087,Jason Kamau Kilonzo,Jason,Kamau,Kilonzo,Form 4,A,Term 1,2024/2025,31996,0,31996,pending,2024-05-25,2024-03-17 00:00:00,2024-03-31 00:00:00,254728827537,jason.kilonzo64@gmail.com,active
+3088,Liam  Njoroge,Liam,,Njoroge,Form 4,E,Term 1,2024/2025,38249,0,38249,pending,2024-07-04,2024-04-21 00:00:00,2024-05-04 00:00:00,254779600274,liam.njoroge99@gmail.com,active
+3089,James Kariuki Adhiambo,James,Kariuki,Adhiambo,Form 4,E,Term 1,2024/2025,37891,0,37891,pending,2024-05-10,2024-03-31 00:00:00,2024-04-16 00:00:00,254773888245,james.adhiambo70@gmail.com,active
+3090,Isabella Kiptoo Achieng,Isabella,Kiptoo,Achieng,Form 4,F,Term 1,2024/2025,33989,11202,22787,partial,2024-05-07,2024-02-08 00:00:00,2024-02-16 00:00:00,254723386395,isabella.achieng83@gmail.com,active
+3091,Mary Kariuki Kipchoge,Mary,Kariuki,Kipchoge,Form 4,A,Term 1,2024/2025,39011,12779,26232,partial,2024-03-05,2024-01-17 00:00:00,2024-02-03 00:00:00,254789452500,mary.kipchoge79@gmail.com,active
+3092,Eric  Kimani,Eric,,Kimani,Form 4,H,Term 1,2024/2025,31131,0,31131,pending,2024-04-26,2024-02-28 00:00:00,2024-03-29 00:00:00,254722357707,eric.kimani55@gmail.com,active
+3093,Liam Odhiambo Musyoka,Liam,Odhiambo,Musyoka,Form 4,G,Term 1,2024/2025,28947,28947,0,paid,2024-06-09,2024-04-08 00:00:00,2024-07-02 00:00:00,254715568938,liam.musyoka92@gmail.com,active
+3094,Christopher  Kamau,Christopher,,Kamau,Form 4,G,Term 1,2024/2025,34355,34355,0,paid,2024-05-17,2024-03-10 00:00:00,2024-03-22 00:00:00,254727766379,christopher.kamau50@gmail.com,active
+3095,Christopher Kiptoo Mbugua,Christopher,Kiptoo,Mbugua,Form 4,C,Term 1,2024/2025,39836,39836,0,paid,2024-02-20,2024-02-03 00:00:00,2024-02-18 00:00:00,254742376416,christopher.mbugua79@gmail.com,active
+3096,Liam Njoroge Wanjiru,Liam,Njoroge,Wanjiru,Form 4,E,Term 1,2024/2025,32105,0,32105,pending,2024-04-16,2024-03-06 00:00:00,2024-04-05 00:00:00,254757732601,liam.wanjiru76@gmail.com,active
+3097,Christopher Mbugua Njoroge,Christopher,Mbugua,Njoroge,Form 4,F,Term 1,2024/2025,38282,0,38282,pending,2024-02-06,2024-01-18 00:00:00,2024-02-02 00:00:00,254726188234,christopher.njoroge80@gmail.com,active
+3098,David Barasa Wanjiru,David,Barasa,Wanjiru,Form 4,H,Term 1,2024/2025,40235,40235,0,paid,2024-04-10,2024-02-21 00:00:00,2024-03-08 00:00:00,254737941243,david.wanjiru95@gmail.com,active
+3099,Steven Musyoka Akinyi,Steven,Musyoka,Akinyi,Form 4,B,Term 1,2024/2025,31097,0,31097,pending,2024-04-07,2024-02-08 00:00:00,2024-02-17 00:00:00,254755300774,steven.akinyi91@gmail.com,active
