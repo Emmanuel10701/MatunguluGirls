@@ -49,3 +49,4 @@ env/
 .env
 
 /app/generated/prisma
+.env

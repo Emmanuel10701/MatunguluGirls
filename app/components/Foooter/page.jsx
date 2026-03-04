@@ -375,35 +375,35 @@ export default function ModernFooter() {
                 <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-white break-words">Stay Updated</h4>
               </div>
               
-              {/* Newsletter Subscription */}
-              <div className="bg-emerald-950/40 rounded-xl p-6 border border-emerald-500/30">
-                <div className="flex items-center gap-3 mb-5 flex-wrap">
-                  <div className="p-3 bg-emerald-600 rounded-lg flex-shrink-0">
+              {/* Newsletter Subscription — refreshed feminine aesthetic (keeps behavior intact) */}
+              <div className="bg-gradient-to-br from-emerald-950/50 via-emerald-900/40 to-black/20 rounded-xl p-6 border border-emerald-600/25">
+                <div className="flex items-center gap-3 mb-4 flex-wrap">
+                  <div className="p-3 bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-lg flex-shrink-0 shadow-sm">
                     <FiBell className="text-white text-lg" />
                   </div>
                   <div className="min-w-0">
                     <h4 className="text-base sm:text-lg font-semibold text-white break-words">Newsletter</h4>
-                    <p className="text-emerald-100/60 text-sm font-normal break-words">Get academic events & announcements</p>
+                    <p className="text-emerald-200/70 text-sm font-normal break-words">Get academic events & announcements</p>
                   </div>
                 </div>
 
-                <form onSubmit={handleSubscribe} className="space-y-4">
+                <form onSubmit={handleSubscribe} className="space-y-3">
                   <div className="relative">
-                    <FiMail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/60 text-lg flex-shrink-0" />
+                    <FiMail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-emerald-200/60 text-lg flex-shrink-0" />
                     <input
                       type="email"
                       placeholder="you@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full pl-12 pr-4 py-3 bg-emerald-900/30 border-2 border-emerald-500/30 hover:border-emerald-500/50 focus:border-emerald-400 rounded-lg text-white placeholder-emerald-400/40 focus:outline-none focus:ring-2 focus:ring-emerald-400/30 transition-all text-sm sm:text-base font-normal"
+                      className="w-full pl-12 pr-4 py-3 bg-emerald-900/25 border-2 border-emerald-600/30 hover:border-emerald-500/50 focus:border-emerald-400 rounded-lg text-white placeholder-emerald-300/40 focus:outline-none focus:ring-2 focus:ring-emerald-400/20 transition-all text-sm sm:text-base font-normal"
                     />
                   </div>
                   
                   <button
                     type="submit"
                     disabled={isSubmitting || !email}
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-900/50 text-white py-3 rounded-lg font-medium text-sm sm:text-base transition-all disabled:cursor-not-allowed hover:scale-[1.00] active:scale-[0.99] transform"
+                    className="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 disabled:from-emerald-900/50 disabled:to-emerald-900/50 text-white py-3 rounded-lg font-medium text-sm sm:text-base transition-all disabled:cursor-not-allowed active:scale-[0.99] transform"
                   >
                     {isSubmitting ? (
                       <span className="flex items-center justify-center gap-2">
@@ -424,12 +424,12 @@ export default function ModernFooter() {
 
                 {/* Success Message */}
                 {showSuccess && (
-                  <div className="mt-4 p-4 bg-emerald-600/30 border border-emerald-400 rounded-lg animate-pulse">
+                  <div className="mt-4 p-4 bg-emerald-700/20 border border-emerald-500/30 rounded-lg">
                     <div className="flex items-center gap-3 flex-wrap">
-                      <FiCheckCircle className="text-white text-lg flex-shrink-0" />
+                      <FiCheckCircle className="text-emerald-100 text-lg flex-shrink-0" />
                       <div className="min-w-0">
-                        <p className="text-white font-medium text-sm sm:text-base break-words">Successfully subscribed!</p>
-                        <p className="text-white/80 text-sm font-normal break-words">You'll receive updates soon.</p>
+                        <p className="text-emerald-100 font-medium text-sm sm:text-base break-words">Successfully subscribed!</p>
+                        <p className="text-emerald-200/80 text-sm font-normal break-words">You'll receive updates soon.</p>
                       </div>
                     </div>
                   </div>
@@ -491,7 +491,7 @@ export default function ModernFooter() {
                         rel="noopener noreferrer"
                         className="text-white hover:text-white transition-colors duration-300 underline decoration-emerald-500/30 underline-offset-4"
                       >
-                        Emmanuel Makau
+                        Emmanuel Juma
                       </a>
                     </p>
 
