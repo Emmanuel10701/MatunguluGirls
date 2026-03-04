@@ -882,7 +882,7 @@ ${schoolData ? 'For the most current information, choose a category below! 👇'
   return (
     <div 
       ref={chatContainerRef}
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50"
+      className="fixed bottom-4 right-4 sm:bottom-10 sm:right-6 z-50"
       style={{
         maxWidth: 'calc(100vw - 32px)',
         maxHeight: 'calc(100vh - 32px)'
