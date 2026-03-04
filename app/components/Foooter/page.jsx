@@ -19,7 +19,6 @@ import {
   FiShield,
   FiAward,
   FiGithub,
-  
   FiTarget,
   FiBriefcase,
   FiActivity,
@@ -27,7 +26,8 @@ import {
   FiBell,
   FiCheckCircle,
   FiDownload,
-  FiEye, FiX 
+  FiEye, 
+  FiX 
 } from 'react-icons/fi';
 import { 
   SiFacebook, 
@@ -64,41 +64,41 @@ export default function ModernFooter() {
     { name: 'School Policies', href: '/pages/TermsandPrivacy', icon: FiShield },
   ];
 
-  // Social Media Links with React-colored icons
+  // Social Media Links
   const socialLinks = [
     {
       icon: SiFacebook,
-      href: 'https://facebook.com/katwanyaahighschool',
+      href: 'https://facebook.com/matungulugirlshs',
       label: 'Facebook',
-      color: '#1877F2', // Facebook blue
+      color: '#1877F2',
       hoverColor: '#0A5CD0'
     },
     {
       icon: SiX,
-      href: 'https://twitter.com/katwanyaahighschool',
+      href: 'https://twitter.com/matungulugirlshs',
       label: 'Twitter',
-      color: '#000000', // Twitter black
+      color: '#000000',
       hoverColor: '#333333'
     },
     {
       icon: SiYoutube,
-      href: 'https://youtube.com/katwanyaahighschool',
+      href: 'https://youtube.com/matungulugirlshs',
       label: 'YouTube',
-      color: '#FF0000', // YouTube red
+      color: '#FF0000',
       hoverColor: '#CC0000'
     },
     {
       icon: SiLinkedin,
-      href: 'https://linkedin.com/school/katwanyaahighschool',
+      href: 'https://linkedin.com/school/matungulugirlshs',
       label: 'LinkedIn',
-      color: '#0A66C2', // LinkedIn blue
+      color: '#0A66C2',
       hoverColor: '#004182'
     },
     {
       icon: SiWhatsapp,
       href: 'https://wa.me/254720123456',
       label: 'WhatsApp',
-      color: '#25D366', // WhatsApp green
+      color: '#25D366',
       hoverColor: '#1DA851'
     },
   ];
@@ -161,9 +161,9 @@ export default function ModernFooter() {
   const contactInfo = [
     {
       icon: FiMapPin,
-      text: 'Matungulu Machakos County, Kenya',
+      text: 'Matungulu, Machakos County, Kenya',
       href: 'https://maps.google.com/?q=-0.416667,36.950000',
-      detail: 'Along Tala Kangudo kanzalu road'
+      detail: 'Along Tala Kangudo Road'
     },
     {
       icon: FiPhone,
@@ -179,14 +179,14 @@ export default function ModernFooter() {
     },
     {
       icon: FiMail,
-      text: 'info@katwanyaa.sc.ke',
-      href: 'mailto:info@katwanyaa.sc.ke',
+      text: 'info@matungulugirlshs.sc.ke',
+      href: 'mailto:info@matungulugirlshs.sc.ke',
       detail: 'General Inquiries'
     },
     {
       icon: FiMail,
-      text: 'admissions@katwanyaa.sc.ke',
-      href: 'mailto:admissions@katwanyaa.sc.ke',
+      text: 'admissions@matungulugirlshs.sc.ke',
+      href: 'mailto:admissions@matungulugirlshs.sc.ke',
       detail: 'Admissions'
     },
     {
@@ -199,14 +199,14 @@ export default function ModernFooter() {
 
   // Achievements
   const achievements = [
-    'Top Performing School in Matungulu Machakos County',
+    'Top Performing School in Matungulu, Machakos',
     'Excellence in Science & Mathematics',
-    '60% University Placement Rate',
-    'Sports Excellence Award 2023',
+    '65% University Placement Rate',
+    'Sports Excellence Award 2024',
   ];
 
   return (
-    <footer className="w-full  bg-slate-900 text-white">
+    <footer className="w-full bg-gradient-to-b from-emerald-950 to-slate-950 text-white">
       {/* Main Footer Content */}
       <div className="w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
         <div className="max-w-7xl mx-auto">
@@ -217,7 +217,7 @@ export default function ModernFooter() {
             <div className="space-y-6 min-w-0 w-full">
               {/* Header Section */}
               <div className="flex flex-col xs:flex-row items-start gap-4">
-                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 border-white flex-shrink-0 shadow-sm">
+                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 border-emerald-400/50 flex-shrink-0 shadow-lg shadow-emerald-500/20">
                   <img 
                     src="/MatG.jpg" 
                     alt="School Logo" 
@@ -226,10 +226,10 @@ export default function ModernFooter() {
                 </div>
                 
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white leading-tight break-words">
-                 Matungulu Girls High School 
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-emerald-200 to-teal-200 bg-clip-text text-transparent leading-tight break-words">
+                    Matungulu Girls High School
                   </h3>
-                  <div className="text-white text-sm font-medium flex items-center gap-2 mt-2 flex-wrap">
+                  <div className="text-emerald-300 text-sm font-medium flex items-center gap-2 mt-2 flex-wrap">
                     <FiTarget className="flex-shrink-0 w-4 h-4" />
                     <span className="opacity-90">Strive to Excel</span>
                   </div>
@@ -237,9 +237,9 @@ export default function ModernFooter() {
               </div>
 
               {/* Description */}
-              <p className="text-gray-300 text-sm sm:text-base font-normal leading-relaxed break-words max-w-prose">
-                A County learning institution in Matungulu Machakos, dedicated to academic excellence, 
-                holistic development, and nurturing future leaders through quality education since 1990.
+              <p className="text-emerald-100/80 text-sm sm:text-base font-normal leading-relaxed break-words max-w-prose">
+                A county learning institution in Matungulu, Machakos, dedicated to academic excellence, 
+                holistic development, and nurturing future leaders through quality education since 1995.
               </p>
 
               {/* Contact List */}
@@ -250,15 +250,15 @@ export default function ModernFooter() {
                     <a
                       key={index}
                       href={item.href}
-                      className="flex items-start gap-3 text-gray-300 hover:text-white transition-all text-sm sm:text-base font-normal group"
+                      className="flex items-start gap-3 text-emerald-100/70 hover:text-emerald-300 transition-all text-sm sm:text-base font-normal group"
                     >
-                      <div className="mt-1 p-1.5 bg-white/10 rounded-md group-hover:bg-white/20 transition-colors flex-shrink-0">
-                        <ItemIcon className="text-lg group-hover:scale-100 transition-transform" /> 
+                      <div className="mt-1 p-1.5 bg-emerald-500/20 rounded-md group-hover:bg-emerald-500/30 transition-colors flex-shrink-0">
+                        <ItemIcon className="text-lg text-emerald-400 group-hover:scale-100 transition-transform" /> 
                       </div>
                       <div className="min-w-0 flex-1">
                         <span className="block break-all sm:break-words leading-tight">{item.text}</span>
                         {item.detail && (
-                          <p className="text-xs sm:text-sm text-gray-400 font-normal mt-0.5 break-words">
+                          <p className="text-xs sm:text-sm text-emerald-200/50 font-normal mt-0.5 break-words">
                             {item.detail}
                           </p> 
                         )}
@@ -272,8 +272,8 @@ export default function ModernFooter() {
             {/* Column 2: Quick Links */}
             <div className="space-y-4 min-w-0 w-full">
               <div className="flex items-center gap-2 flex-wrap">
-                <FiGlobe className="text-white text-lg sm:text-xl flex-shrink-0" />
-                <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-white break-words">Quick Links</h4>
+                <FiGlobe className="text-emerald-400 text-lg sm:text-xl flex-shrink-0" />
+                <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-emerald-300 break-words">Quick Links</h4>
               </div>
               <div className="space-y-3">
                 {quickLinks.map((link, index) => {
@@ -282,9 +282,9 @@ export default function ModernFooter() {
                     <a 
                       key={index} 
                       href={link.href} 
-                      className="flex items-start gap-3 text-gray-300 hover:text-white text-sm sm:text-base font-normal group break-words hover:translate-x-1 transition-transform"
+                      className="flex items-start gap-3 text-emerald-100/70 hover:text-emerald-300 text-sm sm:text-base font-normal group break-words hover:translate-x-1 transition-transform"
                     >
-                      <Icon className="flex-shrink-0 text-lg group-hover:scale-100 transition-transform mt-0.5 text-white/70" />
+                      <Icon className="flex-shrink-0 text-lg group-hover:scale-100 transition-transform mt-0.5 text-emerald-400/70" />
                       <span className="min-w-0 flex-1 break-words leading-tight">{link.name}</span>
                     </a>
                   );
@@ -292,15 +292,15 @@ export default function ModernFooter() {
               </div>
 
               {/* Achievements */}
-              <div className="mt-6 pt-6 border-t border-white/20 space-y-3">
+              <div className="mt-6 pt-6 border-t border-emerald-500/20 space-y-3">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <FiAward className="text-white text-lg flex-shrink-0" />
-                  <h4 className="text-sm sm:text-base lg:text-lg font-semibold text-white break-words">Achievements</h4>
+                  <FiAward className="text-emerald-400 text-lg flex-shrink-0" />
+                  <h4 className="text-sm sm:text-base lg:text-lg font-semibold text-emerald-300 break-words">Achievements</h4>
                 </div>
                 <div className="space-y-2">
                   {achievements.map((achievement, index) => (
-                    <div key={index} className="flex items-start gap-3 text-gray-300 text-sm font-normal group">
-                      <FiCheckCircle className="flex-shrink-0 text-lg mt-0.5 text-green-400" />
+                    <div key={index} className="flex items-start gap-3 text-emerald-100/70 text-sm font-normal group">
+                      <FiCheckCircle className="flex-shrink-0 text-lg mt-0.5 text-emerald-400" />
                       <span className="min-w-0 flex-1 break-words leading-relaxed">{achievement}</span>
                     </div>
                   ))}
@@ -311,8 +311,8 @@ export default function ModernFooter() {
             {/* Column 3: Resources */}
             <div className="space-y-4 min-w-0 w-full">
               <div className="flex items-center gap-2 flex-wrap">
-                <FiActivity className="text-white text-lg sm:text-xl flex-shrink-0" />
-                <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-white break-words">Resources</h4>
+                <FiActivity className="text-emerald-400 text-lg sm:text-xl flex-shrink-0" />
+                <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-emerald-300 break-words">Resources</h4>
               </div>
               <div className="space-y-3">
                 {resources.map((resource, index) => {
@@ -321,20 +321,20 @@ export default function ModernFooter() {
                     <a
                       key={index}
                       href={resource.href}
-                      className="flex items-start gap-3 text-gray-300 hover:text-white  text-sm sm:text-base font-normal group break-words hover:translate-x-1 transition-transform"
+                      className="flex items-start gap-3 text-emerald-100/70 hover:text-emerald-300 text-sm sm:text-base font-normal group break-words hover:translate-x-1 transition-transform"
                     >
-                      <Icon className="flex-shrink-0 text-lg group-hover:scale-100 transition-transform mt-0.5 text-white/70" />
+                      <Icon className="flex-shrink-0 text-lg group-hover:scale-100 transition-transform mt-0.5 text-emerald-400/70" />
                       <span className="min-w-0 flex-1 break-words leading-tight">{resource.name}</span>
                     </a>
                   );
                 })}
               </div>
 
-              {/* Social Media with React-colored icons */}
-              <div className="mt-6 pt-6 border-t border-white/20 space-y-3">
+              {/* Social Media */}
+              <div className="mt-6 pt-6 border-t border-emerald-500/20 space-y-3">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <FiUsers className="text-white text-lg flex-shrink-0" />
-                  <h5 className="text-sm sm:text-base lg:text-lg font-semibold text-white break-words">Connect With Us</h5>
+                  <FiUsers className="text-emerald-400 text-lg flex-shrink-0" />
+                  <h5 className="text-sm sm:text-base lg:text-lg font-semibold text-emerald-300 break-words">Connect With Us</h5>
                 </div>
                 <div className="flex flex-wrap gap-3 pt-1">
                   {socialLinks.map((social, index) => {
@@ -345,7 +345,7 @@ export default function ModernFooter() {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center  border border-white/20 flex-shrink-0 hover:scale-100 hover:shadow-lg transform transition-transform"
+                        className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center border border-emerald-400/30 flex-shrink-0 hover:scale-100 hover:shadow-lg transform transition-all"
                         aria-label={social.label}
                         style={{
                           backgroundColor: social.color,
@@ -371,39 +371,39 @@ export default function ModernFooter() {
             {/* Column 4: Newsletter */}
             <div className="space-y-4 min-w-0 w-full">
               <div className="flex items-center gap-2 flex-wrap">
-                <FiBell className="text-white text-lg sm:text-xl flex-shrink-0" />
-                <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-white break-words">Stay Updated</h4>
+                <FiBell className="text-emerald-400 text-lg sm:text-xl flex-shrink-0" />
+                <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-emerald-300 break-words">Stay Updated</h4>
               </div>
               
               {/* Newsletter Subscription */}
-              <div className="bg-slate-800 rounded-xl p-6 border border-gray-700">
+              <div className="bg-emerald-950/40 rounded-xl p-6 border border-emerald-500/30">
                 <div className="flex items-center gap-3 mb-5 flex-wrap">
-                  <div className="p-3 bg-blue-600 rounded-lg flex-shrink-0">
+                  <div className="p-3 bg-emerald-600 rounded-lg flex-shrink-0">
                     <FiBell className="text-white text-lg" />
                   </div>
                   <div className="min-w-0">
-                    <h4 className="text-base sm:text-lg font-semibold text-white break-words">Newsletter</h4>
-                    <p className="text-gray-300 text-sm font-normal break-words">Get academic events & announcements</p>
+                    <h4 className="text-base sm:text-lg font-semibold text-emerald-300 break-words">Newsletter</h4>
+                    <p className="text-emerald-100/60 text-sm font-normal break-words">Get academic events & announcements</p>
                   </div>
                 </div>
 
                 <form onSubmit={handleSubscribe} className="space-y-4">
                   <div className="relative">
-                    <FiMail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg flex-shrink-0" />
+                    <FiMail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-emerald-400/60 text-lg flex-shrink-0" />
                     <input
                       type="email"
                       placeholder="you@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full pl-12 pr-4 py-3 bg-gray-800 border-2 border-gray-700 hover:border-gray-600 focus:border-blue-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-sm sm:text-base font-normal"
+                      className="w-full pl-12 pr-4 py-3 bg-emerald-900/30 border-2 border-emerald-500/30 hover:border-emerald-500/50 focus:border-emerald-400 rounded-lg text-white placeholder-emerald-400/40 focus:outline-none focus:ring-2 focus:ring-emerald-400/30 transition-all text-sm sm:text-base font-normal"
                     />
                   </div>
                   
                   <button
                     type="submit"
                     disabled={isSubmitting || !email}
-                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white py-3 rounded-lg font-medium text-sm sm:text-base transition-all disabled:cursor-not-allowed hover:scale-[1.00] active:scale-[0.99] transform"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-900/50 text-white py-3 rounded-lg font-medium text-sm sm:text-base transition-all disabled:cursor-not-allowed hover:scale-[1.00] active:scale-[0.99] transform"
                   >
                     {isSubmitting ? (
                       <span className="flex items-center justify-center gap-2">
@@ -424,12 +424,12 @@ export default function ModernFooter() {
 
                 {/* Success Message */}
                 {showSuccess && (
-                  <div className="mt-4 p-4 bg-emerald-600/30 border border-emerald-500 rounded-lg animate-pulse">
+                  <div className="mt-4 p-4 bg-emerald-600/30 border border-emerald-400 rounded-lg animate-pulse">
                     <div className="flex items-center gap-3 flex-wrap">
                       <FiCheckCircle className="text-emerald-300 text-lg flex-shrink-0" />
                       <div className="min-w-0">
                         <p className="text-emerald-300 font-medium text-sm sm:text-base break-words">Successfully subscribed!</p>
-                        <p className="text-emerald-200 text-sm font-normal break-words">You'll receive updates soon.</p>
+                        <p className="text-emerald-200/80 text-sm font-normal break-words">You'll receive updates soon.</p>
                       </div>
                     </div>
                   </div>
@@ -438,24 +438,24 @@ export default function ModernFooter() {
             </div>
           </div>
 
-          {/* Footer Bottom - Zoom responsive */}
-          <div className="mt-12 lg:mt-16 pt-8 border-t border-gray-700">
+          {/* Footer Bottom */}
+          <div className="mt-12 lg:mt-16 pt-8 border-t border-emerald-500/20">
             <div className="flex flex-col gap-6 w-full">
-              <div className="text-gray-300 text-sm font-normal text-center break-words px-4">
+              <div className="text-emerald-100/70 text-sm font-normal text-center break-words px-4">
                 <p>© {currentYear} Matungulu Girls High School, Matungulu Machakos. All rights reserved.</p>
               </div>
 
               <div className="flex items-center justify-center gap-4 sm:gap-6 text-sm font-normal flex-wrap">
                 <button 
                   onClick={() => setShowSitemap(true)} 
-                  className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 hover:scale-100 whitespace-nowrap flex-shrink-0 px-2 py-1"
+                  className="text-emerald-100/70 hover:text-emerald-300 transition-colors flex items-center gap-2 hover:scale-100 whitespace-nowrap flex-shrink-0 px-2 py-1"
                 >
                   <FiGlobe className="text-lg" />
                   <span className="break-words">Sitemap</span>
                 </button>
                 <button 
                   onClick={() => setShowPrivacy(true)} 
-                  className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 hover:scale-100 whitespace-nowrap flex-shrink-0 px-2 py-1"
+                  className="text-emerald-100/70 hover:text-emerald-300 transition-colors flex items-center gap-2 hover:scale-100 whitespace-nowrap flex-shrink-0 px-2 py-1"
                 >
                   <FiShield className="text-lg" />
                   <span className="break-words">Terms & Privacy</span>
@@ -463,245 +463,243 @@ export default function ModernFooter() {
               </div>
             </div>
 
-            <div className="mt-6 text-center text-sm text-gray-300 font-normal break-words px-4">
+            <div className="mt-6 text-center text-sm text-emerald-100/70 font-normal break-words px-4">
               <p>Accredited by the Ministry of Education • KNEC Centre Code: 12345678</p>
               <div className="flex items-center justify-center gap-2 mt-3 flex-wrap">
                 <span>Empowering Future Leaders with</span>
-                <span className="text-lg">❤️</span>
-                <span>since 1995..Strive to Excel</span>
+                <span className="text-lg">💚</span>
+                <span>since 1995 • Strive to Excel</span>
               </div>
-<div className="mt-12 py-6 border-t border-white/10">
-  <div className="flex flex-col md:flex-row items-center justify-between gap-4 px-4">
-    {/* Minimalist Brand Tag */}
-    <div className="flex items-center gap-2">
-      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-      <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40">
-        System Architecture
-      </p>
-    </div>
 
-    {/* Modern Dev Credits */}
-    <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2">
-      <p className="text-[11px] font-bold text-white/60 tracking-tight">
-        Developed by{" "}
-        <a 
-          href="https://www.linkedin.com/in/emmanuel-makau-40a12028b/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="text-white hover:text-emerald-400 transition-colors duration-300 underline decoration-emerald-500/30 underline-offset-4"
-        >
-          Emmanuel Makau
-        </a>
-      </p>
+              <div className="mt-12 py-6 border-t border-emerald-500/20">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4 px-4">
+                  {/* Minimalist Brand Tag */}
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-200/40">
+                      System Architecture
+                    </p>
+                  </div>
 
-      {/* Social Links Bar */}
-      <div className="flex items-center gap-4 bg-white/5 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 shadow-inner">
-        <a 
-          href="https://github.com/Emmanuel10701" 
-          className="text-white/50 hover:text-white transition-all hover:scale-110"
-          title="GitHub Profile"
-        >
-          <FiGithub size={14} />
-        </a>
-        <a 
-          href="mailto:emmanuelmakau90@gmail.com" 
-          className="text-white/50 hover:text-emerald-400 transition-all hover:scale-110"
-          title="Email Developer"
-        >
-          <FiMail size={14} />
-        </a>
-        <a 
-          href="tel:+254793472960" 
-          className="text-white/50 hover:text-blue-400 transition-all hover:scale-110"
-          title="Call"
-        >
-          <FiPhone size={14} />
-        </a>
-        <div className="w-[1px] h-3 bg-white/10 mx-1" />
-        <span className="text-[9px] font-black text-white/30 tracking-widest uppercase">
-          v2.0.26
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
+                  {/* Modern Dev Credits */}
+                  <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2">
+                    <p className="text-[11px] font-bold text-emerald-100/60 tracking-tight">
+                      Developed by{" "}
+                      <a 
+                        href="https://www.linkedin.com/in/emmanuel-makau-40a12028b/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-emerald-300 hover:text-emerald-200 transition-colors duration-300 underline decoration-emerald-500/30 underline-offset-4"
+                      >
+                        Emmanuel Makau
+                      </a>
+                    </p>
 
-
+                    {/* Social Links Bar */}
+                    <div className="flex items-center gap-4 bg-emerald-500/5 backdrop-blur-md px-4 py-2 rounded-full border border-emerald-400/20 shadow-inner">
+                      <a 
+                        href="https://github.com/Emmanuel10701" 
+                        className="text-emerald-200/50 hover:text-emerald-300 transition-all hover:scale-110"
+                        title="GitHub Profile"
+                      >
+                        <FiGithub size={14} />
+                      </a>
+                      <a 
+                        href="mailto:emmanuelmakau90@gmail.com" 
+                        className="text-emerald-200/50 hover:text-emerald-300 transition-all hover:scale-110"
+                        title="Email Developer"
+                      >
+                        <FiMail size={14} />
+                      </a>
+                      <a 
+                        href="tel:+254793472960" 
+                        className="text-emerald-200/50 hover:text-emerald-300 transition-all hover:scale-110"
+                        title="Call"
+                      >
+                        <FiPhone size={14} />
+                      </a>
+                      <div className="w-[1px] h-3 bg-emerald-400/10 mx-1" />
+                      <span className="text-[9px] font-black text-emerald-200/30 tracking-widest uppercase">
+                        v2.0.26
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-{/* Privacy Policy Modal */}
-{showPrivacy && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 overflow-y-auto overflow-x-hidden">
-    <div 
-      className="fixed inset-0 bg-black/80 backdrop-blur-sm" 
-      onClick={() => setShowPrivacy(false)} 
-    />
-    
-    <div className="relative bg-slate-900 text-white rounded-[2rem] max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-white/10 p-5 sm:p-8 my-auto animate-slide-up">
-      
-      {/* Header - Compact */}
-      <div className="flex justify-between items-center mb-6 border-b border-white/5 pb-4">
-        <div className="flex items-center gap-2 min-w-0">
-          <FiShield className="text-xl text-blue-400 shrink-0" />
-          <h2 className="text-base sm:text-xl font-black uppercase tracking-tight truncate">Privacy & Terms</h2>
-        </div>
-        <button 
-          onClick={() => setShowPrivacy(false)} 
-          className="p-2 hover:bg-white/10 rounded-full transition-all active:scale-90"
-        >
+      {/* Privacy Policy Modal */}
+      {showPrivacy && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 overflow-y-auto overflow-x-hidden">
+          <div 
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm" 
+            onClick={() => setShowPrivacy(false)} 
+          />
+          
+          <div className="relative bg-emerald-950/90 text-white rounded-[2rem] max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-emerald-500/30 p-5 sm:p-8 my-auto animate-slide-up">
+            
+            {/* Header */}
+            <div className="flex justify-between items-center mb-6 border-b border-emerald-500/20 pb-4">
+              <div className="flex items-center gap-2 min-w-0">
+                <FiShield className="text-xl text-emerald-400 shrink-0" />
+                <h2 className="text-base sm:text-xl font-black uppercase tracking-tight truncate text-emerald-300">Privacy & Terms</h2>
+              </div>
+              <button 
+                onClick={() => setShowPrivacy(false)} 
+                className="p-2 hover:bg-emerald-500/20 rounded-full transition-all active:scale-90"
+              >
+                <FiX size={20} className="text-white" />
+              </button>
+            </div>
 
-          <FiX size={20} className="text-white" />
-        </button>
-      </div>
+            <div className="space-y-4 sm:space-y-6">
+              {/* Commitment Section */}
+              <section className="bg-emerald-500/10 rounded-2xl p-4 sm:p-6 border border-emerald-500/20 hover:bg-emerald-500/15 transition-colors">
+                <h3 className="text-[10px] font-black text-emerald-400 uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
+                  <FiShield size={14}/> Commitment
+                </h3>
+                <p className="text-emerald-100/80 text-xs sm:text-sm font-medium leading-relaxed italic">
+                  "We are committed to protecting the privacy and security of all personal information in compliance with the Data Protection Act."
+                </p>
+              </section>
 
-      <div className="space-y-4 sm:space-y-6">
-        {/* Commitment Section */}
-        <section className="bg-white/5 rounded-2xl p-4 sm:p-6 border border-white/5 hover:bg-white/10 transition-colors">
-          <h3 className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
-            <FiShield size={14}/> Commitment
-          </h3>
-          <p className="text-slate-300 text-xs sm:text-sm font-medium leading-relaxed italic">
-            "We are committed to protecting the privacy and security of all personal information in compliance with the Data Protection Act."
-          </p>
-        </section>
+              {/* Info Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-emerald-500/10 rounded-2xl p-4 sm:p-6 border border-emerald-500/20">
+                  <h3 className="text-[10px] font-black text-emerald-300 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                    <FiEye size={14} /> Collection
+                  </h3>
+                  <ul className="space-y-3">
+                    {['Academic Records', 'Parent Contacts', 'Medical Info'].map((text, i) => (
+                      <li key={i} className="flex items-center gap-3 text-xs text-emerald-100/80 font-bold">
+                        <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full shadow-[0_0_8px_rgba(52,211,153,0.5)]" />
+                        {text}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-        {/* Info Grid - Stacked on Mobile */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-white/5 rounded-2xl p-4 sm:p-6 border border-white/5">
-            <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-              <FiEye size={14} /> Collection
-            </h3>
-            <ul className="space-y-3">
-              {['Academic Records', 'Parent Contacts', 'Medical Info'].map((text, i) => (
-                <li key={i} className="flex items-center gap-3 text-xs text-slate-300 font-bold">
-                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
-                  {text}
-                </li>
-              ))}
-            </ul>
+                <div className="bg-emerald-500/10 rounded-2xl p-4 sm:p-6 border border-emerald-500/20">
+                  <h3 className="text-[10px] font-black text-emerald-300 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                    <FiDownload size={14} /> Protection
+                  </h3>
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      { e: '🔐', t: 'Encrypted' },
+                      { e: '🛡️', t: 'Secure' },
+                      { e: '📊', t: 'Audits' },
+                      { e: '👩‍🏫', t: 'Training' }
+                    ].map((item, i) => (
+                      <div key={i} className="bg-emerald-950/50 rounded-xl p-2 text-center border border-emerald-500/20">
+                        <div className="text-sm mb-0.5">{item.e}</div>
+                        <div className="text-[9px] font-black text-emerald-300/80 uppercase tracking-tighter">{item.t}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer Actions */}
+            <div className="mt-8 pt-6 border-t border-emerald-500/20">
+              <div className="flex flex-row gap-3 items-center">
+                <button 
+                  onClick={() => setShowPrivacy(false)} 
+                  className="flex-1 bg-emerald-500/20 hover:bg-emerald-500/30 text-white py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95 border border-emerald-500/30"
+                >
+                  Close
+                </button>
+                <button 
+                  onClick={() => setShowPrivacy(false)} 
+                  className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95 text-center shadow-lg shadow-emerald-500/25"
+                >
+                  Accept
+                </button>
+              </div>
+            </div>
           </div>
+        </div>
+      )}
 
-          <div className="bg-white/5 rounded-2xl p-4 sm:p-6 border border-white/5">
-            <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-              <FiDownload size={14} /> Protection
-            </h3>
-            <div className="grid grid-cols-2 gap-2">
-              {[
-                { e: '🔐', t: 'Encrypted' },
-                { e: '🛡️', t: 'Secure' },
-                { e: '📊', t: 'Audits' },
-                { e: '👩‍🏫', t: 'Training' }
-              ].map((item, i) => (
-                <div key={i} className="bg-slate-950/50 rounded-xl p-2 text-center border border-white/5">
-                  <div className="text-sm mb-0.5">{item.e}</div>
-                  <div className="text-[9px] font-black text-slate-400 uppercase tracking-tighter">{item.t}</div>
+      {/* Sitemap Modal */}
+      {showSitemap && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 overflow-y-auto overflow-x-hidden">
+          <div 
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm" 
+            onClick={() => setShowSitemap(false)} 
+          />
+          
+          <div className="relative bg-emerald-950/90 text-white rounded-[2rem] max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-emerald-500/30 p-5 sm:p-8 my-auto animate-slide-up">
+            
+            {/* Header */}
+            <div className="flex justify-between items-center mb-6 border-b border-emerald-500/20 pb-4">
+              <div className="flex items-center gap-2">
+                <FiGlobe className="text-xl sm:text-2xl text-emerald-400" />
+                <h2 className="text-base sm:text-xl font-black uppercase tracking-tight text-emerald-300">Navigation</h2>
+              </div>
+              <button 
+                onClick={() => setShowSitemap(false)} 
+                className="p-2 hover:bg-emerald-500/20 rounded-full transition-colors active:scale-90"
+              >
+                <FiX size={20} className="text-white" />
+              </button>
+            </div>
+
+            {/* Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {['Main Sections', 'Resources', 'Quick Links'].map((section, idx) => (
+                <div key={idx} className="space-y-4">
+                  <h3 className="text-[10px] font-black text-emerald-300 uppercase tracking-[0.2em] flex items-center gap-2">
+                    <span className="w-4 h-[1px] bg-emerald-500/50" /> {section}
+                  </h3>
+                  <div className="flex flex-col gap-1">
+                    {(section === 'Main Sections' ? quickLinks.slice(0, 4) : 
+                      section === 'Resources' ? resources.slice(0, 4) : 
+                      quickLinks.slice(4)).map((item, index) => {
+                      const Icon = item.icon;
+                      return (
+                        <a
+                          key={index}
+                          href={item.href}
+                          className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-emerald-500/20 text-emerald-100/70 hover:text-emerald-300 transition-all group"
+                          onClick={() => setShowSitemap(false)}
+                        >
+                          <div className="p-1.5 bg-emerald-500/10 rounded-lg group-hover:bg-emerald-500/30 transition-colors">
+                            <Icon size={14} className="shrink-0 text-emerald-400" />
+                          </div>
+                          <span className="text-xs font-bold tracking-tight">{item.name}</span>
+                        </a>
+                      );
+                    })}
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Footer Actions */}
-      <div className="mt-8 pt-6 border-t border-white/5">
-        <div className="flex flex-row gap-3 items-center">
-          <button 
-            onClick={() => setShowPrivacy(false)} 
-            className="flex-1 bg-white/5 hover:bg-white/10 text-white py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95 border border-white/10"
-          >
-            Close
-          </button>
-          <button 
-            onClick={() => setShowPrivacy(false)} 
-            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95 text-center shadow-lg shadow-blue-500/25"
-          >
-            Accept
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-)}
-
-{/* Sitemap Modal */}
-{showSitemap && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 overflow-y-auto overflow-x-hidden">
-    <div 
-      className="fixed inset-0 bg-black/80 backdrop-blur-sm" 
-      onClick={() => setShowSitemap(false)} 
-    />
-    
-    <div className="relative bg-slate-900 text-white rounded-[2rem] max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-white/10 p-5 sm:p-8 my-auto animate-slide-up">
-      
-      {/* Header - Scaled for Mobile */}
-      <div className="flex justify-between items-center mb-6 border-b border-white/5 pb-4">
-        <div className="flex items-center gap-2">
-          <FiGlobe className="text-xl sm:text-2xl text-blue-400" />
-          <h2 className="text-base sm:text-xl font-black uppercase tracking-tight">Navigation</h2>
-        </div>
-        <button 
-          onClick={() => setShowSitemap(false)} 
-          className="p-2 hover:bg-white/10 rounded-full transition-colors active:scale-90"
-        >
-          <FiX size={20} className="text-white" />
-        </button>
-      </div>
-
-      {/* Grid: 1 col on mobile, 2 on small tablets, 3 on desktop */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {['Main Sections', 'Resources', 'Quick Links'].map((section, idx) => (
-          <div key={idx} className="space-y-4">
-            <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
-              <span className="w-4 h-[1px] bg-blue-500/50" /> {section}
-            </h3>
-            <div className="flex flex-col gap-1">
-              {(section === 'Main Sections' ? quickLinks.slice(0, 4) : 
-                section === 'Resources' ? resources.slice(0, 4) : 
-                quickLinks.slice(4)).map((item, index) => {
-                const Icon = item.icon;
-                return (
-                  <a
-                    key={index}
-                    href={item.href}
-                    className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-slate-300 hover:text-blue-400 transition-all group"
-                    onClick={() => setShowSitemap(false)}
-                  >
-                    <div className="p-1.5 bg-white/5 rounded-lg group-hover:bg-blue-500/20 transition-colors">
-                      <Icon size={14} className="shrink-0" />
-                    </div>
-                    <span className="text-xs font-bold tracking-tight">{item.name}</span>
-                  </a>
-                );
-              })}
+            {/* Footer Actions */}
+            <div className="mt-8 pt-6 border-t border-emerald-500/20">
+              <div className="flex flex-row gap-3 items-center">
+                <button 
+                  onClick={() => setShowSitemap(false)} 
+                  className="flex-1 bg-emerald-500/20 hover:bg-emerald-500/30 text-white py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95 border border-emerald-500/30"
+                >
+                  Close
+                </button>
+                <a
+                  href="/pages/contact"
+                  onClick={() => setShowSitemap(false)}
+                  className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95 text-center shadow-lg shadow-emerald-500/25"
+                >
+                  Contact
+                </a>
+              </div>
             </div>
           </div>
-        ))}
-      </div>
-
-      {/* Footer Actions - The ones we just perfected */}
-      <div className="mt-8 pt-6 border-t border-white/5">
-        <div className="flex flex-row gap-3 items-center">
-          <button 
-            onClick={() => setShowSitemap(false)} 
-            className="flex-1 bg-white/5 hover:bg-white/10 text-white py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95 border border-white/10"
-          >
-            Close
-          </button>
-          <a
-            href="/pages/contact"
-            onClick={() => setShowSitemap(false)}
-            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95 text-center shadow-lg shadow-blue-500/25"
-          >
-            Contact
-          </a>
         </div>
-      </div>
-    </div>
-  </div>
-)}
+      )}
     </footer>
   );
 }
