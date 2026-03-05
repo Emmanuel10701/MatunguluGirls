@@ -31,7 +31,7 @@ export const viewport = {
 /* METADATA                                  */
 /* -------------------------------------------------------------------------- */
 export const metadata = {
-  metadataBase: new URL("https://katwanyaa.vercel.app"),
+  metadataBase: new URL("https://matungulu-girls.vercel.app"),
 
   title: {
     default: "Matungulu Girls High School",
