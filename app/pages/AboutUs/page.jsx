@@ -50,7 +50,7 @@ export default function AboutPage() {
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
       </span>
-      <span className="text-[10px] font-black tracking-[0.3em] text-emerald-200 uppercase">
+      <span className="text-[10px] font-black tracking-[0.3em] text-emerald-100 uppercase">
         Registration Open • {new Date().getFullYear()} Academic Year
       </span>
     </div>
@@ -62,7 +62,7 @@ export default function AboutPage() {
 
     {/* Expanded Rich Description */}
     <div className="max-w-3xl mx-auto space-y-6 mb-12">
-      <p className="text-sm md:text-base text-slate-200 font-medium leading-relaxed mb-8">
+      <p className="text-sm md:text-base text-white font-medium leading-relaxed mb-8">
         Since 1998, a cornerstone of <span className="text-emerald-400">academic distinction</span>, 
         crafting a holistic pathway for future leaders.
       </p>
@@ -70,13 +70,13 @@ export default function AboutPage() {
       <div className="grid md:grid-cols-2 gap-6 text-left border-y border-white/10 py-8">
         <div className="space-y-2">
           <h4 className="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Why Us</h4>
-          <p className="text-sm text-slate-300 leading-relaxed">
+          <p className="text-sm text-white leading-relaxed">
             We leverage modern STEM-based learning and state-of-the-art digital infrastructure to ensure our students are not just competitive, but are the innovators of tomorrow's global economy.
           </p>
         </div>
         <div className="space-y-2">
           <h4 className="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Core Excellence</h4>
-          <p className="text-sm text-slate-300 leading-relaxed">
+          <p className="text-sm text-white leading-relaxed">
             Beyond the classroom, our community thrives on character development, sports leadership, and artistic expression, fostering well-rounded individuals ready for university and beyond.
           </p>
         </div>
