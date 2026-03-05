@@ -209,7 +209,7 @@ export default function ModernFeesPage() {
   // Tabs configuration
   const tabs = [
     { id: 'boarding', name: 'Boarders', icon: IoBedOutline, color: 'teal' },
-    { id: 'admission', name: 'New Students', icon: MdOutlineAdUnits, color: 'amber' }
+    { id: 'admission', name: 'Admission', icon: MdOutlineAdUnits, color: 'amber' }
   ];
 
   const router = useRouter();
