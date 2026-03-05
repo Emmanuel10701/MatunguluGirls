@@ -676,7 +676,7 @@ async function sendApplicantConfirmation(toEmail, applicantName, applicationNumb
               <h3 class="school-info-title">About ${SCHOOL_NAME}</h3>
               <p class="school-info-text">
                 ${SCHOOL_NAME} is a Public Girl's Boarding School located in ${SCHOOL_LOCATION}. 
-                We provide quality education to 1K+ students through the 8-4-4 curriculum system. 
+                We provide quality education to 1K+ students through the 8-4-4 and CBC curriculum system. 
                 Our motto is "<strong>${SCHOOL_MOTTO}</strong>".
               </p>
             </div>
@@ -1124,26 +1124,34 @@ async function sendAdminNotification(applicantData, applicationNumber) {
               </div>
             </div>
             
-            <!-- ACADEMIC INFO SECTION -->
-            <h2 class="section-title">🎓 Academic Information</h2>
-            <div class="info-table">
-              <div class="info-row">
-                <div class="info-label">Previous School:</div>
-                <div class="info-value">${applicantData.previousSchool}</div>
-              </div>
-              <div class="info-row">
-                <div class="info-label">Previous Class:</div>
-                <div class="info-value">${applicantData.previousClass}</div>
-              </div>
-              <div class="info-row">
-                <div class="info-label">KCPE Marks:</div>
-                <div class="info-value">${applicantData.kcpeMarks || 'Not provided'}</div>
-              </div>
-              <div class="info-row">
-                <div class="info-label">KCPE Index:</div>
-                <div class="info-value">${applicantData.kcpeIndex || 'Not provided'}</div>
-              </div>
-            </div>
+   <!-- ACADEMIC INFO SECTION - CBC SYSTEM -->
+<h2 class="section-title">🎓 CBC Assessment Results</h2>
+<div class="info-table">
+  <div class="info-row">
+    <div class="info-label">Previous School:</div>
+    <div class="info-value">${applicantData.previousSchool}</div>
+  </div>
+  <div class="info-row">
+    <div class="info-label">Previous Grade:</div>
+    <div class="info-value">${applicantData.previousClass}</div>
+  </div>
+  <div class="info-row">
+    <div class="info-label">KPSEA Year:</div>
+    <div class="info-value">${applicantData.kpseaYear || applicantData.kcpeYear || 'Not provided'}</div>
+  </div>
+  <div class="info-row">
+    <div class="info-label">Assessment Number:</div>
+    <div class="info-value">${applicantData.kpseaIndex || applicantData.kcpeIndex || 'Not provided'}</div>
+  </div>
+  <div class="info-row">
+    <div class="info-label">KPSEA Score:</div>
+    <div class="info-value">${(applicantData.kpseaMarks || applicantData.kcpeMarks) ? `${applicantData.kpseaMarks || applicantData.kcpeMarks}/100` : 'Not provided'}</div>
+  </div>
+  <div class="info-row">
+    <div class="info-label">KJSEA Grade:</div>
+    <div class="info-value">${applicantData.kjseaGrade || applicantData.meanGrade || 'Not provided'}</div>
+  </div>
+</div>
             
             <!-- CONTACT INFO SECTION -->
             <h2 class="section-title">📞 Contact Information</h2>
@@ -1262,6 +1270,28 @@ export async function POST(req) {
         }, { status: 400 });
       }
     }
+
+    // Validate KPSEA marks (0-100)
+if (data.kpseaMarks && data.kpseaMarks.trim() !== '') {
+  const marks = parseInt(data.kpseaMarks);
+  if (isNaN(marks) || marks < 0 || marks > 100) {
+    return NextResponse.json({ 
+      success: false, 
+      error: "KPSEA marks must be between 0 and 100" 
+    }, { status: 400 });
+  }
+}
+
+// Validate KJSEA grade format (optional)
+if (data.kjseaGrade && data.kjseaGrade.trim() !== '') {
+  const validGrades = ['7 - ADV', '6 - PRF', '5 - DEV', '4 - APR', '3 - NOV', '2 - BEG', '1 - N/A'];
+  if (!validGrades.includes(data.kjseaGrade)) {
+    return NextResponse.json({ 
+      success: false, 
+      error: "Invalid KJSEA grade format" 
+    }, { status: 400 });
+  }
+}
 
     // 2. PREPARE DATA
     const applicationNumber = generateApplicationNumber();
@@ -1470,13 +1500,21 @@ else {
       guardianEmail: app.guardianEmail,
       guardianOccupation: app.guardianOccupation,
       
-      // Academic
-      previousSchool: app.previousSchool,
-      previousClass: app.previousClass,
-      kcpeYear: app.kcpeYear,
-      kcpeIndex: app.kcpeIndex,
-      kcpeMarks: app.kcpeMarks,
-      meanGrade: app.meanGrade,
+     // Academic - CBC System
+previousSchool: app.previousSchool,
+previousClass: app.previousClass,
+
+// New CBC fields
+kpseaYear: app.kpseaYear || app.kcpeYear,
+kpseaIndex: app.kpseaIndex || app.kcpeIndex,
+kpseaMarks: app.kpseaMarks || app.kcpeMarks,
+kjseaGrade: app.kjseaGrade || app.meanGrade,
+
+// Keep old fields for backward compatibility
+kcpeYear: app.kcpeYear || app.kpseaYear,
+kcpeIndex: app.kcpeIndex || app.kpseaIndex,
+kcpeMarks: app.kcpeMarks || app.kpseaMarks,
+meanGrade: app.meanGrade || app.kjseaGrade,
       
       // Medical
       medicalCondition: app.medicalCondition,

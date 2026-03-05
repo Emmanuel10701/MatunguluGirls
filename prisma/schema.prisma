@@ -463,6 +463,8 @@ model SchoolDocument {
 model AdmissionApplication {
   id                     String    @id @default(cuid())
   applicationNumber      String    @unique
+  
+  // Personal Information
   firstName              String
   middleName             String?
   lastName               String
@@ -473,11 +475,15 @@ model AdmissionApplication {
   constituency           String
   ward                   String
   village                String?
+  
+  // Contact Information
   email                  String?
-  phone                  String? // Changed to optional
+  phone                  String?
   alternativePhone       String?
   postalAddress          String
   postalCode             String?
+  
+  // Parent/Guardian Information
   fatherName             String?
   fatherPhone            String?
   fatherEmail            String?
@@ -490,19 +496,36 @@ model AdmissionApplication {
   guardianPhone          String?
   guardianEmail          String?
   guardianOccupation     String?
+  
+  // Academic Information - CBC System
   previousSchool         String
   previousClass          String
+  
+  // New CBC Fields (KPSEA - Grade 6)
+  kpseaYear              Int?      // Year of KPSEA completion
+  kpseaIndex             String?   // Assessment number
+  kpseaMarks             Int?      // KPSEA score (0-100)
+  
+  // New CBC Fields (KJSEA - Grade 9)
+  kjseaGrade             String?   // Level 1-7 with description (e.g., "7 - ADV", "6 - PRF")
+  
+  // Keep old fields for backward compatibility
   kcpeYear               Int?
   kcpeIndex              String?
   kcpeMarks              Int?
   meanGrade              String?
-  // Removed preferredStream field
+  
+  // Medical Information
   medicalCondition       String?   @db.Text
   allergies              String?   @db.Text
-  bloodGroup             String? // Still kept but not in form
+  bloodGroup             String?
+  
+  // Extracurricular
   sportsInterests        String?   @db.Text
   clubsInterests         String?   @db.Text
   talents                String?   @db.Text
+  
+  // Application Status
   status                 String?   @default("PENDING")
   decisionNotes          String?   @db.Text
   admissionOfficer       String?
@@ -516,20 +539,29 @@ model AdmissionApplication {
   alternativeSuggestions String?
   waitlistPosition       Int?
   waitlistNotes          String?   @db.Text
+  
+  // Interview Details
   interviewDate          DateTime?
   interviewTime          String?
   interviewVenue         String?
   interviewNotes         String?   @db.Text
+  
+  // Conditional Acceptance
   conditions             String?   @db.Text
   conditionDeadline      DateTime?
+  
+  // Admission Details
   houseAssigned          String?
   admissionClass         String?
   admissionType          String?
   documentsVerified      Boolean?  @default(false)
   documentsNotes         String?
+  
+  // Timestamps
   createdAt              DateTime  @default(now())
   updatedAt              DateTime  @updatedAt
 
+  // Indexes for better query performance
   @@index([applicationNumber])
   @@index([email])
   @@index([phone])
@@ -537,7 +569,8 @@ model AdmissionApplication {
   @@index([createdAt])
   @@index([decisionDate])
   @@index([county])
-  @@index([kcpeMarks])
+  @@index([kpseaMarks])  // Changed from kcpeMarks to kpseaMarks
+  @@index([kjseaGrade])  // Added index for KJSEA grade
 }
 
 model CareerJob {

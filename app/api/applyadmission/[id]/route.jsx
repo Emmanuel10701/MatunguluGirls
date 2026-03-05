@@ -18,8 +18,7 @@ const SCHOOL_NAME = 'Matungulu Girls High  School';
 const SCHOOL_LOCATION = 'Matungulu, Machakos County';
 const SCHOOL_MOTTO = 'Strive to Excel';
 const CONTACT_PHONE = '+254720123456';
-const CONTACT_EMAIL = 'admissions@katwanyaahighSchool.sc.ke';
-
+const CONTACT_EMAIL = 'admissions@matungulugirls.sc.ke';
 // ==================== AUTHENTICATION UTILITIES ====================
 
 // Device Token Manager
@@ -1346,10 +1345,14 @@ function getAdminNotificationTemplate(applicantData, applicationNumber) {
             <div class="info-label">Previous School:</div>
             <div class="info-value">${applicantData.previousSchool}</div>
           </div>
-          <div class="info-row">
-            <div class="info-label">KCPE Marks:</div>
-            <div class="info-value">${kcpeMarks}</div>
-          </div>
+       <div class="info-row">
+  <div class="info-label">KPSEA Score:</div>
+  <div class="info-value">${applicantData.kpseaMarks ? `${applicantData.kpseaMarks}/100` : (applicantData.kcpeMarks || 'Not provided')}</div>
+</div>
+<div class="info-row">
+  <div class="info-label">KJSEA Grade:</div>
+  <div class="info-value">${applicantData.kjseaGrade || applicantData.meanGrade || 'Not provided'}</div>
+</div>
           <div class="info-row">
             <div class="info-label">Contact Email:</div>
             <div class="info-value">${applicantData.email}</div>
@@ -2238,15 +2241,16 @@ export async function POST(req) {
   try {
     const data = await req.json();
     
-    // Validate required fields
-    const requiredFields = ['firstName', 'lastName', 'dateOfBirth', 'gender', 'email', 'phone', 'preferredStream', 'previousSchool'];
-    for (const field of requiredFields) {
-      if (!data[field]) {
-        return NextResponse.json(
-          { success: false, error: `${field} is required` },
-          { status: 400 }
-        );
-      }
+   // Validate required fields
+const requiredFields = ['firstName', 'lastName', 'dateOfBirth', 'gender', 'email', 'phone', 'previousSchool', 'previousClass'];
+for (const field of requiredFields) {
+  if (!data[field]) {
+    return NextResponse.json(
+      { success: false, error: `${field} is required` },
+      { status: 400 }
+    );
+  }
+
     }
     
     // Validate phone number
@@ -2269,27 +2273,73 @@ export async function POST(req) {
     // Generate application number
     const applicationNumber = generateApplicationNumber();
     
-    // Prepare application data
-    const applicationData = {
-      firstName: data.firstName.trim(),
-      lastName: data.lastName.trim(),
-      middleName: data.middleName ? data.middleName.trim() : null,
-      dateOfBirth: new Date(data.dateOfBirth),
-      gender: data.gender,
-      nationality: data.nationality || 'Kenyan',
-      county: data.county || '',
-      email: data.email.trim().toLowerCase(),
-      phone: data.phone.replace(/\s/g, ''),
-      preferredStream: data.preferredStream,
-      previousSchool: data.previousSchool.trim(),
-      kcpeMarks: data.kcpeMarks || null,
-      disability: data.disability || null,
-      specialNeeds: data.specialNeeds || null,
-      applicationNumber: applicationNumber,
-      status: 'PENDING',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    };
+// Prepare application data - CBC System
+const applicationData = {
+  // Personal Information
+  firstName: data.firstName.trim(),
+  lastName: data.lastName.trim(),
+  middleName: data.middleName ? data.middleName.trim() : null,
+  dateOfBirth: new Date(data.dateOfBirth),
+  gender: data.gender,
+  nationality: data.nationality || 'Kenyan',
+  county: data.county || '',
+  constituency: data.constituency || '',
+  ward: data.ward || '',
+  village: data.village || '',
+  
+  // Contact Information
+  email: data.email.trim().toLowerCase(),
+  phone: data.phone.replace(/\s/g, ''),
+  alternativePhone: data.alternativePhone ? data.alternativePhone.replace(/\s/g, '') : null,
+  postalAddress: data.postalAddress || '',
+  postalCode: data.postalCode || '',
+  
+  // Parent/Guardian Information
+  fatherName: data.fatherName || null,
+  fatherPhone: data.fatherPhone ? data.fatherPhone.replace(/\s/g, '') : null,
+  fatherEmail: data.fatherEmail || null,
+  fatherOccupation: data.fatherOccupation || null,
+  motherName: data.motherName || null,
+  motherPhone: data.motherPhone ? data.motherPhone.replace(/\s/g, '') : null,
+  motherEmail: data.motherEmail || null,
+  motherOccupation: data.motherOccupation || null,
+  guardianName: data.guardianName || null,
+  guardianPhone: data.guardianPhone ? data.guardianPhone.replace(/\s/g, '') : null,
+  guardianEmail: data.guardianEmail || null,
+  guardianOccupation: data.guardianOccupation || null,
+  
+  // Academic Information - CBC System
+  previousSchool: data.previousSchool.trim(),
+  previousClass: data.previousClass.trim(),
+  
+  // CBC Fields
+  kpseaYear: data.kpseaYear ? parseInt(data.kpseaYear) : null,
+  kpseaIndex: data.kpseaIndex || null,
+  kpseaMarks: data.kpseaMarks ? parseInt(data.kpseaMarks) : null,
+  kjseaGrade: data.kjseaGrade || null,
+  
+  // Keep old fields for backward compatibility
+  kcpeYear: data.kpseaYear ? parseInt(data.kpseaYear) : null,
+  kcpeIndex: data.kpseaIndex || null,
+  kcpeMarks: data.kpseaMarks ? parseInt(data.kpseaMarks) : null,
+  meanGrade: data.kjseaGrade || null,
+  
+  // Medical Information
+  medicalCondition: data.medicalCondition || null,
+  allergies: data.allergies || null,
+  bloodGroup: data.bloodGroup || null,
+  
+  // Extracurricular
+  sportsInterests: data.sportsInterests || null,
+  clubsInterests: data.clubsInterests || null,
+  talents: data.talents || null,
+  
+  // Status
+  applicationNumber: applicationNumber,
+  status: 'PENDING',
+  createdAt: new Date(),
+  updatedAt: new Date()
+};
     
     // Create application in database
     const application = await prisma.admissionApplication.create({
@@ -2431,13 +2481,21 @@ export async function GET(req, { params }) {
       guardianEmail: application.guardianEmail,
       guardianOccupation: application.guardianOccupation,
       
-      // Academic Information
-      previousSchool: application.previousSchool,
-      previousClass: application.previousClass,
-      kcpeYear: application.kcpeYear,
-      kcpeIndex: application.kcpeIndex,
-      kcpeMarks: application.kcpeMarks,
-      meanGrade: application.meanGrade,
+     // Academic Information - CBC System
+previousSchool: application.previousSchool,
+previousClass: application.previousClass,
+
+// New CBC Fields
+kpseaYear: application.kpseaYear || application.kcpeYear,
+kpseaIndex: application.kpseaIndex || application.kcpeIndex,
+kpseaMarks: application.kpseaMarks || application.kcpeMarks,
+kjseaGrade: application.kjseaGrade || application.meanGrade,
+
+// Keep old fields for backward compatibility
+kcpeYear: application.kcpeYear || application.kpseaYear,
+kcpeIndex: application.kcpeIndex || application.kpseaIndex,
+kcpeMarks: application.kcpeMarks || application.kpseaMarks,
+meanGrade: application.meanGrade || application.kjseaGrade,
       
       // Medical Information
       medicalCondition: application.medicalCondition,
@@ -2558,6 +2616,19 @@ export async function PATCH(req) {
     if (data.email) updateData.email = data.email.trim().toLowerCase();
     if (data.phone) updateData.phone = data.phone.replace(/\s/g, '');
     if (data.preferredStream) updateData.preferredStream = data.preferredStream;
+
+
+    // Update CBC fields if provided
+if (data.kpseaYear) updateData.kpseaYear = parseInt(data.kpseaYear);
+if (data.kpseaIndex) updateData.kpseaIndex = data.kpseaIndex;
+if (data.kpseaMarks) updateData.kpseaMarks = parseInt(data.kpseaMarks);
+if (data.kjseaGrade) updateData.kjseaGrade = data.kjseaGrade;
+
+// Also update old fields for backward compatibility
+if (data.kpseaYear) updateData.kcpeYear = parseInt(data.kpseaYear);
+if (data.kpseaIndex) updateData.kcpeIndex = data.kpseaIndex;
+if (data.kpseaMarks) updateData.kcpeMarks = parseInt(data.kpseaMarks);
+if (data.kjseaGrade) updateData.meanGrade = data.kjseaGrade;
     
     // Update status and related fields
     if (data.status) {
