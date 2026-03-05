@@ -591,15 +591,15 @@ const jsonLd = {
 
 
       <Hero />
+
+      <section className="py-8  md:py-16 bg-white">
+
+      <ModernLeadershipSection />
+      </section>
       {/* Modern Achievements & Stats Section */}
       <section className="py-8  md:py-16 bg-white">
         <Why/>
       </section>
-
-
-      <ModernLeadershipSection />
-
-
       <EnhancedEventsSection 
         events={apiData.events}
         onViewAll={handleEventClick}

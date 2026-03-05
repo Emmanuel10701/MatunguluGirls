@@ -6,6 +6,6 @@ export default function robots() {
       allow: '/',
       disallow: ['/api/', '/session/'], // Don't index your session or API routes
     },
-    sitemap: 'https://katwanyaa.vercel.app/sitemap.xml',
+    sitemap: 'https://matungulu-girls.vercel.app/sitemap.xml',
   }
 }
