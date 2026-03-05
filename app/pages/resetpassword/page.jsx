@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
 import {
   LoaderCircle,
   KeyRound,
@@ -11,6 +10,9 @@ import {
   CheckCircle,
   XCircle,
   AlertCircle,
+  Heart,
+  School,
+  ArrowLeft
 } from "lucide-react";
 
 // Create a separate component that uses useSearchParams
@@ -120,15 +122,10 @@ const ResetPasswordContent = () => {
     }
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, staggerChildren: 0.1 } },
-  };
-
   // Helper component for the list items to apply conditional styling
   const ConditionItem = ({ condition, text }) => {
-    const iconClasses = condition ? "text-green-500" : "text-gray-400";
-    const textClasses = condition ? "text-green-300" : "text-gray-400";
+    const iconClasses = condition ? "text-emerald-500" : "text-gray-400";
+    const textClasses = condition ? "text-emerald-300" : "text-gray-400";
 
     return (
       <li className="flex items-center gap-2 py-1">
@@ -144,27 +141,19 @@ const ResetPasswordContent = () => {
 
   // Error message component
   const ErrorMessage = ({ message }) => (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="bg-red-500/20 border border-red-500/50 rounded-xl p-3 sm:p-4 mb-4 sm:mb-6"
-    >
+    <div className="bg-red-500/20 border border-red-500/50 rounded-xl p-3 sm:p-4 mb-4 sm:mb-6">
       <div className="flex items-start sm:items-center gap-2 sm:gap-3">
         <AlertCircle className="text-red-400 shrink-0 mt-0.5 sm:mt-0" size={18} />
         <p className="text-red-300 text-sm sm:text-base">{message}</p>
       </div>
-    </motion.div>
+    </div>
   );
 
   // Success message component
   const SuccessMessage = () => (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      className="text-center py-6 sm:py-8 px-2"
-    >
+    <div className="text-center py-6 sm:py-8 px-2">
       <div className="flex justify-center mb-3 sm:mb-4">
-        <CheckCircle size={48} className="text-green-500 sm:w-16 sm:h-16" />
+        <CheckCircle size={48} className="text-emerald-500 sm:w-16 sm:h-16" />
       </div>
       <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 px-2">
         Password Reset Successful!
@@ -179,21 +168,17 @@ const ResetPasswordContent = () => {
       
       {/* Manual redirect option */}
       <button
-        onClick={() => router.push("/login")}
-        className="mt-4 sm:mt-6 bg-white/20 hover:bg-white/30 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl transition-all duration-300 text-sm sm:text-base w-full sm:w-auto"
+        onClick={() => router.push("/pages/adminLogin")}
+        className="mt-4 sm:mt-6 bg-white/20 hover:bg-white/30 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl transition-colors text-sm sm:text-base w-full sm:w-auto"
       >
         Go to Login Now
       </button>
-    </motion.div>
+    </div>
   );
 
   // No token message component
   const NoTokenMessage = () => (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      className="text-center py-6 sm:py-8 px-2"
-    >
+    <div className="text-center py-6 sm:py-8 px-2">
       <div className="flex justify-center mb-3 sm:mb-4">
         <AlertCircle size={48} className="text-red-500 sm:w-16 sm:h-16" />
       </div>
@@ -204,18 +189,39 @@ const ResetPasswordContent = () => {
         This password reset link is invalid or has expired. Please request a new reset link.
       </p>
       <button
-        onClick={() => router.push("/forgot-password")}
-        className="bg-gradient-to-r from-indigo-500 to-blue-600 hover:from-indigo-600 hover:to-blue-700 text-white px-6 sm:px-8 py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base w-full"
+        onClick={() => router.push("/pages/forgotpassword")}
+        className="bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-700 hover:to-teal-600 text-white px-6 sm:px-8 py-3 rounded-xl font-semibold transition-colors text-sm sm:text-base w-full"
       >
         Request New Reset Link
       </button>
-    </motion.div>
+    </div>
   );
 
   if (!token) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 to-indigo-900 text-white flex items-center justify-center p-3 sm:p-4 font-sans">
-        <div className="w-full max-w-md sm:max-w-xl mx-auto p-4 sm:p-6 md:p-8 lg:p-10 backdrop-blur-lg bg-white/10 rounded-2xl sm:rounded-3xl shadow-xl relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 text-white flex items-center justify-center p-3 sm:p-4 relative overflow-hidden font-sans">
+        {/* Background Elements */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 z-50"></div>
+        <div className="absolute -top-20 -left-20 w-80 h-80 bg-emerald-500/5 rounded-full"></div>
+        <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-teal-500/5 rounded-full"></div>
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: `linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+                            linear-gradient(180deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }}></div>
+
+        {/* Back Button */}
+        <button
+          onClick={() => router.push("/pages/adminLogin")}
+          className="absolute top-4 left-4 sm:top-6 sm:left-6 z-50 flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10 text-white/80 hover:text-white hover:bg-white/10 transition-colors text-xs sm:text-sm"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Back to Login</span>
+        </button>
+
+        <div className="w-full max-w-md sm:max-w-xl mx-auto p-4 sm:p-6 md:p-8 lg:p-10 backdrop-blur-lg bg-white/5 rounded-2xl sm:rounded-3xl shadow-xl relative border border-white/10">
           <NoTokenMessage />
         </div>
       </div>
@@ -223,63 +229,91 @@ const ResetPasswordContent = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-indigo-900 text-white flex items-center justify-center p-3 sm:p-4 font-sans">
-      <motion.div
-        className="w-full max-w-md sm:max-w-xl mx-auto p-4 sm:p-6 md:p-8 lg:p-10 backdrop-blur-lg bg-white/10 rounded-2xl sm:rounded-3xl shadow-xl relative overflow-hidden transform-gpu"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
+    <div className="min-h-screen bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 text-white flex items-center justify-center p-3 sm:p-4 relative overflow-hidden font-sans">
+      {/* Background Elements */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 z-50"></div>
+      <div className="absolute -top-20 -left-20 w-80 h-80 bg-emerald-500/5 rounded-full"></div>
+      <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-teal-500/5 rounded-full"></div>
+      
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 opacity-5" style={{
+        backgroundImage: `linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+                          linear-gradient(180deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+        backgroundSize: '40px 40px'
+      }}></div>
+
+      {/* Back Button */}
+      <button
+        onClick={() => router.push("/pages/adminLogin")}
+        className="absolute top-4 left-4 sm:top-6 sm:left-6 z-50 flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10 text-white/80 hover:text-white hover:bg-white/10 transition-colors text-xs sm:text-sm"
       >
-        {/* Decorative elements - smaller on mobile */}
-        <div className="absolute top-0 left-0 w-16 h-16 sm:w-24 sm:h-24 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
-        <div className="absolute top-0 right-0 w-16 h-16 sm:w-24 sm:h-24 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse" style={{animationDelay: '2000ms'}}></div>
+        <ArrowLeft className="w-4 h-4" />
+        <span>Back to Login</span>
+      </button>
+
+      <div className="w-full max-w-md sm:max-w-xl mx-auto p-4 sm:p-6 md:p-8 lg:p-10 backdrop-blur-lg bg-white/5 rounded-2xl sm:rounded-3xl shadow-xl relative border border-white/10">
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-16 h-16 sm:w-24 sm:h-24 bg-emerald-500/20 rounded-full"></div>
+        <div className="absolute top-0 right-0 w-16 h-16 sm:w-24 sm:h-24 bg-teal-500/20 rounded-full"></div>
 
         {resetSuccess ? (
           <SuccessMessage />
         ) : (
           <>
-            {/* The rest of the UI (title, description) still animates in */}
-            <motion.div className="relative z-10 text-center mb-4 sm:mb-6" variants={containerVariants}>
-              <div className="flex flex-col sm:flex-row items-center justify-center mb-3 sm:mb-4">
-                <div className="flex items-center mb-2 sm:mb-0">
-                  <KeyRound className="text-white w-8 h-8 sm:w-10 sm:h-10 mr-2 sm:mr-3" />
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">
-                    Reset Password
-                  </h1>
+            {/* Header */}
+            <div className="relative z-10 text-center mb-4 sm:mb-6">
+              {/* School Logo */}
+              <div className="flex justify-center mb-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/30">
+                  <School className="text-white w-6 h-6" />
                 </div>
               </div>
-              <p className="text-xs sm:text-sm md:text-base text-gray-300 mb-4 sm:mb-6 px-2">
+
+              <div className="flex flex-col items-center justify-center mb-2">
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight mb-1">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-200">
+                    Matungulu Girls
+                  </span>
+                </h1>
+                <div className="flex items-center gap-2">
+                  <KeyRound className="text-emerald-300 w-5 h-5 sm:w-6 sm:h-6" />
+                  <span className="text-lg sm:text-xl font-bold text-white">Reset Password</span>
+                </div>
+              </div>
+              
+              <p className="text-xs sm:text-sm text-emerald-100/80 mb-3 px-2">
                 Enter your new password below to reset your account password.
               </p>
-              <div className="flex justify-center flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm font-medium mb-6 sm:mb-8">
-                <span className="bg-white/20 text-white px-2 sm:px-3 py-1 rounded-full">#Security</span>
-                <span className="bg-white/20 text-white px-2 sm:px-3 py-1 rounded-full">#AccountRecovery</span>
+              
+              <div className="flex justify-center flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm font-medium mb-4">
+                <span className="bg-emerald-500/20 text-emerald-200 px-2 sm:px-3 py-1 rounded-full border border-emerald-500/30">#Security</span>
+                <span className="bg-emerald-500/20 text-emerald-200 px-2 sm:px-3 py-1 rounded-full border border-emerald-500/30">#AccountRecovery</span>
               </div>
-            </motion.div>
+            </div>
 
             {/* Error Message */}
             {error && <ErrorMessage message={error} />}
 
             <form onSubmit={handleSubmit} className="relative z-10 space-y-4 sm:space-y-6">
               <div>
-                <label className="block text-sm sm:text-base font-medium text-gray-300 mb-1 sm:mb-2">
+                <label className="block text-sm sm:text-base font-medium text-emerald-200 mb-1 sm:mb-2">
                   New Password
                 </label>
-                <div className="relative">
-                  <KeyRound className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
+                <div className="relative group">
+                  <KeyRound className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-emerald-300 w-4 h-4 sm:w-5 sm:h-5" />
                   <input
                     type={showPassword ? "text" : "password"}
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    placeholder="New Password"
-                    className="w-full h-12 sm:h-14 pl-9 sm:pl-12 pr-10 sm:pr-12 bg-white/20 text-white placeholder-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all duration-300 text-sm sm:text-base"
+                    placeholder="Enter new password"
+                    className="w-full h-12 sm:h-14 pl-9 sm:pl-12 pr-10 sm:pr-12 bg-white/10 text-white placeholder-emerald-200/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white/20 transition-colors text-sm sm:text-base border border-white/10"
                     required
                     disabled={loading}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors duration-200"
+                    className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
                     disabled={loading}
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -287,7 +321,7 @@ const ResetPasswordContent = () => {
                 </div>
               </div>
 
-              <div className="text-sm space-y-1 sm:space-y-2 p-3 sm:p-4 rounded-xl backdrop-blur-sm bg-white/10">
+              <div className="text-sm space-y-1 sm:space-y-2 p-3 sm:p-4 rounded-xl backdrop-blur-sm bg-white/5 border border-white/10">
                 <h3 className="text-base sm:text-lg font-bold text-white mb-1 sm:mb-2">
                   Password Requirements:
                 </h3>
@@ -298,17 +332,17 @@ const ResetPasswordContent = () => {
                 </ul>
                 
                 <div className="mt-4 sm:mt-6">
-                  <label className="block text-sm sm:text-base font-medium text-gray-300 mb-1 sm:mb-2">
+                  <label className="block text-sm sm:text-base font-medium text-emerald-200 mb-1 sm:mb-2">
                     Confirm Password
                   </label>
                   <div className="relative">
-                    <KeyRound className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
+                    <KeyRound className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-emerald-300 w-4 h-4 sm:w-5 sm:h-5" />
                     <input
                       type={showPassword ? "text" : "password"}
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
-                      placeholder="Confirm Password"
-                      className="w-full h-12 sm:h-14 pl-9 sm:pl-12 pr-10 sm:pr-12 bg-white/20 text-white placeholder-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all duration-300 text-sm sm:text-base"
+                      placeholder="Confirm new password"
+                      className="w-full h-12 sm:h-14 pl-9 sm:pl-12 pr-4 bg-white/10 text-white placeholder-emerald-200/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white/20 transition-colors text-sm sm:text-base border border-white/10"
                       required
                       disabled={loading}
                     />
@@ -320,14 +354,14 @@ const ResetPasswordContent = () => {
                 </div>
               </div>
 
-              <motion.div variants={containerVariants}>
+              <div>
                 <button
                   type="submit"
                   disabled={loading || !hasMinLength || !hasNumber || !hasLetter || !passwordsMatch}
-                  className={`w-full h-12 sm:h-14 rounded-xl text-white font-semibold transition-all duration-300 ${
+                  className={`w-full h-12 sm:h-14 rounded-xl text-white font-semibold transition-colors ${
                     loading || !hasMinLength || !hasNumber || !hasLetter || !passwordsMatch
-                      ? "bg-indigo-400 cursor-not-allowed"
-                      : "bg-gradient-to-r from-indigo-500 to-blue-600 hover:from-indigo-600 hover:to-blue-700"
+                      ? "bg-emerald-600/50 cursor-not-allowed"
+                      : "bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-700 hover:to-teal-600 shadow-lg shadow-emerald-500/30"
                   } text-sm sm:text-base`}
                 >
                   {loading ? (
@@ -339,27 +373,61 @@ const ResetPasswordContent = () => {
                     <span>Reset Password</span>
                   )}
                 </button>
-              </motion.div>
+              </div>
             </form>
+
+            {/* School Motto */}
+            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-2">
+              <Heart className="w-3 h-3 text-emerald-400" />
+              <span className="text-[10px] sm:text-xs text-emerald-200/60">Prayer, Discipline & Hardwork</span>
+            </div>
           </>
         )}
-      </motion.div>
+      </div>
     </div>
   );
 };
 
 // Main component with Suspense boundary
 const ResetPasswordPage = () => {
+  const router = useRouter();
+  
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 to-indigo-900 text-white flex items-center justify-center p-3 sm:p-4">
-        <div className="w-full max-w-md sm:max-w-xl mx-auto p-4 sm:p-6 md:p-8 lg:p-10 backdrop-blur-lg bg-white/10 rounded-2xl sm:rounded-3xl shadow-xl relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 text-white flex items-center justify-center p-3 sm:p-4 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 z-50"></div>
+        <div className="absolute -top-20 -left-20 w-80 h-80 bg-emerald-500/5 rounded-full"></div>
+        <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-teal-500/5 rounded-full"></div>
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: `linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+                            linear-gradient(180deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }}></div>
+
+        <button
+          onClick={() => router.push("/pages/adminLogin")}
+          className="absolute top-4 left-4 sm:top-6 sm:left-6 z-50 flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10 text-white/80 hover:text-white hover:bg-white/10 transition-colors text-xs sm:text-sm"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Back to Login</span>
+        </button>
+
+        <div className="w-full max-w-md sm:max-w-xl mx-auto p-4 sm:p-6 md:p-8 lg:p-10 backdrop-blur-lg bg-white/5 rounded-2xl sm:rounded-3xl shadow-xl relative border border-white/10">
           <div className="text-center py-6 sm:py-8">
             <div className="flex justify-center mb-3 sm:mb-4">
               <LoaderCircle className="animate-spin text-white w-10 h-10 sm:w-12 sm:h-12" size={48} />
             </div>
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">Loading...</h2>
             <p className="text-gray-300 text-sm sm:text-base">Checking reset link validity</p>
+            
+            {/* School Motto */}
+            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-2">
+              <Heart className="w-3 h-3 text-emerald-400" />
+              <span className="text-[10px] sm:text-xs text-emerald-200/60">Strive to Excell</span>
+            </div>
           </div>
         </div>
       </div>

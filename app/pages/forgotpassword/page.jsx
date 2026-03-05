@@ -284,10 +284,11 @@ const ForgotPasswordPage = () => {
           </p>
         </div>
 
-      <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-2 bg-slate-900/90 backdrop-blur-md rounded-full border border-white/10">
-             <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-400" />
-             <span className="text-[10px] sm:text-xs font-bold text-white">Strive to Excell</span>
-           </div>
+   {/* School Motto */}
+            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-2">
+              <Heart className="w-3 h-3 text-emerald-400" />
+              <span className="text-[10px] sm:text-xs text-emerald-200/60">Strive to Excell</span>
+            </div>
       </div>
     </div>
   );
