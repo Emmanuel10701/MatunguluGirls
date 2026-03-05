@@ -57,25 +57,25 @@ const date = new Date(); // Add this line!
 
           {/* Refined Title - Significantly Smaller & Tighter */}
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-6 tracking-tighter leading-none">
-            Matungulu Girls <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-emerald-300 to-white/70">High School.</span>
+            Matungulu Girls <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-white/70">High School.</span>
           </h1>
 
           {/* Expanded Rich Description */}
           <div className="max-w-3xl mx-auto space-y-6 mb-12">
             <p className="text-sm md:text-base text-slate-200 font-medium leading-relaxed mb-8">
-              Since 1998, a cornerstone of <span className="text-amber-400">academic distinction</span>, 
+              Since 1998, a cornerstone of <span className="text-emerald-400">academic distinction</span>, 
               crafting a holistic pathway for future  leaders.
             </p>
 
             <div className="grid md:grid-cols-2 gap-6 text-left border-y border-white/10 py-8">
               <div className="space-y-2">
-                <h4 className="text-amber-400 font-black text-[10px] uppercase tracking-widest">Why Us</h4>
+                <h4 className="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Why Us</h4>
                 <p className="text-sm text-slate-300 leading-relaxed">
                   We leverage modern STEM-based learning and state-of-the-art digital infrastructure to ensure our students are not just competitive, but are the innovators of tomorrow's global economy.
                 </p>
               </div>
               <div className="space-y-2">
-                <h4 className="text-amber-400 font-black text-[10px] uppercase tracking-widest">Core Excellence</h4>
+                <h4 className="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Core Excellence</h4>
                 <p className="text-sm text-slate-300 leading-relaxed">
                   Beyond the classroom, our community thrives on character development, sports leadership, and artistic expression, fostering well-rounded individuals ready for university and beyond.
                 </p>
@@ -91,7 +91,7 @@ const date = new Date(); // Add this line!
 <div className="flex flex-row gap-2 sm:gap-4 justify-center items-center w-full px-2">
   
   <Link href="/pages/apply-for-admissions" passHref className="flex-1 sm:flex-none">
-    <button className="w-full sm:w-auto px-4 sm:px-10 py-3 bg-gradient-to-r from-amber-500 to-emerald-600 text-white text-[11px] sm:text-sm font-black rounded-xl sm:rounded-2xl shadow-lg shadow-emerald-900/20 flex items-center justify-center gap-2 transition-transform active:scale-95 whitespace-nowrap">
+    <button className="w-full sm:w-auto px-4 sm:px-10 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white text-[11px] sm:text-sm font-black rounded-xl sm:rounded-2xl shadow-lg shadow-emerald-900/20 flex items-center justify-center gap-2 transition-transform active:scale-95 whitespace-nowrap">
       Admission <ArrowRight size={16} className="shrink-0" />
     </button>
   </Link>
@@ -126,7 +126,7 @@ const date = new Date(); // Add this line!
 
         <div className="relative z-10 w-full">
           {/* Icon Container - Scaled for mobile */}
-          <div className="w-9 h-9 sm:w-12 sm:h-12 bg-gradient-to-br from-emerald-500 to-amber-500 rounded-xl sm:rounded-2xl text-white flex items-center justify-center mb-3 sm:mb-6 shadow-lg shadow-emerald-900/20">
+          <div className="w-9 h-9 sm:w-12 sm:h-12 bg-gradient-to-br from-emerald-500 to-emerald-500 rounded-xl sm:rounded-2xl text-white flex items-center justify-center mb-3 sm:mb-6 shadow-lg shadow-emerald-900/20">
             {React.cloneElement(stat.icon, { size: 16, className: "sm:w-[20px] sm:h-[20px]" })}
           </div>
           
@@ -176,11 +176,11 @@ const date = new Date(); // Add this line!
       <div className="grid gap-3 sm:gap-4 text-left">
         {[
           { title: "Elite Faculty", icon: <Target size={18} />, desc: "Mentors from world-class institutions.", color: "emerald" },
-          { title: "Holistic Growth", icon: <Zap size={18} />, desc: "Emotional intelligence and academic mastery.", color: "amber" },
+          { title: "Holistic Growth", icon: <Zap size={18} />, desc: "Emotional intelligence and academic mastery.", color: "emerald" },
           { title: "Infrastructure", icon: <Globe size={18} />, desc: "Smart classrooms and collaborative labs.", color: "emerald" }
         ].map((item, i) => (
           <div key={i} className="group flex gap-4 p-4 sm:p-6 rounded-2xl bg-slate-50 border border-transparent transition-all hover:bg-white hover:shadow-xl hover:shadow-emerald-900/5 hover:border-slate-100">
-            <div className={`shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl ${i % 2 === 0 ? 'bg-emerald-600' : 'bg-amber-600'} text-white flex items-center justify-center shadow-lg transition-transform `}>
+            <div className={`shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl ${i % 2 === 0 ? 'bg-emerald-600' : 'bg-emerald-600'} text-white flex items-center justify-center shadow-lg transition-transform `}>
               {item.icon}
             </div>
             <div>
@@ -194,7 +194,7 @@ const date = new Date(); // Add this line!
 
     {/* Right Side: Image Container */}
     <div className="relative order-1 lg:order-2 group px-2 sm:px-0">
-      <div className="absolute -inset-6 bg-gradient-to-tr from-emerald-100 to-amber-100 rounded-full opacity-40 blur-3xl -z-10"></div>
+      <div className="absolute -inset-6 bg-gradient-to-tr from-emerald-100 to-emerald-100 rounded-full opacity-40 blur-3xl -z-10"></div>
       
 <div className="relative group px-2">
  <div className="relative group px-2">
@@ -251,7 +251,7 @@ MatG        </div>
 
 {/* Mission Section */}
 <section className="py-12 sm:py-20 px-3 sm:px-8 max-w-7xl mx-auto">
-  <div className="bg-gradient-to-br from-emerald-50 to-amber-50 rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-16 overflow-hidden">
+  <div className="bg-gradient-to-br from-emerald-50 to-emerald-50 rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-16 overflow-hidden">
     <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
       
     <div className="relative group px-2">
@@ -308,7 +308,7 @@ MatG        </div>
         </h2>
         <h3 className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-4 sm:mb-6 leading-[1.2]">
           Fostering Excellence <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-amber-600">Through Innovation.</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-emerald-600">Through Innovation.</span>
         </h3>
         <p className="text-slate-600 text-sm sm:text-lg mb-8 sm:mb-10 leading-relaxed font-medium">
           We provide a supportive environment where students lead with integrity.
@@ -448,12 +448,12 @@ MatG        </div>
 </section>
 
       {/* Location Section */}
-<section className="py-12 sm:py-24 bg-gradient-to-br from-emerald-50 to-amber-50 overflow-hidden">
+<section className="py-12 sm:py-24 bg-gradient-to-br from-emerald-50 to-emerald-50 overflow-hidden">
   <div className="max-w-7xl mx-auto px-4 sm:px-6">
     <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
       
       {/* 1. Contact Card - High Contrast & Mobile Responsive */}
-      <div className="lg:col-span-4 group relative overflow-hidden bg-gradient-to-br from-emerald-600 to-amber-600 p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-emerald-200/50 flex flex-col justify-between transition-all duration-500 hover:-translate-y-2">
+      <div className="lg:col-span-4 group relative overflow-hidden bg-gradient-to-br from-emerald-600 to-emerald-600 p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-emerald-200/50 flex flex-col justify-between transition-all duration-500 hover:-translate-y-2">
         
         {/* Decorative background circle - scaled for mobile */}
         <div className="absolute -top-10 -right-10 w-40 h-40 sm:w-64 sm:h-64 bg-emerald-500 rounded-full opacity-40 transition-transform duration-700 "></div>
@@ -536,7 +536,7 @@ MatG        </div>
 </section>
 
       {/* Modern Institutional Section - Refined Small Text Edition */}
-      <section className="py-12 sm:py-20 px-4 sm:px-6 overflow-hidden bg-gradient-to-br from-emerald-950 via-amber-950 to-red-950">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-950 to-red-950">
         <div className="relative w-full bg-[#1a0f0a] rounded-[2rem] md:rounded-[3.5rem] p-8 sm:p-6 md:p-16 text-center border border-white/5 shadow-2xl overflow-hidden">
         
           {/* Small Refined Icon */}
@@ -549,7 +549,7 @@ MatG        </div>
           <div className="relative z-10 w-full">
             {/* Title - Reduced to Original Proportions */}
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-black text-white mb-6 md:mb-10 tracking-tighter leading-[1.1] md:leading-[0.95] max-w-4xl mx-auto">
-              Integrity & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-emerald-300 to-white/70">Wellbeing.</span>
+              Integrity & <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-white/70">Wellbeing.</span>
             </h2>
             
             {/* Info Grid - Text sizes back to sm/base */}
@@ -569,8 +569,8 @@ MatG        </div>
 
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <div className="w-1 h-4 bg-amber-500 rounded-full" />
-                  <h4 className="text-amber-400 font-black text-[10px] uppercase tracking-[0.2em]">Guidance & Counselling</h4>
+                  <div className="w-1 h-4 bg-emerald-500 rounded-full" />
+                  <h4 className="text-emerald-400 font-black text-[10px] uppercase tracking-[0.2em]">Guidance & Counselling</h4>
                 </div>
                 <p className="text-white text-base md:text-lg leading-tight font-bold">
                   Nurturing the mind beyond the classroom.

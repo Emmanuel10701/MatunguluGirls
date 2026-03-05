@@ -192,7 +192,7 @@ export default function TermsAndConditions() {
           {/* School Logo and Info */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
             <div className="text-center md:text-left">
-              <div className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-emerald-100 to-amber-100 rounded-2xl border border-emerald-200 mb-3">
+              <div className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-emerald-100 to-emerald-100 rounded-2xl border border-emerald-200 mb-3">
                 <div className="w-8 h-8 bg-gradient-to-r from-emerald-600/95 via-teal-600/95 to-slate-600/95  rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">MI</span>
                 </div>
@@ -277,7 +277,7 @@ export default function TermsAndConditions() {
                 className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
                 {/* Term Header with Gradient */}
-                <div className="bg-gradient-to-r from-emerald-600 to-amber-600 p-4 sm:p-6 text-white">
+                <div className="bg-gradient-to-r from-emerald-600 to-emerald-600 p-4 sm:p-6 text-white">
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="flex items-center gap-2 mb-2">
@@ -341,7 +341,7 @@ export default function TermsAndConditions() {
                 <p className="text-slate-600 mb-4">Try searching with different keywords or browse all sections</p>
                 <button
                   onClick={() => setSearchTerm("")}
-                  className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-amber-600 text-white rounded-lg font-bold hover:opacity-90 transition-opacity"
+                  className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-emerald-600 text-white rounded-lg font-bold hover:opacity-90 transition-opacity"
                 >
                   Show All Rules
                 </button>
@@ -436,7 +436,7 @@ export default function TermsAndConditions() {
         {/* Footer */}
         <div className="mt-12 pt-8 border-t border-slate-200">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-gradient-to-br from-emerald-50 to-amber-50 rounded-2xl p-4 border border-emerald-100">
+            <div className="bg-gradient-to-br from-emerald-50 to-emerald-50 rounded-2xl p-4 border border-emerald-100">
               <h4 className="font-bold text-emerald-900 mb-2">Important Notice</h4>
               <p className="text-sm text-slate-700">These rules are binding for all students. Parents/guardians must ensure students understand and comply.</p>
             </div>
