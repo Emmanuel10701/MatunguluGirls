@@ -50,13 +50,13 @@ const MatunguluGirlAdmission = () => {
     guardianEmail: '',
     guardianOccupation: '',
     
-    // Academic Information
-    previousSchool: '',
-    previousClass: '',
-    kcpeYear: '',
-    kcpeIndex: '',
-    kcpeMarks: '',
-    meanGrade: '',
+// Academic Information - CBC System
+previousSchool: '',
+previousClass: '',
+kpseaYear: '',          // Changed from kcpeYear
+kpseaIndex: '',         // Changed from kcpeIndex  
+kpseaMarks: '',         // Changed from kcpeMarks
+kjseaGrade: '',         // Changed from meanGrade
     
     // Medical Information
     medicalCondition: '',
@@ -180,10 +180,10 @@ const MatunguluGirlAdmission = () => {
           showModernNotification('Please fill all required academic information fields', 'error');
           return false;
         }
-        if (formData.kcpeMarks && (parseInt(formData.kcpeMarks) < 0 || parseInt(formData.kcpeMarks) > 500)) {
-          showModernNotification('KCPE marks must be between 0 and 500', 'error');
-          return false;
-        }
+          if (formData.kpseaMarks && (parseInt(formData.kpseaMarks) < 0 || parseInt(formData.kpseaMarks) > 100)) {
+        showModernNotification('KPSEA marks must be between 0 and 100', 'error');
+        return false;
+      }
         return true;
       default:
         return true;
@@ -1196,93 +1196,145 @@ const MatunguluGirlAdmission = () => {
           </div>
         </div>
 
-        {/* KCPE Results */}
-        <div className="space-y-4 sm:space-y-6">
-          <div className="bg-gradient-to-br from-yellow-50 to-amber-100 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-yellow-200">
-            <h3 className="text-base sm:text-lg md:text-xl font-semibold text-yellow-800 mb-3 sm:mb-4 flex items-center">
-              <FiAward className="mr-2" /> KCPE Results (If Applicable)
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-              <div className="space-y-1 sm:space-y-2">
-                <label className="block text-sm sm:text-base font-semibold text-gray-800">
-                  KCPE Year
-                </label>
-                <input
-                  type="number"
-                  name="kcpeYear"
-                  value={formData.kcpeYear}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all text-gray-800 font-bold"
-                  placeholder="2024"
-                  min="2000"
-                  max="2025"
-                />
-              </div>
+{/* CBC Assessment Results */}
+<div className="space-y-4 sm:space-y-6">
+  <div className="bg-gradient-to-br from-emerald-50 to-teal-100 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-emerald-200">
+    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-emerald-800 mb-3 sm:mb-4 flex items-center">
+      <FiAward className="mr-2" /> CBC Assessment Results
+    </h3>
+    
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+      <div className="space-y-1 sm:space-y-2">
+        <label className="block text-sm sm:text-base font-semibold text-gray-800">
+          KPSEA Year
+        </label>
+        <input
+          type="number"
+          name="kpseaYear"
+          value={formData.kpseaYear}
+          onChange={handleChange}
+          className="w-full px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all text-gray-800 font-bold"
+          placeholder="2025"
+          min="2020"
+          max="2030"
+        />
+      </div>
 
-              <div className="space-y-1 sm:space-y-2">
-                <label className="block text-sm sm:text-base font-semibold text-gray-800">
-                  KCPE Index
-                </label>
-                <input
-                  type="text"
-                  name="kcpeIndex"
-                  value={formData.kcpeIndex}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all text-gray-800 font-bold"
-                  placeholder="12345678901"
-                />
-              </div>
+      <div className="space-y-1 sm:space-y-2">
+        <label className="block text-sm sm:text-base font-semibold text-gray-800">
+          Assessment Number
+        </label>
+        <input
+          type="text"
+          name="kpseaIndex"
+          value={formData.kpseaIndex}
+          onChange={handleChange}
+          className="w-full px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all text-gray-800 font-bold"
+          placeholder="CBC/2025/001"
+        />
+      </div>
 
-              <div className="space-y-1 sm:space-y-2">
-                <label className="block text-sm sm:text-base font-semibold text-gray-800">
-                  KCPE Marks
-                </label>
-                <input
-                  type="number"
-                  name="kcpeMarks"
-                  value={formData.kcpeMarks}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all text-gray-800 font-bold"
-                  placeholder="0-500"
-                  min="0"
-                  max="500"
-                />
-                {formData.kcpeMarks && (
-                  <div className="mt-2">
-                    <div className="w-full bg-gray-200 rounded-full h-1.5 sm:h-2">
-                      <div 
-                        className="bg-gradient-to-r from-yellow-500 to-orange-500 h-1.5 sm:h-2 rounded-full"
-                        style={{ width: `${(formData.kcpeMarks / 500) * 100}%` }}
-                      ></div>
-                    </div>
-                    <p className="text-xs sm:text-sm text-gray-600 mt-1 text-right font-semibold">
-                      {formData.kcpeMarks}/500 ({((formData.kcpeMarks / 500) * 100).toFixed(1)}%)
-                    </p>
-                  </div>
-                )}
-              </div>
+      <div className="space-y-1 sm:space-y-2">
+        <label className="block text-sm sm:text-base font-semibold text-gray-800">
+          KPSEA Score (0-100)
+        </label>
+        <input
+          type="number"
+          name="kpseaMarks"
+          value={formData.kpseaMarks}
+          onChange={handleChange}
+          className="w-full px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all text-gray-800 font-bold"
+          placeholder="0-100"
+          min="0"
+          max="100"
+          step="0.1"
+        />
+        {formData.kpseaMarks && (
+          <div className="mt-2">
+            <div className="flex justify-between text-[9px] font-bold text-gray-500 mb-1">
+              <span>Below (0-27)</span>
+              <span>Approaching (28-51)</span>
+              <span>Meeting (52-75)</span>
+              <span>Exceeding (76-100)</span>
             </div>
-            
-            <div className="mt-4 sm:mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-              <div className="space-y-1 sm:space-y-2">
-                <label className="block text-sm sm:text-base font-semibold text-gray-800">
-                  Mean Grade
-                </label>
-                <select
-                  name="meanGrade"
-                  value={formData.meanGrade}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all text-gray-800 font-bold"
-                >
-                  <option value="" className="text-gray-400">Select Grade</option>
-                  {meanGrades.map(grade => (
-                    <option key={grade} value={grade} className="text-gray-800">{grade}</option>
-                  ))}
-                </select>
-              </div>
+            <div className="w-full bg-gray-200 rounded-full h-2">
+              <div 
+                className={`h-2 rounded-full ${
+                  formData.kpseaMarks >= 76 ? 'bg-emerald-500' :
+                  formData.kpseaMarks >= 52 ? 'bg-blue-500' :
+                  formData.kpseaMarks >= 28 ? 'bg-yellow-500' :
+                  'bg-red-500'
+                }`}
+                style={{ width: `${formData.kpseaMarks}%` }}
+              ></div>
             </div>
+            <p className="text-xs sm:text-sm text-gray-600 mt-1 text-right font-semibold">
+              {formData.kpseaMarks}/100 points
+            </p>
           </div>
+        )}
+      </div>
+    </div>
+    
+    <div className="mt-4 sm:mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+      <div className="space-y-1 sm:space-y-2">
+        <label className="block text-sm sm:text-base font-semibold text-gray-800">
+          KJSEA Grade (Junior Secondary)
+        </label>
+        <select
+          name="kjseaGrade"
+          value={formData.kjseaGrade}
+          onChange={handleChange}
+          className="w-full px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all text-gray-800 font-bold"
+        >
+          <option value="">Select Grade Level</option>
+          <option value="7 - ADV">Level 7 - Advanced (81-100%)</option>
+          <option value="6 - PRF">Level 6 - Proficient (71-80%)</option>
+          <option value="5 - DEV">Level 5 - Developing (61-70%)</option>
+          <option value="4 - APR">Level 4 - Approaching (51-60%)</option>
+          <option value="3 - NOV">Level 3 - Novice (40-50%)</option>
+          <option value="2 - BEG">Level 2 - Beginning (30-39%)</option>
+          <option value="1 - N/A">Level 1 - Needs Improvement (0-29%)</option>
+        </select>
+      </div>
+    </div>
+
+    {/* Grade Scale Reference */}
+    <div className="mt-4 bg-white/80 rounded-lg p-3 border border-emerald-100">
+      <p className="text-xs font-bold text-emerald-700 mb-2 uppercase tracking-wider">CBC Grade Scale Reference</p>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-[9px]">
+        <div className="bg-emerald-100 text-emerald-800 p-2 rounded text-center font-bold">
+          <div>Level 7 - ADV</div>
+          <div className="text-[8px]">81-100%</div>
         </div>
+        <div className="bg-emerald-100 text-emerald-800 p-2 rounded text-center font-bold">
+          <div>Level 6 - PRF</div>
+          <div className="text-[8px]">71-80%</div>
+        </div>
+        <div className="bg-emerald-100 text-emerald-800 p-2 rounded text-center font-bold">
+          <div>Level 5 - DEV</div>
+          <div className="text-[8px]">61-70%</div>
+        </div>
+        <div className="bg-emerald-100 text-emerald-800 p-2 rounded text-center font-bold">
+          <div>Level 4 - APR</div>
+          <div className="text-[8px]">51-60%</div>
+        </div>
+        <div className="bg-amber-100 text-amber-800 p-2 rounded text-center font-bold">
+          <div>Level 3 - NOV</div>
+          <div className="text-[8px]">40-50%</div>
+        </div>
+        <div className="bg-amber-100 text-amber-800 p-2 rounded text-center font-bold">
+          <div>Level 2 - BEG</div>
+          <div className="text-[8px]">30-39%</div>
+        </div>
+        <div className="bg-red-100 text-red-800 p-2 rounded text-center font-bold md:col-span-2">
+          <div>Level 1 - Needs Improvement</div>
+          <div className="text-[8px]">0-29%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
         {/* Medical and Interests - Stacked on mobile, 3 columns on desktop */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">

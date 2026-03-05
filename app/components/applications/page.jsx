@@ -328,18 +328,18 @@ const ApplicationDetailModal = ({ application, open, onClose }) => {
         { label: "Guardian's Occupation", value: application.guardianOccupation || "Not provided" },
       ]
     },
-    {
-      title: "Academic Information",
-      icon: <GraduationCap className="w-5 h-5" />,
-      fields: [
-        { label: "Previous School", value: application.previousSchool },
-        { label: "Previous Class", value: application.previousClass },
-        { label: "KCPE Year", value: application.kcpeYear },
-        { label: "KCPE Index", value: application.kcpeIndex },
-        { label: "KCPE Marks", value: `${application.kcpeMarks || 0} / 500`, highlight: true },
-        { label: "Mean Grade", value: application.meanGrade || "Not provided" },
-      ]
-    },
+{
+  title: "CBC Assessment Results",
+  icon: <GraduationCap className="w-5 h-5" />,
+  fields: [
+    { label: "Previous School", value: application.previousSchool },
+    { label: "Previous Grade", value: application.previousClass },
+    { label: "KPSEA Year", value: application.kcpeYear || application.kpseaYear || "Not provided" },
+    { label: "Assessment Number", value: application.kcpeIndex || application.kpseaIndex || "Not provided" },
+    { label: "KPSEA Score", value: application.kcpeMarks ? `${application.kcpeMarks}/100` : "Not provided", highlight: true },
+    { label: "KJSEA Grade", value: application.meanGrade || application.kjseaGrade || "Not provided" },
+  ]
+},
     {
       title: "Health & Interests",
       icon: <Heart className="w-5 h-5" />,
@@ -452,13 +452,12 @@ const ApplicationDetailModal = ({ application, open, onClose }) => {
       {/* Footer */}
       <div className="p-4 border-t border-gray-100 bg-gradient-to-r from-gray-50 to-gray-100/50">
         <div className="flex items-center justify-between">
-          <div className="text-sm text-gray-600">
-            <span className="font-medium">Application Score: </span>
-            <span className="font-bold text-blue-600">
-              {/* You can add a scoring function here */}
-              {application.kcpeMarks ? `${Math.round((application.kcpeMarks / 500) * 100)}%` : 'Not calculated'}
-            </span>
-          </div>
+<div className="text-sm text-gray-600">
+  <span className="font-medium">Application Score: </span>
+  <span className="font-bold text-emerald-600">
+    {application.kcpeMarks ? `${application.kcpeMarks}/100` : 'Not calculated'}
+  </span>
+</div>
           <div className="flex gap-2">
             <button
               onClick={onClose}
@@ -618,15 +617,14 @@ const [decisionData, setDecisionData] = useState({
     }
   ]
   
-  // Table columns
-  const columns = [
-    { key: 'select', label: '', width: 'w-12' },
-    { key: 'applicant', label: 'Applicant', width: 'w-48' },
-    { key: 'kcpeMarks', label: 'KCPE Score', width: 'w-28' },
-    { key: 'status', label: 'Status', width: 'w-36' },
-    { key: 'submitted', label: 'Submitted', width: 'w-36' },
-    { key: 'actions', label: 'Actions', width: 'w-24' }
-  ]
+const columns = [
+  { key: 'select', label: '', width: 'w-12' },
+  { key: 'applicant', label: 'Applicant', width: 'w-48' },
+  { key: 'kcpeMarks', label: 'KPSEA Score', width: 'w-28' }, // Changed from KJSEA % to KPSEA Score
+  { key: 'status', label: 'Status', width: 'w-36' },
+  { key: 'submitted', label: 'Submitted', width: 'w-36' },
+  { key: 'actions', label: 'Actions', width: 'w-24' }
+]
   
   // Helper function to group applications by date
   const groupApplicationsByDate = (apps) => {
@@ -837,22 +835,20 @@ const [decisionData, setDecisionData] = useState({
     return filtered
   }, [applications, searchTerm, filterStatus, startDate, endDate, activeView, sortBy, topPerformersFilter, minMarks, maxMarks])
   
-    // Calculate top performers stats
-  const topPerformersStats = useMemo(() => {
-    const marks = applications.map(a => a.kcpeMarks || 0).filter(m => m > 0)
-    if (marks.length === 0) return { average: 0, highest: 0, lowest: 0, top10Threshold: 0 }
-    
-    marks.sort((a, b) => b - a)
-    return {
-      average: Math.round(marks.reduce((a, b) => a + b, 0) / marks.length),
-      highest: marks[0] || 0,
-      lowest: marks[marks.length - 1] || 0,
-      top10Threshold: marks[Math.floor(marks.length * 0.1)] || 0,
-      top25Threshold: marks[Math.floor(marks.length * 0.25)] || 0,
-      top50Threshold: marks[Math.floor(marks.length * 0.5)] || 0
-    }
-  }, [applications])
-
+const topPerformersStats = useMemo(() => {
+  const marks = applications.map(a => a.kcpeMarks || 0).filter(m => m > 0)
+  if (marks.length === 0) return { average: 0, highest: 0, lowest: 0, top10Threshold: 0 }
+  
+  marks.sort((a, b) => b - a)
+  return {
+    average: Math.round(marks.reduce((a, b) => a + b, 0) / marks.length),
+    highest: marks[0] || 0,
+    lowest: marks[marks.length - 1] || 0,
+    top10Threshold: marks[Math.floor(marks.length * 0.1)] || 0,
+    top25Threshold: marks[Math.floor(marks.length * 0.25)] || 0,
+    top50Threshold: marks[Math.floor(marks.length * 0.5)] || 0
+  }
+}, [applications])
 
   // Group filtered applications by date
   const groupedApplications = useMemo(() => {
@@ -1299,19 +1295,19 @@ const deleteApplications = async () => {
 };
   // Export applications
   const exportApplications = () => {
-    const dataToExport = filteredApplications.map(app => ({
-      'Application Number': app.applicationNumber,
-      'First Name': app.firstName,
-      'Last Name': app.lastName,
-      'Email': app.email,
-      'Phone': app.phone,
-      'KCPE Marks': app.kcpeMarks,
-      'Preferred Stream': app.preferredStream,
-      'Status': app.status,
-      'Submitted Date': formatDate(app.createdAt),
-      'County': app.county,
-      'Previous School': app.previousSchool
-    }))
+  const dataToExport = filteredApplications.map(app => ({
+    'Application Number': app.applicationNumber,
+    'First Name': app.firstName,
+    'Last Name': app.lastName,
+    'Email': app.email,
+    'Phone': app.phone,
+    'KPSEA Score': app.kcpeMarks,  // ← CHANGE THIS LINE
+    'Preferred Stream': app.preferredStream,
+    'Status': app.status,
+    'Submitted Date': formatDate(app.createdAt),
+    'County': app.county,
+    'Previous School': app.previousSchool
+  }))
     
     const csvContent = [
       Object.keys(dataToExport[0] || {}).join(','),
@@ -1843,49 +1839,35 @@ const EmptyState = () => (
 
 
 
-            {/* NEW: Custom Marks Range Inputs (shown only when custom is selected) */}
-            {topPerformersFilter === 'custom' && (
-              <div className="flex items-center gap-2 bg-gradient-to-r from-amber-50/50 to-amber-50/30 p-2 rounded-2xl border border-amber-200/20 animate-in fade-in slide-in-from-left-4 duration-300">
-                <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-amber-500 font-bold text-xs">Min</span>
-                  <input
-                    type="number"
-                    value={minMarks}
-                    onChange={(e) => setMinMarks(e.target.value)}
-                    placeholder="0"
-                    min="0"
-                    max="500"
-                    className="
-                      pl-12 pr-3 py-2.5 w-28
-                      bg-white border border-amber-200 rounded-xl
-                      text-xs font-bold text-gray-700
-                      focus:outline-none focus:ring-2 focus:ring-amber-500/30
-                      transition-all
-                    "
-                  />
-                </div>
-                <span className="text-amber-400 font-bold">-</span>
-                <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-amber-500 font-bold text-xs">Max</span>
-                  <input
-                    type="number"
-                    value={maxMarks}
-                    onChange={(e) => setMaxMarks(e.target.value)}
-                    placeholder="500"
-                    min="0"
-                    max="500"
-                    className="
-                      pl-12 pr-3 py-2.5 w-28
-                      bg-white border border-amber-200 rounded-xl
-                      text-xs font-bold text-gray-700
-                      focus:outline-none focus:ring-2 focus:ring-amber-500/30
-                      transition-all
-                    "
-                  />
-                </div>
-              </div>
-            )}
-
+{topPerformersFilter === 'custom' && (
+  <div className="flex items-center gap-2 bg-gradient-to-r from-amber-50/50 to-amber-50/30 p-2 rounded-2xl border border-amber-200/20 animate-in fade-in slide-in-from-left-4 duration-300">
+    <div className="relative">
+      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-amber-500 font-bold text-xs">Min</span>
+      <input
+        type="number"
+        value={minMarks}
+        onChange={(e) => setMinMarks(e.target.value)}
+        placeholder="0"
+        min="0"
+        max="100" 
+        className="pl-12 pr-3 py-2.5 w-28 bg-white border border-amber-200 rounded-xl text-xs font-bold text-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
+      />
+    </div>
+    <span className="text-amber-400 font-bold">-</span>
+    <div className="relative">
+      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-amber-500 font-bold text-xs">Max</span>
+      <input
+        type="number"
+        value={maxMarks}
+        onChange={(e) => setMaxMarks(e.target.value)}
+        placeholder="100"
+        min="0"
+        max="100"  
+        className="pl-12 pr-3 py-2.5 w-28 bg-white border border-amber-200 rounded-xl text-xs font-bold text-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
+      />
+    </div>
+  </div>
+)}
 
       {/* NEW: Top Performers Filter */}
       <div className="relative flex-1 min-w-[160px] sm:flex-none group">
@@ -2015,29 +1997,29 @@ const EmptyState = () => (
         {/* NEW: Top Performers Stats Summary */}
         {(topPerformersFilter === 'top10' || topPerformersFilter === 'top25' || topPerformersFilter === 'top50' || topPerformersFilter === 'custom') && (
           <div className="mt-4 pt-4 border-t border-gray-200/50 animate-in fade-in slide-in-from-bottom-2 duration-300">
-            <div className="flex items-center gap-4 text-xs">
-              <div className="flex items-center gap-1 bg-amber-50 px-3 py-1.5 rounded-lg">
-                <Trophy className="w-3.5 h-3.5 text-amber-600" />
-                <span className="font-bold text-amber-800">
-                  {topPerformersFilter === 'top10' && `Top 10%: ${topPerformersStats.top10Threshold}+ marks`}
-                  {topPerformersFilter === 'top25' && `Top 25%: ${topPerformersStats.top25Threshold}+ marks`}
-                  {topPerformersFilter === 'top50' && `Top 50%: ${topPerformersStats.top50Threshold}+ marks`}
-                  {topPerformersFilter === 'custom' && `Custom Range: ${minMarks || '0'} - ${maxMarks || '500'} marks`}
-                </span>
-              </div>
-              <div className="flex items-center gap-1">
-                <span className="text-gray-500">Showing:</span>
-                <span className="font-bold text-amber-700">{filteredApplications.length} applicants</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <span className="text-gray-500">Avg Score:</span>
-                <span className="font-bold text-blue-600">{topPerformersStats.average}</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <span className="text-gray-500">Highest:</span>
-                <span className="font-bold text-emerald-600">{topPerformersStats.highest}</span>
-              </div>
-            </div>
+<div className="flex items-center gap-4 text-xs">
+  <div className="flex items-center gap-1 bg-amber-50 px-3 py-1.5 rounded-lg">
+    <Trophy className="w-3.5 h-3.5 text-amber-600" />
+    <span className="font-bold text-amber-800">
+      {topPerformersFilter === 'top10' && `Top 10%: ${topPerformersStats.top10Threshold}+`}
+      {topPerformersFilter === 'top25' && `Top 25%: ${topPerformersStats.top25Threshold}+`}
+      {topPerformersFilter === 'top50' && `Top 50%: ${topPerformersStats.top50Threshold}+`}
+      {topPerformersFilter === 'custom' && `Custom Range: ${minMarks || '0'} - ${maxMarks || '100'}`}
+    </span>
+  </div>
+  <div className="flex items-center gap-1">
+    <span className="text-gray-500">Showing:</span>
+    <span className="font-bold text-amber-700">{filteredApplications.length} applicants</span>
+  </div>
+  <div className="flex items-center gap-1">
+    <span className="text-gray-500">Avg Score:</span>
+    <span className="font-bold text-emerald-600">{topPerformersStats.average}</span>
+  </div>
+  <div className="flex items-center gap-1">
+    <span className="text-gray-500">Highest:</span>
+    <span className="font-bold text-emerald-600">{topPerformersStats.highest}</span>
+  </div>
+</div>
           </div>
         )}
         
@@ -2131,10 +2113,14 @@ const EmptyState = () => (
                     </div>
                   </td>
                   <td className="p-5">
-                    <div className="inline-flex items-baseline gap-1 bg-slate-100 px-3 py-1 rounded-lg">
-                      <span className="text-lg font-black text-slate-800">{application.kcpeMarks || 0}</span>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase">Pts</span>
-                    </div>
+               <td className="p-5">
+<td className="p-5">
+  <div className="inline-flex items-baseline gap-1 bg-emerald-50 px-3 py-1 rounded-lg">
+    <span className="text-lg font-black text-emerald-800">{application.kcpeMarks || 0}</span>
+    <span className="text-[10px] font-bold text-emerald-600 uppercase">/100</span>
+  </div>
+</td>
+</td>
                   </td>
                   <td className="p-5">
                     <div className="scale-105 origin-left">
@@ -2205,10 +2191,10 @@ const EmptyState = () => (
                     <p className="text-sm text-slate-500 truncate max-w-[160px]">{application.email}</p>
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="text-lg font-black text-slate-800 leading-none">{application.kcpeMarks}</div>
-                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Marks</div>
-                </div>
+                    <div className="text-right">
+                      <div className="text-lg font-black text-emerald-800 leading-none">{application.kcpeMarks || 0}</div>
+                      <div className="text-[10px] font-bold text-emerald-600 uppercase tracking-tighter">/100</div>
+                    </div>
               </div>
 
               <div className="flex items-center justify-between py-3 border-y border-slate-50">
