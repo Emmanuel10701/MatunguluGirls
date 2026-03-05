@@ -34,11 +34,11 @@ import {
   FiList,
   FiMapPin, 
   FiFileText,
-  FiSend
+  FiSend,
+  FiSun,
+  FiCloud
 } from 'react-icons/fi';
-import { FaGraduationCap, FaBuilding as FiBuilding, FaWhatsapp } from 'react-icons/fa';
-
-
+import { FaGraduationCap, FaBuilding as FiBuilding, FaWhatsapp, FaLeaf } from 'react-icons/fa';
 import {
   IoCalendarClearOutline,
   IoSparkles,
@@ -56,9 +56,6 @@ import {
   IoBusinessOutline
 } from 'react-icons/io5';
 import { CircularProgress, Box, Typography, Stack } from '@mui/material';
-
-
-
 
 // Modern Modal Component with Glass Morphism
 const ModernModal = ({ children, open, onClose, maxWidth = '800px', blur = true }) => {
@@ -78,7 +75,7 @@ const ModernModal = ({ children, open, onClose, maxWidth = '800px', blur = true 
         <div className="absolute top-4 right-4 z-10">
           <button 
             onClick={onClose}
-            className="p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white cursor-pointer border border-gray-200 shadow-sm"
+            className="p-2 bg-white/80 backdrop-blur-sm rounded-full cursor-pointer border border-gray-200 shadow-sm"
           >
             <FiX className="text-gray-600 w-5 h-5" />
           </button>
@@ -91,7 +88,6 @@ const ModernModal = ({ children, open, onClose, maxWidth = '800px', blur = true 
 
 // Modern Job Card Component
 const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) => {
-  const [isHovered, setIsHovered] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const handleWhatsAppShare = (e) => {
@@ -105,7 +101,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
   const getJobTypeStyle = (type) => {
     const styles = {
       'full-time': { 
-        gradient: 'from-emerald-500 to-green-500', 
+        gradient: 'from-emerald-500 to-teal-500', 
         bg: 'bg-emerald-50', 
         text: 'text-emerald-700',
         border: 'border-emerald-200'
@@ -181,7 +177,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
         {/* Header with Gradient */}
         <div className={`relative h-4 bg-gradient-to-r ${theme.gradient}`}>
           {isUrgent && (
-            <div className="absolute top-2 left-1/2 transform -translate-x-1/2 px-3 py-0.5 bg-red-500 text-white rounded-full text-[10px] font-bold uppercase tracking-widest animate-pulse">
+            <div className="absolute top-2 left-1/2 transform -translate-x-1/2 px-3 py-0.5 bg-red-500 text-white rounded-full text-[10px] font-bold uppercase tracking-widest">
               Urgent
             </div>
           )}
@@ -202,7 +198,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
             <div className="flex items-center gap-1">
               <button
                 onClick={handleWhatsAppShare}
-                className="p-2 rounded-lg text-green-500 hover:text-green-600 hover:bg-green-50"
+                className="p-2 rounded-lg text-emerald-500 border border-emerald-200"
                 title="Share on WhatsApp"
               >
                 <FaWhatsapp size={16} />
@@ -212,7 +208,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
                   e.stopPropagation();
                   onBookmark(job);
                 }}
-                className={`p-2 rounded-lg ${isBookmarked ? 'text-amber-500 bg-amber-50' : 'text-slate-300 hover:text-slate-500'}`}
+                className={`p-2 rounded-lg border ${isBookmarked ? 'text-amber-500 bg-amber-50 border-amber-200' : 'text-slate-400 border-slate-200'}`}
               >
                 <FiBookmark className={isBookmarked ? 'fill-current' : ''} size={16} />
               </button>
@@ -239,7 +235,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
 
           {/* Info Grid */}
           <div className="grid grid-cols-2 gap-3 mb-6">
-            <div className="flex items-center gap-2.5 p-2 rounded-2xl bg-slate-50 border border-slate-100/50">
+            <div className="flex items-center gap-2.5 p-2 rounded-2xl bg-slate-50 border border-slate-100">
               <div className={`p-1.5 rounded-lg ${theme.bg}`}>
                 <FiCalendar className={`${theme.text}`} size={14} />
               </div>
@@ -249,7 +245,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
               </div>
             </div>
 
-            <div className="flex items-center gap-2.5 p-2 rounded-2xl bg-slate-50 border border-slate-100/50">
+            <div className="flex items-center gap-2.5 p-2 rounded-2xl bg-slate-50 border border-slate-100">
               <div className={`p-1.5 rounded-lg ${theme.bg}`}>
                 <FiUsers className={`${theme.text}`} size={14} />
               </div>
@@ -259,7 +255,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
               </div>
             </div>
 
-            <div className="col-span-2 flex items-center gap-2.5 p-2 rounded-2xl bg-slate-50 border border-slate-100/50">
+            <div className="col-span-2 flex items-center gap-2.5 p-2 rounded-2xl bg-slate-50 border border-slate-100">
               <div className={`p-1.5 rounded-lg ${theme.bg}`}>
                 <FiClock className={`${theme.text}`} size={14} />
               </div>
@@ -284,21 +280,20 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
           </div>
 
           {/* Action Button */}
-      <button className="
-  w-fit sm:w-full 
-  mx-auto sm:mx-0
-  px-5 sm:px-4
-  py-2 sm:py-4 
-  bg-slate-900 text-white 
-  rounded-full sm:rounded-2xl 
-  font-normal sm:font-bold 
-  text-xs sm:text-sm 
-  flex items-center justify-center gap-2 
-  active:scale-[0.98] transition-transform
-">
-  View Details
-  <FiArrowRight size={14} className="sm:w-[18px] sm:h-[18px]" />
-</button>
+          <button className="
+            w-fit sm:w-full 
+            mx-auto sm:mx-0
+            px-5 sm:px-4
+            py-2 sm:py-4 
+            bg-slate-900 text-white 
+            rounded-full sm:rounded-2xl 
+            font-normal sm:font-bold 
+            text-xs sm:text-sm 
+            flex items-center justify-center gap-2
+          ">
+            View Details
+            <FiArrowRight size={14} className="sm:w-[18px] sm:h-[18px]" />
+          </button>
         </div>
       </div>
     );
@@ -308,7 +303,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
   return (
     <div 
       onClick={() => onView(job)}
-      className="relative bg-white rounded-[24px] border border-slate-100 p-4 shadow-sm cursor-pointer transition-colors active:bg-slate-50"
+      className="relative bg-white rounded-[24px] border border-slate-100 p-4 shadow-sm cursor-pointer"
     >
       <div className="flex gap-5">
         {/* Icon Container */}
@@ -340,7 +335,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
               <div className="flex items-center gap-1">
                 <button
                   onClick={handleWhatsAppShare}
-                  className="p-1.5 rounded-lg text-green-500 hover:text-green-600 hover:bg-green-50"
+                  className="p-1.5 rounded-lg text-emerald-500 border border-emerald-200"
                   title="Share on WhatsApp"
                 >
                   <FaWhatsapp size={14} />
@@ -350,7 +345,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
                     e.stopPropagation();
                     onBookmark(job);
                   }}
-                  className={`p-1.5 rounded-lg transition-colors ${isBookmarked ? 'text-amber-500 bg-amber-50' : 'text-slate-300 hover:text-slate-500'}`}
+                  className={`p-1.5 rounded-lg border ${isBookmarked ? 'text-amber-500 bg-amber-50 border-amber-200' : 'text-slate-400 border-slate-200'}`}
                 >
                   <FiBookmark className={isBookmarked ? 'fill-current' : ''} size={14} />
                 </button>
@@ -386,7 +381,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
               </div>
             </div>
             
-            <div className="flex items-center gap-1 text-blue-600 font-bold text-[11px] uppercase tracking-wider">
+            <div className="flex items-center gap-1 text-emerald-600 font-bold text-[11px] uppercase tracking-wider">
               Apply Now
               <FiArrowRight size={12} />
             </div>
@@ -452,7 +447,7 @@ const ModernJobDetailModal = ({ job, onClose, onApply }) => {
 
   const getJobTypeStyle = (type) => {
     const styles = {
-      'full-time': { gradient: 'from-emerald-500 to-green-500' },
+      'full-time': { gradient: 'from-emerald-500 to-teal-500' },
       'part-time': { gradient: 'from-blue-500 to-cyan-500' },
       'contract': { gradient: 'from-purple-500 to-pink-500' },
       'internship': { gradient: 'from-amber-500 to-orange-500' }
@@ -493,7 +488,7 @@ const ModernJobDetailModal = ({ job, onClose, onApply }) => {
 
   const theme = getJobTypeStyle(job.jobType);
 
-return (
+  return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-slate-900/90 backdrop-blur-sm">
       {/* Modal Container */}
       <div className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-3xl bg-white sm:rounded-[40px] shadow-2xl overflow-hidden flex flex-col">
@@ -501,7 +496,7 @@ return (
         {/* Close Button */}
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 sm:top-5 sm:right-5 z-50 p-2 bg-black/20 backdrop-blur-md text-white rounded-full border border-white/20 transition-all active:scale-90"
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 z-50 p-2 bg-black/20 backdrop-blur-md text-white rounded-full border border-white/20"
         >
           <IoClose size={20}/>
         </button>
@@ -527,11 +522,11 @@ return (
                 </div>
               </div>
 
-              {/* WhatsApp Share Button - Added here */}
+              {/* WhatsApp Share Button */}
               <div className="flex items-center gap-2 mt-2">
                 <button
                   onClick={handleWhatsAppShare}
-                  className="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-xl"
+                  className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl border border-emerald-600"
                 >
                   <FaWhatsapp size={18} />
                   <span className="text-sm font-medium">Share on WhatsApp</span>
@@ -608,9 +603,9 @@ return (
             )}
 
             {/* Application Instructions */}
-            <section className="bg-gradient-to-r from-blue-50 to-cyan-100 rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 border border-blue-200">
+            <section className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 border border-emerald-200">
               <div className="flex items-start sm:items-center gap-3 mb-3 sm:mb-4">
-                <div className="p-2.5 sm:p-3 bg-blue-500 rounded-xl sm:rounded-2xl">
+                <div className="p-2.5 sm:p-3 bg-emerald-500 rounded-xl sm:rounded-2xl">
                   <FiSend className="text-white text-xl sm:text-2xl" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -630,16 +625,16 @@ return (
                       Send your CV, certificates, and cover letter to:
                     </p>
                     <a 
-                      href={`mailto:${job.contactEmail || 'careers@katwanyaa.sc.ke'}?subject=Job Application: ${job.jobTitle}`}
-                      className="text-blue-600 font-medium hover:text-blue-800 text-sm sm:text-base break-all"
+                      href={`mailto:${job.contactEmail || 'careers@matungulugirls.sc.ke'}?subject=Job Application: ${job.jobTitle}`}
+                      className="text-emerald-600 font-medium text-sm sm:text-base break-all"
                     >
-                      {job.contactEmail || 'careers@katwanyaa.sc.ke'}
+                      {job.contactEmail || 'careers@matungulugirls.sc.ke'}
                     </a>
                   </div>
                   
                   <div className="p-3 sm:p-4 bg-white rounded-xl sm:rounded-2xl border border-slate-200">
                     <div className="flex items-center gap-2 mb-2">
-                      <FiPhone className="text-green-500 w-4 h-4 sm:w-5 sm:h-5" />
+                      <FiPhone className="text-emerald-500 w-4 h-4 sm:w-5 sm:h-5" />
                       <h4 className="font-bold text-slate-900 text-sm sm:text-base">Phone Inquiry</h4>
                     </div>
                     <p className="text-xs sm:text-sm text-slate-600 mb-2 sm:mb-3">
@@ -647,14 +642,14 @@ return (
                     </p>
                     <a 
                       href={`tel:${job.contactPhone || '+254712345678'}`}
-                      className="text-green-600 font-medium hover:text-green-800 text-sm sm:text-base"
+                      className="text-emerald-600 font-medium text-sm sm:text-base"
                     >
                       {job.contactPhone || '+254 712 345 678'}
                     </a>
                   </div>
                 </div>
                 
-                <div className="pt-3 sm:pt-4 border-t border-blue-200">
+                <div className="pt-3 sm:pt-4 border-t border-emerald-200">
                   <p className="text-xs sm:text-sm text-slate-600">
                     <strong>Note:</strong> Please include all relevant documents and mention the position title in your application.
                   </p>
@@ -666,15 +661,15 @@ return (
 
         {/* 3. Action Footer - Sticky */}
         <div className="shrink-0 p-4 sm:p-6 bg-slate-50/80 backdrop-blur-md border-t border-slate-100">
- <div className="max-w-2xl mx-auto flex flex-row items-center justify-center px-4 sm:px-0">
-  <button
-    onClick={onClose}
-    className="flex-1 max-w-[200px] sm:max-w-none h-11 sm:h-14 bg-white border-2 border-slate-200 text-slate-900 rounded-xl sm:rounded-2xl font-bold text-[12px] sm:text-sm flex items-center justify-center gap-2 active:scale-95 transition-all"
-  >
-    <IoClose size={18} className="shrink-0" />
-    <span>Close</span>
-  </button>
-</div>
+          <div className="max-w-2xl mx-auto flex flex-row items-center justify-center px-4 sm:px-0">
+            <button
+              onClick={onClose}
+              className="flex-1 max-w-[200px] sm:max-w-none h-11 sm:h-14 bg-white border-2 border-slate-200 text-slate-900 rounded-xl sm:rounded-2xl font-bold text-[12px] sm:text-sm flex items-center justify-center gap-2"
+            >
+              <IoClose size={18} className="shrink-0" />
+              <span>Close</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -684,11 +679,11 @@ return (
 // Modern Empty State Component
 const ModernEmptyState = ({ onClearFilters }) => {
   return (
-    <div className="group bg-white rounded-[24px] md:rounded-[32px] border-2 border-dashed border-slate-200 py-8 md:py-16 px-4 md:px-8 text-center transition-all duration-500 hover:border-blue-200">
+    <div className="group bg-white rounded-[24px] md:rounded-[32px] border-2 border-dashed border-slate-200 py-8 md:py-16 px-4 md:px-8 text-center">
       
-      {/* Icon with Zooming Experience */}
-      <div className="w-16 h-16 md:w-24 md:h-24 bg-gradient-to-br from-slate-50 to-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-sm transition-transform duration-500 group-hover:scale-110 active:scale-90">
-        <FiBriefcase className="text-slate-300 text-2xl md:text-4xl group-hover:text-blue-400 transition-colors" />
+      {/* Icon */}
+      <div className="w-16 h-16 md:w-24 md:h-24 bg-gradient-to-br from-slate-50 to-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-sm">
+        <FiBriefcase className="text-slate-300 text-2xl md:text-4xl" />
       </div>
 
       <h3 className="text-md md:text-xl font-black text-slate-900 mb-2 md:mb-3 tracking-tight italic uppercase">
@@ -702,21 +697,21 @@ const ModernEmptyState = ({ onClearFilters }) => {
       <div className="flex justify-center mb-8">
         <button 
           onClick={onClearFilters}
-          className="w-full sm:w-auto px-6 py-3 bg-slate-900 text-white rounded-xl md:rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-[0.2em] shadow-lg active:scale-95 transition-all"
+          className="w-full sm:w-auto px-6 py-3 bg-slate-900 text-white rounded-xl md:rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-[0.2em] shadow-lg"
         >
           Reset Filters
         </button>
       </div>
       
-      {/* Features Grid - Grid of 2 on Mobile */}
+      {/* Features Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-6 max-w-2xl mx-auto">
         {[
           { icon: FiBell, color: "text-blue-500", title: "Notify", desc: "Get alerts" },
           { icon: FiBookmark, color: "text-emerald-500", title: "Save", desc: "Check back" },
           { icon: FiMail, color: "text-purple-500", title: "Contact", desc: "Email HR" },
-          { icon: FiInfo, color: "text-orange-500", title: "FAQ", desc: "View help" } // Added a 4th to balance the 2x2 grid on mobile
+          { icon: FiInfo, color: "text-orange-500", title: "FAQ", desc: "View help" }
         ].map((feature, i) => (
-          <div key={i} className="p-3 md:p-4 bg-slate-50/50 rounded-xl md:rounded-2xl border border-slate-100 flex flex-col items-center text-center transition-all hover:bg-white hover:shadow-md">
+          <div key={i} className="p-3 md:p-4 bg-slate-50/50 rounded-xl md:rounded-2xl border border-slate-100 flex flex-col items-center text-center">
             <feature.icon className={`${feature.color} text-base md:text-xl mb-1 md:mb-2 flex-shrink-0`} />
             <div>
               <h4 className="font-black text-slate-900 text-[9px] md:text-xs uppercase tracking-tighter">
@@ -752,27 +747,27 @@ export default function ModernCareersPage() {
       number: '0', 
       label: 'Open Positions', 
       sublabel: 'Currently available',
-      gradient: 'from-blue-500 to-cyan-500'
+      gradient: 'from-emerald-500 to-teal-500'
     },
     { 
       icon: FiUsers, 
-      number: '50+', 
+      number: '65+', 
       label: 'Staff Members', 
-      sublabel: 'Our current team',
+      sublabel: 'Our dedicated team',
       gradient: 'from-purple-500 to-pink-500'
     },
     { 
       icon: FaGraduationCap, 
-      number: '8', 
+      number: '10', 
       label: 'Departments', 
       sublabel: 'Academic & support',
-      gradient: 'from-emerald-500 to-green-500'
+      gradient: 'from-blue-500 to-cyan-500'
     },
     { 
-      icon: FiAward, 
-      number: '25+', 
+      icon: FaLeaf, 
+      number: '30+', 
       label: 'Years Excellence', 
-      sublabel: 'Educational experience',
+      sublabel: 'Educational legacy',
       gradient: 'from-amber-500 to-orange-500'
     }
   ];
@@ -782,7 +777,7 @@ export default function ModernCareersPage() {
     { id: 'all', name: 'All Positions', icon: FiBriefcase, gradient: 'from-slate-500 to-slate-600' },
     { id: 'teaching', name: 'Teaching', icon: FaGraduationCap, gradient: 'from-blue-500 to-cyan-500' },
     { id: 'administrative', name: 'Administrative', icon: FiBriefcase, gradient: 'from-purple-500 to-pink-500' },
-    { id: 'support', name: 'Support Staff', icon: FiUsers, gradient: 'from-emerald-500 to-green-500' },
+    { id: 'support', name: 'Support Staff', icon: FiUsers, gradient: 'from-emerald-500 to-teal-500' },
     { id: 'technical', name: 'Technical', icon: FiZap, gradient: 'from-amber-500 to-orange-500' },
     { id: 'medical', name: 'Medical', icon: FiShield, gradient: 'from-red-500 to-rose-500' }
   ];
@@ -828,7 +823,7 @@ export default function ModernCareersPage() {
     };
 
     fetchJobs();
-  }, []); // Empty dependency array to run only once on mount
+  }, []);
 
   // Filter jobs based on search and category
   useEffect(() => {
@@ -880,7 +875,6 @@ export default function ModernCareersPage() {
 
   const handleApply = (job) => {
     toast.success(`Application process for ${job.jobTitle} will open soon!`);
-    // In a real app, this would redirect to application form or open modal
   };
 
   const refreshData = async () => {
@@ -914,77 +908,71 @@ export default function ModernCareersPage() {
     window.open(whatsappUrl, '_blank');
   };
 
-if (loading) {
-  return (
-    <Box 
-      className="min-h-[70vh] flex items-center justify-center p-4 bg-transparent"
-    >
-      <Stack 
-        spacing={2.5} 
-        alignItems="center"
-        className="w-full transition-opacity duration-500"
-      >
-        {/* Modern Layered Loader - Scaled down for mobile */}
-        <Box className="relative flex items-center justify-center scale-90 sm:scale-100">
-          <CircularProgress
-            variant="determinate"
-            value={100}
-            size={52} 
-            thickness={4.5}
-            sx={{ color: '#f1f5f9' }} 
-          />
-          <CircularProgress
-            variant="indeterminate"
-            disableShrink
-            size={52}
-            thickness={4.5}
-            sx={{
-              color: '#0f172a', // Slate 900 to match your theme
-              animationDuration: '900ms',
-              position: 'absolute',
-              [`& .MuiCircularProgress-circle`]: {
-                strokeLinecap: 'round',
-              },
-            }}
-          />
-          <Box className="absolute">
-            <IoSparkles className="text-blue-600 text-base animate-pulse" />
+  if (loading) {
+    return (
+      <Box className="min-h-[70vh] flex items-center justify-center p-4 bg-transparent">
+        <Stack spacing={2.5} alignItems="center" className="w-full">
+          {/* Modern Layered Loader */}
+          <Box className="relative flex items-center justify-center scale-90 sm:scale-100">
+            <CircularProgress
+              variant="determinate"
+              value={100}
+              size={52} 
+              thickness={4.5}
+              sx={{ color: '#f1f5f9' }} 
+            />
+            <CircularProgress
+              variant="indeterminate"
+              disableShrink
+              size={52}
+              thickness={4.5}
+              sx={{
+                color: '#0f172a',
+                animationDuration: '900ms',
+                position: 'absolute',
+                [`& .MuiCircularProgress-circle`]: {
+                  strokeLinecap: 'round',
+                },
+              }}
+            />
+            <Box className="absolute">
+              <IoSparkles className="text-emerald-600 text-base" />
+            </Box>
           </Box>
-        </Box>
 
-        {/* Minimalist Typography */}
-        <div className="text-center px-6">
-          <p className="text-slate-900 font-semibold text-sm sm:text-base tracking-tight leading-tight italic">
-            Searching for opportunities...
-          </p>
-          <p className="text-slate-400 text-[10px] sm:text-xs uppercase tracking-[0.2em] font-black mt-1.5">
-            Careers & Jobs
-          </p>
-        </div>
-      </Stack>
-    </Box>
-  );
-}
+          {/* Minimalist Typography */}
+          <div className="text-center px-6">
+            <p className="text-slate-900 font-semibold text-sm sm:text-base tracking-tight leading-tight italic">
+              Searching for opportunities...
+            </p>
+            <p className="text-slate-400 text-[10px] sm:text-xs uppercase tracking-[0.2em] font-black mt-1.5">
+              Careers at Matungulu Girls
+            </p>
+          </div>
+        </Stack>
+      </Box>
+    );
+  }
 
-return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20 p-3 sm:p-4 md:p-6">
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-3 sm:p-4 md:p-6">
       <Toaster position="top-right" richColors />
       
       <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 sm:gap-6 mb-4 sm:mb-6">
           <div>
-            <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-blue-50 to-purple-50 rounded-full border border-blue-200 mb-2 sm:mb-3">
-              <IoSparkles className="text-blue-500 w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="text-blue-700 font-bold text-xs sm:text-sm uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-full border border-emerald-200 mb-2 sm:mb-3">
+              <IoSparkles className="text-emerald-500 w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="text-emerald-700 font-bold text-xs sm:text-sm uppercase tracking-wider">
                 Career Opportunities
               </span>
             </div>
             <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-slate-900 tracking-tight mb-1 sm:mb-2">
-              Join Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Academic Team</span>
+              Join Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">Matungulu Girls</span> Family
             </h1>
             <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-2xl">
-              Shape the future of education at Matungulu Girls High School
+              Shape the future of education at Matungulu Girls High School - Excellence Through Discipline and Hard Work
             </p>
           </div>
           
@@ -1001,8 +989,6 @@ return (
                 border border-slate-200
                 font-medium text-xs sm:text-sm md:text-base
                 shadow-sm
-                transition-all duration-300
-                hover:shadow-md
                 disabled:opacity-50 disabled:cursor-not-allowed
               "
             >
@@ -1011,7 +997,7 @@ return (
                   size={14}
                   thickness={4}
                   sx={{
-                    color: "#0284c7", // tailwind cyan-600
+                    color: "#059669",
                   }}
                 />
               )}
@@ -1024,13 +1010,13 @@ return (
             <div className="flex bg-white rounded-lg sm:rounded-xl border border-slate-200 overflow-hidden">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 sm:p-3 ${viewMode === 'grid' ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:text-slate-900'}`}
+                className={`p-2 sm:p-3 ${viewMode === 'grid' ? 'bg-emerald-50 text-emerald-600' : 'text-slate-600'}`}
               >
                 <FiTrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-2 sm:p-3 ${viewMode === 'list' ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:text-slate-900'}`}
+                className={`p-2 sm:p-3 ${viewMode === 'list' ? 'bg-emerald-50 text-emerald-600' : 'text-slate-600'}`}
               >
                 <FiList className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
@@ -1058,8 +1044,8 @@ return (
             {/* School Info Card */}
             <div className="bg-white border border-slate-100 rounded-2xl sm:rounded-3xl md:rounded-[32px] p-4 sm:p-5 md:p-6 shadow-sm">
               <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-50 rounded-lg sm:rounded-xl flex items-center justify-center">
-                  <IoSchoolOutline className="text-blue-600 text-lg sm:text-xl" />
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-emerald-50 rounded-lg sm:rounded-xl flex items-center justify-center">
+                  <IoSchoolOutline className="text-emerald-600 text-lg sm:text-xl" />
                 </div>
                 <h2 className="text-lg sm:text-xl font-bold text-slate-900">Matungulu Girls High School</h2>
               </div>
@@ -1069,15 +1055,15 @@ return (
                   <FiMapPin className="text-rose-500 w-4 h-4 sm:w-5 sm:h-5" />
                   <div>
                     <p className="text-xs sm:text-sm font-bold text-slate-900">Location</p>
-                    <p className="text-[10px] sm:text-xs text-slate-500">Matungulu SUb County Machakos, Kenya</p>
+                    <p className="text-[10px] sm:text-xs text-slate-500">Matungulu Sub County, Machakos, Kenya</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-100">
-                  <FiMail className="text-blue-500 w-4 h-4 sm:w-5 sm:h-5" />
+                  <FiMail className="text-emerald-500 w-4 h-4 sm:w-5 sm:h-5" />
                   <div>
                     <p className="text-xs sm:text-sm font-bold text-slate-900">HR Email</p>
-                    <p className="text-[10px] sm:text-xs text-slate-500">careers@katwanyaa.sc.ke</p>
+                    <p className="text-[10px] sm:text-xs text-slate-500">careers@matungulugirls.sc.ke</p>
                   </div>
                 </div>
 
@@ -1091,26 +1077,26 @@ return (
 
                 <div className="pt-3 sm:pt-4 border-t border-slate-100">
                   <p className="text-xs text-slate-500 italic">
-                    "Excellence Through Discipline and Hard Work"
+                    "Prayer, Discipline and Hardwork"
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Quick Application Card - Removed CV submission button */}
-            <div className="bg-gradient-to-r from-blue-900 to-indigo-900 rounded-2xl sm:rounded-3xl md:rounded-[32px] p-4 sm:p-5 md:p-6 text-white overflow-hidden relative">
+            {/* Quick Application Card */}
+            <div className="bg-gradient-to-r from-emerald-900 to-teal-900 rounded-2xl sm:rounded-3xl md:rounded-[32px] p-4 sm:p-5 md:p-6 text-white overflow-hidden relative">
               <div className="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-white/5 blur-[40px] sm:blur-[50px]" />
               <div className="relative z-10">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4">
                   <FiBriefcase className="text-white text-lg sm:text-xl" />
                 </div>
                 <h4 className="text-base sm:text-lg font-bold mb-1.5 sm:mb-2">Career Information</h4>
-                <p className="text-xs sm:text-sm text-blue-200 mb-3 sm:mb-4">
+                <p className="text-xs sm:text-sm text-emerald-100 mb-3 sm:mb-4">
                   {jobs.length} positions currently available
                 </p>
                 <button
                   onClick={() => toast.info('Contact HR for general inquiries')}
-                  className="w-full py-2.5 sm:py-3 bg-white text-blue-900 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm hover:bg-blue-50 transition-colors"
+                  className="w-full py-2.5 sm:py-3 bg-white text-emerald-900 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm"
                 >
                   Contact HR
                 </button>
@@ -1124,7 +1110,7 @@ return (
             {/* Header Section */}
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 px-1">
               <div className="flex items-center gap-3 sm:gap-4">
-                <div className="p-2 sm:p-3 bg-slate-900 rounded-xl sm:rounded-2xl shadow-lg">
+                <div className="p-2 sm:p-3 bg-emerald-900 rounded-xl sm:rounded-2xl shadow-lg">
                   <FiBriefcase className="text-white text-xl sm:text-2xl" />
                 </div>
                 <div>
@@ -1134,11 +1120,11 @@ return (
                   </p>
                 </div>
               </div>
-              {/* WhatsApp Share All Jobs Button - Added here */}
+              {/* WhatsApp Share All Jobs Button */}
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleShareAllJobs}
-                  className="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-xl"
+                  className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl border border-emerald-600"
                 >
                   <FaWhatsapp size={18} />
                   <span className="text-sm font-medium hidden sm:inline">Share All Jobs</span>
@@ -1151,10 +1137,10 @@ return (
             <div className="bg-white/80 backdrop-blur-md border border-slate-200/60 p-2 sm:p-3 rounded-xl sm:rounded-2xl md:rounded-[28px] shadow-sm">
               <div className="flex flex-col md:flex-row items-center gap-2 sm:gap-3">
                 {/* Search */}
-                <div className="relative w-full flex-1 group">
-                  <div className="relative flex items-center bg-white border border-slate-200 rounded-lg sm:rounded-xl md:rounded-2xl shadow-sm transition-all focus-within:border-slate-900 focus-within:ring-2 sm:focus-within:ring-4 focus-within:ring-slate-900/5">
-                    <div className="pl-3 sm:pl-4 md:pl-5 pr-2 sm:pr-3 flex items-center justify-center pointer-events-none">
-                      <FiSearch className="text-slate-400 group-focus-within:text-slate-900 transition-colors" size={16} />
+                <div className="relative w-full flex-1">
+                  <div className="relative flex items-center bg-white border border-slate-200 rounded-lg sm:rounded-xl md:rounded-2xl shadow-sm focus-within:border-emerald-500 focus-within:ring-2 sm:focus-within:ring-4 focus-within:ring-emerald-500/5">
+                    <div className="pl-3 sm:pl-4 md:pl-5 pr-2 sm:pr-3 flex items-center justify-center">
+                      <FiSearch className="text-slate-400" size={16} />
                     </div>
                     <input
                       type="text"
@@ -1166,9 +1152,9 @@ return (
                     {search && (
                       <button
                         onClick={() => setSearch('')}
-                        className="pr-3 sm:pr-4 text-slate-400 hover:text-slate-600"
+                        className="pr-3 sm:pr-4 text-slate-400"
                       >
-                        <FiX size={16}  />
+                        <FiX size={16} />
                       </button>
                     )}
                   </div>
@@ -1179,7 +1165,7 @@ return (
                   <select 
                     value={activeTab}
                     onChange={(e) => setActiveTab(e.target.value)}
-                    className="w-full md:w-48 appearance-none px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 md:py-3.5 bg-slate-50 border-none rounded-lg sm:rounded-xl md:rounded-2xl font-medium sm:font-semibold text-slate-600 text-xs sm:text-sm cursor-pointer focus:ring-1 sm:focus:ring-2 focus:ring-blue-500/20 transition-all"
+                    className="w-full md:w-48 appearance-none px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 md:py-3.5 bg-slate-50 border-none rounded-lg sm:rounded-xl md:rounded-2xl font-medium sm:font-semibold text-slate-600 text-xs sm:text-sm cursor-pointer focus:ring-1 sm:focus:ring-2 focus:ring-emerald-500/20"
                   >
                     {categories.map((category) => {
                       const Icon = category.icon;
@@ -1198,7 +1184,7 @@ return (
                 {/* Reset Button */}
                 <button
                   onClick={clearFilters}
-                  className="w-full md:w-auto px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 md:py-3.5 bg-blue-600 text-white rounded-lg sm:rounded-xl md:rounded-2xl font-bold text-xs sm:text-sm shadow-md shadow-blue-200 hover:bg-blue-700 active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2"
+                  className="w-full md:w-auto px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 md:py-3.5 bg-emerald-600 text-white rounded-lg sm:rounded-xl md:rounded-2xl font-bold text-xs sm:text-sm shadow-md shadow-emerald-200 flex items-center justify-center gap-1.5 sm:gap-2"
                 >
                   <FiFilter size={14} />
                   Reset
@@ -1215,10 +1201,10 @@ return (
                   <button
                     key={category.id}
                     onClick={() => setActiveTab(category.id)}
-                    className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full whitespace-nowrap text-xs sm:text-sm font-bold transition-all border ${
+                    className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full whitespace-nowrap text-xs sm:text-sm font-bold border ${
                       isActive 
-                        ? "bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-100" 
-                        : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"
+                        ? "bg-emerald-600 border-emerald-600 text-white shadow-md shadow-emerald-100" 
+                        : "bg-white border-slate-200 text-slate-600"
                     }`}
                   >
                     {Icon && <Icon className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isActive ? "text-white" : "text-slate-400"}`} />}
@@ -1249,16 +1235,16 @@ return (
             </div>
 
             {/* Call to Action Banner */}
-            <div className="relative overflow-hidden bg-gradient-to-r from-slate-900 to-blue-900 rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-xl">
+            <div className="relative overflow-hidden bg-gradient-to-r from-emerald-900 to-teal-900 rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-xl">
               <div className="absolute top-0 right-0 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-white/5 blur-[40px] sm:blur-[60px] md:blur-[80px] rounded-full -mr-12 sm:-mr-16 md:-mr-24 -mt-12 sm:-mt-16 md:-mt-24" />
-              <div className="absolute bottom-0 left-0 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-blue-500/10 blur-[40px] sm:blur-[60px] md:blur-[80px] rounded-full -ml-12 sm:-ml-16 md:-ml-24 -mb-12 sm:-mb-16 md:-mb-24" />
+              <div className="absolute bottom-0 left-0 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-emerald-500/10 blur-[40px] sm:blur-[60px] md:blur-[80px] rounded-full -ml-12 sm:-ml-16 md:-ml-24 -mb-12 sm:-mb-16 md:-mb-24" />
 
               <div className="relative z-10 flex flex-col md:flex-row items-center gap-4 sm:gap-5 md:gap-6 lg:gap-8">
                 
                 {/* Icon */}
                 <div className="shrink-0">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl bg-white flex items-center justify-center shadow-lg">
-                    <FiBriefcase className="text-slate-900 text-xl sm:text-2xl md:text-3xl" />
+                    <FiBriefcase className="text-emerald-900 text-xl sm:text-2xl md:text-3xl" />
                   </div>
                 </div>
 
@@ -1267,16 +1253,16 @@ return (
                   <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-white mb-1.5 sm:mb-2 tracking-tight">
                     Build Your Career With Us.
                   </h3>
-                  <p className="text-slate-400 text-xs sm:text-sm md:text-base leading-relaxed max-w-xl mx-auto md:mx-0">
-                    Join a team dedicated to educational excellence and student success.
+                  <p className="text-emerald-100 text-xs sm:text-sm md:text-base leading-relaxed max-w-xl mx-auto md:mx-0">
+                    Join a team dedicated to educational excellence and student success at Matungulu Girls.
                   </p>
 
                   {/* Feature Grid */}
                   <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mt-4 sm:mt-6">
                     {[
-                      { label: 'Professional Growth', icon: FiTrendingUp, color: 'text-blue-300', bg: 'bg-blue-400/10' },
+                      { label: 'Professional Growth', icon: FiTrendingUp, color: 'text-emerald-100', bg: 'bg-emerald-400/10' },
                       { label: 'Competitive Package', icon: FiAward, color: 'text-amber-300', bg: 'bg-amber-400/10' },
-                      { label: 'Supportive Environment', icon: FiUsers, color: 'text-emerald-300', bg: 'bg-emerald-400/10' },
+                      { label: 'Supportive Environment', icon: FiUsers, color: 'text-teal-300', bg: 'bg-teal-400/10' },
                       { label: 'Career Development', icon: FaGraduationCap, color: 'text-purple-300', bg: 'bg-purple-400/10' }
                     ].map((feature, idx) => (
                       <div 
