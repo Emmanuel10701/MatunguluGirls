@@ -444,8 +444,8 @@ export default function TermsAndConditions() {
               <h4 className="font-bold text-emerald-900 mb-2">Last Updated</h4>
               <p className="text-sm text-slate-700">January 6, {new Date().getFullYear()}. Rules are reviewed annually and may be updated.</p>
             </div>
-            <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-4 border border-red-100">
-              <h4 className="font-bold text-red-900 mb-2">Enforcement</h4>
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-4 border border-emerald-100">
+              <h4 className="font-bold text-emerald-900 mb-2">Enforcement</h4>
               <p className="text-sm text-slate-700">Rules enforced by school administration. Appeals to be made in writing to Principal's office.</p>
             </div>
           </div>
