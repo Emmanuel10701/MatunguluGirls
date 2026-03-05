@@ -169,7 +169,6 @@ const authenticateRequest = (req) => {
 
 // ====================================================================
 // UTILITY FUNCTIONS
-// ====================================================================
 
 function calculateAge(dateOfBirth) {
   const today = new Date();
