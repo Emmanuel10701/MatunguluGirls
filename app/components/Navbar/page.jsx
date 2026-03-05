@@ -234,7 +234,7 @@ export default function ModernNavbar() {
                   sizes="(max-width: 480px) 48px, (max-width: 640px) 56px, 64px"
                 />
               </div>
-              <div className="hidden sm:block">
+              <div className="">
                 <h1 className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent whitespace-nowrap tracking-tight">
                    MatG
                 </h1>
