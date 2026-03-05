@@ -191,7 +191,7 @@ const transformStaffData = (apiData) => {
                 "@type": "EducationalOrganization",
                 "name": "Matungulu Girls High School",
                 "description": schoolDescription,
-                "url": "https://katwanyaahighschool.edu.ke"
+                "url": "https://matungulu-girls.vercel.app",
               },
               "description": profileDescription,
               "url": profileUrl,
