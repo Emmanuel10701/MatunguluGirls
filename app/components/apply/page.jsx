@@ -78,7 +78,7 @@ const PortalHeader = ({ stats = { today: 45 }, refreshing = false, fetchEvents =
                   </div>
                   
                   {/* Main Title */}
-                  <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
+                  <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-4xl 
                     font-black text-white tracking-tight leading-tight xs:leading-none">
                     Matungulu Girls <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 to-emerald-100">
                       High School
