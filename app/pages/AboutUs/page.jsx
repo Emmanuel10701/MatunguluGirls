@@ -3,6 +3,7 @@ import React from 'react';
 import { MapPin, Users, BookOpen, Trophy, Target, Globe,Clock , TrendingUp , Lightbulb , ExternalLink , ShieldCheck, ArrowRight, Phone, Sparkles, Heart, Zap } from 'lucide-react';
 import Image from 'next/image';
 import Link from "next/link";
+import { SiGooglemaps } from 'react-icons/si';
 
 export default function AboutPage() {
   const stats = [
@@ -82,7 +83,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <p className="text-xs md:text-sm text-slate-400 italic">
+      <p className="text-xs md:text-sm text-slate-100 italic">
         "Empowering Students through discipline, integrity, and a passion for lifelong learning."
       </p>
     </div>
@@ -569,6 +570,8 @@ export default function AboutPage() {
               </div>
 
               <div className="relative z-10 mt-8 sm:mt-12">
+                                  <SiGooglemaps size={16} />
+
                 <a 
                   href="https://www.google.com/maps/search/?api=1&query=Matungulu+Girls+High+School+Machakos+County"
                   target="_blank"
@@ -576,7 +579,6 @@ export default function AboutPage() {
                   className="w-full py-3 sm:py-4 bg-white text-emerald-600 font-black text-xs sm:text-sm rounded-xl sm:rounded-2xl shadow-xl flex items-center justify-center gap-2 uppercase tracking-wider active:scale-95 transition-transform"
                 >
                   View on Maps
-                  <ExternalLink size={16} />
                 </a>
               </div>
             </div>
