@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, ShieldQuestion, LoaderCircle, Key, Heart, School, ArrowLeft } from 'lucide-react';
+import { Mail, ShieldQuestion, LoaderCircle, Heart, School, ArrowLeft } from 'lucide-react';
 import { toast, Toaster } from 'sonner';
 
 const ForgotPasswordPage = () => {
@@ -117,22 +116,14 @@ const ForgotPasswordPage = () => {
     window.open(`https://mail.google.com/mail/u/0/#search/${encodeURIComponent(searchEmail)}`, '_blank');
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, staggerChildren: 0.1 } }
-  };
-
-  const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 text-white flex items-center justify-center p-3 sm:p-4 relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 animate-pulse z-50"></div>
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 z-50"></div>
       
-      {/* Floating Orbs */}
-      <div className="absolute -top-20 -left-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-400/5 rounded-full blur-3xl"></div>
+      {/* Solid Background Overlays */}
+      <div className="absolute -top-20 -left-20 w-80 h-80 bg-emerald-500/5 rounded-full"></div>
+      <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-teal-500/5 rounded-full"></div>
       
       {/* Grid Pattern */}
       <div className="absolute inset-0 opacity-5" style={{
@@ -144,7 +135,7 @@ const ForgotPasswordPage = () => {
       {/* Back Button */}
       <button
         onClick={() => window.history.back()}
-        className="absolute top-4 left-4 sm:top-6 sm:left-6 z-50 flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10 text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300 text-xs sm:text-sm"
+        className="absolute top-4 left-4 sm:top-6 sm:left-6 z-50 flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10 text-white/80 hover:text-white hover:bg-white/10 transition-colors text-xs sm:text-sm"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Back to Login</span>
@@ -188,16 +179,11 @@ const ForgotPasswordPage = () => {
         }}
       />
 
-      <motion.div
-        className="max-w-sm sm:max-w-md md:max-w-xl w-full mx-auto p-6 sm:p-8 md:p-10 backdrop-blur-lg bg-white/5 rounded-2xl sm:rounded-3xl shadow-2xl relative overflow-hidden transform-gpu border border-white/10"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <div className="absolute top-0 left-0 w-16 h-16 sm:w-24 sm:h-24 bg-emerald-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute top-0 right-0 w-16 h-16 sm:w-24 sm:h-24 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+      <div className="max-w-sm sm:max-w-md md:max-w-xl w-full mx-auto p-6 sm:p-8 md:p-10 backdrop-blur-lg bg-white/5 rounded-2xl sm:rounded-3xl shadow-2xl relative border border-white/10">
+        <div className="absolute top-0 left-0 w-16 h-16 sm:w-24 sm:h-24 bg-emerald-500/20 rounded-full"></div>
+        <div className="absolute top-0 right-0 w-16 h-16 sm:w-24 sm:h-24 bg-teal-500/20 rounded-full"></div>
 
-        <motion.div className="relative z-10 text-center" variants={itemVariants}>
+        <div className="relative z-10 text-center">
           {/* School Logo/Badge */}
           <div className="flex justify-center mb-4">
             <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-500/30">
@@ -229,38 +215,34 @@ const ForgotPasswordPage = () => {
 
           {/* Status Message */}
           {emailSent && (
-            <motion.div 
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-4 p-3 bg-emerald-500/20 border border-emerald-500/30 rounded-xl"
-            >
+            <div className="mb-4 p-3 bg-emerald-500/20 border border-emerald-500/30 rounded-xl">
               <p className="text-emerald-200 text-xs sm:text-sm">
                 ✓ Reset link sent! Check your inbox and spam folder.
               </p>
-            </motion.div>
+            </div>
           )}
-        </motion.div>
+        </div>
 
         <form onSubmit={handleSubmit} className="relative z-10 space-y-4 sm:space-y-6">
-          <motion.div variants={itemVariants}>
-            <div className="relative group">
-              <Mail className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-emerald-300 group-focus-within:text-emerald-400 transition-colors w-4 h-4 sm:w-5 sm:h-5" />
+          <div>
+            <div className="relative">
+              <Mail className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-emerald-300 w-4 h-4 sm:w-5 sm:h-5" />
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@matungulugirls.sc.ke"
-                className="w-full h-12 sm:h-14 pl-10 sm:pl-12 pr-4 bg-white/10 text-white placeholder-emerald-200/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white/20 transition-all duration-300 text-sm sm:text-base border border-white/10"
+                className="w-full h-12 sm:h-14 pl-10 sm:pl-12 pr-4 bg-white/10 text-white placeholder-emerald-200/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white/20 transition-colors text-sm sm:text-base border border-white/10"
                 required
               />
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <button
               type="submit"
               disabled={loading}
-              className={`w-full sm:flex-1 flex items-center justify-center gap-2 h-12 sm:h-14 rounded-xl text-white font-semibold transition-all duration-300 ${
+              className={`w-full sm:flex-1 flex items-center justify-center gap-2 h-12 sm:h-14 rounded-xl text-white font-semibold transition-colors ${
                 loading ? 'bg-emerald-600/50 cursor-not-allowed' :
                 'bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-700 hover:to-teal-600 shadow-lg shadow-emerald-500/30'
               } text-sm sm:text-base`}
@@ -278,7 +260,7 @@ const ForgotPasswordPage = () => {
             <button
               type="button"
               onClick={handleGmailClick}
-              className={`w-full sm:flex-1 flex items-center justify-center gap-2 h-12 sm:h-14 rounded-xl font-semibold transition-all duration-300 ${
+              className={`w-full sm:flex-1 flex items-center justify-center gap-2 h-12 sm:h-14 rounded-xl font-semibold transition-colors ${
                 !email && !emailSent ? 'bg-white/5 text-white/30 cursor-not-allowed border border-white/10' :
                 'bg-white/10 text-white hover:bg-white/20 border border-white/20 hover:border-emerald-400/50'
               } text-sm sm:text-base`}
@@ -287,44 +269,27 @@ const ForgotPasswordPage = () => {
               <Mail size={18} />
               <span>Open Gmail</span>
             </button>
-          </motion.div>
+          </div>
         </form>
 
-        <motion.div variants={itemVariants} className="mt-6 sm:mt-8 text-center text-sm">
+        <div className="mt-6 sm:mt-8 text-center text-sm">
           <p className="text-xs sm:text-sm text-emerald-200/70">
             Remembered your password?{' '}
             <span
               onClick={() => window.history.back()}
-              className="text-emerald-300 font-medium hover:text-emerald-200 hover:underline cursor-pointer transition-colors duration-200"
+              className="text-emerald-300 font-medium hover:text-emerald-200 hover:underline cursor-pointer transition-colors"
             >
               Return to Login
             </span>
           </p>
-        </motion.div>
+        </div>
 
         {/* Security Footer */}
-        <motion.div 
-          variants={itemVariants} 
-          className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-2"
-        >
+        <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-2">
           <Heart className="w-3 h-3 text-emerald-400" />
           <span className="text-[10px] sm:text-xs text-emerald-200/60">Prayer, Discipline & Hardwork</span>
-        </motion.div>
-      </motion.div>
-
-      <style jsx>{`
-        @keyframes blob {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-      `}</style>
+        </div>
+      </div>
     </div>
   );
 };
