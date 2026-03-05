@@ -203,12 +203,11 @@ export default function ModernFeesPage() {
   const [documentData, setDocumentData] = useState(null);
   const [selectedFeeItem, setSelectedFeeItem] = useState(null);
   const [showInfoModal, setShowInfoModal] = useState(false);
-  const [activeTab, setActiveTab] = useState('day');
+  const [activeTab, setActiveTab] = useState('boarding');
   const [searchTerm, setSearchTerm] = useState('');
 
   // Tabs configuration
   const tabs = [
-    { id: 'day', name: 'Day Scholars', icon: IoBusinessOutline, color: 'emerald' },
     { id: 'boarding', name: 'Boarders', icon: IoBedOutline, color: 'teal' },
     { id: 'admission', name: 'New Students', icon: MdOutlineAdUnits, color: 'amber' }
   ];
@@ -247,8 +246,6 @@ export default function ModernFeesPage() {
     if (!documentData) return [];
     
     switch(activeTab) {
-      case 'day':
-        return documentData.feesDayDistributionJson || [];
       case 'boarding':
         return documentData.feesBoardingDistributionJson || [];
       case 'admission':
@@ -269,14 +266,6 @@ export default function ModernFeesPage() {
     if (!documentData) return null;
     
     switch(activeTab) {
-      case 'day':
-        return {
-          url: documentData.feesDayDistributionPdf,
-          name: documentData.feesDayPdfName,
-          size: documentData.feesDayPdfSize,
-          date: documentData.feesDayPdfUploadDate,
-          description: documentData.feesDayDescription
-        };
       case 'boarding':
         return {
           url: documentData.feesBoardingDistributionPdf,
