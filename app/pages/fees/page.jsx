@@ -73,12 +73,12 @@ const ModernFeeCard = ({ item, onInfo, index }) => {
             </div>
             <div>
               <h4 className="font-bold text-slate-900 text-base">{item.name}</h4>
-              <p className="text-xs text-slate-500 mt-0.5">Fee Item</p>
+              <p className="text-xs text-slate-900 mt-0.5">Fee Item</p>
             </div>
           </div>
           <button
             onClick={() => onInfo(item)}
-            className="p-2 rounded-lg bg-slate-50 text-slate-600 border border-slate-200"
+            className="p-2 rounded-lg bg-slate-50 text-slate-900 border border-slate-200"
           >
             <FiInfo size={14} />
           </button>
@@ -86,7 +86,7 @@ const ModernFeeCard = ({ item, onInfo, index }) => {
 
         {/* Amount */}
         <div className="mb-4">
-          <p className="text-xs font-medium text-slate-400 mb-1">Amount</p>
+          <p className="text-xs font-medium text-slate-900 mb-1">Amount</p>
           <p className="text-2xl font-black text-slate-900">
             KSh {item.amount?.toLocaleString()}
           </p>
@@ -94,7 +94,7 @@ const ModernFeeCard = ({ item, onInfo, index }) => {
 
         {/* Description */}
         {item.description && (
-          <p className="text-sm text-slate-600 mb-4 line-clamp-2 border-t border-slate-100 pt-4">
+          <p className="text-sm text-slate-900 mb-4 line-clamp-2 border-t border-slate-100 pt-4">
             {item.description}
           </p>
         )}
@@ -134,10 +134,10 @@ const ModernPDFCard = ({ title, pdfUrl, fileName, fileSize, uploadDate, descript
         <div className="flex-1">
           <h4 className="font-bold text-slate-900 text-lg mb-1">{title}</h4>
           {description && (
-            <p className="text-sm text-slate-600 mb-3">{description}</p>
+            <p className="text-sm text-slate-900 mb-3">{description}</p>
           )}
           
-          <div className="flex items-center gap-4 text-xs text-slate-500 mb-4">
+          <div className="flex items-center gap-4 text-xs text-slate-900 mb-4">
             <span className="flex items-center gap-1">
               <FiFileText className="text-emerald-500" size={12} />
               {fileName || 'PDF Document'}
@@ -186,12 +186,12 @@ const ModernStatCard = ({ icon: Icon, label, value, sublabel, color = 'emerald' 
         <div className={`p-2 rounded-lg ${colors[color]} border`}>
           <Icon size={20} />
         </div>
-        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total</span>
+        <span className="text-xs font-bold text-slate-900 uppercase tracking-wider">Total</span>
       </div>
       
-      <p className="text-sm font-medium text-slate-500 mb-1">{label}</p>
+      <p className="text-sm font-medium text-slate-900 mb-1">{label}</p>
       <p className="text-2xl font-black text-slate-900 mb-1">{value}</p>
-      <p className="text-xs text-slate-400">{sublabel}</p>
+      <p className="text-xs text-slate-900">{sublabel}</p>
     </div>
   );
 };
@@ -353,7 +353,7 @@ export default function ModernFeesPage() {
               </div>
               <div className="text-center">
                 <p className="text-slate-900 font-medium text-sm">Loading fee structure...</p>
-                <p className="text-slate-400 text-xs uppercase tracking-widest mt-1 font-bold">
+                <p className="text-slate-900 text-xs uppercase tracking-widest mt-1 font-bold">
                   Matungulu Girls
                 </p>
               </div>
@@ -377,19 +377,19 @@ export default function ModernFeesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center">
-                <IoSchoolOutline className="text-emerald-700 w-5 h-5" />
+              <div className="w-10 h-10 text-emerald-500 rounded-xl flex items-center justify-center">
+                <IoSchoolOutline className="text-emerald-900 w-5 h-5" />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-slate-900">Fee Structure</h1>
-                <p className="text-xs text-slate-500">Matungulu Girls High School</p>
+                <p className="text-xs text-slate-900">Matungulu Girls High School</p>
               </div>
             </div>
             
             <button
               onClick={refreshData}
               disabled={refreshing}
-              className="px-4 py-2 bg-emerald-50 text-emerald-700 rounded-xl text-sm font-medium border border-emerald-200 flex items-center gap-2"
+              className="px-4 py-2 bg-emerald-50 text-emerald-900 rounded-xl text-sm font-medium border border-emerald-200 flex items-center gap-2"
             >
               {refreshing ? (
                 <>
@@ -421,8 +421,8 @@ export default function ModernFeesPage() {
                   }}
                   className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
                     isActive
-                      ? 'border-emerald-600 text-emerald-700'
-                      : 'border-transparent text-slate-500 hover:text-slate-700'
+                      ? 'border-emerald-600 text-emerald-900'
+                      : 'border-transparent text-slate-900 hover:text-slate-900'
                   }`}
                 >
                   <Icon size={16} />
@@ -437,15 +437,15 @@ export default function ModernFeesPage() {
         {/* Quick Stats Row */}
         <div className="grid grid-cols-3 gap-4 mb-6">
           <div className="bg-white rounded-xl border border-slate-200 p-4">
-            <p className="text-xs text-slate-500 mb-1">Total Items</p>
+            <p className="text-xs text-slate-900 mb-1">Total Items</p>
             <p className="text-2xl font-bold text-slate-900">{filteredItems.length}</p>
           </div>
           <div className="bg-white rounded-xl border border-slate-200 p-4">
-            <p className="text-xs text-slate-500 mb-1">Total Amount</p>
-            <p className="text-2xl font-bold text-emerald-700">KSh {totalAmount.toLocaleString()}</p>
+            <p className="text-xs text-slate-900 mb-1">Total Amount</p>
+            <p className="text-2xl font-bold text-emerald-900">KSh {totalAmount.toLocaleString()}</p>
           </div>
           <div className="bg-white rounded-xl border border-slate-200 p-4">
-            <p className="text-xs text-slate-500 mb-1">PDF Available</p>
+            <p className="text-xs text-slate-900 mb-1">PDF Available</p>
             <p className="text-2xl font-bold text-slate-900">{pdfInfo?.url ? 'Yes' : 'No'}</p>
           </div>
         </div>
@@ -453,7 +453,7 @@ export default function ModernFeesPage() {
         {/* Search Bar */}
         <div className="mb-6">
           <div className="relative">
-            <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
+            <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-900 w-4 h-4" />
             <input
               type="text"
               placeholder={`Search ${activeTab} fees...`}
@@ -466,7 +466,7 @@ export default function ModernFeesPage() {
                 onClick={() => setSearchTerm('')}
                 className="absolute right-3 top-1/2 -translate-y-1/2 p-1 bg-slate-100 rounded-lg"
               >
-                <FiX size={14} className="text-slate-600" />
+                <FiX size={14} className="text-slate-900" />
               </button>
             )}
           </div>
@@ -480,10 +480,10 @@ export default function ModernFeesPage() {
               {filteredItems.length === 0 ? (
                 <div className="bg-white rounded-xl border border-dashed border-slate-200 p-8 text-center">
                   <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <FiDollarSign className="text-slate-400 text-xl" />
+                    <FiDollarSign className="text-slate-900 text-xl" />
                   </div>
                   <h3 className="text-base font-bold text-slate-900">No fee items found</h3>
-                  <p className="text-sm text-slate-500 mt-1">Try adjusting your search.</p>
+                  <p className="text-sm text-slate-900 mt-1">Try adjusting your search.</p>
                 </div>
               ) : (
                 filteredItems.map((item, index) => (
@@ -518,39 +518,39 @@ export default function ModernFeesPage() {
             ) : (
               <div className="bg-white rounded-xl border border-dashed border-slate-200 p-6 text-center">
                 <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <IoDocumentTextOutline className="text-slate-400 text-xl" />
+                  <IoDocumentTextOutline className="text-slate-900 text-xl" />
                 </div>
                 <p className="text-sm font-medium text-slate-900">No PDF Available</p>
-                <p className="text-xs text-slate-500 mt-1">Check back later</p>
+                <p className="text-xs text-slate-900 mt-1">Check back later</p>
               </div>
             )}
 
             {/* School Info Card */}
             <div className="bg-white rounded-xl border border-slate-200 p-5">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
-                  <FaLeaf className="text-emerald-600 w-4 h-4" />
+                <div className="w-8 h-8 text-emerald-400 rounded-lg flex items-center justify-center">
+                  <FaLeaf className="text-emerald-900 w-4 h-4" />
                 </div>
                 <h3 className="font-bold text-slate-900">School Information</h3>
               </div>
 
               <div className="space-y-3">
                 <div className="flex items-center gap-3 text-sm">
-                  <IoSchoolOutline className="text-slate-400 w-4 h-4" />
-                  <span className="text-slate-600">Matungulu Girls High</span>
+                  <IoSchoolOutline className="text-slate-900 w-4 h-4" />
+                  <span className="text-slate-900">Matungulu Girls High</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <IoWalletOutline className="text-slate-400 w-4 h-4" />
-                  <span className="text-slate-600">Account: 1234567890</span>
+                  <IoWalletOutline className="text-slate-900 w-4 h-4" />
+                  <span className="text-slate-900">Account: 1234567890</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <IoCashOutline className="text-slate-400 w-4 h-4" />
-                  <span className="text-slate-600">Paybill: 522522</span>
+                  <IoCashOutline className="text-slate-900 w-4 h-4" />
+                  <span className="text-slate-900">Paybill: 522522</span>
                 </div>
               </div>
 
               <div className="mt-4 pt-4 border-t border-slate-100">
-                <p className="text-xs text-slate-500 italic">
+                <p className="text-xs text-slate-900 italic">
               💚💚 "Strive to Excell"
                 </p>
               </div>
@@ -584,18 +584,18 @@ export default function ModernFeesPage() {
                 onClick={() => setShowInfoModal(false)}
                 className="p-2 bg-slate-100 rounded-lg"
               >
-                <IoClose size={18} className="text-slate-600" />
+                <IoClose size={18} className="text-slate-900" />
               </button>
             </div>
 
             <div className="space-y-4">
               <div className="p-4 bg-emerald-50 rounded-xl border border-emerald-100">
-                <p className="text-sm text-slate-600">{selectedFeeItem.description || 'No description available'}</p>
+                <p className="text-sm text-slate-900">{selectedFeeItem.description || 'No description available'}</p>
               </div>
 
               <div className="flex justify-between items-center p-4 bg-slate-50 rounded-xl border border-slate-100">
-                <span className="text-sm font-medium text-slate-600">Amount</span>
-                <span className="text-xl font-bold text-emerald-700">
+                <span className="text-sm font-medium text-slate-900">Amount</span>
+                <span className="text-xl font-bold text-emerald-900">
                   KSh {selectedFeeItem.amount?.toLocaleString()}
                 </span>
               </div>

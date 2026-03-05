@@ -34,7 +34,7 @@ import {
 } from 'lucide-react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Image from "next/image";
-
+import Link from "next/link";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -57,7 +57,6 @@ export default function ContactPage() {
   const [rows, setRows] = useState(10);
 
   useEffect(() => {
-    // Safely check for window object
     if (typeof window !== 'undefined') {
       if (window.innerWidth < 640) {
         setRows(5);
@@ -65,52 +64,50 @@ export default function ContactPage() {
     }
   }, []);
 
-
-
   const departments = [
     {
       id: 'admissions',
       name: 'Admissions Office',
-      email: 'admissions@maryimmaculate.sc.ke',
+      email: 'admissions@matungulu-girls.sc.ke',
       phone: '+254 720 123 456',
       description: 'For enrollment, applications, and admission inquiries. We guide students through the admission process.',
       icon: <User className="w-4 h-4" />,
       head: 'Mrs. Sarah Johnson',
       hours: 'Mon-Fri: 8:00 AM - 4:00 PM',
-      color: 'orange'
+      color: 'emerald'
     },
     {
       id: 'academics',
       name: 'Academic Office',
-      email: 'academics@maryimmaculate.sc.ke',
+      email: 'academics@matungulu-girls.sc.ke',
       phone: '+254 720 123 457',
       description: 'Curriculum, academic programs, examinations, and teacher coordination. Ensuring academic excellence.',
       icon: <Book className="w-4 h-4" />,
       head: 'Dr. Michael Chen',
       hours: 'Mon-Fri: 7:30 AM - 3:30 PM',
-      color: 'amber'
+      color: 'emerald'
     },
     {
       id: 'student-affairs',
       name: 'Student Affairs',
-      email: 'affairs@maryimmaculate.sc.ke',
+      email: 'affairs@matungulu-girls.sc.ke',
       phone: '+254 720 123 458',
       description: 'Student welfare, discipline, counseling, and extracurricular activities. Building holistic students.',
       icon: <Users className="w-4 h-4" />,
       head: 'Mr. David Wilson',
       hours: 'Mon-Fri: 8:00 AM - 4:30 PM',
-      color: 'red'
+      color: 'emerald'
     },
     {
       id: 'sports',
       name: 'Sports Department',
-      email: 'sports@maryimmaculate.sc.ke',
+      email: 'sports@matungulu-girls.sc.ke',
       phone: '+254 720 123 459',
       description: 'Athletics, sports programs, competitions, and physical education. Developing champions.',
       icon: <Award className="w-4 h-4" />,
       head: 'Coach Robert Garcia',
       hours: 'Mon-Sat: 6:00 AM - 6:00 PM',
-      color: 'orange'
+      color: 'emerald'
     }
   ];
 
@@ -120,28 +117,28 @@ export default function ContactPage() {
       title: 'Apply for Admission',
       description: 'Start your application process',
       link: '/pages/apply-for-admissions',
-      color: 'orange'
+      color: 'emerald'
     },
     {
       icon: <Calendar className="w-4 h-4" />,
       title: 'View Events Calendar',
       description: 'See upcoming school events',
       link: '/pages/eventsandnews',
-      color: 'amber'
+      color: 'emerald'
     },
     {
       icon: <Book className="w-4 h-4" />,
       title: 'Explore Programs',
       description: 'Discover academic offerings',
       link: '/pages/admissions',
-      color: 'red'
+      color: 'emerald'
     },
     {
       icon: <Video className="w-4 h-4" />,
       title: 'Virtual Tour home page',
       description: 'Take a campus tour online',
       link: '/',
-      color: 'orange'
+      color: 'emerald'
     }
   ];
 
@@ -151,25 +148,21 @@ export default function ContactPage() {
     setSubmitStatus('idle');
 
     try {
-      // Validate required fields (matching API validation)
       if (!formData.name || !formData.email || !formData.phone || !formData.subject || !formData.message) {
         throw new Error('Name, email, phone, subject, and message are required.');
       }
 
-      // Email validation
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(formData.email)) {
         throw new Error('Please provide a valid email address.');
       }
 
-      // Phone validation (Kenyan format)
       const phoneRegex = /^(07|01)\d{8}$/;
       const cleanedPhone = formData.phone.replace(/\s/g, '');
       if (!phoneRegex.test(cleanedPhone)) {
         throw new Error('Invalid phone format. Use 07XXXXXXXX or 01XXXXXXXX');
       }
 
-      // Prepare data for API
       const payload = {
         name: formData.name.trim(),
         email: formData.email.trim().toLowerCase(),
@@ -182,7 +175,6 @@ export default function ContactPage() {
         submittedAt: new Date().toISOString()
       };
 
-      // Send to API endpoint
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -197,11 +189,9 @@ export default function ContactPage() {
         throw new Error(data.error || 'Failed to send message');
       }
 
-      // Success
       setSubmitStatus('success');
       setStatusMessage(data.message || 'Message sent successfully! Check your email for confirmation.');
       
-      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -213,7 +203,6 @@ export default function ContactPage() {
         contactMethod: 'email'
       });
 
-      // Hide success message after 5 seconds
       setTimeout(() => {
         setSubmitStatus('idle');
       }, 5000);
@@ -222,7 +211,6 @@ export default function ContactPage() {
       setSubmitStatus('error');
       setStatusMessage(error.message || 'Failed to send message. Please try again.');
       
-      // Hide error message after 5 seconds
       setTimeout(() => {
         setSubmitStatus('idle');
       }, 5000);
@@ -239,10 +227,6 @@ export default function ContactPage() {
     }));
   };
 
-  const handleMapZoom = () => {
-    setIsMapZoomed(!isMapZoomed);
-  };
-
   const closeDepartmentModal = () => {
     setSelectedDepartment(null);
   };
@@ -253,55 +237,51 @@ export default function ContactPage() {
 
   return (
     <div className="bg-white text-slate-900 min-h-screen relative">
-
-      {/* Cinematic Hero with Optimized Background - Updated to orange gradient */}
-      <section className="relative min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-orange-950 via-amber-950 to-red-950 px-4 sm:px-6">
-        {/* Optimized Background Engine */}
-        <div className="absolute inset-0 z-0">
-          {/* Background Image with reduced file size */}
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-900/90 via-amber-900/95 to-red-900/90">
-            <Image
-            src="/hero/MatG8.jpeg"
-              alt="Campus"
-              fill
-              priority
-              className="object-cover opacity-50 transition-transform duration-[10s] ease-out group-hover:scale-100"
-            />
-          </div>
+      {/* Hero Section - Matched to About Page Style */}
+      <section className="relative min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-950 via-teal-950 to-green-950">
+        {/* Background with Zoom Effect */}
+        <div className="absolute inset-0 group overflow-hidden rounded-t-md">
+          {/* Modern Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/30 via-emerald-950/80 to-emerald-950 z-20"></div>
           
-          {/* Optimized Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-b from-orange-950/40 via-amber-950/80 to-red-950 z-10" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_10%,#1a0f0a_80%)] opacity-60 z-10" />
+          <Image
+            src="/hero/MatG8.jpeg"
+            alt="Campus"
+            fill
+            className="object-cover opacity-50 transition-transform duration-[10s] ease-out group-hover:scale-110"
+            priority
+          />
+
+          {/* Animated Radial Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-600/20 rounded-full blur-[120px] z-10"></div>
         </div>
 
-        <div className="relative z-20 max-w-6xl mx-auto text-center px-4">
-          {/* Micro-Interaction Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8 animate-fade-in">
-            <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
-            <span className="text-xs font-bold tracking-[0.2em] text-orange-500  uppercase">
+        <div className="relative z-20 max-w-5xl mx-auto text-center px-4">
+          {/* Modern Static Badge */}
+          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/20 backdrop-blur-md mb-8">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className="text-[10px] font-black tracking-[0.3em] text-emerald-200 uppercase">
               Academic Excellence Since 1978
             </span>
           </div>
 
-          {/* Modern High-Density Headline */}
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-8 tracking-tight leading-[0.95]">
-            Matungulu Girls High <span className="text-transparent bg-clip-text bg-gradient-to-br from-amber-400 via-orange-300 to-white/70">school.</span>
+          {/* Refined Title */}
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-6 tracking-tighter leading-none">
+            Matungulu Girls <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-white/70">High School.</span>
           </h1>
 
-          {/* Rich Narrative Description */}
-          <div className="max-w-3xl mx-auto space-y-6 px-4">
-            <p className="text-base md:text-lg text-slate-200 font-medium leading-relaxed">
-              Where <span className="text-amber-400">excellence meets opportunity</span> in the heart of Matungulu, Machakos.
-            </p>
-            
-            <p className="hidden md:block text-sm text-slate-300 leading-relaxed">
-              A premier Mixed' institution committed to holistic education through innovative teaching, modern facilities, 
-              and a nurturing environment that empowers future women leaders.
+          {/* Rich Description */}
+          <div className="max-w-3xl mx-auto space-y-6 mb-8">
+            <p className="text-sm md:text-base text-slate-200 font-medium leading-relaxed">
+              Where <span className="text-emerald-400">excellence meets opportunity</span> in the heart of Matungulu, Machakos.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 pt-6 border-t border-white/10">
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">60%</div>
+                <div className="text-2xl font-bold text-white">100%</div>
                 <div className="text-xs uppercase tracking-wider text-slate-300 font-medium">KCSE Pass Rate</div>
               </div>
               <div className="hidden sm:block w-px h-8 bg-white/20"></div>
@@ -316,36 +296,52 @@ export default function ContactPage() {
               </div>
             </div>
           </div>
+
+          {/* MODERN ACTION DOCK */}
+          <div className="flex flex-row gap-2 sm:gap-4 justify-center items-center w-full px-2 mt-6">
+            
+            <Link href="/pages/apply-for-admissions" passHref className="flex-1 sm:flex-none">
+              <button className="w-full sm:w-auto px-4 sm:px-10 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white text-[11px] sm:text-sm font-black rounded-xl sm:rounded-2xl shadow-lg shadow-emerald-900/20 flex items-center justify-center gap-2 transition-transform active:scale-95 whitespace-nowrap">
+                Apply Now <ArrowRight size={16} className="shrink-0" />
+              </button>
+            </Link>
+
+            <Link href="/pages/admissions" passHref className="flex-1 sm:flex-none">
+              <button className="w-full sm:w-auto px-4 sm:px-10 py-3 bg-slate-900 text-white text-[11px] sm:text-sm font-black rounded-xl sm:rounded-2xl border border-white/10 shadow-xl flex items-center justify-center transition-transform active:scale-95 whitespace-nowrap">
+                View Programs
+              </button>
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Main Content Section - Original UI with API Integration */}
+      {/* Main Content Section */}
       <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
           
-          {/* Left Column: Form with ALL API Fields */}
+          {/* Left Column: Form */}
           <div className="lg:col-span-8">
             <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl shadow-slate-200/50 border border-slate-100">
               <div className="mb-10">
-                <span className="inline-block px-4 py-2 mb-5 text-xs font-bold tracking-[0.1em] text-orange-700 uppercase bg-orange-50 rounded-full">
+                <span className="inline-block px-4 py-2 mb-5 text-[9px] sm:text-[10px] font-black tracking-[0.2em] text-emerald-700 uppercase bg-emerald-50 rounded-full border border-emerald-100">
                   Contact Support
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-4 tracking-tight">
-                  Get in Touch <span className="text-orange-600">Directly</span>
+                  Get in Touch <span className="text-emerald-600">Directly</span>
                 </h2>
-                <p className="text-slate-500 text-lg leading-relaxed max-w-xl">
+                <p className="text-slate-500 text-sm sm:text-base leading-relaxed max-w-xl">
                   Have a question or need assistance? Fill out the form and our team will respond within 24 hours.
                 </p>
               </div>
 
               {/* Status Messages */}
               {submitStatus === 'success' && (
-                <div className="mb-8 p-6 bg-green-50 border-2 border-green-200 rounded-2xl animate-fade-in">
+                <div className="mb-8 p-6 bg-emerald-50 border-2 border-emerald-200 rounded-2xl animate-fade-in">
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
+                    <CheckCircle className="w-6 h-6 text-emerald-600 flex-shrink-0" />
                     <div>
-                      <p className="text-green-800 font-bold text-lg">Success!</p>
-                      <p className="text-green-700">{statusMessage}</p>
+                      <p className="text-emerald-800 font-black text-sm sm:text-base">Success!</p>
+                      <p className="text-emerald-700 text-xs sm:text-sm">{statusMessage}</p>
                     </div>
                   </div>
                 </div>
@@ -358,233 +354,294 @@ export default function ContactPage() {
                       <div className="w-2 h-2 bg-red-600 rounded-full animate-ping" />
                     </div>
                     <div>
-                      <p className="text-red-800 font-bold text-lg">Error</p>
-                      <p className="text-red-700">{statusMessage}</p>
+                      <p className="text-red-800 font-black text-sm sm:text-base">Error</p>
+                      <p className="text-red-700 text-xs sm:text-sm">{statusMessage}</p>
                     </div>
                   </div>
                 </div>
               )}
 
-  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-  {/* Row 1: Name & Email */}
-  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-    <div className="space-y-1 sm:space-y-2">
-      <label className="text-sm font-bold text-slate-700 ml-1">
-        Full Name <span className="text-red-500">*</span>
-      </label>
-      <input
-        type="text"
-        name="name"
-        required
-        value={formData.name}
-        onChange={handleInputChange}
-        className="w-full px-4 sm:px-5 font-semibold py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-orange-500 focus:bg-white focus:border-transparent transition-all outline-none"
-        placeholder="John Doe"
-      />
-    </div>
-    <div className="space-y-1 sm:space-y-2">
-      <label className="text-sm font-bold text-slate-700 ml-1">
-        Email Address <span className="text-red-500">*</span>
-      </label>
-      <input
-        type="email"
-        name="email"
-        required
-        value={formData.email}
-        onChange={handleInputChange}
-        className="w-full px-4 sm:px-5 font-semibold py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-orange-500 focus:bg-white focus:border-transparent transition-all outline-none"
-        placeholder="john@example.com"
-      />
-    </div>
-  </div>
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                {/* Row 1: Name & Email */}
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-1 sm:space-y-2">
+                    <label className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-slate-700 ml-1">
+                      Full Name <span className="text-emerald-600">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm font-medium placeholder-slate-400 focus:ring-2 focus:ring-emerald-500 focus:bg-white focus:border-transparent transition-all outline-none"
+                      placeholder="John Doe"
+                    />
+                  </div>
+                  <div className="space-y-1 sm:space-y-2">
+                    <label className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-slate-700 ml-1">
+                      Email Address <span className="text-emerald-600">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm font-medium placeholder-slate-400 focus:ring-2 focus:ring-emerald-500 focus:bg-white focus:border-transparent transition-all outline-none"
+                      placeholder="john@example.com"
+                    />
+                  </div>
+                </div>
 
-  {/* Row 2: Phone & Student Grade */}
-  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-    <div className="space-y-1 sm:space-y-2">
-      <label className="text-sm font-bold text-slate-700 ml-1">
-        Phone Number <span className="text-red-500">*</span>
-      </label>
-      <input
-        type="tel"
-        name="phone"
-        required
-        value={formData.phone}
-        onChange={handleInputChange}
-        className="w-full px-4 sm:px-5 py-3 sm:py-4 font-semibold bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-orange-500 focus:bg-white focus:border-transparent transition-all outline-none"
-        placeholder="0712 345 678"
-        pattern="(07|01)\d{8}"
-        title="Use 07XXXXXXXX or 01XXXXXXXX format"
-      />
-      <p className="text-[10px] sm:text-xs text-slate-500 ml-2">Format: 07XXXXXXXX or 01XXXXXXXX</p>
-    </div>
-    <div className="space-y-1 sm:space-y-2">
-      <label className="text-sm font-bold text-slate-700 ml-1">
-        Student Grade
-      </label>
-      <select
-        name="studentGrade"
-        value={formData.studentGrade}
-        onChange={handleInputChange}
-        className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 focus:ring-2 focus:ring-orange-500 focus:bg-white outline-none appearance-none"
-      >
-        <option value="">Select Grade</option>
-        <option value="Form 1">Form 1</option>
-        <option value="Form 2">Form 2</option>
-        <option value="Form 3">Form 3</option>
-        <option value="Form 4">Form 4</option>
-      </select>
-    </div>
-  </div>
+                {/* Row 2: Phone & Student Grade */}
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-1 sm:space-y-2">
+                    <label className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-slate-700 ml-1">
+                      Phone Number <span className="text-emerald-600">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm font-medium placeholder-slate-400 focus:ring-2 focus:ring-emerald-500 focus:bg-white focus:border-transparent transition-all outline-none"
+                      placeholder="0712 345 678"
+                    />
+                    <p className="text-[8px] sm:text-[10px] text-slate-500 ml-2 font-medium">Format: 07XXXXXXXX or 01XXXXXXXX</p>
+                  </div>
+                  <div className="space-y-1 sm:space-y-2">
+                    <label className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-slate-700 ml-1">
+                      Student Grade
+                    </label>
+                    <select
+                      name="studentGrade"
+                      value={formData.studentGrade}
+                      onChange={handleInputChange}
+                      className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:bg-white outline-none appearance-none"
+                    >
+                      <option value="">Select Grade</option>
+                      <option value="Form 1">Form 1</option>
+                      <option value="Form 2">Form 2</option>
+                      <option value="Form 3">Form 3</option>
+                      <option value="Form 4">Form 4</option>
+                    </select>
+                  </div>
+                </div>
 
-  {/* Row 3: Inquiry Type & Contact Method */}
-  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-    <div className="space-y-1 sm:space-y-2">
-      <label className="text-sm font-bold text-slate-700 ml-1">
-        Inquiry Type <span className="text-red-500">*</span>
-      </label>
-      <select
-        name="inquiryType"
-        required
-        value={formData.inquiryType}
-        onChange={handleInputChange}
-        className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 focus:ring-2 focus:ring-orange-500 focus:bg-white outline-none appearance-none"
-      >
-        <option value="general">General Inquiry</option>
-        <option value="admissions">Admissions</option>
-        <option value="academics">Academics</option>
-        <option value="fees">Fees & Payments</option>
-        <option value="sports">Sports & Activities</option>
-        <option value="facilities">Facilities</option>
-        <option value="alumni">Alumni Affairs</option>
-      </select>
-    </div>
-    <div className="space-y-1 sm:space-y-2">
-      <label className="text-sm font-bold text-slate-700 ml-1">
-        Preferred Contact Method
-      </label>
-      <select
-        name="contactMethod"
-        value={formData.contactMethod}
-        onChange={handleInputChange}
-        className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 focus:ring-2 focus:ring-orange-500 focus:bg-white outline-none appearance-none"
-      >
-        <option value="email">Email</option>
-        <option value="phone">Phone Call</option>
-        <option value="sms">SMS</option>
-      </select>
-    </div>
-  </div>
+                {/* Row 3: Inquiry Type & Contact Method */}
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-1 sm:space-y-2">
+                    <label className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-slate-700 ml-1">
+                      Inquiry Type <span className="text-emerald-600">*</span>
+                    </label>
+                    <select
+                      name="inquiryType"
+                      required
+                      value={formData.inquiryType}
+                      onChange={handleInputChange}
+                      className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:bg-white outline-none appearance-none"
+                    >
+                      <option value="general">General Inquiry</option>
+                      <option value="admissions">Admissions</option>
+                      <option value="academics">Academics</option>
+                      <option value="fees">Fees & Payments</option>
+                      <option value="sports">Sports & Activities</option>
+                      <option value="facilities">Facilities</option>
+                      <option value="alumni">Alumni Affairs</option>
+                    </select>
+                  </div>
+                  <div className="space-y-1 sm:space-y-2">
+                    <label className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-slate-700 ml-1">
+                      Preferred Contact Method
+                    </label>
+                    <select
+                      name="contactMethod"
+                      value={formData.contactMethod}
+                      onChange={handleInputChange}
+                      className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:bg-white outline-none appearance-none"
+                    >
+                      <option value="email">Email</option>
+                      <option value="phone">Phone Call</option>
+                      <option value="sms">SMS</option>
+                    </select>
+                  </div>
+                </div>
 
-  {/* Row 4: Subject */}
-  <div className="space-y-1 sm:space-y-2">
-    <label className="text-sm font-bold text-slate-700 ml-1">
-      Subject <span className="text-red-500">*</span>
-    </label>
-    <input
-      type="text"
-      name="subject"
-      required
-      value={formData.subject}
-      onChange={handleInputChange}
-      className="w-full px-4 sm:px-5 font-semibold py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-orange-500 focus:bg-white focus:border-transparent transition-all outline-none"
-      placeholder="What is this regarding?"
-    />
-  </div>
+                {/* Row 4: Subject */}
+                <div className="space-y-1 sm:space-y-2">
+                  <label className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-slate-700 ml-1">
+                    Subject <span className="text-emerald-600">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    required
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm font-medium placeholder-slate-400 focus:ring-2 focus:ring-emerald-500 focus:bg-white focus:border-transparent transition-all outline-none"
+                    placeholder="What is this regarding?"
+                  />
+                </div>
 
-  {/* Row 5: Message */}
-  <div className="space-y-1 sm:space-y-2">
-    <label className="text-sm font-bold text-slate-700 ml-1">
-      Message <span className="text-red-500">*</span>
-    </label>
-    <textarea
-      name="message"
-      required
-      rows={rows} 
-      value={formData.message}
-      onChange={handleInputChange}
-      className="w-full px-4 sm:px-5 py-3 sm:py-4 font-semibold bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-orange-500 focus:bg-white outline-none resize-none"
-      placeholder="How can we help you today?"
-    />
-  </div>
+                {/* Row 5: Message */}
+                <div className="space-y-1 sm:space-y-2">
+                  <label className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-slate-700 ml-1">
+                    Message <span className="text-emerald-600">*</span>
+                  </label>
+                  <textarea
+                    name="message"
+                    required
+                    rows={rows} 
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm font-medium placeholder-slate-400 focus:ring-2 focus:ring-emerald-500 focus:bg-white outline-none resize-none"
+                    placeholder="How can we help you today?"
+                  />
+                </div>
 
-  {/* Submit Button */}
-  <button
-    type="submit"
-    disabled={isSubmitting}
-    className="w-full sm:w-auto px-10 sm:px-12 py-3 sm:py-4 bg-slate-900 text-white font-bold rounded-2xl shadow-lg shadow-slate-900/20 hover:shadow-slate-900/30 active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
-  >
-    {isSubmitting ? (
-      <>
-        <CircularProgress size={20} color="inherit" />
-        Sending...
-      </>
-    ) : (
-      <>
-        Send Message
-        <Send size={18} className="text-orange-400" />
-      </>
-    )}
-  </button>
-</form>
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-auto px-8 sm:px-10 py-3 sm:py-4 bg-emerald-600 text-white font-black text-[11px] sm:text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-emerald-900/20 hover:shadow-emerald-900/30 active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <CircularProgress size={16} color="inherit" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send size={14} className="text-emerald-200" />
+                    </>
+                  )}
+                </button>
+              </form>
             </div>
           </div>
 
           {/* Right Column: Information & Actions */}
           <div className="lg:col-span-4 space-y-8">
-            {/* Departments Card */}
-      <div className="bg-gradient-to-br from-orange-900 to-amber-900 rounded-3xl p-8 text-white">
-  <div className="flex items-center gap-3 mb-8">
-    <div className="p-2 bg-white/10 rounded-xl">
-      <Users className="w-5 h-5 text-amber-400" />
-    </div>
-    <h3 className="text-xl font-bold">Departments</h3>
-  </div>
-
-  <div className="space-y-5">
-    {departments.map((dept) => (
-      <div 
-        key={dept.id} 
-        className="group pb-5 border-b border-white/5 last:border-0 last:pb-0 cursor-pointer"
-        onClick={() => openDepartmentModal(dept)}
-      >
-        <div className="flex justify-between items-start mb-2">
-          <h4 className="font-bold text-white text-base group-hover:text-amber-400 transition-colors">
-            {dept.name}
-          </h4>
-        </div>
-        
-        <div className="flex flex-col  items-center">
-          <button className="px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-amber-50 bg-white/5 border border-white/10 hover:bg-white/20 hover:border-white/20 rounded-full flex items-center gap-2 transition-all duration-300 active:scale-95">
-            View details
-            <ChevronRight size={14} className="text-amber-400 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
-      </div>
-    ))}
-  </div>
-</div>
-
-            {/* Quick Actions Card */}
-            <div className="bg-gradient-to-r from-orange-600 to-amber-600 rounded-3xl p-8 text-white relative overflow-hidden">
-              {/* Subtle decorative circle */}
-              <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+            {/* Departments Card - Matched to About Page Style */}
+            <div className="bg-gradient-to-br from-emerald-900 to-emerald-800 rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/20 rounded-full blur-3xl"></div>
               
               <div className="relative z-10">
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
-                  <Sparkles className="w-5 h-5" />
-                  Quick Actions
-                </h3>
-                <div className="grid gap-3">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 bg-white/10 rounded-xl">
+                    <Users className="w-5 h-5 text-emerald-400" />
+                  </div>
+                  <h3 className="text-sm font-black uppercase tracking-wider">Departments</h3>
+                </div>
+
+                <div className="space-y-4">
+                  {departments.map((dept) => (
+                    <div 
+                      key={dept.id} 
+                      className="group pb-4 border-b border-white/5 last:border-0 last:pb-0 cursor-pointer"
+                      onClick={() => openDepartmentModal(dept)}
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <h4 className="font-black text-white text-xs uppercase tracking-wide group-hover:text-emerald-400 transition-colors">
+                          {dept.name}
+                        </h4>
+                      </div>
+                      
+                      <div className="flex justify-end">
+                        <button className="px-3 py-1 text-[8px] font-black uppercase tracking-wider text-emerald-200 bg-white/5 border border-white/10 hover:bg-white/20 hover:border-white/20 rounded-full flex items-center gap-1 transition-all duration-300 active:scale-95">
+                          View details
+                          <ChevronRight size={10} className="text-emerald-400 group-hover:translate-x-0.5 transition-transform" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Actions Card */}
+            <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden">
+              {/* Decorative circles */}
+              <div className="absolute -right-10 -top-10 w-40 h-40 bg-emerald-400/20 rounded-full blur-3xl"></div>
+              <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-emerald-800/20 rounded-full blur-3xl"></div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 bg-white/10 rounded-xl">
+                    <Sparkles className="w-5 h-5 text-emerald-200" />
+                  </div>
+                  <h3 className="text-sm font-black uppercase tracking-wider">Quick Actions</h3>
+                </div>
+                
+                <div className="grid gap-2">
                   {quickActions.map((action, idx) => (
-                    <a 
+                    <Link 
                       key={idx} 
                       href={action.link}
-                      className="flex items-center justify-between p-4 bg-white/10 rounded-2xl border border-white/10 hover:bg-white/15 active:scale-[0.98] transition-all"
+                      className="flex items-center justify-between p-3 bg-white/10 rounded-xl border border-white/10 hover:bg-white/15 active:scale-[0.98] transition-all"
                     >
-                      <span className="font-bold text-sm">{action.title}</span>
-                      <ArrowRight size={16} />
-                    </a>
+                      <div className="flex items-center gap-2">
+                        {action.icon}
+                        <span className="font-black text-xs uppercase tracking-wide">{action.title}</span>
+                      </div>
+                      <ArrowRight size={12} className="text-emerald-200" />
+                    </Link>
                   ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Info Card */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-100">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2 bg-emerald-100 rounded-xl">
+                  <Phone className="w-5 h-5 text-emerald-600" />
+                </div>
+                <h3 className="text-sm font-black uppercase tracking-wider text-slate-900">Direct Contact</h3>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                    <Phone size={14} className="text-emerald-600" />
+                  </div>
+                  <div>
+                    <p className="text-[8px] font-black uppercase tracking-wider text-slate-400 mb-1">Call Us</p>
+                    <p className="text-xs font-bold text-slate-800">+254 720 123 456</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                    <Mail size={14} className="text-emerald-600" />
+                  </div>
+                  <div>
+                    <p className="text-[8px] font-black uppercase tracking-wider text-slate-400 mb-1">Email Us</p>
+                    <p className="text-xs font-bold text-slate-800">info@matungulu-girls.sc.ke</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                    <MapPin size={14} className="text-emerald-600" />
+                  </div>
+                  <div>
+                    <p className="text-[8px] font-black uppercase tracking-wider text-slate-400 mb-1">Visit Us</p>
+                    <p className="text-xs font-bold text-slate-800">Matungulu, Machakos County</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                    <Clock size={14} className="text-emerald-600" />
+                  </div>
+                  <div>
+                    <p className="text-[8px] font-black uppercase tracking-wider text-slate-400 mb-1">Office Hours</p>
+                    <p className="text-xs font-bold text-slate-800">Mon-Fri: 7:30 AM - 4:30 PM</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -592,102 +649,88 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Modernized Department Detail Modal */}
+      {/* Department Detail Modal - Matched to About Page Style */}
       {selectedDepartment && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-          {/* High-quality Backdrop blur */}
+          {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-orange-950/60 backdrop-blur-md"
+            className="absolute inset-0 bg-emerald-950/60 backdrop-blur-md"
             onClick={closeDepartmentModal}
           />
 
           {/* Modal Container */}
           <div className="relative bg-white rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
-            
-            {/* Decorative Header Background */}
-            <div className={`absolute top-0 left-0 right-0 h-32 opacity-10 -z-10 ${
-              selectedDepartment.color === 'orange' ? 'bg-orange-600' : 
-              selectedDepartment.color === 'amber' ? 'bg-amber-600' :
-              selectedDepartment.color === 'red' ? 'bg-red-600' : 'bg-orange-600'
-            }`} />
-
-            <div className="p-8 sm:p-10">
-              {/* Header Section */}
-              <div className="flex items-start justify-between mb-8">
-                <div className="flex items-center gap-5">
-                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg ${
-                    selectedDepartment.color === 'orange' ? 'bg-orange-600 text-white' : 
-                    selectedDepartment.color === 'amber' ? 'bg-amber-600 text-white' :
-                    selectedDepartment.color === 'red' ? 'bg-red-600 text-white' : 'bg-orange-600 text-white'
-                  }`}>
-                    {React.cloneElement(selectedDepartment.icon, { size: 28 })}
+            <div className="p-6 sm:p-8">
+              {/* Header */}
+              <div className="flex items-start justify-between mb-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-600 flex items-center justify-center text-white shadow-lg">
+                    {React.cloneElement(selectedDepartment.icon, { size: 20 })}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-black text-slate-900 tracking-tight leading-tight">
+                    <h3 className="text-base font-black text-slate-900 tracking-tight">
                       {selectedDepartment.name}
                     </h3>
-                    <span className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                    <span className="text-[8px] font-black uppercase tracking-widest text-slate-400">
                       Department Profile
                     </span>
                   </div>
                 </div>
-            <button
-  onClick={closeDepartmentModal}
-  className="p-2.5 sm:p-2 bg-white sm:bg-slate-100 text-slate-600 sm:text-slate-500 rounded-full 
-             hover:bg-slate-200 transition-all active:scale-90 shadow-sm sm:shadow-none 
-             border border-slate-200 sm:border-transparent"
-  aria-label="Close modal"
->
-  <X className="w-6 h-6 sm:w-5 sm:h-5" />
-</button>
+                <button
+                  onClick={closeDepartmentModal}
+                  className="p-2 bg-slate-100 text-slate-600 rounded-full hover:bg-slate-200 transition-all active:scale-90"
+                  aria-label="Close modal"
+                >
+                  <X className="w-4 h-4" />
+                </button>
               </div>
 
-              {/* Content Body */}
-              <div className="space-y-8">
+              {/* Content */}
+              <div className="space-y-6">
                 {/* Quick Info Grid */}
-                <div className="grid grid-cols-2 gap-6 p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                <div className="grid grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl border border-slate-100">
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">
+                    <p className="text-[8px] font-black uppercase tracking-widest text-slate-400 mb-1">
                       Department Head
                     </p>
-                    <p className="text-slate-900 font-bold">{selectedDepartment.head}</p>
+                    <p className="text-slate-900 font-black text-xs">{selectedDepartment.head}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">
+                    <p className="text-[8px] font-black uppercase tracking-widest text-slate-400 mb-1">
                       Office Hours
                     </p>
-                    <p className="text-slate-900 font-bold">{selectedDepartment.hours}</p>
+                    <p className="text-slate-900 font-black text-xs">{selectedDepartment.hours}</p>
                   </div>
                 </div>
 
-                {/* Detailed Description */}
-                <div className="px-1">
-                  <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">
+                {/* Description */}
+                <div>
+                  <p className="text-[8px] font-black uppercase tracking-widest text-slate-400 mb-2">
                     About the Department
                   </p>
-                  <p className="text-slate-600 leading-relaxed">
+                  <p className="text-slate-600 text-xs leading-relaxed">
                     {selectedDepartment.description}
                   </p>
                 </div>
 
                 {/* Action Buttons */}
-<div className="flex flex-row gap-3 sm:gap-4 pt-2">
-  <a
-    href={`mailto:${selectedDepartment.email}`}
-    className="flex items-center justify-center gap-2 sm:gap-3 flex-1 bg-slate-900 text-white py-3.5 sm:py-4 rounded-2xl text-sm sm:text-base font-bold shadow-lg shadow-slate-900/10 hover:shadow-slate-900/20 transition-all text-center"
-  >
-    <Mail className="w-4 h-4 text-orange-400 shrink-0" />
-    <span className="truncate">Email Us</span>
-  </a>
-  
-  <a
-    href={`tel:${selectedDepartment.phone.replace(/\s+/g, '')}`}
-    className="flex items-center justify-center gap-2 sm:gap-3 flex-1 bg-gradient-to-r from-orange-600 to-amber-600 text-white py-3.5 sm:py-4 rounded-2xl text-sm sm:text-base font-bold shadow-lg shadow-orange-600/10 hover:shadow-orange-600/20 transition-all text-center"
-  >
-    <Phone className="w-4 h-4 shrink-0" />
-    <span className="truncate">Call Office</span>
-  </a>
-</div>
+                <div className="flex flex-row gap-3 pt-2">
+                  <a
+                    href={`mailto:${selectedDepartment.email}`}
+                    className="flex items-center justify-center gap-2 flex-1 bg-slate-900 text-white py-3 rounded-xl text-[10px] font-black uppercase tracking-wider shadow-lg shadow-slate-900/10 hover:shadow-slate-900/20 transition-all text-center"
+                  >
+                    <Mail className="w-3 h-3 text-emerald-400 shrink-0" />
+                    <span>Email</span>
+                  </a>
+                  
+                  <a
+                    href={`tel:${selectedDepartment.phone.replace(/\s+/g, '')}`}
+                    className="flex items-center justify-center gap-2 flex-1 bg-gradient-to-r from-emerald-600 to-emerald-600 text-white py-3 rounded-xl text-[10px] font-black uppercase tracking-wider shadow-lg shadow-emerald-600/10 hover:shadow-emerald-600/20 transition-all text-center"
+                  >
+                    <Phone className="w-3 h-3 shrink-0" />
+                    <span>Call</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -697,29 +740,29 @@ export default function ContactPage() {
       {/* Mobile Navigation Footer */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-40 shadow-lg">
         <div className="flex justify-around p-2">
-          <a href="/" className="flex flex-col items-center text-slate-600 hover:text-orange-600 transition-colors p-2">
-            <Home className="w-6 h-6" />
-            <span className="text-xs mt-1 font-medium">Home</span>
-          </a>
-          <a href="tel:+254720123456" className="flex flex-col items-center text-slate-600 hover:text-orange-600 transition-colors p-2">
-            <Phone className="w-6 h-6" />
-            <span className="text-xs mt-1 font-medium">Call</span>
+          <Link href="/" className="flex flex-col items-center text-slate-600 hover:text-emerald-600 transition-colors p-2">
+            <Home className="w-5 h-5" />
+            <span className="text-[8px] mt-1 font-black uppercase tracking-wider">Home</span>
+          </Link>
+          <a href="tel:+254720123456" className="flex flex-col items-center text-slate-600 hover:text-emerald-600 transition-colors p-2">
+            <Phone className="w-5 h-5" />
+            <span className="text-[8px] mt-1 font-black uppercase tracking-wider">Call</span>
           </a>
           <button 
             onClick={() => document.querySelector('form')?.scrollIntoView({ behavior: 'smooth' })}
-            className="flex flex-col items-center text-slate-600 hover:text-orange-600 transition-colors p-2"
+            className="flex flex-col items-center text-slate-600 hover:text-emerald-600 transition-colors p-2"
           >
-            <MessageSquare className="w-6 h-6" />
-            <span className="text-xs mt-1 font-medium">Message</span>
+            <MessageSquare className="w-5 h-5" />
+            <span className="text-[8px] mt-1 font-black uppercase tracking-wider">Message</span>
           </button>
-          <a href="mailto:admissions@maryimmaculate.sc.ke" className="flex flex-col items-center text-slate-600 hover:text-orange-600 transition-colors p-2">
-            <Mail className="w-6 h-6" />
-            <span className="text-xs mt-1 font-medium">Email</span>
+          <a href="mailto:admissions@matungulu-girls.sc.ke" className="flex flex-col items-center text-slate-600 hover:text-emerald-600 transition-colors p-2">
+            <Mail className="w-5 h-5" />
+            <span className="text-[8px] mt-1 font-black uppercase tracking-wider">Email</span>
           </a>
         </div>
       </div>
 
-      {/* Global Styles for Mobile Optimization */}
+      {/* Global Styles */}
       <style jsx global>{`
         /* Prevent zoom on iOS inputs */
         input, select, textarea {
@@ -732,41 +775,15 @@ export default function ContactPage() {
           min-width: 44px;
         }
 
-        /* Responsive typography */
+        /* Responsive adjustments */
         @media (max-width: 640px) {
           html {
             font-size: 14px;
           }
           
-          h1 {
-            font-size: 2.5rem !important;
-            line-height: 1.2 !important;
-          }
-          
-          h2 {
-            font-size: 1.75rem !important;
-          }
-          
           .rounded-3xl {
-            border-radius: 1rem !important;
+            border-radius: 1.5rem !important;
           }
-          
-          .p-10 {
-            padding: 1.5rem !important;
-          }
-        }
-
-        /* Tablet optimization */
-        @media (min-width: 641px) and (max-width: 1024px) {
-          html {
-            font-size: 15px;
-          }
-        }
-
-        /* Prevent content overflow */
-        body {
-          overflow-x: hidden;
-          width: 100%;
         }
 
         /* Smooth animations */
@@ -779,7 +796,6 @@ export default function ContactPage() {
           animation: fade-in 0.5s ease-out;
         }
 
-        /* Tailwind animation utilities */
         @keyframes zoom-in {
           from { opacity: 0; transform: scale(0.95); }
           to { opacity: 1; transform: scale(1); }
