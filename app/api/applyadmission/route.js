@@ -18,8 +18,7 @@ const SCHOOL_NAME = 'Matungulu Girls High  School';
 const SCHOOL_LOCATION = 'Matungulu, Machakos County';
 const SCHOOL_MOTTO = 'Strive to Excel';
 const CONTACT_PHONE = '+254720123456';
-const CONTACT_EMAIL = 'admissions@katwanyaahighSchool.sc.ke';
-
+const CONTACT_EMAIL = 'admissions@matungulugirls.sc.ke';
 // ====================================================================
 // UTILITY FUNCTIONS
 // ====================================================================
@@ -1302,14 +1301,27 @@ export async function POST(req) {
       guardianEmail: data.guardianEmail?.trim().toLowerCase(),
       guardianOccupation: data.guardianOccupation?.trim(),
       
-      // Academic
-      previousSchool: data.previousSchool.trim(),
-      previousClass: data.previousClass.trim(),
-      kcpeYear: data.kcpeYear ? parseInt(data.kcpeYear) : null,
-      kcpeIndex: data.kcpeIndex?.trim(),
-      kcpeMarks: data.kcpeMarks ? parseInt(data.kcpeMarks) : null,
-      meanGrade: data.meanGrade?.trim(),
-      
+    // Academic - CBC System
+// Academic - CBC System
+previousSchool: data.previousSchool.trim(),
+previousClass: data.previousClass.trim(),
+
+// New CBC fields
+kpseaYear: data.kpseaYear ? parseInt(data.kpseaYear) : null,
+kpseaIndex: data.kpseaIndex?.trim(),
+kpseaMarks: data.kpseaMarks ? parseInt(data.kpseaMarks) : null,
+kjseaGrade: data.kjseaGrade?.trim(),
+
+// Keep old fields for backward compatibility
+kcpeYear: data.kpseaYear ? parseInt(data.kpseaYear) : null,
+kcpeIndex: data.kpseaIndex?.trim(),
+kcpeMarks: data.kpseaMarks ? parseInt(data.kpseaMarks) : null,
+meanGrade: data.kjseaGrade?.trim(),
+// Keep old fields for backward compatibility
+kcpeYear: data.kpseaYear ? parseInt(data.kpseaYear) : null,
+kcpeIndex: data.kpseaIndex?.trim(),
+kcpeMarks: data.kpseaMarks ? parseInt(data.kpseaMarks) : null,
+meanGrade: data.kjseaGrade?.trim(),
       // Medical
       medicalCondition: data.medicalCondition?.trim(),
       allergies: data.allergies?.trim(),
