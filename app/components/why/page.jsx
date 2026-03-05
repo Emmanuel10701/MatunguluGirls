@@ -335,7 +335,7 @@ const ModernSchoolLayout = () => {
               <span className="text-[9px] font-black uppercase text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">
                 Strive to Excel
               </span>
-              <span className="text-[9px] text-slate-400">Est. 1985</span>
+              <span className="text-[9px] text-slate-400">Est. 1955</span>
             </div>
           </div>
         </footer>
