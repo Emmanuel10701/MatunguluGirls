@@ -23,94 +23,95 @@ export default function AboutPage() {
 
   return (
     <div className="bg-white text-slate-900">
-      {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-r from-emerald-900/95 via-teal-900/95 to-slate-900/95 ">
-        {/* Background with Zoom Effect */}
-        <div className="absolute inset-0 overflow-hidden rounded-t-md">
-          {/* Modern Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/95 via-teal-900/95 to-slate-900/95 z-20"></div>
-          
-          <Image
-            src="/hero/MatG1.jpg"
-            alt="School"
-            fill
-            className="object-cover opacity-50"
-            priority
-          />
+{/* Hero Section */}
+<section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+  {/* Background with Zoom Effect */}
+  <div className="absolute inset-0 overflow-hidden rounded-t-md">
+    {/* Image - make it more visible by increasing opacity */}
+    <Image
+      src="/hero/MatG1.jpg"
+      alt="School"
+      fill
+      className="object-cover opacity-80 scale-105 hover:scale-100 transition-transform duration-10000"
+      priority
+    />
+    
+    {/* Subtle Gradient Overlay - reduced opacity so image shows through */}
+    <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/60 via-teal-900/50 to-slate-900/60 z-10"></div>
 
-          {/* Animated Radial Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-600/20 rounded-full blur-[120px] z-10"></div>
+    {/* Animated Radial Glow - optional, can keep or remove */}
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-600/20 rounded-full blur-[120px] z-20"></div>
+  </div>
+
+  <div className="relative z-30 max-w-5xl mx-auto px-6 text-center">
+    {/* Modern Static Badge */}
+    <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/20 backdrop-blur-md mb-8">
+      <span className="relative flex h-2 w-2">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      </span>
+      <span className="text-[10px] font-black tracking-[0.3em] text-emerald-200 uppercase">
+        Registration Open • {new Date().getFullYear()} Academic Year
+      </span>
+    </div>
+
+    {/* Refined Title */}
+    <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-6 tracking-tighter leading-none">
+      Matungulu Girls <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-white/70">High School.</span>
+    </h1>
+
+    {/* Expanded Rich Description */}
+    <div className="max-w-3xl mx-auto space-y-6 mb-12">
+      <p className="text-sm md:text-base text-slate-200 font-medium leading-relaxed mb-8">
+        Since 1998, a cornerstone of <span className="text-emerald-400">academic distinction</span>, 
+        crafting a holistic pathway for future leaders.
+      </p>
+
+      <div className="grid md:grid-cols-2 gap-6 text-left border-y border-white/10 py-8">
+        <div className="space-y-2">
+          <h4 className="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Why Us</h4>
+          <p className="text-sm text-slate-300 leading-relaxed">
+            We leverage modern STEM-based learning and state-of-the-art digital infrastructure to ensure our students are not just competitive, but are the innovators of tomorrow's global economy.
+          </p>
         </div>
-
-        <div className="relative z-20 max-w-5xl mx-auto px-6 text-center">
-          {/* Modern Static Badge */}
-          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/20 backdrop-blur-md mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span className="text-[10px] font-black tracking-[0.3em] text-emerald-200 uppercase">
-              Registration Open • {new Date().getFullYear()} Academic Year
-            </span>
-          </div>
-
-          {/* Refined Title */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-6 tracking-tighter leading-none">
-            Matungulu Girls <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-white/70">High School.</span>
-          </h1>
-
-          {/* Expanded Rich Description */}
-          <div className="max-w-3xl mx-auto space-y-6 mb-12">
-            <p className="text-sm md:text-base text-slate-200 font-medium leading-relaxed mb-8">
-              Since 1998, a cornerstone of <span className="text-emerald-400">academic distinction</span>, 
-              crafting a holistic pathway for future leaders.
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-6 text-left border-y border-white/10 py-8">
-              <div className="space-y-2">
-                <h4 className="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Why Us</h4>
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  We leverage modern STEM-based learning and state-of-the-art digital infrastructure to ensure our students are not just competitive, but are the innovators of tomorrow's global economy.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Core Excellence</h4>
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  Beyond the classroom, our community thrives on character development, sports leadership, and artistic expression, fostering well-rounded individuals ready for university and beyond.
-                </p>
-              </div>
-            </div>
-
-            <p className="text-xs md:text-sm text-slate-400 italic">
-              "Empowering Students through discipline, integrity, and a passion for lifelong learning."
-            </p>
-          </div>
-
-          {/* MODERN ACTION DOCK */}
-          <div className="flex flex-row gap-2 sm:gap-4 justify-center items-center w-full px-2">
-            
-            <Link href="/pages/apply-for-admissions" passHref className="flex-1 sm:flex-none">
-              <button className="w-full sm:w-auto px-4 sm:px-10 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white text-[11px] sm:text-sm font-black rounded-xl sm:rounded-2xl shadow-lg shadow-emerald-900/20 flex items-center justify-center gap-2 active:scale-95 transition-transform whitespace-nowrap">
-                Admission <ArrowRight size={16} className="shrink-0" />
-              </button>
-            </Link>
-
-            <Link href="/pages/admissions" passHref className="flex-1 sm:flex-none">
-              <button className="w-full sm:w-auto px-4 sm:px-10 py-3 bg-slate-900 text-white text-[11px] sm:text-sm font-black rounded-xl sm:rounded-2xl border border-white/10 shadow-xl flex items-center justify-center active:scale-95 transition-transform whitespace-nowrap">
-                Curriculum
-              </button>
-            </Link>
-            
-          </div>
-
-          {/* Trust Indicators */}
-          <div className="mt-12 flex justify-center gap-8 opacity-40 grayscale">
-            <span className="text-[10px] font-bold text-white uppercase tracking-widest">Government Accredited</span>
-            <span className="text-[10px] font-bold text-white uppercase tracking-widest">STEM Certified</span>
-            <span className="text-[10px] font-bold text-white uppercase tracking-widest">National Champion 2025</span>
-          </div>
+        <div className="space-y-2">
+          <h4 className="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Core Excellence</h4>
+          <p className="text-sm text-slate-300 leading-relaxed">
+            Beyond the classroom, our community thrives on character development, sports leadership, and artistic expression, fostering well-rounded individuals ready for university and beyond.
+          </p>
         </div>
-      </section>
+      </div>
+
+      <p className="text-xs md:text-sm text-slate-400 italic">
+        "Empowering Students through discipline, integrity, and a passion for lifelong learning."
+      </p>
+    </div>
+
+    {/* MODERN ACTION DOCK */}
+    <div className="flex flex-row gap-2 sm:gap-4 justify-center items-center w-full px-2">
+      
+      <Link href="/pages/apply-for-admissions" passHref className="flex-1 sm:flex-none">
+        <button className="w-full sm:w-auto px-4 sm:px-10 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white text-[11px] sm:text-sm font-black rounded-xl sm:rounded-2xl shadow-lg shadow-emerald-900/20 flex items-center justify-center gap-2 active:scale-95 transition-transform whitespace-nowrap">
+          Admission <ArrowRight size={16} className="shrink-0" />
+        </button>
+      </Link>
+
+      <Link href="/pages/admissions" passHref className="flex-1 sm:flex-none">
+        <button className="w-full sm:w-auto px-4 sm:px-10 py-3 bg-slate-900 text-white text-[11px] sm:text-sm font-black rounded-xl sm:rounded-2xl border border-white/10 shadow-xl flex items-center justify-center active:scale-95 transition-transform whitespace-nowrap">
+          Curriculum
+        </button>
+      </Link>
+      
+    </div>
+
+    {/* Trust Indicators */}
+    <div className="mt-12 flex justify-center gap-8 opacity-40 grayscale">
+      <span className="text-[10px] font-bold text-white uppercase tracking-widest">Government Accredited</span>
+      <span className="text-[10px] font-bold text-white uppercase tracking-widest">STEM Certified</span>
+      <span className="text-[10px] font-bold text-white uppercase tracking-widest">National Champion 2025</span>
+    </div>
+  </div>
+</section>
 
       {/* Modernized Static Stats Section */}
       <section className="relative z-30 max-w-6xl mx-auto px-4 sm:px-6 -mt-8 md:-mt-16">
@@ -173,11 +174,11 @@ export default function AboutPage() {
 
             {/* Vision Items */}
             <div className="grid gap-3 sm:gap-4 text-left">
-              {[
+              {([
                 { title: "Elite Faculty", icon: <Target size={18} />, desc: "Mentors from world-class institutions.", color: "emerald" },
                 { title: "Holistic Growth", icon: <Zap size={18} />, desc: "Emotional intelligence and academic mastery.", color: "emerald" },
                 { title: "Infrastructure", icon: <Globe size={18} />, desc: "Smart classrooms and collaborative labs.", color: "emerald" }
-              ].map((item, i) => (
+              ]).map((item, i) => (
                 <div key={i} className="flex gap-4 p-4 sm:p-6 rounded-2xl bg-slate-50 border border-transparent transition-all duration-300">
                   <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-600 text-white flex items-center justify-center shadow-lg">
                     {item.icon}
@@ -310,10 +311,10 @@ export default function AboutPage() {
               </p>
 
               <div className="grid gap-3 w-full text-left">
-                {[
+                {([
                   { title: "Global Perspective", icon: <Globe size={20} />, text: "Preparing for a borderless future." },
                   { title: "Agile Learning", icon: <Zap size={20} />, text: "Adapting to new technologies." }
-                ].map((item, i) => (
+                ]).map((item, i) => (
                   <div key={i} className="flex gap-4 p-4 rounded-xl sm:rounded-2xl transition-all duration-300 border border-transparent">
                     <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white text-emerald-600 flex items-center justify-center shadow-sm">
                       {item.icon}
@@ -351,14 +352,14 @@ export default function AboutPage() {
 
             {/* Values Grid */}
             <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-4">
-              {[
+              {([
                 { title: "Integrity", icon: <ShieldCheck size={18} />, desc: "Doing right always." },
                 { title: "Discipline", icon: <Clock size={18} />, desc: "Consistency in effort." },
                 { title: "Resilience", icon: <TrendingUp size={18} />, desc: "Bouncing back stronger." },
                 { title: "Empathy", icon: <Heart size={18} />, desc: "Understanding others." },
                 { title: "Innovation", icon: <Lightbulb size={18} />, desc: "Thinking beyond limits." },
                 { title: "Leadership", icon: <Users size={18} />, desc: "Inspiring the collective." }
-              ].map((val, i) => (
+              ]).map((val, i) => (
                 <div 
                   key={i} 
                   className="flex flex-col p-3 sm:p-4 bg-white border border-slate-100 rounded-xl sm:rounded-2xl transition-all duration-300"
@@ -495,12 +496,12 @@ export default function AboutPage() {
 
             {/* Stats Grid */}
             <div className="pt-8 border-t border-white/5 grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-              {[
+              {([
                 { label: 'Safety Rating', val: '100%' },
                 { label: 'Student Support', val: '24/7' },
                 { label: 'Certified Mentors', val: '15+' },
                 { label: 'Ethics Standard', val: 'Gold' }
-              ].map((stat, i) => (
+              ]).map((stat, i) => (
                 <div key={i} className="flex flex-col items-center lg:items-start text-center lg:text-left">
                   <span className="text-xl md:text-3xl font-black text-white tracking-tighter">{stat.val}</span>
                   <span className="text-[9px] uppercase tracking-[0.2em] text-emerald-400/80 font-bold mt-1">
@@ -519,10 +520,10 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
             
             {/* 1. Contact Card */}
-            <div className="lg:col-span-4 relative overflow-hidden bg-gradient-to-br from-emerald-600 to-emerald-600 p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-emerald-200/50 flex flex-col justify-between transition-all duration-500">
+            <div className="lg:col-span-4 relative overflow-hidden bg-gradient-to-br from-emerald-600 to-emerald-600 p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-emerald-200/50 flex flex-col justify-between">
               
               {/* Decorative background circle */}
-              <div className="absolute -top-10 -right-10 w-40 h-40 sm:w-64 sm:h-64 bg-emerald-500 rounded-full opacity-40 transition-transform duration-700"></div>
+              <div className="absolute -top-10 -right-10 w-40 h-40 sm:w-64 sm:h-64 bg-emerald-500 rounded-full opacity-40"></div>
               
               <div className="relative z-10">
                 <span className="inline-block px-3 py-1 mb-4 sm:mb-6 text-[9px] sm:text-[10px] font-black tracking-widest text-emerald-100 uppercase bg-emerald-700/50 rounded-full border border-emerald-400/30">
@@ -551,7 +552,17 @@ export default function AboutPage() {
                     </div>
                     <div>
                       <p className="text-emerald-100 text-[9px] sm:text-xs uppercase font-black tracking-tighter mb-0.5 sm:mb-1 opacity-80">Direct Line</p>
-                      <p className="text-white text-sm sm:text-base font-bold">+254 123 456 789</p>
+                      <p className="text-white text-sm sm:text-base font-bold">+254 (0) 720 123 456</p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4 sm:gap-5 items-start pt-2">
+                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-500/50 flex items-center justify-center text-white border border-emerald-400/30 shadow-lg">
+                      <Globe size={20} className="sm:w-[24px] sm:h-[24px]" />
+                    </div>
+                    <div>
+                      <p className="text-emerald-100 text-[9px] sm:text-xs uppercase font-black tracking-tighter mb-0.5 sm:mb-1 opacity-80">Website</p>
+                      <p className="text-white text-sm sm:text-base font-bold break-all">matungulu-girls.sc.ke</p>
                     </div>
                   </div>
                 </div>
@@ -562,37 +573,78 @@ export default function AboutPage() {
                   href="https://www.google.com/maps/search/?api=1&query=Matungulu+Girls+High+School+Machakos+County"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3 sm:py-4 bg-white text-emerald-600 font-black text-xs sm:text-sm rounded-xl sm:rounded-2xl shadow-xl transition-transform flex items-center justify-center gap-2 uppercase tracking-wider active:scale-95"
+                  className="w-full py-3 sm:py-4 bg-white text-emerald-600 font-black text-xs sm:text-sm rounded-xl sm:rounded-2xl shadow-xl flex items-center justify-center gap-2 uppercase tracking-wider active:scale-95 transition-transform"
                 >
-                  Google Maps
+                  View on Maps
                   <ExternalLink size={16} />
                 </a>
               </div>
             </div>
 
-            {/* 2. Map Container */}
-            <div className="lg:col-span-8 relative bg-white rounded-[2rem] sm:rounded-[2.5rem] p-3 sm:p-4 border border-slate-200 shadow-xl shadow-slate-200/40 transition-all duration-500">
+            {/* 2. Enhanced Info Section */}
+            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               
-              <div className="flex items-center justify-between mb-3 sm:mb-4 px-2 sm:px-4 pt-1 sm:pt-2">
-                <h3 className="text-sm sm:text-lg lg:text-xl font-black text-slate-900 flex items-center gap-2 tracking-tight uppercase">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                  Interactive Map
-                </h3>
-                
-                <div className="hidden xs:flex gap-1.5">
-                  <div className="w-7 h-7 rounded-lg bg-slate-50 border border-slate-100"></div>
-                  <div className="w-7 h-7 rounded-lg bg-slate-50 border border-slate-100"></div>
+              {/* Quick Info Cards */}
+              <div className="bg-white rounded-[1.5rem] sm:rounded-[2rem] p-5 sm:p-6 shadow-lg border border-slate-100">
+                <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                    <Clock className="text-emerald-600 w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-xs sm:text-sm font-black text-slate-900 uppercase tracking-wider mb-0.5">School Hours</h4>
+                    <p className="text-[10px] sm:text-sm text-slate-600 font-medium">
+                      Mon - Fri: 6:00 AM - 5:00 PM <br />
+                      Sat: 8:00 AM - 1:00 PM
+                    </p>
+                  </div>
                 </div>
               </div>
-              
-              <div className="relative h-[280px] sm:h-[400px] lg:h-full min-h-[280px] sm:min-h-[400px] rounded-[1.5rem] sm:rounded-[1.8rem] overflow-hidden border border-slate-100 shadow-inner">
 
-                <div className="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-2xl border border-white/10">
-                  <p className="text-[8px] sm:text-[10px] font-black text-white uppercase tracking-widest">
-                    Matungulu, Machakos 
-                  </p>
+              <div className="bg-white rounded-[1.5rem] sm:rounded-[2rem] p-5 sm:p-6 shadow-lg border border-slate-100">
+                <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-blue-100 flex items-center justify-center flex-shrink-0">
+                    <Users className="text-blue-600 w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-xs sm:text-sm font-black text-slate-900 uppercase tracking-wider mb-0.5">Principal Office</h4>
+                    <p className="text-[10px] sm:text-sm text-slate-600 font-medium">
+                      Available for inquiries <br />
+                      Book an appointment
+                    </p>
+                  </div>
                 </div>
               </div>
+
+              <div className="bg-white rounded-[1.5rem] sm:rounded-[2rem] p-5 sm:p-6 shadow-lg border border-slate-100">
+                <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                    <BookOpen className="text-emerald-600 w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-xs sm:text-sm font-black text-slate-900 uppercase tracking-wider mb-0.5">Admissions</h4>
+                    <p className="text-[10px] sm:text-sm text-slate-600 font-medium">
+                      Next intake: January 2026 <br />
+                      Limited slots available
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-[1.5rem] sm:rounded-[2rem] p-5 sm:p-6 shadow-lg border border-slate-100">
+                <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-purple-100 flex items-center justify-center flex-shrink-0">
+                    <Trophy className="text-purple-600 w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-xs sm:text-sm font-black text-slate-900 uppercase tracking-wider mb-0.5">Achievements</h4>
+                    <p className="text-[10px] sm:text-sm text-slate-600 font-medium">
+                      County leaders in academics <br />
+                      45+ national awards
+                    </p>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
           </div>
