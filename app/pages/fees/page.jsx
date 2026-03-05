@@ -459,7 +459,7 @@ export default function ModernFeesPage() {
               placeholder={`Search ${activeTab} fees...`}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-10 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-emerald-500"
+              className="w-full pl-10 pr-10 py-3 font-bold bg-white border border-slate-200 rounded-xl text-sm focus:outline-2 focus:border-emerald-500"
             />
             {searchTerm && (
               <button
@@ -551,7 +551,7 @@ export default function ModernFeesPage() {
 
               <div className="mt-4 pt-4 border-t border-slate-100">
                 <p className="text-xs text-slate-900 italic">
-              💚💚 "Strive to Excell"
+              💚 "Strive to Excell"
                 </p>
               </div>
             </div>
