@@ -229,7 +229,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
           </div>
 
           {/* Description */}
-          <p className="text-slate-500 text-sm mb-6 line-clamp-2 leading-relaxed">
+          <p className="text-slate-900 text-sm mb-6 line-clamp-2 leading-relaxed">
             {job?.jobDescription || 'Join our dedicated team at Matungulu Girls High School. We are looking for passionate individuals to contribute to our educational mission.'}
           </p>
 
@@ -356,7 +356,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
               {job?.jobTitle || 'Position Available'}
             </h3>
 
-            <div className="flex items-center gap-3 text-sm text-slate-500 mb-3">
+            <div className="flex items-center gap-3 text-sm text-slate-900 mb-3">
               <div className="flex items-center gap-1">
                 <FiBuilding size={12} />
                 <span>{job?.department || 'Department'}</span>
@@ -367,7 +367,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
               </div>
             </div>
 
-            <p className="text-slate-500 text-xs line-clamp-2 mb-3">
+            <p className="text-slate-900 text-xs line-clamp-2 mb-3">
               {job?.jobDescription || 'Join our dedicated team at Matungulu Girls High School.'}
             </p>
           </div>
@@ -423,7 +423,7 @@ const ModernStatCard = ({ stat }) => {
         </div>
 
         {/* Sublabel */}
-        <p className="text-[10px] md:text-sm font-medium text-slate-500 leading-tight line-clamp-1 md:line-clamp-none">
+        <p className="text-[10px] md:text-sm font-medium text-slate-900 leading-tight line-clamp-1 md:line-clamp-none">
           {stat.sublabel}
         </p>
       </div>
@@ -534,7 +534,7 @@ const ModernJobDetailModal = ({ job, onClose, onApply }) => {
               </div>
 
               {/* Quick Info Bar */}
-              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-y-3 gap-x-6 text-xs sm:text-sm font-semibold text-slate-500">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-y-3 gap-x-6 text-xs sm:text-sm font-semibold text-slate-900">
                 <div className="flex items-center gap-2">
                   <IoCalendarClearOutline className="text-blue-500 text-base sm:text-lg" />
                   {formatFullDate(job.applicationDeadline)}
@@ -690,7 +690,7 @@ const ModernEmptyState = ({ onClearFilters }) => {
         No Openings
       </h3>
       
-      <p className="text-slate-500 text-[9px] md:text-lg mb-6 md:mb-8 max-w-[240px] md:max-w-md mx-auto leading-relaxed">
+      <p className="text-slate-900 text-[9px] md:text-lg mb-6 md:mb-8 max-w-[240px] md:max-w-md mx-auto leading-relaxed">
         Currently no opportunities available at <span className="text-slate-900 font-bold">Matungulu Girls High School</span>.
       </p>
 
@@ -717,7 +717,7 @@ const ModernEmptyState = ({ onClearFilters }) => {
               <h4 className="font-black text-slate-900 text-[9px] md:text-xs uppercase tracking-tighter">
                 {feature.title}
               </h4>
-              <p className="hidden xs:block text-[8px] md:text-xs text-slate-500 leading-tight">
+              <p className="hidden xs:block text-[8px] md:text-xs text-slate-900 leading-tight">
                 {feature.desc}
               </p>
             </div>
@@ -1055,7 +1055,7 @@ export default function ModernCareersPage() {
                   <FiMapPin className="text-rose-500 w-4 h-4 sm:w-5 sm:h-5" />
                   <div>
                     <p className="text-xs sm:text-sm font-bold text-slate-900">Location</p>
-                    <p className="text-[10px] sm:text-xs text-slate-500">Matungulu Sub County, Machakos, Kenya</p>
+                    <p className="text-[10px] sm:text-xs text-slate-900">Matungulu Sub County, Machakos, Kenya</p>
                   </div>
                 </div>
 
@@ -1063,7 +1063,7 @@ export default function ModernCareersPage() {
                   <FiMail className="text-emerald-500 w-4 h-4 sm:w-5 sm:h-5" />
                   <div>
                     <p className="text-xs sm:text-sm font-bold text-slate-900">HR Email</p>
-                    <p className="text-[10px] sm:text-xs text-slate-500">careers@matungulugirls.sc.ke</p>
+                    <p className="text-[10px] sm:text-xs text-slate-900">careers@matungulugirls.sc.ke</p>
                   </div>
                 </div>
 
@@ -1071,12 +1071,12 @@ export default function ModernCareersPage() {
                   <FiPhone className="text-emerald-500 w-4 h-4 sm:w-5 sm:h-5" />
                   <div>
                     <p className="text-xs sm:text-sm font-bold text-slate-900">Contact</p>
-                    <p className="text-[10px] sm:text-xs text-slate-500">+254 712 345 678</p>
+                    <p className="text-[10px] sm:text-xs text-slate-900">+254 712 345 678</p>
                   </div>
                 </div>
 
                 <div className="pt-3 sm:pt-4 border-t border-slate-100">
-                  <p className="text-xs text-slate-500 italic">
+                  <p className="text-xs text-slate-900 italic">
                     "Prayer, Discipline and Hardwork"
                   </p>
                 </div>
