@@ -135,7 +135,7 @@ const ForgotPasswordPage = () => {
       {/* Back Button */}
       <button
         onClick={() => window.history.back()}
-        className="absolute top-4 left-4 sm:top-6 sm:left-6 z-50 flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10 text-white/80 hover:text-white hover:bg-white/10 transition-colors text-xs sm:text-sm"
+        className="absolute top-4 left-4 sm:top-6 sm:left-6 flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10 text-white/80 hover:text-white hover:bg-white/10 transition-colors text-xs sm:text-sm"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Back to Login</span>
