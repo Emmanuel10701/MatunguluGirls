@@ -124,8 +124,8 @@ const ResetPasswordContent = () => {
 
   // Helper component for the list items to apply conditional styling
   const ConditionItem = ({ condition, text }) => {
-    const iconClasses = condition ? "text-emerald-500" : "text-gray-400";
-    const textClasses = condition ? "text-emerald-300" : "text-gray-400";
+    const iconClasses = condition ? "text-emerald-200" : "text-gray-400";
+    const textClasses = condition ? "text-emerald-200" : "text-gray-400";
 
     return (
       <li className="flex items-center gap-2 py-1">
@@ -153,7 +153,7 @@ const ResetPasswordContent = () => {
   const SuccessMessage = () => (
     <div className="text-center py-6 sm:py-8 px-2">
       <div className="flex justify-center mb-3 sm:mb-4">
-        <CheckCircle size={48} className="text-emerald-500 sm:w-16 sm:h-16" />
+        <CheckCircle size={48} className="text-emerald-200 sm:w-16 sm:h-16" />
       </div>
       <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 px-2">
         Password Reset Successful!
@@ -276,7 +276,7 @@ const ResetPasswordContent = () => {
                   </span>
                 </h1>
                 <div className="flex items-center gap-2">
-                  <KeyRound className="text-emerald-300 w-5 h-5 sm:w-6 sm:h-6" />
+                  <KeyRound className="text-emerald-200 w-5 h-5 sm:w-6 sm:h-6" />
                   <span className="text-lg sm:text-xl font-bold text-white">Reset Password</span>
                 </div>
               </div>
@@ -300,7 +300,7 @@ const ResetPasswordContent = () => {
                   New Password
                 </label>
                 <div className="relative group">
-                  <KeyRound className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-emerald-300 w-4 h-4 sm:w-5 sm:h-5" />
+                  <KeyRound className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-emerald-200 w-4 h-4 sm:w-5 sm:h-5" />
                   <input
                     type={showPassword ? "text" : "password"}
                     value={newPassword}
@@ -336,7 +336,7 @@ const ResetPasswordContent = () => {
                     Confirm Password
                   </label>
                   <div className="relative">
-                    <KeyRound className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-emerald-300 w-4 h-4 sm:w-5 sm:h-5" />
+                    <KeyRound className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-emerald-200 w-4 h-4 sm:w-5 sm:h-5" />
                     <input
                       type={showPassword ? "text" : "password"}
                       value={confirmPassword}
@@ -378,7 +378,7 @@ const ResetPasswordContent = () => {
 
             {/* School Motto */}
             <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-2">
-              <Heart className="w-3 h-3 text-emerald-400" />
+              <Heart className="w-3 h-3 text-emerald-200" />
               <span className="text-[10px] sm:text-xs text-emerald-200/60">Prayer, Discipline & Hardwork</span>
             </div>
           </>
@@ -425,7 +425,7 @@ const ResetPasswordPage = () => {
             
             {/* School Motto */}
             <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-2">
-              <Heart className="w-3 h-3 text-emerald-400" />
+              <Heart className="w-3 h-3 text-emerald-200" />
               <span className="text-[10px] sm:text-xs text-emerald-200/60">Strive to Excell</span>
             </div>
           </div>

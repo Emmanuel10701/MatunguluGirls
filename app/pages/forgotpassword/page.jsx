@@ -198,7 +198,7 @@ const ForgotPasswordPage = () => {
               </span>
             </h1>
             <div className="flex items-center gap-2">
-              <ShieldQuestion className="text-emerald-300 text-xl sm:text-2xl" />
+              <ShieldQuestion className="text-emerald-100 text-xl sm:text-2xl" />
               <span className="text-lg sm:text-xl font-bold text-white">Password Recovery</span>
             </div>
           </div>
@@ -208,15 +208,15 @@ const ForgotPasswordPage = () => {
           </p>
           
           <div className="flex justify-center flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm font-medium mb-6 sm:mb-8">
-            <span className="bg-emerald-500/20 text-emerald-200 px-2 sm:px-3 py-1 rounded-full border border-emerald-500/30">#Security</span>
-            <span className="bg-emerald-500/20 text-emerald-200 px-2 sm:px-3 py-1 rounded-full border border-emerald-500/30">#AccountRecovery</span>
-            <span className="bg-emerald-500/20 text-emerald-200 px-2 sm:px-3 py-1 rounded-full border border-emerald-500/30">#SafeAccess</span>
+            <span className="bg-emerald-500/20 text-emerald-100 px-2 sm:px-3 py-1 rounded-full border border-emerald-500/30">#Security</span>
+            <span className="bg-emerald-500/20 text-emerald-100 px-2 sm:px-3 py-1 rounded-full border border-emerald-500/30">#AccountRecovery</span>
+            <span className="bg-emerald-500/20 text-emerald-100 px-2 sm:px-3 py-1 rounded-full border border-emerald-500/30">#SafeAccess</span>
           </div>
 
           {/* Status Message */}
           {emailSent && (
             <div className="mb-4 p-3 bg-emerald-500/20 border border-emerald-500/30 rounded-xl">
-              <p className="text-emerald-200 text-xs sm:text-sm">
+              <p className="text-emerald-100 text-xs sm:text-sm">
                 ✓ Reset link sent! Check your inbox and spam folder.
               </p>
             </div>
@@ -226,7 +226,7 @@ const ForgotPasswordPage = () => {
         <form onSubmit={handleSubmit} className="relative z-10 space-y-4 sm:space-y-6">
           <div>
             <div className="relative">
-              <Mail className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-emerald-300 w-4 h-4 sm:w-5 sm:h-5" />
+              <Mail className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-emerald-100 w-4 h-4 sm:w-5 sm:h-5" />
               <input
                 type="email"
                 value={email}
@@ -273,11 +273,11 @@ const ForgotPasswordPage = () => {
         </form>
 
         <div className="mt-6 sm:mt-8 text-center text-sm">
-          <p className="text-xs sm:text-sm text-emerald-200/70">
+          <p className="text-xs sm:text-sm text-emerald-100/70">
             Remembered your password?{' '}
             <span
               onClick={() => window.history.back()}
-              className="text-emerald-300 font-medium hover:text-emerald-200 hover:underline cursor-pointer transition-colors"
+              className="text-emerald-100 font-medium hover:text-emerald-100 hover:underline cursor-pointer transition-colors"
             >
               Return to Login
             </span>
@@ -286,8 +286,8 @@ const ForgotPasswordPage = () => {
 
    {/* School Motto */}
             <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-2">
-              <Heart className="w-3 h-3 text-emerald-400" />
-              <span className="text-[10px] sm:text-xs text-emerald-200/60">Strive to Excell</span>
+              <Heart className="w-3 h-3 text-emerald-100" />
+              <span className="text-[10px] sm:text-xs text-emerald-100/60">Strive to Excell</span>
             </div>
       </div>
     </div>
