@@ -536,7 +536,7 @@ MatG        </div>
 </section>
 
       {/* Modern Institutional Section - Refined Small Text Edition */}
-      <section className="py-12 sm:py-20 px-4 sm:px-6 overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-950 to-red-950">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-950 to-green-950">
         <div className="relative w-full bg-[#1a0f0a] rounded-[2rem] md:rounded-[3.5rem] p-8 sm:p-6 md:p-16 text-center border border-white/5 shadow-2xl overflow-hidden">
         
           {/* Small Refined Icon */}
