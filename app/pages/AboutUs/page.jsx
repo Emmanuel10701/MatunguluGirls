@@ -585,7 +585,7 @@ MatG        </div>
 <div className="flex flex-row gap-3 sm:gap-6 justify-center items-center w-full px-4 mt-6">
   
   {/* Link width is now 'fit-content' (auto) instead of flex-1 */}
-  <Link href="/pages/TermsandPrivacy" className="w-auto">
+  <Link href="/pages/OurSchoolpolicies" className="w-auto">
     <button className="px-5 sm:px-10 py-3.5 bg-white text-slate-950 font-black text-[9px] sm:text-[11px] uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-white/5 active:scale-95 flex items-center justify-center gap-2 transition-all hover:bg-slate-50 whitespace-nowrap border border-white">
       Policies <ArrowRight size={14} className="shrink-0 opacity-70" />
     </button>

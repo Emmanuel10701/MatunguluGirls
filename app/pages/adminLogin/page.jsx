@@ -1605,7 +1605,7 @@ const handlePasswordAfterVerification = async () => {
                     </p>
                   </div>
                   <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6">
-                    <a href="/pages/TermsandPrivacy" className="text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors whitespace-nowrap">
+                    <a href="/pages/OurSchoolpolicies" className="text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors whitespace-nowrap">
                       Privacy Policy
                     </a>
                     <a href="#" className="text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors whitespace-nowrap">

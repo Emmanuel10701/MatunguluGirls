@@ -61,7 +61,7 @@ export default function ModernFooter() {
     { name: 'Guidance & Counselling', href: '/pages/Guidance-and-Councelling', icon: FiHelpCircle },
     { name: 'Staff Directory', href: '/pages/staff', icon: FiUsers },
     { name: 'Admin Login', href: '/pages/adminLogin', icon: FiLock },
-    { name: 'School Policies', href: '/pages/TermsandPrivacy', icon: FiShield },
+    { name: 'School Policies', href: '/pages/OurSchoolpolicies', icon: FiShield },
   ];
 
   // Social Media Links

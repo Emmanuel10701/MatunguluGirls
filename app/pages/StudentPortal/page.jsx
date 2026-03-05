@@ -1259,28 +1259,28 @@ if (!student || !token) {
                 </div>
 <div className="flex items-center justify-center gap-4 sm:gap-6 flex-wrap">
   <button
-    onClick={() => router.push('/pages/TermsandPrivacy')}
+    onClick={() => router.push('/pages/OurSchoolpolicies')}
     className="text-gray-500 hover:text-gray-700 text-xs sm:text-sm font-medium transition-colors mobile-touch-friendly"
   >
     Privacy
   </button>
 
   <button
-    onClick={() => router.push('/pages/TermsandPrivacy')}
+    onClick={() => router.push('/pages/OurSchoolpolicies')}
     className="text-gray-500 hover:text-gray-700 text-xs sm:text-sm font-medium transition-colors mobile-touch-friendly"
   >
     Terms
   </button>
 
   <button
-    onClick={() => router.push('/pages/TermsandPrivacy')}
+    onClick={() => router.push('/pages/OurSchoolpolicies')}
     className="text-gray-500 hover:text-gray-700 text-xs sm:text-sm font-medium transition-colors mobile-touch-friendly"
   >
     Help
   </button>
 
   <button
-    onClick={() => router.push('/pages/TermsandPrivacy')}
+    onClick={() => router.push('/pages/OurSchoolpolicies')}
     className="text-gray-500 hover:text-gray-700 transition-colors mobile-touch-friendly"
     aria-label="Language & Policies"
   >

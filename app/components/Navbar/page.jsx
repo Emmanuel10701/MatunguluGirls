@@ -150,7 +150,7 @@ export default function ModernNavbar() {
     },
      {
       name: 'School Rules',
-      href: '/pages/TermsandPrivacy',
+      href: '/pages/OurSchoolpolicies',
       icon: FiUserPlus
     }
   ];
