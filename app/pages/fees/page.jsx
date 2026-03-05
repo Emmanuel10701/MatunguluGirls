@@ -26,12 +26,12 @@ import {
   FiBookOpen,
   FiTruck,
   FiHeart,
-  FiCheckmarkCircleOutline,
   FiShield,
   FiWifi,
   FiCoffee,
   FiAward,
-
+  FiSun,
+  FiCloud
 } from 'react-icons/fi';
 import { 
   IoNewspaperOutline,
@@ -65,7 +65,7 @@ import {
   IoLibraryOutline
 } from 'react-icons/io5';
 import { MdOutlineSchool, MdOutlineBoardingSchool, MdOutlineAdUnits } from 'react-icons/md';
-import { FaWhatsapp, FaTelegram, FaEnvelope, FaRegCopy } from 'react-icons/fa';
+import { FaWhatsapp, FaTelegram, FaEnvelope, FaRegCopy, FaLeaf } from 'react-icons/fa';
 import { CircularProgress, Stack } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
@@ -86,7 +86,7 @@ const ModernModal = ({ children, open, onClose, maxWidth = '800px' }) => {
         <div className="absolute top-4 right-4 z-10">
           <button 
             onClick={onClose}
-            className="p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white cursor-pointer border border-gray-200 shadow-sm"
+            className="p-2 bg-white/80 backdrop-blur-sm rounded-full border border-gray-200 shadow-sm"
           >
             <FiX className="text-gray-600 w-5 h-5" />
           </button>
@@ -97,19 +97,19 @@ const ModernModal = ({ children, open, onClose, maxWidth = '800px' }) => {
   );
 };
 
-// Fee Breakdown Card Component - FIXED: Better responsive text sizing
+// Fee Breakdown Card Component
 const FeeBreakdownCard = ({ item, onInfo }) => {
   const getCategoryIcon = (name) => {
     const icons = {
-      'Tuition': <FiBookOpen className="text-blue-600" />,
-      'Boarding': <IoBedOutline className="text-purple-600" />,
+      'Tuition': <FiBookOpen className="text-emerald-600" />,
+      'Boarding': <IoBedOutline className="text-teal-600" />,
       'Uniform': <FiTruck className="text-emerald-600" />,
       'Books': <FiFileText className="text-amber-600" />,
       'Medical': <IoMedkitOutline className="text-rose-600" />,
       'Activity': <FiHeart className="text-pink-600" />,
       'Application': <FiCreditCard className="text-indigo-600" />,
       'Registration': <FiUser className="text-cyan-600" />,
-      'Acceptance': <FiCheckmarkCircleOutline className="text-green-600" />,
+      'Acceptance': <IoCheckmarkCircleOutline className="text-emerald-600" />,
       'Development': <FiHome className="text-orange-600" />,
       'Deposit': <FiDollarSign className="text-teal-600" />
     };
@@ -117,7 +117,7 @@ const FeeBreakdownCard = ({ item, onInfo }) => {
   };
 
   return (
-    <div className="group relative bg-white rounded-2xl border border-slate-100 p-3 sm:p-4 md:p-5 hover:shadow-lg transition-all">
+    <div className="group relative bg-white rounded-2xl border border-slate-100 p-3 sm:p-4 md:p-5">
       <div className="flex items-start justify-between gap-2 mb-3">
         <div className="flex items-start gap-2 sm:gap-3 min-w-0">
           <div className="p-1.5 sm:p-2 md:p-2.5 rounded-lg sm:rounded-xl bg-slate-50 border border-slate-100 flex-shrink-0 mt-0.5">
@@ -136,7 +136,7 @@ const FeeBreakdownCard = ({ item, onInfo }) => {
         </div>
         <button
           onClick={() => onInfo(item)}
-          className="opacity-0 group-hover:opacity-100 p-1 sm:p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all flex-shrink-0"
+          className="p-1 sm:p-1.5 rounded-lg bg-slate-100 text-slate-600 border border-slate-200 flex-shrink-0"
         >
           <FiInfo size={12} className="sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
         </button>
@@ -179,10 +179,10 @@ const PDFCard = ({ title, pdfUrl, fileName, fileSize, uploadDate, description, o
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg transition-all">
+    <div className="bg-white rounded-2xl border border-slate-100 p-5">
       <div className="flex items-start gap-4">
-        <div className="p-3 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
-          <IoDocumentTextOutline className="text-blue-600 text-2xl" />
+        <div className="p-3 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl border border-emerald-100">
+          <IoDocumentTextOutline className="text-emerald-600 text-2xl" />
         </div>
         
         <div className="flex-1 min-w-0">
@@ -193,15 +193,15 @@ const PDFCard = ({ title, pdfUrl, fileName, fileSize, uploadDate, description, o
           
           <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 mb-4">
             <span className="flex items-center gap-1">
-              <FiFileText className="text-blue-400" size={12} />
+              <FiFileText className="text-emerald-400" size={12} />
               {fileName || 'Document'}
             </span>
             <span className="flex items-center gap-1">
-              <FiClock className="text-emerald-400" size={12} />
+              <FiClock className="text-teal-400" size={12} />
               {formatFileSize(fileSize)}
             </span>
             <span className="flex items-center gap-1">
-              <FiCalendar className="text-purple-400" size={12} />
+              <FiCalendar className="text-emerald-400" size={12} />
               {formatDate(uploadDate)}
             </span>
           </div>
@@ -209,14 +209,14 @@ const PDFCard = ({ title, pdfUrl, fileName, fileSize, uploadDate, description, o
           <div className="flex items-center gap-2">
             <button
               onClick={() => onView(pdfUrl)}
-              className="flex-1 py-2.5 bg-slate-900 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 hover:bg-slate-800 active:scale-95 transition-all"
+              className="flex-1 py-2.5 bg-emerald-900 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 border border-emerald-800"
             >
               <IoEyeOutline size={14} />
               View PDF
             </button>
             <button
               onClick={() => onDownload(pdfUrl, fileName)}
-              className="p-2.5 bg-slate-100 text-slate-700 rounded-xl hover:bg-slate-200 active:scale-95 transition-all"
+              className="p-2.5 bg-slate-100 text-slate-700 rounded-xl border border-slate-200"
             >
               <FiDownload size={14} />
             </button>
@@ -228,15 +228,15 @@ const PDFCard = ({ title, pdfUrl, fileName, fileSize, uploadDate, description, o
 };
 
 // Fee Summary Card
-const FeeSummaryCard = ({ title, total, items, icon: Icon, color = 'blue' }) => {
+const FeeSummaryCard = ({ title, total, items, icon: Icon, color = 'emerald' }) => {
   const colorClasses = {
-    blue: { bg: 'bg-blue-50', text: 'text-blue-600', border: 'border-blue-100' },
-    purple: { bg: 'bg-purple-50', text: 'text-purple-600', border: 'border-purple-100' },
     emerald: { bg: 'bg-emerald-50', text: 'text-emerald-600', border: 'border-emerald-100' },
+    teal: { bg: 'bg-teal-50', text: 'text-teal-600', border: 'border-teal-100' },
+    purple: { bg: 'bg-purple-50', text: 'text-purple-600', border: 'border-purple-100' },
     amber: { bg: 'bg-amber-50', text: 'text-amber-600', border: 'border-amber-100' }
   };
 
-  const classes = colorClasses[color] || colorClasses.blue;
+  const classes = colorClasses[color] || colorClasses.emerald;
 
   return (
     <div className="bg-white rounded-3xl border border-slate-100 p-6 shadow-sm">
@@ -259,7 +259,7 @@ const FeeSummaryCard = ({ title, total, items, icon: Icon, color = 'blue' }) => 
         </div>
       </div>
       
-      <button className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-slate-800 active:scale-95 transition-all">
+      <button className="w-full py-3 bg-emerald-900 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 border border-emerald-800">
         View Breakdown
         <FiChevronRight size={16} />
       </button>
@@ -279,13 +279,12 @@ export default function ModernFeesPage() {
 
   // Tabs configuration
   const tabs = [
-    { id: 'day', name: 'Day Fees', icon: IoBusinessOutline, color: 'blue' },
-    { id: 'boarding', name: 'Boarding Fees', icon: IoBedOutline, color: 'purple' },
+    { id: 'day', name: 'Day Fees', icon: IoBusinessOutline, color: 'emerald' },
+    { id: 'boarding', name: 'Boarding Fees', icon: IoBedOutline, color: 'teal' },
     { id: 'admission', name: 'Admission Fees', icon: MdOutlineAdUnits, color: 'amber' }
   ];
 
-
-const router = useRouter();
+  const router = useRouter();
 
   // Fetch document data
   const fetchDocuments = async (showRefresh = false) => {
@@ -410,7 +409,7 @@ const router = useRouter();
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white p-4">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
         <div className="max-w-7xl mx-auto">
           <div className="min-h-[70vh] flex items-center justify-center">
             <Stack spacing={2} alignItems="center">
@@ -428,13 +427,13 @@ const router = useRouter();
                   size={48}
                   thickness={4.5}
                   sx={{
-                    color: '#0f172a',
+                    color: '#059669',
                     animationDuration: '1000ms',
                     position: 'absolute',
                   }}
                 />
                 <div className="absolute">
-                  <IoSparkles className="text-blue-600 text-sm animate-pulse" />
+                  <IoSparkles className="text-emerald-600 text-sm" />
                 </div>
               </div>
               <div className="text-center px-4">
@@ -457,19 +456,19 @@ const router = useRouter();
   const totalAmount = getCurrentTotal();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50">
       <Toaster position="top-right" richColors />
 
       {/* Hero Section */}
-      <div className="relative bg-slate-950 p-6 sm:p-10 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-64 h-64 bg-blue-600/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-purple-600/10 rounded-full blur-[120px]" />
+      <div className="relative bg-emerald-950 p-6 sm:p-10 overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-64 h-64 bg-emerald-600/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-teal-600/10 rounded-full blur-[120px]" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="space-y-4">
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/10 backdrop-blur-xl rounded-full border border-white/20">
-              <IoWalletOutline className="text-blue-400 text-[10px] sm:text-sm animate-pulse" />
-              <span className="text-blue-100 font-black text-[8px] sm:text-xs uppercase tracking-[0.2em]">
+              <IoWalletOutline className="text-emerald-400 text-[10px] sm:text-sm" />
+              <span className="text-emerald-100 font-black text-[8px] sm:text-xs uppercase tracking-[0.2em]">
                 Fee Structure
               </span>
             </div>
@@ -477,39 +476,37 @@ const router = useRouter();
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter leading-[1.1]">
-                  School <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-purple-400">Fees</span>
+                  School <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-200 to-emerald-400">Fees</span>
                 </h1>
                 <p className="text-slate-400 text-sm sm:text-lg mt-2 font-medium max-w-2xl">
                   Transparent fee structure for all programs at Matungulu Girls High School.
                 </p>
               </div>
               
-        <button
-  onClick={refreshData}
-  disabled={refreshing}
-  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 
-             px-5 py-3 sm:px-8 sm:py-4 
-             rounded-xl sm:rounded-2xl 
-             bg-white hover:bg-blue-50 
-             text-slate-950 font-black 
-             text-xs sm:text-sm 
-             uppercase tracking-widest 
-             transition-all active:scale-95 
-             disabled:opacity-50 disabled:cursor-not-allowed
-             shadow-[0_0_20px_rgba(255,255,255,0.1)]"
->
-  {refreshing && (
-    <CircularProgress 
-      size={18} 
-      thickness={5} 
-      sx={{ color: "#0f172a" }} 
-    />
-  )}
-  
-  <span>
-    {refreshing ? "Fetching fees..." : "Refresh"}
-  </span>
-</button>
+              <button
+                onClick={refreshData}
+                disabled={refreshing}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 
+                           px-5 py-3 sm:px-8 sm:py-4 
+                           rounded-xl sm:rounded-2xl 
+                           bg-white text-emerald-950 font-black 
+                           text-xs sm:text-sm 
+                           uppercase tracking-widest 
+                           disabled:opacity-50 disabled:cursor-not-allowed
+                           border border-emerald-200"
+              >
+                {refreshing && (
+                  <CircularProgress 
+                    size={18} 
+                    thickness={5} 
+                    sx={{ color: "#059669" }} 
+                  />
+                )}
+                
+                <span>
+                  {refreshing ? "Fetching fees..." : "Refresh"}
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -520,7 +517,7 @@ const router = useRouter();
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
           <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 p-4 sm:p-5 md:p-6 shadow-sm">
             <div className="flex items-center justify-between mb-3 sm:mb-4">
-              <div className="p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-blue-50 text-blue-600 border border-blue-100">
+              <div className="p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100">
                 <IoBusinessOutline size={18} className="sm:w-6 sm:h-6 md:w-6 md:h-6" />
               </div>
 
@@ -530,7 +527,7 @@ const router = useRouter();
                 {documentData?.feesDayDistributionPdf && (
                   <button
                     onClick={() => handleDownloadPDF(documentData.feesDayDistributionPdf, documentData.feesDayPdfName)}
-                    className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-200 rounded-lg shadow-sm hover:bg-slate-50 text-sm font-bold transition-colors"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-200 rounded-lg shadow-sm text-sm font-bold"
                     title="Download Day Fees Document"
                   >
                     <FiDownload className="w-4 h-4" />
@@ -549,7 +546,7 @@ const router = useRouter();
 
           <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 p-4 sm:p-5 md:p-6 shadow-sm">
             <div className="flex items-center justify-between mb-3 sm:mb-4">
-              <div className="p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-purple-50 text-purple-600 border border-purple-100">
+              <div className="p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-teal-50 text-teal-600 border border-teal-100">
                 <IoBedOutline size={18} className="sm:w-6 sm:h-6 md:w-6 md:h-6" />
               </div>
 
@@ -559,7 +556,7 @@ const router = useRouter();
                 {documentData?.feesBoardingDistributionPdf && (
                   <button
                     onClick={() => handleDownloadPDF(documentData.feesBoardingDistributionPdf, documentData.feesBoardingPdfName)}
-                    className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-200 rounded-lg shadow-sm hover:bg-slate-50 text-sm font-bold transition-colors"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-200 rounded-lg shadow-sm text-sm font-bold"
                     title="Download Boarding Fees Document"
                   >
                     <FiDownload className="w-4 h-4" />
@@ -603,10 +600,10 @@ const router = useRouter();
                   setActiveTab(tab.id);
                   setSearchTerm('');
                 }}
-                className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm transition-all border ${
+                className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm border ${
                   isActive
-                    ? `bg-${tab.color}-600 border-${tab.color}-600 text-white shadow-md`
-                    : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'
+                    ? `bg-emerald-600 border-emerald-600 text-white shadow-md`
+                    : 'bg-white border-slate-200 text-slate-600'
                 }`}
               >
                 <Icon size={14} className="sm:w-4 sm:h-4 md:w-5 md:h-5" />
@@ -633,7 +630,7 @@ const router = useRouter();
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm('')}
-                className="mr-1 sm:mr-2 p-1.5 sm:p-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200"
+                className="mr-1 sm:mr-2 p-1.5 sm:p-2 bg-slate-100 text-slate-700 rounded-lg border border-slate-200"
               >
                 <FiX size={14} className="sm:w-4 sm:h-4" />
               </button>
@@ -678,18 +675,18 @@ const router = useRouter();
             )}
 
             {/* Total Card - Responsive */}
-            <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 text-white mt-3 sm:mt-4">
+            <div className="bg-gradient-to-br from-emerald-900 to-teal-900 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 text-white mt-3 sm:mt-4">
               <div className="flex items-center justify-between mb-3 sm:mb-4 gap-2">
                 <div className="p-2 sm:p-3 bg-white/10 rounded-lg sm:rounded-xl border border-white/20 flex-shrink-0">
                   <IoWalletOutline size={20} className="sm:w-6 sm:h-6" />
                 </div>
                 <span className="text-[8px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">Total</span>
               </div>
-              <p className="text-[10px] sm:text-xs text-slate-300 mb-1">Total {tabs.find(t => t.id === activeTab)?.name}</p>
+              <p className="text-[10px] sm:text-xs text-emerald-200 mb-1">Total {tabs.find(t => t.id === activeTab)?.name}</p>
               <p className="text-2xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4 leading-tight">
                 KSh {totalAmount.toLocaleString()}
               </p>
-              <p className="text-[8px] sm:text-xs text-slate-400">* Inclusive of all applicable fees</p>
+              <p className="text-[8px] sm:text-xs text-emerald-200">* Inclusive of all applicable fees</p>
             </div>
           </div>
 
@@ -722,22 +719,22 @@ const router = useRouter();
             <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 p-4 sm:p-5 md:p-6">
               <h3 className="font-bold text-slate-900 mb-3 text-sm sm:text-base md:text-lg">Payment Info</h3>
               <div className="space-y-2 sm:space-y-3">
-                <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
-                  <IoCardOutline className="text-blue-600 flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
+                <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl border border-slate-100">
+                  <IoCardOutline className="text-emerald-600 flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
                   <div className="min-w-0">
                     <p className="text-[8px] sm:text-xs font-bold text-slate-400">Bank Transfer</p>
                     <p className="text-[10px] sm:text-xs md:text-sm font-bold text-slate-900 truncate">Account: 1234567890</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
-                  <IoCashOutline className="text-emerald-600 flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
+                <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl border border-slate-100">
+                  <IoCashOutline className="text-teal-600 flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
                   <div className="min-w-0">
                     <p className="text-[8px] sm:text-xs font-bold text-slate-400">MPesa Paybill</p>
                     <p className="text-[10px] sm:text-xs md:text-sm font-bold text-slate-900 truncate">Business No: 522522</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
-                  <IoReceiptOutline className="text-purple-600 flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
+                <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl border border-slate-100">
+                  <IoReceiptOutline className="text-emerald-600 flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
                   <div className="min-w-0">
                     <p className="text-[8px] sm:text-xs font-bold text-slate-400">Account Name</p>
                     <p className="text-[10px] sm:text-xs md:text-sm font-bold text-slate-900 truncate">Matungulu Girls High School</p>
@@ -745,29 +742,40 @@ const router = useRouter();
                 </div>
               </div>
             </div>
+
+            {/* School Motto Card */}
+            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-emerald-100">
+              <div className="flex items-center gap-2 mb-2">
+                <FaLeaf className="text-emerald-600 w-4 h-4" />
+                <span className="text-xs font-bold text-emerald-800 uppercase tracking-wider">Our Motto</span>
+              </div>
+              <p className="text-sm font-medium text-emerald-900 italic">
+                "Prayer, Discipline and Hardwork"
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Footer Banner - Responsive */}
-        <div className="relative overflow-hidden bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-xl mt-6 sm:mt-8">
-          <div className="absolute top-0 right-0 w-32 h-32 sm:w-48 sm:h-48 bg-blue-500/5 blur-[80px] rounded-full -mr-16 sm:-mr-24 -mt-16 sm:-mt-24" />
-          <div className="absolute bottom-0 left-0 w-32 h-32 sm:w-48 sm:h-48 bg-purple-500/5 blur-[80px] rounded-full -ml-16 sm:-ml-24 -mb-16 sm:-mb-24" />
+        <div className="relative overflow-hidden bg-emerald-900 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-xl mt-6 sm:mt-8">
+          <div className="absolute top-0 right-0 w-32 h-32 sm:w-48 sm:h-48 bg-emerald-500/5 blur-[80px] rounded-full -mr-16 sm:-mr-24 -mt-16 sm:-mt-24" />
+          <div className="absolute bottom-0 left-0 w-32 h-32 sm:w-48 sm:h-48 bg-teal-500/5 blur-[80px] rounded-full -ml-16 sm:-ml-24 -mb-16 sm:-mb-24" />
 
           <div className="relative z-10 flex flex-col md:flex-row items-center gap-4 sm:gap-6">
             <div className="shrink-0">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-2xl bg-white flex items-center justify-center shadow-lg">
-                <IoReceiptOutline className="text-slate-900 text-lg sm:text-2xl" />
+                <IoReceiptOutline className="text-emerald-900 text-lg sm:text-2xl" />
               </div>
             </div>
             <div className="flex-1 text-center md:text-left">
               <h3 className="text-base sm:text-lg md:text-2xl font-black text-white mb-1 sm:mb-2">
                 Need Payment Assistance?
               </h3>
-              <p className="text-slate-400 text-xs sm:text-sm md:text-base leading-relaxed">
+              <p className="text-emerald-200 text-xs sm:text-sm md:text-base leading-relaxed">
                 Contact our finance office for payment plans and financial aid information.
               </p>
             </div>
-            <button onclick={() => (router.push("/pages/contact"))} className="px-4 sm:px-6 py-2 sm:py-3 bg-white text-slate-900 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm hover:bg-slate-100 transition-all active:scale-95 flex-shrink-0">
+            <button onClick={() => (router.push("/pages/contact"))} className="px-4 sm:px-6 py-2 sm:py-3 bg-white text-emerald-900 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm border border-emerald-200 flex-shrink-0">
               Contact
             </button>
           </div>
@@ -779,7 +787,7 @@ const router = useRouter();
         {selectedFeeItem && (
           <div className="p-6">
             <div className="text-center mb-6">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center">
                 <FiInfo className="text-white text-2xl" />
               </div>
               <h3 className="text-xl font-bold text-slate-900">{selectedFeeItem.name}</h3>
@@ -787,17 +795,17 @@ const router = useRouter();
             </div>
 
             <div className="space-y-4">
-              <div className="p-4 bg-slate-50 rounded-xl">
+              <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
                 <p className="text-xs font-bold text-slate-400 mb-1">Description</p>
                 <p className="text-slate-900">{selectedFeeItem.description || 'No description available'}</p>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <div className="p-4 bg-slate-50 rounded-xl">
+                <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
                   <p className="text-xs font-bold text-slate-400 mb-1">Amount</p>
                   <p className="text-xl font-black text-slate-900">KSh {selectedFeeItem.amount?.toLocaleString()}</p>
                 </div>
-                <div className="p-4 bg-slate-50 rounded-xl">
+                <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
                   <p className="text-xs font-bold text-slate-400 mb-1">Status</p>
                   <p className="text-sm font-bold text-slate-900">
                     {selectedFeeItem.optional ? 'Optional' : 'Mandatory'}
@@ -812,15 +820,15 @@ const router = useRouter();
               )}
 
               {selectedFeeItem.boardingOnly && (
-                <div className="p-3 bg-purple-50 rounded-xl border border-purple-200">
-                  <p className="text-xs font-bold text-purple-800">Boarding students only</p>
+                <div className="p-3 bg-teal-50 rounded-xl border border-teal-200">
+                  <p className="text-xs font-bold text-teal-800">Boarding students only</p>
                 </div>
               )}
             </div>
 
             <button
               onClick={() => setShowInfoModal(false)}
-              className="w-full mt-6 py-3 bg-slate-900 text-white rounded-xl font-bold text-sm hover:bg-slate-800 transition-all"
+              className="w-full mt-6 py-3 bg-emerald-900 text-white rounded-xl font-bold text-sm border border-emerald-800"
             >
               Close
             </button>
