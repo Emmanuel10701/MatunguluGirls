@@ -433,7 +433,6 @@ export default function ModernFeesPage() {
           </div>
         </div>
       </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
         {/* Quick Stats Row */}
         <div className="grid grid-cols-3 gap-4 mb-6">
@@ -552,7 +551,7 @@ export default function ModernFeesPage() {
 
               <div className="mt-4 pt-4 border-t border-slate-100">
                 <p className="text-xs text-slate-500 italic">
-                  "Prayer, Discipline and Hardwork"
+              💚💚 "Strive to Excell"
                 </p>
               </div>
             </div>
@@ -568,7 +567,7 @@ export default function ModernFeesPage() {
                 className="w-full py-3 bg-white text-emerald-900 rounded-lg font-medium text-sm flex items-center justify-center gap-2"
               >
                 <FiArrowRight size={16} />
-                Contact Finance
+                Contact Bursur
               </button>
             </div>
           </div>
