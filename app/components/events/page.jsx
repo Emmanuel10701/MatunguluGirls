@@ -43,7 +43,7 @@ import { TbTargetArrow } from 'react-icons/tb';
 import { MdGirl } from 'react-icons/md';  // ← ADD THIS
 import Image from 'next/image';
 import CircularProgress from '@mui/material/CircularProgress';
-import CircularProgress from '@mui/material/CircularProgress';
+import { useState, useEffect } from 'react';
 
 const ModernEventsNewsSection = () => {
   const [selectedTab, setSelectedTab] = useState('events');
