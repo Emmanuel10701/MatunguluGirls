@@ -120,36 +120,36 @@ const ModernEventsNewsSection = () => {
   const getCategoryColor = (category) => {
     const colors = {
       'academic': { 
-        bg: 'bg-pink-50', 
-        text: 'text-pink-700', 
-        border: 'border-pink-100',
-        accent: 'bg-gradient-to-r from-pink-500 to-rose-500',
-        dark: 'from-pink-600 to-rose-600',
-        light: 'from-pink-400 to-rose-400'
+        bg: 'bg-emerald-50', 
+        text: 'text-emerald-700', 
+        border: 'border-emerald-100',
+        accent: 'bg-gradient-to-r from-emerald-500 to-teal-500',
+        dark: 'from-emerald-600 to-teal-600',
+        light: 'from-emerald-400 to-teal-400'
       },
       'sports': { 
-        bg: 'bg-purple-50', 
-        text: 'text-purple-700', 
-        border: 'border-purple-100',
-        accent: 'bg-gradient-to-r from-purple-500 to-violet-500',
-        dark: 'from-purple-600 to-violet-600',
-        light: 'from-purple-400 to-violet-400'
+        bg: 'bg-teal-50', 
+        text: 'text-teal-700', 
+        border: 'border-teal-100',
+        accent: 'bg-gradient-to-r from-teal-500 to-violet-500',
+        dark: 'from-teal-600 to-violet-600',
+        light: 'from-teal-400 to-violet-400'
       },
       'cultural': { 
-        bg: 'bg-fuchsia-50', 
-        text: 'text-fuchsia-700', 
-        border: 'border-fuchsia-100',
-        accent: 'bg-gradient-to-r from-fuchsia-500 to-pink-500',
-        dark: 'from-fuchsia-600 to-pink-600',
-        light: 'from-fuchsia-400 to-pink-400'
+        bg: 'bg-slate-50', 
+        text: 'text-slate-700', 
+        border: 'border-slate-100',
+        accent: 'bg-gradient-to-r from-slate-500 to-emerald-500',
+        dark: 'from-slate-600 to-emerald-600',
+        light: 'from-slate-400 to-emerald-400'
       },
       'science': { 
         bg: 'bg-sky-50', 
         text: 'text-sky-700', 
         border: 'border-sky-100',
-        accent: 'bg-gradient-to-r from-sky-500 to-blue-500',
-        dark: 'from-sky-600 to-blue-600',
-        light: 'from-sky-400 to-blue-400'
+        accent: 'bg-gradient-to-r from-sky-500 to-emerald-500',
+        dark: 'from-sky-600 to-emerald-600',
+        light: 'from-sky-400 to-emerald-400'
       },
       'training': { 
         bg: 'bg-amber-50', 
@@ -236,13 +236,13 @@ const ModernEventsNewsSection = () => {
       <div className="min-h-[600px] w-full max-w-7xl mx-auto px-3 sm:px-4 py-8 sm:py-12">
         {/* Header Skeleton */}
         <div className="text-center mb-8 sm:mb-12">
-          <div className="h-6 sm:h-8 w-48 sm:w-56 bg-gradient-to-r from-pink-200 to-purple-200 rounded-lg animate-pulse mb-3 sm:mb-4 mx-auto" />
-          <div className="h-4 sm:h-6 w-56 sm:w-72 bg-gradient-to-r from-pink-100 to-purple-100 rounded-md animate-pulse mx-auto" />
+          <div className="h-6 sm:h-8 w-48 sm:w-56 bg-gradient-to-r from-emerald-200 to-teal-200 rounded-lg animate-pulse mb-3 sm:mb-4 mx-auto" />
+          <div className="h-4 sm:h-6 w-56 sm:w-72 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-md animate-pulse mx-auto" />
         </div>
         
         {/* Tabs Skeleton */}
         <div className="flex justify-center mb-6 sm:mb-8">
-          <div className="h-10 sm:h-12 w-56 sm:w-64 bg-gradient-to-r from-pink-100 to-purple-100 rounded-full animate-pulse" />
+          <div className="h-10 sm:h-12 w-56 sm:w-64 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full animate-pulse" />
         </div>
 
         {/* Content Grid Skeleton - Main card on RIGHT */}
@@ -250,13 +250,13 @@ const ModernEventsNewsSection = () => {
           {/* Sidebar on LEFT */}
           <div className="lg:col-span-4 space-y-3 sm:space-y-4">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="p-3 sm:p-4 rounded-lg sm:rounded-xl border border-pink-100 bg-white/50">
+              <div key={i} className="p-3 sm:p-4 rounded-lg sm:rounded-xl border border-emerald-100 bg-white/50">
                 <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg bg-gradient-to-br from-pink-200 to-purple-200 animate-pulse" />
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg bg-gradient-to-br from-emerald-200 to-teal-200 animate-pulse" />
                   <div className="flex-1 space-y-1.5 sm:space-y-2">
-                    <div className="h-3 sm:h-4 w-20 sm:w-24 bg-gradient-to-r from-pink-200 to-purple-200 rounded animate-pulse" />
-                    <div className="h-4 sm:h-6 w-28 sm:w-40 bg-gradient-to-r from-pink-300 to-purple-300 rounded animate-pulse" />
-                    <div className="h-2.5 sm:h-3 w-24 sm:w-32 bg-gradient-to-r from-pink-100 to-purple-100 rounded animate-pulse" />
+                    <div className="h-3 sm:h-4 w-20 sm:w-24 bg-gradient-to-r from-emerald-200 to-teal-200 rounded animate-pulse" />
+                    <div className="h-4 sm:h-6 w-28 sm:w-40 bg-gradient-to-r from-emerald-300 to-teal-300 rounded animate-pulse" />
+                    <div className="h-2.5 sm:h-3 w-24 sm:w-32 bg-gradient-to-r from-emerald-100 to-teal-100 rounded animate-pulse" />
                   </div>
                 </div>
               </div>
@@ -265,15 +265,15 @@ const ModernEventsNewsSection = () => {
 
           {/* Main Card on RIGHT */}
           <div className="lg:col-span-8">
-            <div className="rounded-xl sm:rounded-2xl overflow-hidden border border-pink-200">
-              <div className="h-48 sm:h-64 bg-gradient-to-br from-pink-200 to-purple-200 animate-pulse" />
+            <div className="rounded-xl sm:rounded-2xl overflow-hidden border border-emerald-200">
+              <div className="h-48 sm:h-64 bg-gradient-to-br from-emerald-200 to-teal-200 animate-pulse" />
               <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
-                <div className="h-6 sm:h-8 w-3/4 bg-gradient-to-r from-pink-300 to-purple-300 rounded animate-pulse" />
-                <div className="h-3 sm:h-4 w-full bg-gradient-to-r from-pink-200 to-purple-200 rounded animate-pulse" />
-                <div className="h-3 sm:h-4 w-2/3 bg-gradient-to-r from-pink-200 to-purple-200 rounded animate-pulse" />
+                <div className="h-6 sm:h-8 w-3/4 bg-gradient-to-r from-emerald-300 to-teal-300 rounded animate-pulse" />
+                <div className="h-3 sm:h-4 w-full bg-gradient-to-r from-emerald-200 to-teal-200 rounded animate-pulse" />
+                <div className="h-3 sm:h-4 w-2/3 bg-gradient-to-r from-emerald-200 to-teal-200 rounded animate-pulse" />
                 <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-3 sm:pt-4">
-                  <div className="h-8 sm:h-10 bg-gradient-to-r from-pink-100 to-purple-100 rounded-lg animate-pulse" />
-                  <div className="h-8 sm:h-10 bg-gradient-to-r from-pink-100 to-purple-100 rounded-lg animate-pulse" />
+                  <div className="h-8 sm:h-10 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-lg animate-pulse" />
+                  <div className="h-8 sm:h-10 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-lg animate-pulse" />
                 </div>
               </div>
             </div>
@@ -285,31 +285,31 @@ const ModernEventsNewsSection = () => {
 
   if (error && events.length === 0 && news.length === 0) {
     return (
-      <div className="min-h-[70vh] w-full flex items-center justify-center p-3 sm:p-4 bg-gradient-to-br from-pink-50 to-purple-50">
+      <div className="min-h-[70vh] w-full flex items-center justify-center p-3 sm:p-4 bg-gradient-to-br from-emerald-50 to-teal-50">
         {/* 80% Width Container - Modern Feminine Design */}
-        <div className="w-full max-w-[90%] sm:max-w-[80%] min-h-[360px] sm:min-h-[480px] relative overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-[3rem] bg-white border border-pink-100 shadow-lg sm:shadow-[0_40px_100px_-30px_rgba(236,72,153,0.15)] flex flex-col items-center justify-center p-6 sm:p-8 md:p-20 text-center">
+        <div className="w-full max-w-[90%] sm:max-w-[80%] min-h-[360px] sm:min-h-[480px] relative overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-[3rem] bg-white border border-emerald-100 shadow-lg sm:shadow-[0_40px_100px_-30px_rgba(236,72,153,0.15)] flex flex-col items-center justify-center p-6 sm:p-8 md:p-20 text-center">
           
           {/* Gradient Brand Accent */}
-          <div className="absolute top-0 left-0 w-full h-1 sm:h-2 bg-gradient-to-r from-pink-500 via-purple-500 to-fuchsia-500" />
+          <div className="absolute top-0 left-0 w-full h-1 sm:h-2 bg-gradient-to-r from-emerald-500 via-teal-500 to-slate-500" />
           
           {/* Decorative Flower Elements */}
           <div className="absolute top-10 right-10 opacity-5">
-            <IoFlowerOutline className="w-24 h-24 text-pink-500" />
+            <IoFlowerOutline className="w-24 h-24 text-emerald-500" />
           </div>
           <div className="absolute bottom-10 left-10 opacity-5">
-            <IoFlowerOutline className="w-24 h-24 text-purple-500" />
+            <IoFlowerOutline className="w-24 h-24 text-teal-500" />
           </div>
 
           {/* Branding Title */}
           <div className="mb-4 sm:mb-6">
-            <h4 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600">
+            <h4 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">
               Matungulu Girls High School
             </h4>
           </div>
 
           {/* Icon Container */}
-          <div className="mb-6 sm:mb-10 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl sm:rounded-2xl lg:rounded-[2rem] flex items-center justify-center border border-pink-200 shadow-inner">
-            <FaGraduationCap className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500" />
+          <div className="mb-6 sm:mb-10 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl sm:rounded-2xl lg:rounded-[2rem] flex items-center justify-center border border-emerald-200 shadow-inner">
+            <FaGraduationCap className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500" />
           </div>
 
           {/* Main Content */}
@@ -326,7 +326,7 @@ const ModernEventsNewsSection = () => {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center">
             <button 
               onClick={() => window.location.reload()}
-              className="group flex items-center gap-2 sm:gap-3 px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold rounded-xl sm:rounded-2xl hover:from-pink-600 hover:to-purple-700 transition-all active:scale-95 shadow-lg sm:shadow-xl shadow-pink-200 text-sm sm:text-base"
+              className="group flex items-center gap-2 sm:gap-3 px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-xl sm:rounded-2xl hover:from-emerald-600 hover:to-teal-700 transition-all active:scale-95 shadow-lg sm:shadow-xl shadow-emerald-200 text-sm sm:text-base"
             >
               <svg 
                 className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-180 transition-transform duration-700" 
@@ -341,8 +341,8 @@ const ModernEventsNewsSection = () => {
           </div>
 
           {/* Status indicator */}
-          <div className="mt-8 sm:mt-12 flex items-center gap-1.5 sm:gap-2 text-xs font-medium text-pink-400 uppercase tracking-wider">
-            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-pink-400 animate-pulse" />
+          <div className="mt-8 sm:mt-12 flex items-center gap-1.5 sm:gap-2 text-xs font-medium text-emerald-400 uppercase tracking-wider">
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-xs">System Error: {error || "Connection Timeout"}</span>
           </div>
         </div>
@@ -351,23 +351,23 @@ const ModernEventsNewsSection = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 font-sans p-3 sm:p-4 md:p-6 lg:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 font-sans p-3 sm:p-4 md:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header - Modernized for Matungulu Girls */}
         <div className="mb-6 sm:mb-8 md:mb-10 text-center relative">
           {/* Decorative Elements */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-24 h-24 bg-gradient-to-br from-pink-200/30 to-purple-200/30 rounded-full blur-3xl -z-10" />
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-24 h-24 bg-gradient-to-br from-emerald-200/30 to-teal-200/30 rounded-full blur-3xl -z-10" />
           
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-pink-100 to-purple-100 rounded-full border border-pink-200 mb-3 sm:mb-4 md:mb-6">
-            <MdFemale className="text-pink-600 w-3 h-3 sm:w-4 sm:h-4" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-700 to-purple-700 font-bold text-[10px] sm:text-xs md:text-sm uppercase tracking-widest">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full border border-emerald-200 mb-3 sm:mb-4 md:mb-6">
+            <MdFemale className="text-emerald-600 w-3 h-3 sm:w-4 sm:h-4" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-teal-700 font-bold text-[10px] sm:text-xs md:text-sm uppercase tracking-widest">
               Matungulu Girls High School
             </span>
           </div>
           
           <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-slate-900 tracking-tight mb-2 sm:mb-3 md:mb-4 px-2">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600">Empowering</span>{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-fuchsia-600">Girls</span>{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">Empowering</span>{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-slate-600">Girls</span>{' '}
             <span className="text-slate-900">Through Excellence</span>
           </h1>
           
@@ -378,21 +378,21 @@ const ModernEventsNewsSection = () => {
           {/* Stats Bar */}
           <div className="flex justify-center gap-4 sm:gap-6 md:gap-8 mt-4 sm:mt-6">
             <div className="text-center">
-              <div className="text-lg sm:text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600">
+              <div className="text-lg sm:text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">
                 {events.length}
               </div>
               <div className="text-xs sm:text-sm text-slate-500">Upcoming Events</div>
             </div>
-            <div className="w-px h-8 sm:h-10 bg-gradient-to-b from-pink-200 to-purple-200" />
+            <div className="w-px h-8 sm:h-10 bg-gradient-to-b from-emerald-200 to-teal-200" />
             <div className="text-center">
-              <div className="text-lg sm:text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-fuchsia-600">
+              <div className="text-lg sm:text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-slate-600">
                 {news.length}
               </div>
               <div className="text-xs sm:text-sm text-slate-500">News Articles</div>
             </div>
-            <div className="w-px h-8 sm:h-10 bg-gradient-to-b from-pink-200 to-purple-200" />
+            <div className="w-px h-8 sm:h-10 bg-gradient-to-b from-emerald-200 to-teal-200" />
             <div className="text-center">
-              <div className="text-lg sm:text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-pink-600">
+              <div className="text-lg sm:text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-600 to-emerald-600">
                 {events.length + news.length}
               </div>
               <div className="text-xs sm:text-sm text-slate-500">Total Updates</div>
@@ -402,13 +402,13 @@ const ModernEventsNewsSection = () => {
 
         {/* Tabs - Updated colors */}
         <div className="flex justify-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-          <div className="inline-flex p-0.5 sm:p-1 bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl border border-pink-200 shadow-sm">
+          <div className="inline-flex p-0.5 sm:p-1 bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl border border-emerald-200 shadow-sm">
             <button
               onClick={() => setSelectedTab('events')}
               className={`px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold transition-all ${
                 selectedTab === 'events'
-                  ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-pink-50'
+                  ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-emerald-50'
               }`}
             >
               <div className="flex items-center gap-1.5 sm:gap-2">
@@ -420,8 +420,8 @@ const ModernEventsNewsSection = () => {
               onClick={() => setSelectedTab('news')}
               className={`px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold transition-all ${
                 selectedTab === 'news'
-                  ? 'bg-gradient-to-r from-purple-500 to-fuchsia-600 text-white shadow-md'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-purple-50'
+                  ? 'bg-gradient-to-r from-teal-500 to-slate-600 text-white shadow-md'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-teal-50'
               }`}
             >
               <div className="flex items-center gap-1.5 sm:gap-2">
@@ -451,8 +451,8 @@ const ModernEventsNewsSection = () => {
                       onClick={() => setSelectedEvent(index)}
                       className={`w-full group relative bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-sm border-2 ${
                         isSelected 
-                          ? 'border-pink-500 bg-gradient-to-r from-pink-50 to-white' 
-                          : 'border-pink-100 hover:border-pink-300 hover:shadow-lg'
+                          ? 'border-emerald-500 bg-gradient-to-r from-emerald-50 to-white' 
+                          : 'border-emerald-100 hover:border-emerald-300 hover:shadow-lg'
                       } transition-all duration-300 text-left overflow-hidden`}
                     >
                       <div className="flex items-start gap-2.5 sm:gap-3 md:gap-4">
@@ -465,7 +465,7 @@ const ModernEventsNewsSection = () => {
                               onError={(e) => {
                                 e.target.onerror = null;
                                 e.target.style.display = 'none';
-                                e.target.parentElement.classList.add('bg-gradient-to-br', 'from-pink-500', 'to-purple-600');
+                                e.target.parentElement.classList.add('bg-gradient-to-br', 'from-emerald-500', 'to-teal-600');
                                 // Add fallback icon
                                 const fallback = document.createElement('div');
                                 fallback.className = 'absolute inset-0 flex items-center justify-center text-white';
@@ -485,19 +485,19 @@ const ModernEventsNewsSection = () => {
                               {event.category}
                             </span>
                             {isSelected && (
-                              <span className="flex items-center gap-1 text-pink-600 text-[9px] sm:text-[10px] md:text-xs font-bold">
+                              <span className="flex items-center gap-1 text-emerald-600 text-[9px] sm:text-[10px] md:text-xs font-bold">
                                 <FiCheckCircle className="text-xs" /> Viewing
                               </span>
                             )}
                           </div>
-                          <h3 className="font-bold text-slate-900 group-hover:text-pink-600 transition-colors truncate text-sm sm:text-base md:text-lg">
+                          <h3 className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors truncate text-sm sm:text-base md:text-lg">
                             {event.title}
                           </h3>
                           <p className="text-slate-500 text-xs md:text-sm mt-1 flex items-center gap-1">
                             <FiClock className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                             {event.time || date.time}
                           </p>
-                          <div className="flex items-center gap-1 text-[9px] sm:text-[10px] md:text-xs text-pink-600 mt-1.5 sm:mt-2 md:mt-3 font-bold tracking-tighter">
+                          <div className="flex items-center gap-1 text-[9px] sm:text-[10px] md:text-xs text-emerald-600 mt-1.5 sm:mt-2 md:mt-3 font-bold tracking-tighter">
                             View Details <FiChevronRight size={10} className="group-hover:translate-x-0.5 transition-transform" />
                           </div>
                         </div>
@@ -507,9 +507,9 @@ const ModernEventsNewsSection = () => {
                 })
               ) : (
                 // Empty state for events
-                <div className="w-full bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl md:rounded-2xl p-6 sm:p-8 text-center border-2 border-pink-100">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-pink-100 to-purple-100 flex items-center justify-center">
-                    <FiCalendar className="w-8 h-8 text-pink-400" />
+                <div className="w-full bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl md:rounded-2xl p-6 sm:p-8 text-center border-2 border-emerald-100">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center">
+                    <FiCalendar className="w-8 h-8 text-emerald-400" />
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 mb-2">No Events Available</h3>
                   <p className="text-sm text-slate-500">Check back later for upcoming school events and activities.</p>
@@ -529,8 +529,8 @@ const ModernEventsNewsSection = () => {
                       onClick={() => setSelectedNews(index)}
                       className={`w-full group relative bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-sm border-2 ${
                         isSelected 
-                          ? 'border-purple-500 bg-gradient-to-r from-purple-50 to-white' 
-                          : 'border-purple-100 hover:border-purple-300 hover:shadow-lg'
+                          ? 'border-teal-500 bg-gradient-to-r from-teal-50 to-white' 
+                          : 'border-teal-100 hover:border-teal-300 hover:shadow-lg'
                       } transition-all duration-300 text-left overflow-hidden`}
                     >
                       <div className="flex items-start gap-2.5 sm:gap-3 md:gap-4">
@@ -543,7 +543,7 @@ const ModernEventsNewsSection = () => {
                               onError={(e) => {
                                 e.target.onerror = null;
                                 e.target.style.display = 'none';
-                                e.target.parentElement.classList.add('bg-gradient-to-br', 'from-purple-500', 'to-fuchsia-600');
+                                e.target.parentElement.classList.add('bg-gradient-to-br', 'from-teal-500', 'to-slate-600');
                                 // Add fallback icon
                                 const fallback = document.createElement('div');
                                 fallback.className = 'absolute inset-0 flex items-center justify-center text-white';
@@ -563,19 +563,19 @@ const ModernEventsNewsSection = () => {
                               {newsItem.category}
                             </span>
                             {isSelected && (
-                              <span className="flex items-center gap-1 text-purple-600 text-[9px] sm:text-[10px] md:text-xs font-bold">
+                              <span className="flex items-center gap-1 text-teal-600 text-[9px] sm:text-[10px] md:text-xs font-bold">
                                 <FiCheckCircle className="text-xs" /> Reading
                               </span>
                             )}
                           </div>
-                          <h3 className="font-bold text-slate-900 group-hover:text-purple-600 transition-colors truncate text-sm sm:text-base md:text-lg">
+                          <h3 className="font-bold text-slate-900 group-hover:text-teal-600 transition-colors truncate text-sm sm:text-base md:text-lg">
                             {newsItem.title}
                           </h3>
                           <p className="text-slate-500 text-xs md:text-sm mt-1 flex items-center gap-1">
                             <FiUser className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                             {newsItem.author || 'School Admin'}
                           </p>
-                          <div className="flex items-center gap-1 text-[9px] sm:text-[10px] md:text-xs text-purple-600 mt-1.5 sm:mt-2 md:mt-3 font-bold tracking-tighter">
+                          <div className="flex items-center gap-1 text-[9px] sm:text-[10px] md:text-xs text-teal-600 mt-1.5 sm:mt-2 md:mt-3 font-bold tracking-tighter">
                             Read Article <FiChevronRight size={10} className="group-hover:translate-x-0.5 transition-transform" />
                           </div>
                         </div>
@@ -585,9 +585,9 @@ const ModernEventsNewsSection = () => {
                 })
               ) : (
                 // Empty state for news
-                <div className="w-full bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl md:rounded-2xl p-6 sm:p-8 text-center border-2 border-purple-100">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-100 to-fuchsia-100 flex items-center justify-center">
-                    <IoNewspaperOutline className="w-8 h-8 text-purple-400" />
+                <div className="w-full bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl md:rounded-2xl p-6 sm:p-8 text-center border-2 border-teal-100">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-teal-100 to-slate-100 flex items-center justify-center">
+                    <IoNewspaperOutline className="w-8 h-8 text-teal-400" />
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 mb-2">No News Available</h3>
                   <p className="text-sm text-slate-500">Check back later for latest school news and announcements.</p>
@@ -596,7 +596,7 @@ const ModernEventsNewsSection = () => {
             )}
 
             {/* Stats Card - Always show with gradient design */}
-            <div className="bg-gradient-to-br from-pink-600 via-purple-600 to-fuchsia-600 rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 text-white shadow-lg">
+            <div className="bg-gradient-to-br from-emerald-600 via-teal-600 to-slate-600 rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 text-white shadow-lg">
               <div className="flex items-center gap-2 md:gap-3 mb-2.5 sm:mb-3 md:mb-4">
                 <div className="p-1.5 sm:p-2 md:p-3 bg-white/20 rounded-lg sm:rounded-xl md:rounded-2xl backdrop-blur-sm">
                   <FaGraduationCap className="text-base sm:text-lg md:text-xl" />
@@ -637,7 +637,7 @@ const ModernEventsNewsSection = () => {
           </div>
 
           {/* Main Featured Card (RIGHT SIDE) */}
-          <div className="lg:col-span-8 flex flex-col bg-white rounded-xl sm:rounded-2xl md:rounded-3xl shadow-lg sm:shadow-xl border border-pink-100 overflow-hidden order-1 lg:order-2">
+          <div className="lg:col-span-8 flex flex-col bg-white rounded-xl sm:rounded-2xl md:rounded-3xl shadow-lg sm:shadow-xl border border-emerald-100 overflow-hidden order-1 lg:order-2">
             
             {/* Image Section */}
             <div className="relative h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 2xl:h-96 overflow-hidden">
@@ -652,7 +652,7 @@ const ModernEventsNewsSection = () => {
                         onError={(e) => {
                           e.target.onerror = null;
                           e.target.style.display = 'none';
-                          e.target.parentElement.classList.add('bg-gradient-to-br', 'from-pink-500', 'to-purple-600');
+                          e.target.parentElement.classList.add('bg-gradient-to-br', 'from-emerald-500', 'to-teal-600');
                           // Add fallback icon
                           const fallback = document.createElement('div');
                           fallback.className = 'absolute inset-0 flex items-center justify-center';
@@ -661,7 +661,7 @@ const ModernEventsNewsSection = () => {
                         }}
                       />
                     ) : (
-                      <div className="absolute inset-0 bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
                         <FaGraduationCap className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-8xl opacity-30" />
                       </div>
                     )}
@@ -687,7 +687,7 @@ const ModernEventsNewsSection = () => {
                     </div>
                   </>
                 ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center p-4">
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center p-4">
                     <div className="text-white text-center p-4 sm:p-6 md:p-8">
                       <FiCalendar className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl mx-auto opacity-50" />
                       <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl font-bold">No Events Available</p>
@@ -706,7 +706,7 @@ const ModernEventsNewsSection = () => {
                         onError={(e) => {
                           e.target.onerror = null;
                           e.target.style.display = 'none';
-                          e.target.parentElement.classList.add('bg-gradient-to-br', 'from-purple-500', 'to-fuchsia-600');
+                          e.target.parentElement.classList.add('bg-gradient-to-br', 'from-teal-500', 'to-slate-600');
                           // Add fallback icon
                           const fallback = document.createElement('div');
                           fallback.className = 'absolute inset-0 flex items-center justify-center';
@@ -715,7 +715,7 @@ const ModernEventsNewsSection = () => {
                         }}
                       />
                     ) : (
-                      <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-gradient-to-br from-teal-500 to-slate-600 flex items-center justify-center">
                         <IoNewspaperOutline className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-8xl opacity-30" />
                       </div>
                     )}
@@ -741,7 +741,7 @@ const ModernEventsNewsSection = () => {
                     </div>
                   </>
                 ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center p-4">
+                  <div className="absolute inset-0 bg-gradient-to-br from-teal-500 to-slate-600 flex items-center justify-center p-4">
                     <div className="text-white text-center p-4 sm:p-6 md:p-8">
                       <IoNewspaperOutline className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl mx-auto opacity-50" />
                       <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl font-bold">No News Available</p>
@@ -755,18 +755,18 @@ const ModernEventsNewsSection = () => {
             {/* Content Section - Enhanced description */}
             <div className="flex-grow p-3 sm:p-4 md:p-6 lg:p-8 bg-white relative">
               {/* Decorative Element */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-pink-100 to-purple-100 rounded-full blur-3xl opacity-30 -z-10" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-full blur-3xl opacity-30 -z-10" />
               
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
                 {/* Left Column: Description - Enhanced for Matungulu Girls */}
                 <div className="lg:col-span-3 space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8">
                   <div className="space-y-3 sm:space-y-4 md:space-y-6">
                     <div>
-                      <h4 className="text-xs font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 uppercase tracking-[0.1em] sm:tracking-[0.2em] mb-2 sm:mb-3 md:mb-4 flex items-center gap-1.5 sm:gap-2">
+                      <h4 className="text-xs font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600 uppercase tracking-[0.1em] sm:tracking-[0.2em] mb-2 sm:mb-3 md:mb-4 flex items-center gap-1.5 sm:gap-2">
                         <FaGraduationCap className="w-3 h-3 sm:w-4 sm:h-4" />
                         {selectedTab === 'events' ? 'Event Details' : 'Article Summary'}
                       </h4>
-                      <div className="prose prose-pink max-w-none">
+                      <div className="pteal pteal-emerald max-w-none">
                         <p className="text-slate-600 leading-relaxed text-sm sm:text-base lg:text-lg">
                           {selectedTab === 'events' 
                             ? (currentEvent?.description || 'No description available.')
@@ -774,7 +774,7 @@ const ModernEventsNewsSection = () => {
                           }
                         </p>
                         {/* Additional descriptive text for Matungulu Girls */}
-                        <div className="mt-4 p-4 bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl border border-pink-100">
+                        <div className="mt-4 p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl border border-emerald-100">
                           <p className="text-sm text-slate-700 italic">
                             "Empowering young women through quality education and holistic development at Matungulu Girls High School."
                           </p>
@@ -783,12 +783,12 @@ const ModernEventsNewsSection = () => {
                     </div>
 
                     {selectedTab === 'events' && currentEvent?.speaker && (
-                      <div className="relative p-3 sm:p-4 md:p-6 bg-gradient-to-r from-pink-50 to-purple-50 border-l-4 border-pink-600 rounded-r-lg sm:rounded-r-xl md:rounded-r-2xl">
-                        <div className="absolute top-2 sm:top-3 md:top-4 right-2 sm:right-3 md:right-4 text-pink-200">
+                      <div className="relative p-3 sm:p-4 md:p-6 bg-gradient-to-r from-emerald-50 to-teal-50 border-l-4 border-emerald-600 rounded-r-lg sm:rounded-r-xl md:rounded-r-2xl">
+                        <div className="absolute top-2 sm:top-3 md:top-4 right-2 sm:right-3 md:right-4 text-emerald-200">
                           <FiUser className="text-lg sm:text-xl md:text-2xl lg:text-3xl" />
                         </div>
                         <p className="relative z-10 text-slate-700 font-medium leading-relaxed text-sm sm:text-base">
-                          <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600">Guest Speaker:</span> {currentEvent.speaker}
+                          <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">Guest Speaker:</span> {currentEvent.speaker}
                         </p>
                       </div>
                     )}
@@ -802,28 +802,28 @@ const ModernEventsNewsSection = () => {
                       <>
                         {/* Event Info */}
                         <div>
-                          <h4 className="text-xs font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 uppercase tracking-[0.1em] sm:tracking-[0.2em] mb-2 sm:mb-3 md:mb-4 flex items-center gap-1.5 sm:gap-2">
-                            <FiClock className="text-purple-500 w-3 h-3 sm:w-4 sm:h-4" /> Event Information
+                          <h4 className="text-xs font-black text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-600 uppercase tracking-[0.1em] sm:tracking-[0.2em] mb-2 sm:mb-3 md:mb-4 flex items-center gap-1.5 sm:gap-2">
+                            <FiClock className="text-teal-500 w-3 h-3 sm:w-4 sm:h-4" /> Event Information
                           </h4>
                           <ul className="space-y-2 sm:space-y-3 md:space-y-4">
                             <li className="text-sm md:text-base text-slate-700 font-medium flex items-start gap-2 sm:gap-3">
-                              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 sm:mt-1.5 md:mt-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 flex-shrink-0"></div>
-                              <span><span className="font-bold text-pink-600">Time:</span> {currentEvent.time || formatDate(currentEvent.date).time}</span>
+                              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 sm:mt-1.5 md:mt-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 flex-shrink-0"></div>
+                              <span><span className="font-bold text-emerald-600">Time:</span> {currentEvent.time || formatDate(currentEvent.date).time}</span>
                             </li>
                             <li className="text-sm md:text-base text-slate-700 font-medium flex items-start gap-2 sm:gap-3">
-                              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 sm:mt-1.5 md:mt-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex-shrink-0"></div>
-                              <span><span className="font-bold text-purple-600">Location:</span> {currentEvent.location}</span>
+                              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 sm:mt-1.5 md:mt-2 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 flex-shrink-0"></div>
+                              <span><span className="font-bold text-teal-600">Location:</span> {currentEvent.location}</span>
                             </li>
                             {currentEvent.type && (
                               <li className="text-sm md:text-base text-slate-700 font-medium flex items-start gap-2 sm:gap-3">
-                                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 sm:mt-1.5 md:mt-2 rounded-full bg-gradient-to-r from-fuchsia-500 to-purple-500 flex-shrink-0"></div>
-                                <span><span className="font-bold text-fuchsia-600">Type:</span> {currentEvent.type}</span>
+                                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 sm:mt-1.5 md:mt-2 rounded-full bg-gradient-to-r from-slate-500 to-teal-500 flex-shrink-0"></div>
+                                <span><span className="font-bold text-slate-600">Type:</span> {currentEvent.type}</span>
                               </li>
                             )}
                           </ul>
                         </div>
                         {/* Action Buttons */}
-                        <div className="pt-3 md:pt-4 border-t border-pink-100">
+                        <div className="pt-3 md:pt-4 border-t border-emerald-100">
                           <div className="flex gap-2 sm:gap-3">
                             <button 
                               onClick={() => {
@@ -831,7 +831,7 @@ const ModernEventsNewsSection = () => {
                                 const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(currentEvent.title)}&dates=20260129/20260129&details=${encodeURIComponent(currentEvent.description)}&location=${encodeURIComponent(currentEvent.location)}`;
                                 window.open(url, '_blank');
                               }}
-                              className="flex-1 py-2.5 sm:py-3 px-2 sm:px-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2 hover:shadow-lg active:scale-[0.98] transition-all min-w-0"
+                              className="flex-1 py-2.5 sm:py-3 px-2 sm:px-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2 hover:shadow-lg active:scale-[0.98] transition-all min-w-0"
                             >
                               <IoLogoGoogle className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
                               <span className="truncate">Add to Calendar</span>
@@ -839,7 +839,7 @@ const ModernEventsNewsSection = () => {
                             
                             <button 
                               onClick={() => setShowShareModal(true)}
-                              className="flex-1 py-2.5 sm:py-3 px-2 sm:px-3 bg-white border-2 border-pink-600 text-pink-600 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2 hover:bg-pink-50 active:scale-[0.98] transition-all min-w-0"
+                              className="flex-1 py-2.5 sm:py-3 px-2 sm:px-3 bg-white border-2 border-emerald-600 text-emerald-600 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2 hover:bg-emerald-50 active:scale-[0.98] transition-all min-w-0"
                             >
                               <FiShare2 className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
                               <span className="truncate">Share Event</span>
@@ -851,35 +851,35 @@ const ModernEventsNewsSection = () => {
                       <>
                         {/* News Info */}
                         <div>
-                          <h4 className="text-xs font-black text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-purple-600 uppercase tracking-[0.1em] sm:tracking-[0.2em] mb-2 sm:mb-3 md:mb-4 flex items-center gap-1.5 sm:gap-2">
-                            <IoRibbonOutline className="text-fuchsia-500 w-3 h-3 sm:w-4 sm:h-4" /> Article Details
+                          <h4 className="text-xs font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-600 to-teal-600 uppercase tracking-[0.1em] sm:tracking-[0.2em] mb-2 sm:mb-3 md:mb-4 flex items-center gap-1.5 sm:gap-2">
+                            <IoRibbonOutline className="text-slate-500 w-3 h-3 sm:w-4 sm:h-4" /> Article Details
                           </h4>
                           <ul className="space-y-2 sm:space-y-3 md:space-y-4">
                             <li className="text-sm md:text-base text-slate-700 font-medium flex items-start gap-2 sm:gap-3">
-                              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 sm:mt-1.5 md:mt-2 rounded-full bg-gradient-to-r from-fuchsia-500 to-purple-500 flex-shrink-0"></div>
-                              <span><span className="font-bold text-fuchsia-600">Published:</span> {formatDate(currentNews.date).full}</span>
+                              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 sm:mt-1.5 md:mt-2 rounded-full bg-gradient-to-r from-slate-500 to-teal-500 flex-shrink-0"></div>
+                              <span><span className="font-bold text-slate-600">Published:</span> {formatDate(currentNews.date).full}</span>
                             </li>
                             <li className="text-sm md:text-base text-slate-700 font-medium flex items-start gap-2 sm:gap-3">
-                              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 sm:mt-1.5 md:mt-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex-shrink-0"></div>
-                              <span><span className="font-bold text-purple-600">Author:</span> {currentNews.author || 'School Administration'}</span>
+                              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 sm:mt-1.5 md:mt-2 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 flex-shrink-0"></div>
+                              <span><span className="font-bold text-teal-600">Author:</span> {currentNews.author || 'School Administration'}</span>
                             </li>
                             <li className="text-sm md:text-base text-slate-700 font-medium flex items-start gap-2 sm:gap-3">
-                              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 sm:mt-1.5 md:mt-2 rounded-full bg-gradient-to-r from-pink-500 to-fuchsia-500 flex-shrink-0"></div>
-                              <span><span className="font-bold text-pink-600">Category:</span> {currentNews.category}</span>
+                              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 sm:mt-1.5 md:mt-2 rounded-full bg-gradient-to-r from-emerald-500 to-slate-500 flex-shrink-0"></div>
+                              <span><span className="font-bold text-emerald-600">Category:</span> {currentNews.category}</span>
                             </li>
                           </ul>
                         </div>
 
                         {/* News Actions */}
-                        <div className="pt-3 md:pt-4 border-t border-purple-100">
+                        <div className="pt-3 md:pt-4 border-t border-teal-100">
                           <div className="flex items-center justify-between mb-3 sm:mb-4">
-                            <button className="flex items-center gap-1.5 sm:gap-2 text-slate-500 hover:text-pink-500 transition-colors">
+                            <button className="flex items-center gap-1.5 sm:gap-2 text-slate-500 hover:text-emerald-500 transition-colors">
                               <FiHeart className="w-4 h-4 sm:w-5 sm:h-5" />
                               <span className="text-xs sm:text-sm font-bold">{currentNews.likes || 0}</span>
                             </button>
                             <button 
                               onClick={() => setShowShareModal(true)}
-                              className="flex items-center gap-1.5 sm:gap-2 text-slate-500 hover:text-purple-500 transition-colors"
+                              className="flex items-center gap-1.5 sm:gap-2 text-slate-500 hover:text-teal-500 transition-colors"
                             >
                               <FiShare2 className="w-4 h-4 sm:w-5 sm:h-5" />
                               <span className="text-xs sm:text-sm font-bold">Share</span>
@@ -888,7 +888,7 @@ const ModernEventsNewsSection = () => {
                           
                           <button 
                             onClick={() => window.location.href = "pages/eventsandnews"}
-                            className="w-full py-3 bg-gradient-to-r from-purple-500 to-fuchsia-600 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:shadow-lg active:scale-[0.98] transition-all"
+                            className="w-full py-3 bg-gradient-to-r from-teal-500 to-slate-600 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:shadow-lg active:scale-[0.98] transition-all"
                           >
                             Read Full Article
                             <FiArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -908,9 +908,9 @@ const ModernEventsNewsSection = () => {
       {/* Share Modal */}
       {showShareModal && (
         <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
-          <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 max-w-sm w-full shadow-2xl border border-pink-200">
+          <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 max-w-sm w-full shadow-2xl border border-emerald-200">
             <div className="text-center mb-4 sm:mb-6">
-              <h3 className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-1">
+              <h3 className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600 mb-1">
                 Share This {selectedTab === 'events' ? 'Event' : 'Article'}
               </h3>
               <p className="text-xs sm:text-sm text-slate-500">
@@ -922,7 +922,7 @@ const ModernEventsNewsSection = () => {
               {[
                 { platform: 'whatsapp', icon: FaWhatsapp, color: 'bg-green-100 text-green-600' },
                 { platform: 'twitter', icon: FaTwitter, color: 'bg-sky-100 text-sky-600' },
-                { platform: 'facebook', icon: FaFacebookF, color: 'bg-blue-100 text-blue-600' },
+                { platform: 'facebook', icon: FaFacebookF, color: 'bg-emerald-100 text-emerald-600' },
                 { platform: 'email', icon: FaGoogle, color: 'bg-red-100 text-red-600' }
               ].map((item) => {
                 const Icon = item.icon;
@@ -965,7 +965,7 @@ const ModernEventsNewsSection = () => {
             {/* Copy Link */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-xs sm:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600">
+                <span className="text-xs sm:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">
                   {selectedTab === 'events' ? 'Event' : 'Article'} Link
                 </span>
                 <button 
@@ -977,12 +977,12 @@ const ModernEventsNewsSection = () => {
                     setCopied(true);
                     setTimeout(() => setCopied(false), 2000);
                   }}
-                  className="px-2.5 py-1 sm:px-3 sm:py-1.5 bg-gradient-to-r from-pink-100 to-purple-100 text-purple-700 rounded-lg text-xs sm:text-sm font-bold hover:from-pink-200 hover:to-purple-200 active:scale-95 transition-all"
+                  className="px-2.5 py-1 sm:px-3 sm:py-1.5 bg-gradient-to-r from-emerald-100 to-teal-100 text-teal-700 rounded-lg text-xs sm:text-sm font-bold hover:from-emerald-200 hover:to-teal-200 active:scale-95 transition-all"
                 >
                   {copied ? 'Copied!' : 'Copy'}
                 </button>
               </div>
-              <div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg p-2 sm:p-3 text-xs sm:text-sm text-purple-600 font-mono truncate border border-pink-200">
+              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-2 sm:p-3 text-xs sm:text-sm text-teal-600 font-mono truncate border border-emerald-200">
                 {selectedTab === 'events' 
                   ? (currentEvent ? `${window.location.origin}/pages/eventsandnews` : '')
                   : (currentNews ? `${window.location.origin}/pages/eventsandnews` : '')
