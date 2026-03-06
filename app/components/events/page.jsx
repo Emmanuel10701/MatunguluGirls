@@ -25,7 +25,7 @@ import {
   IoNewspaperOutline, 
   IoPeopleOutline, 
   IoRibbonOutline, 
-  IoFlowerOutline  // ← ADD THIS
+  IoFlowerOutline
 } from 'react-icons/io5';
 import { 
   FaFacebookF, 
@@ -33,14 +33,16 @@ import {
   FaWhatsapp, 
   FaGoogle, 
   FaRegClock, 
-  FaFemale 
+  FaFemale,
+  FaGraduationCap
 } from 'react-icons/fa';
 import { 
-  GiGraduateCap, 
-  GiGirl  // ← CHANGE from GiGraduateCap to GiGirl (or keep both)
+  GiGraduateCap,
+  GiSpellBook,
+  GiAchievement
 } from 'react-icons/gi';
 import { TbTargetArrow } from 'react-icons/tb';
-import { MdGirl } from 'react-icons/md';  // ← ADD THIS
+import { MdSchool, MdFemale } from 'react-icons/md';
 import Image from 'next/image';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useState, useEffect } from 'react';
@@ -189,7 +191,7 @@ const ModernEventsNewsSection = () => {
     const icons = {
       'academic': <FiBookOpen className="w-4 h-4" />,
       'sports': <FiTrendingUp className="w-4 h-4" />,
-      'cultural': <GiGirl className="w-4 h-4" />,
+      'cultural': <MdFemale className="w-4 h-4" />,
       'training': <FiAward className="w-4 h-4" />,
       'science': <IoRocketOutline className="w-4 h-4" />,
       'guidance': <TbTargetArrow className="w-4 h-4" />,
@@ -307,7 +309,7 @@ const ModernEventsNewsSection = () => {
 
           {/* Icon Container */}
           <div className="mb-6 sm:mb-10 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl sm:rounded-2xl lg:rounded-[2rem] flex items-center justify-center border border-pink-200 shadow-inner">
-            <GiGirl className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500" />
+            <FaGraduationCap className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500" />
           </div>
 
           {/* Main Content */}
@@ -357,7 +359,7 @@ const ModernEventsNewsSection = () => {
           <div className="absolute left-1/2 -translate-x-1/2 top-0 w-24 h-24 bg-gradient-to-br from-pink-200/30 to-purple-200/30 rounded-full blur-3xl -z-10" />
           
           <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-pink-100 to-purple-100 rounded-full border border-pink-200 mb-3 sm:mb-4 md:mb-6">
-            <MdGirl className="text-pink-600 w-3 h-3 sm:w-4 sm:h-4" />
+            <MdFemale className="text-pink-600 w-3 h-3 sm:w-4 sm:h-4" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-700 to-purple-700 font-bold text-[10px] sm:text-xs md:text-sm uppercase tracking-widest">
               Matungulu Girls High School
             </span>
@@ -597,7 +599,7 @@ const ModernEventsNewsSection = () => {
             <div className="bg-gradient-to-br from-pink-600 via-purple-600 to-fuchsia-600 rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 text-white shadow-lg">
               <div className="flex items-center gap-2 md:gap-3 mb-2.5 sm:mb-3 md:mb-4">
                 <div className="p-1.5 sm:p-2 md:p-3 bg-white/20 rounded-lg sm:rounded-xl md:rounded-2xl backdrop-blur-sm">
-                  <GiGirl className="text-base sm:text-lg md:text-xl" />
+                  <FaGraduationCap className="text-base sm:text-lg md:text-xl" />
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-[0.1em] sm:tracking-[0.2em] opacity-90 mb-0.5 sm:mb-1">Matungulu Girls</p>
@@ -660,7 +662,7 @@ const ModernEventsNewsSection = () => {
                       />
                     ) : (
                       <div className="absolute inset-0 bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
-                        <GiGirl className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-8xl opacity-30" />
+                        <FaGraduationCap className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-8xl opacity-30" />
                       </div>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
@@ -761,7 +763,7 @@ const ModernEventsNewsSection = () => {
                   <div className="space-y-3 sm:space-y-4 md:space-y-6">
                     <div>
                       <h4 className="text-xs font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 uppercase tracking-[0.1em] sm:tracking-[0.2em] mb-2 sm:mb-3 md:mb-4 flex items-center gap-1.5 sm:gap-2">
-                        <GiGirl className="w-3 h-3 sm:w-4 sm:h-4" /> 
+                        <FaGraduationCap className="w-3 h-3 sm:w-4 sm:h-4" />
                         {selectedTab === 'events' ? 'Event Details' : 'Article Summary'}
                       </h4>
                       <div className="prose prose-pink max-w-none">
