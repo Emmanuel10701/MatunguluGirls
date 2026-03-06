@@ -172,7 +172,7 @@ const ModernSchoolLayout = () => {
 
             <div className="relative h-[400px] rounded-[2rem] overflow-hidden shadow-2xl">
               <Image
-                src="/bg/14.jpeg"
+                src="/hero/maatG1.jpg"
                 alt="Matungulu Girls High School"
                 fill
                 className="object-cover"
