@@ -297,52 +297,56 @@ const ModernStaffLeadership = () => {
         <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6">
-            <Sparkles className="w-4 h-4 text-emerald-300" />
-            <span className="text-white text-sm font-semibold tracking-wide">Our Dedicated Team</span>
-          </div>
-          
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
-            School Leadership & Staff
-          </h1>
-          
-          <p className="text-lg text-emerald-100 max-w-3xl mx-auto font-light">
-            Meet the passionate educators and administrators committed to excellence at Matungulu Girls High School
-          </p>
-        </div>
+ <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-6 sm:py-12">
+  {/* Balanced Badge - Smaller on mobile */}
+  <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4 sm:mb-6">
+    <Sparkles className="w-3 h-3 sm:w-4 h-4 text-emerald-300" />
+    <span className="text-white text-[10px] sm:text-xs font-bold tracking-wider uppercase">
+      Our Dedicated Team
+    </span>
+  </div>
+  
+  {/* Balanced Title - Drastically reduced for XS screens */}
+  <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 tracking-tight leading-tight">
+    School Leadership <br className="sm:hidden" /> & Staff
+  </h1>
+  
+  {/* Balanced Paragraph - Smaller text and narrower width on mobile */}
+  <p className="text-xs sm:text-base md:text-lg text-emerald-100 max-w-xl sm:max-w-3xl mx-auto font-light leading-relaxed px-4">
+    Meet the passionate educators and administrators committed to excellence at Matungulu Girls High School
+  </p>
+</div>
       </div>
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 pb-20">
-        
-        {/* Tabs */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex p-1 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-emerald-100">
-            <button
-              onClick={() => setActiveTab('featured')}
-              className={`px-6 py-3 rounded-xl text-sm font-bold transition-all flex items-center gap-2 ${
-                activeTab === 'featured'
-                  ? 'bg-gradient-to-r from-emerald-800 to-teal-700 text-white shadow-lg'
-                  : 'text-slate-600 hover:text-emerald-700'
-              }`}
-            >
-              <Crown className="w-4 h-4" />
-              Leadership
-            </button>
-            <button
-              onClick={() => setActiveTab('all')}
-              className={`px-6 py-3 rounded-xl text-sm font-bold transition-all flex items-center gap-2 ${
-                activeTab === 'all'
-                  ? 'bg-gradient-to-r from-emerald-800 to-teal-700 text-white shadow-lg'
-                  : 'text-slate-600 hover:text-emerald-700'
-              }`}
-            >
-              <Users className="w-4 h-4" />
-              All Staff
-            </button>
-          </div>
-        </div>
+   {/* Tabs */}
+<div className="flex justify-center mb-6 px-4">
+  <div className="inline-flex p-1 bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg border border-emerald-100 w-full max-w-[320px] sm:max-w-none sm:w-auto">
+    <button
+      onClick={() => setActiveTab('featured')}
+      className={`flex-1 sm:flex-none px-3 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-[11px] sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 ${
+        activeTab === 'featured'
+          ? 'bg-gradient-to-r from-emerald-800 to-teal-700 text-white shadow-md'
+          : 'text-slate-600 hover:text-emerald-700'
+      }`}
+    >
+      <Crown className="w-3.5 h-3.5 sm:w-4 h-4" />
+      Leadership
+    </button>
+    <button
+      onClick={() => setActiveTab('all')}
+      className={`flex-1 sm:flex-none px-3 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-[11px] sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 ${
+        activeTab === 'all'
+          ? 'bg-gradient-to-r from-emerald-800 to-teal-700 text-white shadow-md'
+          : 'text-slate-600 hover:text-emerald-700'
+      }`}
+    >
+      <Users className="w-3.5 h-3.5 sm:w-4 h-4" />
+      All Staff
+    </button>
+  </div>
+</div>
 
         {activeTab === 'featured' ? (
           <>
