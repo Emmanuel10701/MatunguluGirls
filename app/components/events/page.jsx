@@ -1,5 +1,4 @@
-'use client';
-import { useState, useEffect } from 'react';
+"use client";
 import { 
   FiCalendar,
   FiClock,
@@ -20,11 +19,30 @@ import {
   FiMail,
   FiBriefcase
 } from 'react-icons/fi';
-import { IoLogoGoogle, IoRocketOutline, IoNewspaperOutline, IoPeopleOutline, IoRibbonOutline, IoFlowerOutline } from 'react-icons/io5';
-import { FaFacebookF, FaTwitter, FaWhatsapp, FaGoogle, FaRegClock, FaFemale } from 'react-icons/fa';
-import { GiGraduateCap, GiGirl } from 'react-icons/gi';
+import { 
+  IoLogoGoogle, 
+  IoRocketOutline, 
+  IoNewspaperOutline, 
+  IoPeopleOutline, 
+  IoRibbonOutline, 
+  IoFlowerOutline  // ← ADD THIS
+} from 'react-icons/io5';
+import { 
+  FaFacebookF, 
+  FaTwitter, 
+  FaWhatsapp, 
+  FaGoogle, 
+  FaRegClock, 
+  FaFemale 
+} from 'react-icons/fa';
+import { 
+  GiGraduateCap, 
+  GiGirl  // ← CHANGE from GiGraduateCap to GiGirl (or keep both)
+} from 'react-icons/gi';
 import { TbTargetArrow } from 'react-icons/tb';
-import { MdGirl } from 'react-icons/md';
+import { MdGirl } from 'react-icons/md';  // ← ADD THIS
+import Image from 'next/image';
+import CircularProgress from '@mui/material/CircularProgress';
 import Image from 'next/image';
 import CircularProgress from '@mui/material/CircularProgress';
 
