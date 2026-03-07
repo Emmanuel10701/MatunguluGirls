@@ -190,21 +190,21 @@ const getCategoryStyle = (category) => {
             {event.title}
           </h3>
           
-          <p className="text-xs text-slate-500 mb-3 line-clamp-2">
+          <p className="text-xs text-slate-900 font-semibold mb-3 line-clamp-2">
             {event.description || 'Join us for this upcoming school event.'}
           </p>
 
           <div className="space-y-2 mb-4">
-            <div className="flex items-center gap-2 text-xs text-slate-500">
-              <FiCalendar size={12} className="text-emerald-600" />
+            <div className="flex items-center gap-2 text-xs text-slate-800">
+              <FiCalendar size={12} className="text-emerald-900" />
               <span>{formatDate(event.date)}</span>
             </div>
-            <div className="flex items-center gap-2 text-xs text-slate-500">
-              <FiClock size={12} className="text-emerald-600" />
+            <div className="flex items-center gap-2 text-xs text-slate-800">
+              <FiClock size={12} className="text-emerald-900" />
               <span>{event.time || 'All Day'}</span>
             </div>
-            <div className="flex items-center gap-2 text-xs text-slate-500">
-              <FiMapPin size={12} className="text-emerald-600" />
+            <div className="flex items-center gap-2 text-xs text-slate-800">
+              <FiMapPin size={12} className="text-emerald-900" />
               <span className="truncate">{event.location || 'Main Campus'}</span>
             </div>
           </div>
@@ -242,7 +242,7 @@ const getCategoryStyle = (category) => {
             {event.title}
           </h3>
 
-          <div className="flex items-center gap-3 text-xs text-slate-500 mb-2">
+          <div className="flex items-center gap-3 text-xs text-slate-800 mb-2">
             <div className="flex items-center gap-1">
               <FiCalendar size={10} className="text-emerald-600" />
               <span>{formatDate(event.date)}</span>
@@ -338,12 +338,12 @@ const ModernNewsCard = ({ news, onView, onBookmark }) => {
           {news.title}
         </h3>
         
-        <p className="text-xs text-slate-500 mb-2 line-clamp-2">
+        <p className="text-xs text-slate-800 mb-2 line-clamp-2">
           {news.excerpt || news.description || 'Latest news from our school community.'}
         </p>
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1 text-xs text-slate-500">
+          <div className="flex items-center gap-1 text-xs text-slate-800">
             <FiHeart size={10} className="text-emerald-600" />
             <span>{news.likes || 0}</span>
           </div>
@@ -372,7 +372,7 @@ const ModernStatCard = ({ stat }) => {
       </div>
       
       <p className="text-lg font-bold text-slate-900 mb-0.5">{stat.number}</p>
-      <p className="text-xs text-slate-500">{stat.sublabel}</p>
+      <p className="text-xs text-slate-800">{stat.sublabel}</p>
     </div>
   );
 };
@@ -456,7 +456,7 @@ const ModernShareModal = ({ item, type = 'event', onClose }) => {
           </div>
 
           <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
-            <p className="text-xs text-slate-500 truncate">{window.location.href}</p>
+            <p className="text-xs text-slate-800 truncate">{window.location.href}</p>
           </div>
         </div>
 
@@ -520,7 +520,7 @@ const ModernDetailModal = ({ item, type = 'event', onClose, onAddToCalendar, onS
         <div className="flex-1 overflow-y-auto p-6">
           <h2 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h2>
           
-          <div className="space-y-2 mb-4 text-sm text-slate-500">
+          <div className="space-y-2 mb-4 text-sm text-slate-800">
             {type === 'event' ? (
               <>
                 <div className="flex items-center gap-2">
@@ -985,7 +985,7 @@ export default function ModernEventsNewsPage() {
                   onClick={() => setSearchTerm('')}
                   className="absolute right-3 top-1/2 -translate-y-1/2 p-1 bg-slate-100 rounded"
                 >
-                  <FiX size={12} className="text-slate-500" />
+                  <FiX size={12} className="text-slate-800" />
                 </button>
               )}
             </div>
@@ -1019,13 +1019,13 @@ export default function ModernEventsNewsPage() {
               <div className="flex bg-white border border-slate-200 rounded-lg overflow-hidden">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`p-2.5 ${viewMode === 'grid' ? 'bg-emerald-50 text-emerald-600' : 'text-slate-500'}`}
+                  className={`p-2.5 ${viewMode === 'grid' ? 'bg-emerald-50 text-emerald-600' : 'text-slate-800'}`}
                 >
                   <FiGrid size={16} />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`p-2.5 ${viewMode === 'list' ? 'bg-emerald-50 text-emerald-600' : 'text-slate-500'}`}
+                  className={`p-2.5 ${viewMode === 'list' ? 'bg-emerald-50 text-emerald-600' : 'text-slate-800'}`}
                 >
                   <FiList size={16} />
                 </button>
@@ -1077,7 +1077,7 @@ export default function ModernEventsNewsPage() {
               <div className="bg-white border border-dashed border-slate-200 rounded-lg p-8 text-center">
                 <IoCalendarClearOutline className="text-slate-300 text-3xl mx-auto mb-3" />
                 <h3 className="text-base font-bold text-slate-900">No events found</h3>
-                <p className="text-xs text-slate-500 mt-1 mb-4">Try adjusting your filters</p>
+                <p className="text-xs text-slate-800 mt-1 mb-4">Try adjusting your filters</p>
                 <button 
                   onClick={() => { setSearchTerm(''); setActiveTab('all'); }}
                   className="px-4 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-700"
@@ -1133,7 +1133,7 @@ export default function ModernEventsNewsPage() {
 
               {/* School Info */}
               <div className="mt-6 pt-4 border-t border-slate-100">
-                <div className="flex items-center gap-2 text-xs text-slate-500">
+                <div className="flex items-center gap-2 text-xs text-slate-800">
                   <FaLeaf className="text-emerald-600" size={12} />
                   <span>Matungulu Girls High School</span>
                 </div>
