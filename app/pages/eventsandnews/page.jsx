@@ -31,6 +31,7 @@ import {
   FiGlobe,
   FiMessageCircle,
   FiCopy,
+  FiRefreshCw,
   FiBell
 } from 'react-icons/fi';
 import { 
