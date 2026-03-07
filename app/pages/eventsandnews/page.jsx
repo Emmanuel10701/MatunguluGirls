@@ -81,219 +81,140 @@ const ModernModal = ({ children, open, onClose, maxWidth = '800px' }) => {
   );
 };
 
-// Modern Event Card
 const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid' }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
-// In ModernEventCard, replace the getCategoryStyle function with:
-const getCategoryStyle = (category) => {
-  const styles = {
-    academic: { 
-      bg: 'bg-blue-50', 
-      text: 'text-blue-700',
-      border: 'border-blue-200',
-      iconColor: 'text-blue-600'
-    },
-    cultural: { 
-      bg: 'bg-purple-50', 
-      text: 'text-purple-700',
-      border: 'border-purple-200',
-      iconColor: 'text-purple-600'
-    },
-    sports: { 
-      bg: 'bg-emerald-50', 
-      text: 'text-emerald-700',
-      border: 'border-emerald-200',
-      iconColor: 'text-emerald-600'
-    },
-    workshop: { 
-      bg: 'bg-amber-50', 
-      text: 'text-amber-700',
-      border: 'border-amber-200',
-      iconColor: 'text-amber-600'
-    },
-    science: { 
-      bg: 'bg-cyan-50', 
-      text: 'text-cyan-700',
-      border: 'border-cyan-200',
-      iconColor: 'text-cyan-600'
-    },
-    religious: { 
-      bg: 'bg-rose-50', 
-      text: 'text-rose-700',
-      border: 'border-rose-200',
-      iconColor: 'text-rose-600'
-    },
-    music: { 
-      bg: 'bg-pink-50', 
-      text: 'text-pink-700',
-      border: 'border-pink-200',
-      iconColor: 'text-pink-600'
-    },
-    competition: { 
-      bg: 'bg-orange-50', 
-      text: 'text-orange-700',
-      border: 'border-orange-200',
-      iconColor: 'text-orange-600'
-    },
-    graduation: { 
-      bg: 'bg-indigo-50', 
-      text: 'text-indigo-700',
-      border: 'border-indigo-200',
-      iconColor: 'text-indigo-600'
-    },
-    meeting: { 
-      bg: 'bg-slate-50', 
-      text: 'text-slate-700',
-      border: 'border-slate-200',
-      iconColor: 'text-slate-600'
-    },
-    default: { 
-      bg: 'bg-emerald-50', 
-      text: 'text-emerald-700',
-      border: 'border-emerald-200',
-      iconColor: 'text-emerald-600'
-    }
-  };
-  return styles[category] || styles.default;
-};
 
+  const getCategoryStyle = (category) => {
+    const styles = {
+      academic: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200', iconColor: 'text-blue-600' },
+      cultural: { bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200', iconColor: 'text-purple-600' },
+      sports: { bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200', iconColor: 'text-emerald-600' },
+      workshop: { bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200', iconColor: 'text-amber-600' },
+      science: { bg: 'bg-cyan-50', text: 'text-cyan-700', border: 'border-cyan-200', iconColor: 'text-cyan-600' },
+      religious: { bg: 'bg-rose-50', text: 'text-rose-700', border: 'border-rose-200', iconColor: 'text-rose-600' },
+      music: { bg: 'bg-pink-50', text: 'text-pink-700', border: 'border-pink-200', iconColor: 'text-pink-600' },
+      competition: { bg: 'bg-orange-50', text: 'text-orange-700', border: 'border-orange-200', iconColor: 'text-orange-600' },
+      graduation: { bg: 'bg-indigo-50', text: 'text-indigo-700', border: 'border-indigo-200', iconColor: 'text-indigo-600' },
+      meeting: { bg: 'bg-slate-50', text: 'text-slate-700', border: 'border-slate-200', iconColor: 'text-slate-600' },
+      default: { bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200', iconColor: 'text-emerald-600' }
+    };
+    return styles[category?.toLowerCase()] || styles.default;
+  };
 
   const formatDate = (dateString) => {
     try {
       const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', {
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric'
-      });
-    } catch {
-      return 'TBD';
-    }
+      return date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    } catch { return 'TBD'; }
   };
 
   const theme = getCategoryStyle(event.category);
 
+  // --- GRID VIEW ---
   if (viewMode === 'grid') {
     return (
       <div 
         onClick={() => onView(event)}
-        className="bg-white rounded-lg border border-slate-200 overflow-hidden cursor-pointer"
+        className="group bg-white rounded-2xl border border-slate-100 overflow-hidden cursor-pointer hover:shadow-2xl hover:shadow-emerald-900/10 transition-all duration-300 transform hover:-translate-y-1"
       >
-        <div className="relative h-40 w-full">
+        <div className="relative h-44 w-full overflow-hidden">
           <img
             src={event.image || '/default-event.jpg'}
             alt={event.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          
           <div className="absolute top-3 left-3">
-            <span className={`px-2 py-1 rounded text-[10px] font-medium uppercase tracking-wider border ${theme.bg} ${theme.text} ${theme.border}`}>
+            <span className={`px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest backdrop-blur-md border shadow-sm ${theme.bg}/90 ${theme.text} ${theme.border}`}>
               {event.category || 'Event'}
             </span>
           </div>
-
-          <div className="absolute top-3 right-3">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onBookmark(event);
-                setIsBookmarked(!isBookmarked);
-              }}
-              className={`p-1.5 rounded-lg border ${
-                isBookmarked 
-                  ? 'bg-amber-500 border-amber-500 text-white' 
-                  : 'bg-white/90 border-slate-200 text-slate-600'
-              }`}
-            >
-              <FiBookmark className={`w-3.5 h-3.5 ${isBookmarked ? 'fill-current' : ''}`} />
-            </button>
-          </div>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onBookmark(event);
+              setIsBookmarked(!isBookmarked);
+            }}
+            className={`absolute top-3 right-3 p-2 rounded-xl backdrop-blur-md border transition-all ${
+              isBookmarked ? 'bg-amber-500 border-amber-400 text-white' : 'bg-white/80 border-white/40 text-slate-600 hover:bg-white'
+            }`}
+          >
+            <FiBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current' : ''}`} />
+          </button>
         </div>
 
-        <div className="p-4">
-          <h3 className="text-base font-bold text-slate-900 mb-2 line-clamp-2">
+        <div className="p-5">
+          <h3 className="text-base font-black text-slate-900 mb-2 line-clamp-1 group-hover:text-emerald-700">
             {event.title}
           </h3>
-          
-          <p className="text-xs text-slate-900 font-semibold mb-3 line-clamp-2">
-            {event.description || 'Join us for this upcoming school event.'}
-          </p>
-<div className="space-y-2 mb-4">
-  <div className="flex items-center gap-2 text-xs text-slate-800">
-    <FiCalendar size={12} className={theme.iconColor} />
-    <span>{formatDate(event.date)}</span>
-  </div>
-  <div className="flex items-center gap-2 text-xs text-slate-800">
-    <FiClock size={12} className={theme.iconColor} />
-    <span>{event.time || 'All Day'}</span>
-  </div>
-  <div className="flex items-center gap-2 text-xs text-slate-800">
-    <FiMapPin size={12} className={theme.iconColor} />
-    <span className="truncate">{event.location || 'Main Campus'}</span>
-  </div>
-</div>
-
-          <button className="w-full py-2 bg-emerald-50 text-emerald-700 rounded-lg text-xs font-medium border border-emerald-200">
-            View Details
+          <div className="grid grid-cols-1 gap-2 mb-4">
+            <div className="flex items-center gap-2 text-xs font-bold text-slate-600 bg-slate-50 p-2 rounded-lg">
+              <FiCalendar size={14} className={theme.iconColor} />
+              {formatDate(event.date)}
+            </div>
+            <div className="flex items-center gap-2 text-xs font-bold text-slate-600 bg-slate-50 p-2 rounded-lg">
+              <FiMapPin size={14} className={theme.iconColor} />
+              <span className="truncate">{event.location || 'Main Campus'}</span>
+            </div>
+          </div>
+          <button className="w-full py-3 bg-gradient-to-r from-emerald-800 to-teal-700 text-white rounded-xl text-xs font-black tracking-widest shadow-lg active:scale-95 transition-all">
+            VIEW DETAILS
           </button>
         </div>
       </div>
     );
   }
 
+  // --- LIST VIEW (MODERN & BALANCED) ---
   return (
     <div 
       onClick={() => onView(event)}
-      className="bg-white rounded-lg border border-slate-200 p-4 cursor-pointer"
+      className="group bg-white rounded-xl border border-slate-100 p-3 sm:p-4 cursor-pointer hover:border-emerald-200 hover:shadow-md transition-all mb-3"
     >
-      <div className="flex gap-4">
-        <div className="relative w-20 h-20 rounded-lg overflow-hidden shrink-0">
+      <div className="flex gap-4 items-center">
+        <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden shrink-0 shadow-inner">
           <img
             src={event.image || '/default-event.jpg'}
             alt={event.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           />
+          <div className={`absolute bottom-0 inset-x-0 h-1 ${theme.bg.replace('50', '500')} opacity-70`} />
         </div>
 
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between mb-1">
-          <span className={`px-2 py-1 rounded text-[10px] font-medium uppercase tracking-wider border ${theme.bg} ${theme.text} ${theme.border}`}>
-  {event.category || 'Event'}
-</span>
-          </div>
-
-          <h3 className="text-sm font-bold text-slate-900 mb-1 line-clamp-1">
-            {event.title}
-          </h3>
-
-          <div className="flex items-center gap-3 text-xs text-slate-800 mb-2">
-            <div className="flex items-center gap-1">
-              <FiCalendar size={10} className="text-emerald-600" />
-              <span>{formatDate(event.date)}</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <FiClock size={10} className="text-emerald-600" />
-              <span>{event.time || 'All Day'}</span>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between">
+            <span className={`px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-tighter border ${theme.bg} ${theme.text} ${theme.border}`}>
+              {event.category || 'Event'}
+            </span>
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 onBookmark(event);
                 setIsBookmarked(!isBookmarked);
               }}
-              className={`p-1.5 rounded-lg border ${
-                isBookmarked ? 'text-amber-500' : 'text-slate-400'
-              }`}
+              className={`p-1 transition-colors ${isBookmarked ? 'text-amber-500' : 'text-slate-300 hover:text-slate-500'}`}
             >
-              <FiBookmark className={`w-3.5 h-3.5 ${isBookmarked ? 'fill-current' : ''}`} />
+              <FiBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current' : ''}`} />
             </button>
-            
-            <div className="flex items-center gap-1 text-emerald-600 text-xs font-medium">
-              View Details
-              <FiArrowRight size={10} />
+          </div>
+
+          <h3 className="text-sm sm:text-base font-black text-slate-900 mb-1 truncate group-hover:text-emerald-700">
+            {event.title}
+          </h3>
+
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] sm:text-xs text-slate-500 font-bold">
+            <div className="flex items-center gap-1.5">
+              <FiCalendar size={12} className={theme.iconColor} />
+              <span>{formatDate(event.date)}</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <FiClock size={12} className={theme.iconColor} />
+              <span>{event.time || 'All Day'}</span>
+            </div>
+          </div>
+
+          <div className="mt-2 flex items-center justify-end">
+            <div className={`flex items-center gap-1 text-[10px] font-black uppercase tracking-widest ${theme.text}`}>
+              Details <FiArrowRight size={10} className="group-hover:translate-x-1 transition-transform" />
             </div>
           </div>
         </div>
@@ -302,138 +223,53 @@ const getCategoryStyle = (category) => {
   );
 };
 
-// Modern News Card
-// Modern News Card
 const ModernNewsCard = ({ news, onView, onBookmark }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
-
-  const getCategoryStyle = (category) => {
-    const styles = {
-      achievement: { 
-        bg: 'bg-amber-50', 
-        text: 'text-amber-700',
-        border: 'border-amber-200',
-        icon: <FiAward className="w-4 h-4" />,
-        iconColor: 'text-amber-600'
-      },
-      announcement: { 
-        bg: 'bg-blue-50', 
-        text: 'text-blue-700',
-        border: 'border-blue-200',
-        icon: <FiBell className="w-4 h-4" />,
-        iconColor: 'text-blue-600'
-      },
-      development: { 
-        bg: 'bg-purple-50', 
-        text: 'text-purple-700',
-        border: 'border-purple-200',
-        icon: <FiTrendingUp className="w-4 h-4" />,
-        iconColor: 'text-purple-600'
-      },
-      sports: { 
-        bg: 'bg-emerald-50', 
-        text: 'text-emerald-700',
-        border: 'border-emerald-200',
-        icon: <FiZap className="w-4 h-4" />,
-        iconColor: 'text-emerald-600'
-      },
-      academic: { 
-        bg: 'bg-cyan-50', 
-        text: 'text-cyan-700',
-        border: 'border-cyan-200',
-        icon: <FiBookOpen className="w-4 h-4" />,
-        iconColor: 'text-cyan-600'
-      },
-      event: { 
-        bg: 'bg-pink-50', 
-        text: 'text-pink-700',
-        border: 'border-pink-200',
-        icon: <FiCalendar className="w-4 h-4" />,
-        iconColor: 'text-pink-600'
-      },
-      default: { 
-        bg: 'bg-emerald-50', 
-        text: 'text-emerald-700',
-        border: 'border-emerald-200',
-        icon: <IoNewspaperOutline className="w-4 h-4" />,
-        iconColor: 'text-emerald-600'
-      }
-    };
-    return styles[category] || styles.default;
-  };
-
-  const formatDate = (dateString) => {
-    try {
-      const date = new Date(dateString);
-      const diff = Math.floor((new Date() - date) / (1000 * 60 * 60 * 24));
-      if (diff === 0) return 'Today';
-      if (diff === 1) return 'Yesterday';
-      if (diff < 7) return `${diff}d ago`;
-      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    } catch {
-      return 'Recently';
-    }
-  };
-
   const theme = getCategoryStyle(news.category);
 
   return (
     <div 
       onClick={() => onView(news)}
-      className="bg-white rounded-lg border border-slate-200 overflow-hidden cursor-pointer hover:shadow-md transition-all group"
+      className="group flex flex-col bg-white rounded-xl border border-slate-100 overflow-hidden cursor-pointer hover:border-emerald-200 hover:shadow-lg transition-all"
     >
-      <div className="relative h-32 w-full">
+      <div className="relative h-32 sm:h-36 w-full overflow-hidden">
         <img
           src={news.image || '/default-news.jpg'}
           alt={news.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
         />
         
-        <div className="absolute top-2 left-2">
-          <span className={`px-2 py-0.5 rounded text-[8px] font-medium uppercase tracking-wider border ${theme.bg} ${theme.text} ${theme.border}`}>
-            {news.category || 'News'}
+        <div className="absolute top-2 left-2 flex items-center gap-1.5 px-2 py-1 rounded-md bg-white/90 backdrop-blur-sm border border-white/50 shadow-sm">
+          <span className={theme.iconColor}>{theme.icon}</span>
+          <span className={`text-[9px] font-black uppercase tracking-tighter ${theme.text}`}>
+            {news.category}
           </span>
         </div>
 
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onBookmark(news);
-            setIsBookmarked(!isBookmarked);
-          }}
-          className={`absolute top-2 right-2 p-1.5 rounded-lg border transition-all ${
-            isBookmarked 
-              ? 'bg-amber-500 border-amber-500 text-white' 
-              : 'bg-white/90 border-slate-200 text-slate-600 hover:bg-slate-100'
-          }`}
-        >
-          <FiBookmark className={`w-3 h-3 ${isBookmarked ? 'fill-current' : ''}`} />
-        </button>
-
-        <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black/40 to-transparent" />
-        <span className="absolute bottom-2 right-2 text-[8px] text-white font-medium">
-          {formatDate(news.date)}
-        </span>
+        <div className="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="absolute bottom-2 left-2 right-2 flex justify-between items-center text-[10px] text-white font-bold">
+          <span className="flex items-center gap-1">
+             <FiClock size={10} /> {formatDate(news.date)}
+          </span>
+        </div>
       </div>
 
-      <div className="p-3">
-        <h3 className="text-sm font-bold text-slate-900 mb-1 line-clamp-2 group-hover:text-emerald-600 transition-colors">
+      <div className="p-3 sm:p-4">
+        <h3 className="text-sm font-extrabold text-slate-900 mb-2 line-clamp-2 leading-snug group-hover:text-emerald-700">
           {news.title}
         </h3>
         
-        <p className="text-xs text-slate-600 mb-2 line-clamp-2">
-          {news.excerpt || news.description || 'Latest news from our school community.'}
-        </p>
-
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1 text-xs text-slate-500">
-            <FiHeart size={10} className={theme.iconColor} />
-            <span>{news.likes || 0}</span>
+        <div className="flex items-center justify-between mt-auto pt-2 border-t border-slate-50">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 text-[10px] font-bold text-slate-500">
+              <FiHeart size={12} className="text-rose-500 fill-rose-50" />
+              <span>{news.likes || 24}</span>
+            </div>
           </div>
           
-          <div className={`flex items-center gap-1 text-[10px] font-medium ${theme.text}`}>
-            Read More
-            <FiArrowRight size={8} />
+          <div className={`flex items-center gap-1 text-[10px] font-black uppercase tracking-widest ${theme.text}`}>
+            READ MORE
+            <FiArrowRight size={10} className="group-hover:translate-x-1 transition-transform" />
           </div>
         </div>
       </div>
