@@ -1104,7 +1104,7 @@ export default function ModernEventsNewsPage() {
       <div className="max-w-7xl mx-auto space-y-6">
         
 {/* Modern Hero Header - Emerald/Teal Theme */}
-<div className="relative bg-gradient-to-r from-emerald-900 to-teal-800 rounded-2xl p-6 md:p-10 text-white overflow-hidden border border-emerald-700/30 mb-8">
+<div className="relative bg-gradient-to-r from-emerald-900 to-teal-800 rounded-xl p-6 md:p-10 text-white overflow-hidden border border-emerald-700/30 mb-8">
   {/* Background Glows */}
   <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
   <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
