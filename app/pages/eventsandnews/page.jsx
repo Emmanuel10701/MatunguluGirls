@@ -30,6 +30,7 @@ import {
   FiTrendingUp,
   FiZap,
   FiGlobe,
+  FiBookOpen, 
   FiMessageCircle,
   FiCopy,
   FiBell
