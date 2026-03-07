@@ -57,27 +57,26 @@ import {
 } from 'react-icons/io5';
 import { CircularProgress, Box, Typography, Stack } from '@mui/material';
 
-// Modern Modal Component with Glass Morphism
+// Modern Modal Component
 const ModernModal = ({ children, open, onClose, maxWidth = '800px', blur = true }) => {
   if (!open) return null;
 
   return (
     <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 ${blur ? 'backdrop-blur-md' : 'bg-black/50'}`}>
       <div 
-        className="relative bg-white/95 rounded-3xl shadow-2xl animate-in zoom-in-95 duration-300 overflow-hidden border border-white/40"
+        className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-emerald-100"
         style={{ 
           width: '90%',
           maxWidth: maxWidth,
-          maxHeight: '90vh',
-          background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)'
+          maxHeight: '90vh'
         }}
       >
         <div className="absolute top-4 right-4 z-10">
           <button 
             onClick={onClose}
-            className="p-2 bg-white/80 backdrop-blur-sm rounded-full cursor-pointer border border-gray-200 shadow-sm"
+            className="p-2 bg-white/80 backdrop-blur-sm rounded-full border border-emerald-200 shadow-sm"
           >
-            <FiX className="text-gray-600 w-5 h-5" />
+            <FiX className="text-emerald-700 w-5 h-5" />
           </button>
         </div>
         {children}
@@ -86,7 +85,7 @@ const ModernModal = ({ children, open, onClose, maxWidth = '800px', blur = true 
   );
 };
 
-// Modern Job Card Component
+// Modern Job Card Component - No hover effects
 const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
@@ -101,25 +100,25 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
   const getJobTypeStyle = (type) => {
     const styles = {
       'full-time': { 
-        gradient: 'from-emerald-500 to-teal-500', 
+        gradient: 'from-emerald-600 to-teal-600', 
         bg: 'bg-emerald-50', 
         text: 'text-emerald-700',
         border: 'border-emerald-200'
       },
       'part-time': { 
-        gradient: 'from-blue-500 to-cyan-500', 
+        gradient: 'from-blue-600 to-cyan-600', 
         bg: 'bg-blue-50', 
         text: 'text-blue-700',
         border: 'border-blue-200'
       },
       'contract': { 
-        gradient: 'from-purple-500 to-pink-500', 
+        gradient: 'from-purple-600 to-pink-600', 
         bg: 'bg-purple-50', 
         text: 'text-purple-700',
         border: 'border-purple-200'
       },
       'internship': { 
-        gradient: 'from-amber-500 to-orange-500', 
+        gradient: 'from-amber-600 to-orange-600', 
         bg: 'bg-amber-50', 
         text: 'text-amber-700',
         border: 'border-amber-200'
@@ -163,7 +162,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
 
   const CategoryIcon = getCategoryIcon(job?.category);
 
-  // Modern Grid View
+  // Grid View
   if (viewMode === 'grid') {
     const theme = getJobTypeStyle(job?.jobType);
     const daysLeft = formatDate(job?.applicationDeadline);
@@ -172,9 +171,9 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
     return (
       <div 
         onClick={() => onView(job)}
-        className="relative bg-white rounded-[32px] border border-slate-100 shadow-sm overflow-hidden cursor-pointer"
+        className="relative bg-white rounded-[32px] border border-slate-200 overflow-hidden cursor-pointer"
       >
-        {/* Header with Gradient */}
+        {/* Header */}
         <div className={`relative h-4 bg-gradient-to-r ${theme.gradient}`}>
           {isUrgent && (
             <div className="absolute top-2 left-1/2 transform -translate-x-1/2 px-3 py-0.5 bg-red-500 text-white rounded-full text-[10px] font-bold uppercase tracking-widest">
@@ -188,8 +187,8 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
           {/* Category and Bookmark */}
           <div className="flex items-start justify-between mb-4">
             <div className="flex items-center gap-2">
-              <div className={`p-2 rounded-xl ${theme.bg} ${theme.text} border ${theme.border}`}>
-                <CategoryIcon size={18} />
+              <div className={`p-2 rounded-xl ${theme.bg} border ${theme.border}`}>
+                <CategoryIcon className={`${theme.text}`} size={18} />
               </div>
               <span className={`text-[11px] font-bold uppercase tracking-wider ${theme.text}`}>
                 {job?.category || 'General'}
@@ -198,7 +197,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
             <div className="flex items-center gap-1">
               <button
                 onClick={handleWhatsAppShare}
-                className="p-2 rounded-lg text-emerald-500 border border-emerald-200"
+                className="p-2 rounded-lg text-emerald-600 border border-emerald-200"
                 title="Share on WhatsApp"
               >
                 <FaWhatsapp size={16} />
@@ -229,8 +228,8 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
           </div>
 
           {/* Description */}
-          <p className="text-slate-900 text-sm mb-6 line-clamp-2 leading-relaxed">
-            {job?.jobDescription || 'Join our dedicated team at Matungulu Girls High School. We are looking for passionate individuals to contribute to our educational mission.'}
+          <p className="text-slate-600 text-sm mb-6 line-clamp-2 leading-relaxed">
+            {job?.jobDescription || 'Join our dedicated team at Matungulu Girls High School.'}
           </p>
 
           {/* Info Grid */}
@@ -285,7 +284,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
             mx-auto sm:mx-0
             px-5 sm:px-4
             py-2 sm:py-4 
-            bg-slate-900 text-white 
+            bg-emerald-900 text-white 
             rounded-full sm:rounded-2xl 
             font-normal sm:font-bold 
             text-xs sm:text-sm 
@@ -303,7 +302,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
   return (
     <div 
       onClick={() => onView(job)}
-      className="relative bg-white rounded-[24px] border border-slate-100 p-4 shadow-sm cursor-pointer"
+      className="relative bg-white rounded-[24px] border border-slate-200 p-4 cursor-pointer"
     >
       <div className="flex gap-5">
         {/* Icon Container */}
@@ -335,7 +334,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
               <div className="flex items-center gap-1">
                 <button
                   onClick={handleWhatsAppShare}
-                  className="p-1.5 rounded-lg text-emerald-500 border border-emerald-200"
+                  className="p-1.5 rounded-lg text-emerald-600 border border-emerald-200"
                   title="Share on WhatsApp"
                 >
                   <FaWhatsapp size={14} />
@@ -356,7 +355,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
               {job?.jobTitle || 'Position Available'}
             </h3>
 
-            <div className="flex items-center gap-3 text-sm text-slate-900 mb-3">
+            <div className="flex items-center gap-3 text-sm text-slate-600 mb-3">
               <div className="flex items-center gap-1">
                 <FiBuilding size={12} />
                 <span>{job?.department || 'Department'}</span>
@@ -367,12 +366,12 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
               </div>
             </div>
 
-            <p className="text-slate-900 text-xs line-clamp-2 mb-3">
+            <p className="text-slate-600 text-xs line-clamp-2 mb-3">
               {job?.jobDescription || 'Join our dedicated team at Matungulu Girls High School.'}
             </p>
           </div>
 
-          {/* Footer: Details & Action */}
+          {/* Footer */}
           <div className="flex items-center justify-between mt-auto">
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1 px-2 py-1 bg-slate-50 rounded-lg border border-slate-100">
@@ -381,7 +380,7 @@ const ModernJobCard = ({ job, onView, onBookmark, onShare, viewMode = 'grid' }) 
               </div>
             </div>
             
-            <div className="flex items-center gap-1 text-emerald-600 font-bold text-[11px] uppercase tracking-wider">
+            <div className="flex items-center gap-1 text-emerald-700 font-bold text-[11px] uppercase tracking-wider">
               Apply Now
               <FiArrowRight size={12} />
             </div>
@@ -397,39 +396,31 @@ const ModernStatCard = ({ stat }) => {
   const Icon = stat.icon;
   
   return (
-    <div className="relative flex flex-col justify-between overflow-hidden bg-white border border-slate-100 p-4 md:p-6 rounded-[24px] md:rounded-[32px] shadow-sm">
-      {/* Top Section: Icon & Badge */}
+    <div className="relative flex flex-col justify-between overflow-hidden bg-white border border-slate-200 p-4 md:p-6 rounded-[24px] md:rounded-[32px]">
+      {/* Top Section */}
       <div className="flex items-start justify-between mb-4 md:mb-8">
-        <div className={`p-2 md:p-3 rounded-xl md:rounded-2xl bg-gradient-to-br ${stat.gradient} bg-opacity-[0.08] text-slate-700`}>
-          <Icon className="text-lg md:text-2xl" />
+        <div className={`p-2 md:p-3 rounded-xl md:rounded-2xl bg-gradient-to-br ${stat.gradient} bg-opacity-10`}>
+          <Icon className={`text-lg md:text-2xl text-${stat.gradient.split(' ')[0].replace('from-', '')}`} />
         </div>
-        
-        {/* Status Dot */}
         <div className="hidden xs:block h-2 w-2 rounded-full bg-slate-200" />
       </div>
 
       {/* Content Section */}
       <div className="space-y-1">
-        {/* Label */}
         <p className="text-[9px] md:text-[11px] font-bold uppercase tracking-[0.15em] text-slate-400">
           {stat.label}
         </p>
         
         <div className="flex items-baseline gap-1">
-          {/* Number */}
           <h3 className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900">
             {stat.number}
           </h3>
         </div>
 
-        {/* Sublabel */}
-        <p className="text-[10px] md:text-sm font-medium text-slate-900 leading-tight line-clamp-1 md:line-clamp-none">
+        <p className="text-[10px] md:text-sm font-medium text-slate-600 leading-tight line-clamp-1 md:line-clamp-none">
           {stat.sublabel}
         </p>
       </div>
-
-      {/* Decorative Background Element */}
-      <div className={`absolute -bottom-2 -right-2 w-12 h-12 md:w-20 md:h-20 opacity-[0.03] rounded-full bg-gradient-to-br ${stat.gradient} hidden md:block`} />
     </div>
   );
 };
@@ -447,12 +438,12 @@ const ModernJobDetailModal = ({ job, onClose, onApply }) => {
 
   const getJobTypeStyle = (type) => {
     const styles = {
-      'full-time': { gradient: 'from-emerald-500 to-teal-500' },
-      'part-time': { gradient: 'from-blue-500 to-cyan-500' },
-      'contract': { gradient: 'from-purple-500 to-pink-500' },
-      'internship': { gradient: 'from-amber-500 to-orange-500' }
+      'full-time': { gradient: 'from-emerald-600 to-teal-600' },
+      'part-time': { gradient: 'from-blue-600 to-cyan-600' },
+      'contract': { gradient: 'from-purple-600 to-pink-600' },
+      'internship': { gradient: 'from-amber-600 to-orange-600' }
     };
-    return styles[type] || { gradient: 'from-slate-500 to-slate-600' };
+    return styles[type] || { gradient: 'from-emerald-600 to-teal-600' };
   };
 
   const formatFullDate = (dateString) => {
@@ -490,7 +481,6 @@ const ModernJobDetailModal = ({ job, onClose, onApply }) => {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-slate-900/90 backdrop-blur-sm">
-      {/* Modal Container */}
       <div className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-3xl bg-white sm:rounded-[40px] shadow-2xl overflow-hidden flex flex-col">
         
         {/* Close Button */}
@@ -501,10 +491,10 @@ const ModernJobDetailModal = ({ job, onClose, onApply }) => {
           <IoClose size={20}/>
         </button>
 
-        {/* 1. Header with Gradient */}
+        {/* Header */}
         <div className={`relative h-4 sm:h-6 bg-gradient-to-r ${theme.gradient}`} />
 
-        {/* 2. Content Area - Scrollable */}
+        {/* Content Area */}
         <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-10 bg-white">
           <div className="max-w-2xl mx-auto space-y-6 sm:space-y-8">
             
@@ -526,7 +516,7 @@ const ModernJobDetailModal = ({ job, onClose, onApply }) => {
               <div className="flex items-center gap-2 mt-2">
                 <button
                   onClick={handleWhatsAppShare}
-                  className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl border border-emerald-600"
+                  className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-xl"
                 >
                   <FaWhatsapp size={18} />
                   <span className="text-sm font-medium">Share on WhatsApp</span>
@@ -534,17 +524,17 @@ const ModernJobDetailModal = ({ job, onClose, onApply }) => {
               </div>
 
               {/* Quick Info Bar */}
-              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-y-3 gap-x-6 text-xs sm:text-sm font-semibold text-slate-900">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-y-3 gap-x-6 text-xs sm:text-sm font-semibold text-slate-600">
                 <div className="flex items-center gap-2">
-                  <IoCalendarClearOutline className="text-blue-500 text-base sm:text-lg" />
+                  <IoCalendarClearOutline className="text-emerald-600 text-base sm:text-lg" />
                   {formatFullDate(job.applicationDeadline)}
                 </div>
                 <div className="flex items-center gap-2">
-                  <IoTimeOutline className="text-emerald-500 text-base sm:text-lg" />
+                  <IoTimeOutline className="text-emerald-600 text-base sm:text-lg" />
                   {daysLeft(job.applicationDeadline)}
                 </div>
                 <div className="flex items-center gap-2">
-                  <IoBusinessOutline className="text-purple-500 text-base sm:text-lg" />
+                  <IoBusinessOutline className="text-emerald-600 text-base sm:text-lg" />
                   {job.jobType?.replace('-', ' ') || 'Full-time'}
                 </div>
               </div>
@@ -552,23 +542,23 @@ const ModernJobDetailModal = ({ job, onClose, onApply }) => {
 
             {/* Stats Grid */}
             <section className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-4">
-              <div className="p-3 sm:p-4 bg-slate-50 rounded-xl sm:rounded-2xl md:rounded-3xl border border-slate-100">
-                <FiUsers className="text-blue-600 mb-1 sm:mb-2 w-4 h-4 sm:w-5 sm:h-5" />
+              <div className="p-3 sm:p-4 bg-slate-50 rounded-xl sm:rounded-2xl md:rounded-3xl border border-slate-200">
+                <FiUsers className="text-emerald-600 mb-1 sm:mb-2 w-4 h-4 sm:w-5 sm:h-5" />
                 <p className="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 mb-0.5 sm:mb-1">Positions</p>
                 <p className="font-bold text-slate-900 text-sm sm:text-base">{job.positionsAvailable || 1}</p>
               </div>
-              <div className="p-3 sm:p-4 bg-slate-50 rounded-xl sm:rounded-2xl md:rounded-3xl border border-slate-100">
+              <div className="p-3 sm:p-4 bg-slate-50 rounded-xl sm:rounded-2xl md:rounded-3xl border border-slate-200">
                 <FiAward className="text-amber-500 mb-1 sm:mb-2 w-4 h-4 sm:w-5 sm:h-5" />
                 <p className="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 mb-0.5 sm:mb-1">Experience</p>
                 <p className="font-bold text-slate-900 text-sm sm:text-base truncate">{job.experience || 'Flexible'}</p>
               </div>
-              <div className="p-3 sm:p-4 bg-slate-50 rounded-xl sm:rounded-2xl md:rounded-3xl border border-slate-100">
-                <FiClock className="text-emerald-500 mb-1 sm:mb-2 w-4 h-4 sm:w-5 sm:h-5" />
+              <div className="p-3 sm:p-4 bg-slate-50 rounded-xl sm:rounded-2xl md:rounded-3xl border border-slate-200">
+                <FiClock className="text-emerald-600 mb-1 sm:mb-2 w-4 h-4 sm:w-5 sm:h-5" />
                 <p className="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 mb-0.5 sm:mb-1">Type</p>
                 <p className="font-bold text-slate-900 text-sm sm:text-base capitalize">{job.jobType?.replace('-', ' ') || 'Full-time'}</p>
               </div>
-              <div className="p-3 sm:p-4 bg-slate-50 rounded-xl sm:rounded-2xl md:rounded-3xl border border-slate-100">
-                <FaGraduationCap className="text-purple-500 mb-1 sm:mb-2 w-4 h-4 sm:w-5 sm:h-5" />
+              <div className="p-3 sm:p-4 bg-slate-50 rounded-xl sm:rounded-2xl md:rounded-3xl border border-slate-200">
+                <FaGraduationCap className="text-emerald-600 mb-1 sm:mb-2 w-4 h-4 sm:w-5 sm:h-5" />
                 <p className="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 mb-0.5 sm:mb-1">Category</p>
                 <p className="font-bold text-slate-900 text-sm sm:text-base">{job.category || 'General'}</p>
               </div>
@@ -577,8 +567,8 @@ const ModernJobDetailModal = ({ job, onClose, onApply }) => {
             {/* Description Block */}
             <section className="space-y-3 sm:space-y-4">
               <h3 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-slate-400">Job Description</h3>
-              <div className="text-slate-700 leading-relaxed text-sm sm:text-base md:text-lg bg-slate-50 p-3 sm:p-4 rounded-xl sm:rounded-2xl md:rounded-3xl border border-slate-100">
-                {job.jobDescription || 'Join our dedicated team at Matungulu Girls High School. We are looking for passionate individuals to contribute to our educational mission.'}
+              <div className="text-slate-700 leading-relaxed text-sm sm:text-base md:text-lg bg-slate-50 p-3 sm:p-4 rounded-xl sm:rounded-2xl md:rounded-3xl border border-slate-200">
+                {job.jobDescription || 'Join our dedicated team at Matungulu Girls High School.'}
               </div>
             </section>
 
@@ -586,7 +576,7 @@ const ModernJobDetailModal = ({ job, onClose, onApply }) => {
             {job.requirements && (
               <section className="space-y-3 sm:space-y-4">
                 <h3 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-slate-400">Requirements</h3>
-                <div className="text-slate-700 leading-relaxed text-sm sm:text-base bg-emerald-50 p-3 sm:p-4 rounded-xl sm:rounded-2xl md:rounded-3xl border border-emerald-100">
+                <div className="text-slate-700 leading-relaxed text-sm sm:text-base bg-emerald-50 p-3 sm:p-4 rounded-xl sm:rounded-2xl md:rounded-3xl border border-emerald-200">
                   {job.requirements}
                 </div>
               </section>
@@ -596,62 +586,62 @@ const ModernJobDetailModal = ({ job, onClose, onApply }) => {
             {job.qualifications && (
               <section className="space-y-3 sm:space-y-4">
                 <h3 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-slate-400">Qualifications</h3>
-                <div className="text-slate-700 leading-relaxed text-sm sm:text-base bg-purple-50 p-3 sm:p-4 rounded-xl sm:rounded-2xl md:rounded-3xl border border-purple-100">
+                <div className="text-slate-700 leading-relaxed text-sm sm:text-base bg-emerald-50 p-3 sm:p-4 rounded-xl sm:rounded-2xl md:rounded-3xl border border-emerald-200">
                   {job.qualifications}
                 </div>
               </section>
             )}
 
             {/* Application Instructions */}
-            <section className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 border border-emerald-200">
+            <section className="bg-gradient-to-r from-emerald-900 to-teal-900 rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 border border-emerald-800">
               <div className="flex items-start sm:items-center gap-3 mb-3 sm:mb-4">
                 <div className="p-2.5 sm:p-3 bg-emerald-500 rounded-xl sm:rounded-2xl">
                   <FiSend className="text-white text-xl sm:text-2xl" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900">How to Apply</h3>
-                  <p className="text-slate-600 text-sm sm:text-base">Submit your application through any of the methods below</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-white">How to Apply</h3>
+                  <p className="text-emerald-100 text-sm sm:text-base">Submit your application through any of the methods below</p>
                 </div>
               </div>
               
               <div className="space-y-3 sm:space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
-                  <div className="p-3 sm:p-4 bg-white rounded-xl sm:rounded-2xl border border-slate-200">
+                  <div className="p-3 sm:p-4 bg-white/10 rounded-xl sm:rounded-2xl border border-white/20">
                     <div className="flex items-center gap-2 mb-2">
-                      <FiMail className="text-red-500 w-4 h-4 sm:w-5 sm:h-5" />
-                      <h4 className="font-bold text-slate-900 text-sm sm:text-base">Email Application</h4>
+                      <FiMail className="text-emerald-300 w-4 h-4 sm:w-5 sm:h-5" />
+                      <h4 className="font-bold text-white text-sm sm:text-base">Email Application</h4>
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-600 mb-2 sm:mb-3">
+                    <p className="text-xs sm:text-sm text-emerald-100 mb-2 sm:mb-3">
                       Send your CV, certificates, and cover letter to:
                     </p>
                     <a 
                       href={`mailto:${job.contactEmail || 'careers@matungulugirls.sc.ke'}?subject=Job Application: ${job.jobTitle}`}
-                      className="text-emerald-600 font-medium text-sm sm:text-base break-all"
+                      className="text-emerald-300 font-medium text-sm sm:text-base break-all"
                     >
                       {job.contactEmail || 'careers@matungulugirls.sc.ke'}
                     </a>
                   </div>
                   
-                  <div className="p-3 sm:p-4 bg-white rounded-xl sm:rounded-2xl border border-slate-200">
+                  <div className="p-3 sm:p-4 bg-white/10 rounded-xl sm:rounded-2xl border border-white/20">
                     <div className="flex items-center gap-2 mb-2">
-                      <FiPhone className="text-emerald-500 w-4 h-4 sm:w-5 sm:h-5" />
-                      <h4 className="font-bold text-slate-900 text-sm sm:text-base">Phone Inquiry</h4>
+                      <FiPhone className="text-emerald-300 w-4 h-4 sm:w-5 sm:h-5" />
+                      <h4 className="font-bold text-white text-sm sm:text-base">Phone Inquiry</h4>
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-600 mb-2 sm:mb-3">
+                    <p className="text-xs sm:text-sm text-emerald-100 mb-2 sm:mb-3">
                       Contact our HR department for inquiries:
                     </p>
                     <a 
                       href={`tel:${job.contactPhone || '+254712345678'}`}
-                      className="text-emerald-600 font-medium text-sm sm:text-base"
+                      className="text-emerald-300 font-medium text-sm sm:text-base"
                     >
                       {job.contactPhone || '+254 712 345 678'}
                     </a>
                   </div>
                 </div>
                 
-                <div className="pt-3 sm:pt-4 border-t border-emerald-200">
-                  <p className="text-xs sm:text-sm text-slate-600">
-                    <strong>Note:</strong> Please include all relevant documents and mention the position title in your application.
+                <div className="pt-3 sm:pt-4 border-t border-emerald-700">
+                  <p className="text-xs sm:text-sm text-emerald-100">
+                    <strong className="text-white">Note:</strong> Please include all relevant documents and mention the position title in your application.
                   </p>
                 </div>
               </div>
@@ -659,8 +649,8 @@ const ModernJobDetailModal = ({ job, onClose, onApply }) => {
           </div>
         </div>
 
-        {/* 3. Action Footer - Sticky */}
-        <div className="shrink-0 p-4 sm:p-6 bg-slate-50/80 backdrop-blur-md border-t border-slate-100">
+        {/* Footer */}
+        <div className="shrink-0 p-4 sm:p-6 bg-slate-50 border-t border-slate-200">
           <div className="max-w-2xl mx-auto flex flex-row items-center justify-center px-4 sm:px-0">
             <button
               onClick={onClose}
@@ -679,25 +669,25 @@ const ModernJobDetailModal = ({ job, onClose, onApply }) => {
 // Modern Empty State Component
 const ModernEmptyState = ({ onClearFilters }) => {
   return (
-    <div className="group bg-white rounded-[24px] md:rounded-[32px] border-2 border-dashed border-slate-200 py-8 md:py-16 px-4 md:px-8 text-center">
+    <div className="group bg-white rounded-[24px] md:rounded-[32px] border-2 border-dashed border-emerald-200 py-8 md:py-16 px-4 md:px-8 text-center">
       
       {/* Icon */}
-      <div className="w-16 h-16 md:w-24 md:h-24 bg-gradient-to-br from-slate-50 to-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-sm">
-        <FiBriefcase className="text-slate-300 text-2xl md:text-4xl" />
+      <div className="w-16 h-16 md:w-24 md:h-24 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+        <FiBriefcase className="text-emerald-600 text-2xl md:text-4xl" />
       </div>
 
       <h3 className="text-md md:text-xl font-black text-slate-900 mb-2 md:mb-3 tracking-tight italic uppercase">
         No Openings
       </h3>
       
-      <p className="text-slate-900 text-[9px] md:text-lg mb-6 md:mb-8 max-w-[240px] md:max-w-md mx-auto leading-relaxed">
-        Currently no opportunities available at <span className="text-slate-900 font-bold">Matungulu Girls High School</span>.
+      <p className="text-slate-600 text-[9px] md:text-lg mb-6 md:mb-8 max-w-[240px] md:max-w-md mx-auto leading-relaxed">
+        Currently no opportunities available at <span className="text-emerald-700 font-bold">Matungulu Girls High School</span>.
       </p>
 
       <div className="flex justify-center mb-8">
         <button 
           onClick={onClearFilters}
-          className="w-full sm:w-auto px-6 py-3 bg-slate-900 text-white rounded-xl md:rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-[0.2em] shadow-lg"
+          className="w-full sm:w-auto px-6 py-3 bg-emerald-900 text-white rounded-xl md:rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-[0.2em] shadow-lg"
         >
           Reset Filters
         </button>
@@ -706,18 +696,18 @@ const ModernEmptyState = ({ onClearFilters }) => {
       {/* Features Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-6 max-w-2xl mx-auto">
         {[
-          { icon: FiBell, color: "text-blue-500", title: "Notify", desc: "Get alerts" },
-          { icon: FiBookmark, color: "text-emerald-500", title: "Save", desc: "Check back" },
-          { icon: FiMail, color: "text-purple-500", title: "Contact", desc: "Email HR" },
-          { icon: FiInfo, color: "text-orange-500", title: "FAQ", desc: "View help" }
+          { icon: FiBell, color: "text-emerald-600", title: "Notify", desc: "Get alerts" },
+          { icon: FiBookmark, color: "text-emerald-600", title: "Save", desc: "Check back" },
+          { icon: FiMail, color: "text-emerald-600", title: "Contact", desc: "Email HR" },
+          { icon: FiInfo, color: "text-emerald-600", title: "FAQ", desc: "View help" }
         ].map((feature, i) => (
-          <div key={i} className="p-3 md:p-4 bg-slate-50/50 rounded-xl md:rounded-2xl border border-slate-100 flex flex-col items-center text-center">
+          <div key={i} className="p-3 md:p-4 bg-slate-50 rounded-xl md:rounded-2xl border border-slate-200 flex flex-col items-center text-center">
             <feature.icon className={`${feature.color} text-base md:text-xl mb-1 md:mb-2 flex-shrink-0`} />
             <div>
               <h4 className="font-black text-slate-900 text-[9px] md:text-xs uppercase tracking-tighter">
                 {feature.title}
               </h4>
-              <p className="hidden xs:block text-[8px] md:text-xs text-slate-900 leading-tight">
+              <p className="hidden xs:block text-[8px] md:text-xs text-slate-600 leading-tight">
                 {feature.desc}
               </p>
             </div>
@@ -747,43 +737,40 @@ export default function ModernCareersPage() {
       number: '0', 
       label: 'Open Positions', 
       sublabel: 'Currently available',
-      gradient: 'from-emerald-500 to-teal-500'
+      gradient: 'from-emerald-600 to-teal-600'
     },
     { 
       icon: FiUsers, 
       number: '65+', 
       label: 'Staff Members', 
       sublabel: 'Our dedicated team',
-      gradient: 'from-purple-500 to-pink-500'
+      gradient: 'from-emerald-600 to-teal-600'
     },
     { 
       icon: FaGraduationCap, 
       number: '10', 
       label: 'Departments', 
       sublabel: 'Academic & support',
-      gradient: 'from-blue-500 to-cyan-500'
+      gradient: 'from-emerald-600 to-teal-600'
     },
     { 
       icon: FaLeaf, 
       number: '30+', 
       label: 'Years Excellence', 
       sublabel: 'Educational legacy',
-      gradient: 'from-amber-500 to-orange-500'
+      gradient: 'from-emerald-600 to-teal-600'
     }
   ];
 
   // Categories for filtering
   const categories = [
-    { id: 'all', name: 'All Positions', icon: FiBriefcase, gradient: 'from-slate-500 to-slate-600' },
-    { id: 'teaching', name: 'Teaching', icon: FaGraduationCap, gradient: 'from-blue-500 to-cyan-500' },
-    { id: 'administrative', name: 'Administrative', icon: FiBriefcase, gradient: 'from-purple-500 to-pink-500' },
-    { id: 'support', name: 'Support Staff', icon: FiUsers, gradient: 'from-emerald-500 to-teal-500' },
-    { id: 'technical', name: 'Technical', icon: FiZap, gradient: 'from-amber-500 to-orange-500' },
-    { id: 'medical', name: 'Medical', icon: FiShield, gradient: 'from-red-500 to-rose-500' }
+    { id: 'all', name: 'All Positions', icon: FiBriefcase, gradient: 'from-emerald-600 to-teal-600' },
+    { id: 'teaching', name: 'Teaching', icon: FaGraduationCap, gradient: 'from-emerald-600 to-teal-600' },
+    { id: 'administrative', name: 'Administrative', icon: FiBriefcase, gradient: 'from-emerald-600 to-teal-600' },
+    { id: 'support', name: 'Support Staff', icon: FiUsers, gradient: 'from-emerald-600 to-teal-600' },
+    { id: 'technical', name: 'Technical', icon: FiZap, gradient: 'from-emerald-600 to-teal-600' },
+    { id: 'medical', name: 'Medical', icon: FiShield, gradient: 'from-emerald-600 to-teal-600' }
   ];
-
-  // Job types
-  const jobTypes = ['Full-time', 'Part-time', 'Contract', 'Internship'];
 
   // Fetch jobs from API
   useEffect(() => {
@@ -801,11 +788,7 @@ export default function ModernCareersPage() {
         if (data.success && Array.isArray(data.jobs)) {
           setJobs(data.jobs);
           setFilteredJobs(data.jobs);
-          
-          // Update the open positions stat
-          if (stats[0]) {
-            stats[0].number = data.jobs.length.toString();
-          }
+          stats[0].number = data.jobs.length.toString();
         } else {
           console.error('Invalid API response format:', data);
           toast.error('Invalid data format received from server');
@@ -829,14 +812,12 @@ export default function ModernCareersPage() {
   useEffect(() => {
     let filtered = [...jobs];
     
-    // Filter by category
     if (activeTab !== 'all') {
       filtered = filtered.filter(job => 
         job?.category?.toLowerCase() === activeTab.toLowerCase()
       );
     }
     
-    // Filter by search
     if (search) {
       filtered = filtered.filter(job => 
         job?.jobTitle?.toLowerCase().includes(search.toLowerCase()) ||
@@ -912,7 +893,6 @@ export default function ModernCareersPage() {
     return (
       <Box className="min-h-[70vh] flex items-center justify-center p-4 bg-transparent">
         <Stack spacing={2.5} alignItems="center" className="w-full">
-          {/* Modern Layered Loader */}
           <Box className="relative flex items-center justify-center scale-90 sm:scale-100">
             <CircularProgress
               variant="determinate"
@@ -940,7 +920,6 @@ export default function ModernCareersPage() {
             </Box>
           </Box>
 
-          {/* Minimalist Typography */}
           <div className="text-center px-6">
             <p className="text-slate-900 font-semibold text-sm sm:text-base tracking-tight leading-tight italic">
               Searching for opportunities...
@@ -962,14 +941,14 @@ export default function ModernCareersPage() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 sm:gap-6 mb-4 sm:mb-6">
           <div>
-            <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-full border border-emerald-200 mb-2 sm:mb-3">
-              <IoSparkles className="text-emerald-500 w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="text-emerald-700 font-bold text-xs sm:text-sm uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full border border-emerald-300 mb-2 sm:mb-3">
+              <IoSparkles className="text-emerald-700 w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="text-emerald-800 font-bold text-xs sm:text-sm uppercase tracking-wider">
                 Career Opportunities
               </span>
             </div>
             <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-slate-900 tracking-tight mb-1 sm:mb-2">
-              Join Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">Matungulu Girls</span> Family
+              Join Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-teal-700">Matungulu Girls</span> Family
             </h1>
             <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-2xl">
               Shape the future of education at Matungulu Girls High School - Excellence Through Discipline and Hard Work
@@ -988,7 +967,6 @@ export default function ModernCareersPage() {
                 bg-white text-slate-700
                 border border-slate-200
                 font-medium text-xs sm:text-sm md:text-base
-                shadow-sm
                 disabled:opacity-50 disabled:cursor-not-allowed
               "
             >
@@ -1010,13 +988,13 @@ export default function ModernCareersPage() {
             <div className="flex bg-white rounded-lg sm:rounded-xl border border-slate-200 overflow-hidden">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 sm:p-3 ${viewMode === 'grid' ? 'bg-emerald-50 text-emerald-600' : 'text-slate-600'}`}
+                className={`p-2 sm:p-3 ${viewMode === 'grid' ? 'bg-emerald-100 text-emerald-700' : 'text-slate-600'}`}
               >
                 <FiTrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-2 sm:p-3 ${viewMode === 'list' ? 'bg-emerald-50 text-emerald-600' : 'text-slate-600'}`}
+                className={`p-2 sm:p-3 ${viewMode === 'list' ? 'bg-emerald-100 text-emerald-700' : 'text-slate-600'}`}
               >
                 <FiList className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
@@ -1024,10 +1002,9 @@ export default function ModernCareersPage() {
           </div>
         </div>
 
-        {/* Stats - Updated with real job count */}
+        {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-6 sm:mb-8 md:mb-10">
           {stats.map((stat, index) => {
-            // Update the open positions stat with real count
             const updatedStat = { ...stat };
             if (index === 0) {
               updatedStat.number = jobs.length.toString();
@@ -1042,41 +1019,41 @@ export default function ModernCareersPage() {
           {/* Left Column: Filters & Info */}
           <div className="lg:w-1/4 space-y-4 sm:space-y-6">
             {/* School Info Card */}
-            <div className="bg-white border border-slate-100 rounded-2xl sm:rounded-3xl md:rounded-[32px] p-4 sm:p-5 md:p-6 shadow-sm">
+            <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl md:rounded-[32px] p-4 sm:p-5 md:p-6">
               <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-emerald-50 rounded-lg sm:rounded-xl flex items-center justify-center">
-                  <IoSchoolOutline className="text-emerald-600 text-lg sm:text-xl" />
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-emerald-100 rounded-lg sm:rounded-xl flex items-center justify-center">
+                  <IoSchoolOutline className="text-emerald-700 text-lg sm:text-xl" />
                 </div>
                 <h2 className="text-lg sm:text-xl font-bold text-slate-900">Matungulu Girls High School</h2>
               </div>
 
               <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-100">
-                  <FiMapPin className="text-rose-500 w-4 h-4 sm:w-5 sm:h-5" />
+                <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200">
+                  <FiMapPin className="text-emerald-600 w-4 h-4 sm:w-5 sm:h-5" />
                   <div>
                     <p className="text-xs sm:text-sm font-bold text-slate-900">Location</p>
-                    <p className="text-[10px] sm:text-xs text-slate-900">Matungulu Sub County, Machakos, Kenya</p>
+                    <p className="text-[10px] sm:text-xs text-slate-600">Matungulu Sub County, Machakos, Kenya</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-100">
-                  <FiMail className="text-emerald-500 w-4 h-4 sm:w-5 sm:h-5" />
+                <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200">
+                  <FiMail className="text-emerald-600 w-4 h-4 sm:w-5 sm:h-5" />
                   <div>
                     <p className="text-xs sm:text-sm font-bold text-slate-900">HR Email</p>
-                    <p className="text-[10px] sm:text-xs text-slate-900">careers@matungulugirls.sc.ke</p>
+                    <p className="text-[10px] sm:text-xs text-slate-600">careers@matungulugirls.sc.ke</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-100">
-                  <FiPhone className="text-emerald-500 w-4 h-4 sm:w-5 sm:h-5" />
+                <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200">
+                  <FiPhone className="text-emerald-600 w-4 h-4 sm:w-5 sm:h-5" />
                   <div>
                     <p className="text-xs sm:text-sm font-bold text-slate-900">Contact</p>
-                    <p className="text-[10px] sm:text-xs text-slate-900">+254 712 345 678</p>
+                    <p className="text-[10px] sm:text-xs text-slate-600">+254 712 345 678</p>
                   </div>
                 </div>
 
-                <div className="pt-3 sm:pt-4 border-t border-slate-100">
-                  <p className="text-xs text-slate-900 italic">
+                <div className="pt-3 sm:pt-4 border-t border-slate-200">
+                  <p className="text-xs text-slate-600 italic">
                     "Prayer, Discipline and Hardwork"
                   </p>
                 </div>
@@ -1110,7 +1087,7 @@ export default function ModernCareersPage() {
             {/* Header Section */}
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 px-1">
               <div className="flex items-center gap-3 sm:gap-4">
-                <div className="p-2 sm:p-3 bg-emerald-900 rounded-xl sm:rounded-2xl shadow-lg">
+                <div className="p-2 sm:p-3 bg-emerald-900 rounded-xl sm:rounded-2xl">
                   <FiBriefcase className="text-white text-xl sm:text-2xl" />
                 </div>
                 <div>
@@ -1120,11 +1097,10 @@ export default function ModernCareersPage() {
                   </p>
                 </div>
               </div>
-              {/* WhatsApp Share All Jobs Button */}
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleShareAllJobs}
-                  className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl border border-emerald-600"
+                  className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-xl"
                 >
                   <FaWhatsapp size={18} />
                   <span className="text-sm font-medium hidden sm:inline">Share All Jobs</span>
@@ -1133,12 +1109,12 @@ export default function ModernCareersPage() {
               </div>
             </div>
 
-            {/* Modern Search & Filter Bar */}
-            <div className="bg-white/80 backdrop-blur-md border border-slate-200/60 p-2 sm:p-3 rounded-xl sm:rounded-2xl md:rounded-[28px] shadow-sm">
+            {/* Search & Filter Bar */}
+            <div className="bg-white border border-slate-200 p-2 sm:p-3 rounded-xl sm:rounded-2xl md:rounded-[28px]">
               <div className="flex flex-col md:flex-row items-center gap-2 sm:gap-3">
                 {/* Search */}
                 <div className="relative w-full flex-1">
-                  <div className="relative flex items-center bg-white border border-slate-200 rounded-lg sm:rounded-xl md:rounded-2xl shadow-sm focus-within:border-emerald-500 focus-within:ring-2 sm:focus-within:ring-4 focus-within:ring-emerald-500/5">
+                  <div className="relative flex items-center bg-white border border-slate-200 rounded-lg sm:rounded-xl md:rounded-2xl focus-within:border-emerald-600 focus-within:ring-2 focus-within:ring-emerald-600/5">
                     <div className="pl-3 sm:pl-4 md:pl-5 pr-2 sm:pr-3 flex items-center justify-center">
                       <FiSearch className="text-slate-400" size={16} />
                     </div>
@@ -1165,7 +1141,7 @@ export default function ModernCareersPage() {
                   <select 
                     value={activeTab}
                     onChange={(e) => setActiveTab(e.target.value)}
-                    className="w-full md:w-48 appearance-none px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 md:py-3.5 bg-slate-50 border-none rounded-lg sm:rounded-xl md:rounded-2xl font-medium sm:font-semibold text-slate-600 text-xs sm:text-sm cursor-pointer focus:ring-1 sm:focus:ring-2 focus:ring-emerald-500/20"
+                    className="w-full md:w-48 appearance-none px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 md:py-3.5 bg-slate-50 border border-slate-200 rounded-lg sm:rounded-xl md:rounded-2xl font-medium sm:font-semibold text-slate-600 text-xs sm:text-sm cursor-pointer focus:ring-1 focus:ring-emerald-600/20"
                   >
                     {categories.map((category) => {
                       const Icon = category.icon;
@@ -1184,7 +1160,7 @@ export default function ModernCareersPage() {
                 {/* Reset Button */}
                 <button
                   onClick={clearFilters}
-                  className="w-full md:w-auto px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 md:py-3.5 bg-emerald-600 text-white rounded-lg sm:rounded-xl md:rounded-2xl font-bold text-xs sm:text-sm shadow-md shadow-emerald-200 flex items-center justify-center gap-1.5 sm:gap-2"
+                  className="w-full md:w-auto px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 md:py-3.5 bg-emerald-600 text-white rounded-lg sm:rounded-xl md:rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2"
                 >
                   <FiFilter size={14} />
                   Reset
@@ -1192,7 +1168,7 @@ export default function ModernCareersPage() {
               </div>
             </div>
 
-            {/* Modern Category Pills */}
+            {/* Category Pills */}
             <div className="flex gap-1.5 sm:gap-2 overflow-x-auto pb-2 sm:pb-4 no-scrollbar -mx-2 px-2">
               {categories.map((category) => {
                 const Icon = category.icon;
@@ -1203,7 +1179,7 @@ export default function ModernCareersPage() {
                     onClick={() => setActiveTab(category.id)}
                     className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full whitespace-nowrap text-xs sm:text-sm font-bold border ${
                       isActive 
-                        ? "bg-emerald-600 border-emerald-600 text-white shadow-md shadow-emerald-100" 
+                        ? "bg-emerald-600 border-emerald-600 text-white" 
                         : "bg-white border-slate-200 text-slate-600"
                     }`}
                   >
@@ -1235,7 +1211,7 @@ export default function ModernCareersPage() {
             </div>
 
             {/* Call to Action Banner */}
-            <div className="relative overflow-hidden bg-gradient-to-r from-emerald-900 to-teal-900 rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-xl">
+            <div className="relative overflow-hidden bg-gradient-to-r from-emerald-900 to-teal-900 rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8">
               <div className="absolute top-0 right-0 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-white/5 blur-[40px] sm:blur-[60px] md:blur-[80px] rounded-full -mr-12 sm:-mr-16 md:-mr-24 -mt-12 sm:-mt-16 md:-mt-24" />
               <div className="absolute bottom-0 left-0 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-emerald-500/10 blur-[40px] sm:blur-[60px] md:blur-[80px] rounded-full -ml-12 sm:-ml-16 md:-ml-24 -mb-12 sm:-mb-16 md:-mb-24" />
 
@@ -1243,7 +1219,7 @@ export default function ModernCareersPage() {
                 
                 {/* Icon */}
                 <div className="shrink-0">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl bg-white flex items-center justify-center shadow-lg">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl bg-white flex items-center justify-center">
                     <FiBriefcase className="text-emerald-900 text-xl sm:text-2xl md:text-3xl" />
                   </div>
                 </div>
@@ -1261,9 +1237,9 @@ export default function ModernCareersPage() {
                   <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mt-4 sm:mt-6">
                     {[
                       { label: 'Professional Growth', icon: FiTrendingUp, color: 'text-emerald-100', bg: 'bg-emerald-400/10' },
-                      { label: 'Competitive Package', icon: FiAward, color: 'text-amber-300', bg: 'bg-amber-400/10' },
-                      { label: 'Supportive Environment', icon: FiUsers, color: 'text-teal-300', bg: 'bg-teal-400/10' },
-                      { label: 'Career Development', icon: FaGraduationCap, color: 'text-purple-300', bg: 'bg-purple-400/10' }
+                      { label: 'Competitive Package', icon: FiAward, color: 'text-emerald-100', bg: 'bg-emerald-400/10' },
+                      { label: 'Supportive Environment', icon: FiUsers, color: 'text-emerald-100', bg: 'bg-emerald-400/10' },
+                      { label: 'Career Development', icon: FaGraduationCap, color: 'text-emerald-100', bg: 'bg-emerald-400/10' }
                     ].map((feature, idx) => (
                       <div 
                         key={idx} 
