@@ -875,8 +875,8 @@ const ModernEducationSystemCard = ({ system, icon: Icon, color, description, fea
 };
 const AdmissionPathCard = ({ path, onApply, index }) => {
   const getLocalImage = (type) => {
-    const images = { grade7: '/bg/9.jpeg', transfer: '/im2.jpeg' };
-    return images[type] || '/bg/9.jpeg';
+    const images = { grade7: '/matgs.jpg', transfer: '/im2.jpeg' };
+    return images[type] || '/matgs.jpg';
   };
 
   const themeColor = path.color.includes('emerald') ? 'emerald' : 'teal';
