@@ -254,7 +254,7 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid', isBookm
   );
 };
 
-// MODERN NEWS CARD - REFINED (Using excerpt from API)
+// MODERN NEWS CARD - REFINED (With proper view details)
 const ModernNewsCard = ({ news, onView, onBookmark, isBookmarked: initialBookmarked }) => {
   const [isBookmarked, setIsBookmarked] = useState(initialBookmarked || false);
   const [showDetails, setShowDetails] = useState(false);
@@ -308,7 +308,7 @@ const ModernNewsCard = ({ news, onView, onBookmark, isBookmarked: initialBookmar
             <button 
               onClick={() => setShowDetails(true)}
               className={`flex items-center gap-1 text-[9px] sm:text-[10px] font-black uppercase tracking-wider ${theme.text}`}>
-              READ MORE →
+              VIEW DETAILS →
             </button>
           </div>
         </div>
@@ -338,18 +338,24 @@ const ModernNewsCard = ({ news, onView, onBookmark, isBookmarked: initialBookmar
               <p className="text-sm sm:text-base text-slate-600 mb-6">{news.excerpt || 'No description available'}</p>
               
               {news.fullContent && (
-                <p className="text-sm sm:text-base text-slate-600 mb-6">{news.fullContent}</p>
+                <div className="text-sm sm:text-base text-slate-600 mb-6 whitespace-pre-line">
+                  {news.fullContent}
+                </div>
               )}
 
               {news.author && (
-                <div className="flex items-center gap-2 mb-6 text-sm text-slate-500">
-                  <IoPersonOutline className="text-slate-400" /> {news.author}
+                <div className="flex items-center gap-2 mb-6 text-sm text-slate-500 border-t border-slate-100 pt-4">
+                  <IoPersonOutline className="text-slate-400" /> 
+                  <span className="font-medium">By {news.author}</span>
                 </div>
               )}
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <button 
-                  onClick={() => { onView?.(news); setShowDetails(false); }}
+                  onClick={() => { 
+                    onView?.(news); 
+                    setShowDetails(false); 
+                  }}
                   className="flex-1 py-3 bg-gradient-to-r from-emerald-800 to-teal-700 text-white rounded-xl text-sm font-black tracking-widest shadow-lg">
                   VIEW FULL ARTICLE
                 </button>
