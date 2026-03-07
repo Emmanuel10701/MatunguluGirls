@@ -446,7 +446,7 @@ const jsonLd = {
     }, 100);
   }, [router, closeVideoModal, navigationBlocked]);
 
-  const LoadingScreen = () => (
+const LoadingScreen = () => (
     <div className="fixed inset-0 bg-gradient-to-br from-emerald-950 via-teal-950 to-slate-950 z-50 flex flex-col items-center justify-center overflow-hidden">
       
       {/* Animated Background Grid */}
@@ -508,7 +508,8 @@ const jsonLd = {
             </h2>
             <p className="text-emerald-300 text-base md:text-lg font-semibold drop-shadow-md">
               Strive to Excel
-            </p>          </div>
+            </p>
+          </div>
           
           {/* Loading Status Section */}
           <div className="space-y-4 pt-1">
@@ -538,7 +539,7 @@ const jsonLd = {
         </div>
       </div>
 
-      {/* Add custom animations */}
+      {/* Custom animations */}
       <style jsx>{`
         @keyframes float {
           0%, 100% {
@@ -557,8 +558,8 @@ const jsonLd = {
             opacity: 1;
           }
           50% {
-            transform: translateY(-12px) scaleY(1.2);
-            opacity: 0.8;
+            transform: translateY(-5px) scaleY(1.05); /* Reduced height and scale for a low bounce */
+            opacity: 0.9;
           }
         }
 
