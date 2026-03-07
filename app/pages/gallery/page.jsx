@@ -12,9 +12,9 @@ import {
   FiUserPlus, FiArrowRight, FiPlus, FiRotateCw, FiEdit3, FiTrash2,
   FiSave, FiUpload, FiMapPin, FiAlertTriangle, FiMail, FiPhone, FiFolder, FiLock 
 } from 'react-icons/fi';
-import { FaWhatsapp, FaFacebookF, FaTwitter, FaCopy } from 'react-icons/fa';
+import { FaWhatsapp, FaFacebookF, FaTwitter, FaCopy, FaLeaf } from 'react-icons/fa';
 import { 
-  IoClose, IoMenu, IoSparkles
+  IoClose, IoMenu, IoSparkles, IoSchoolOutline
 } from 'react-icons/io5';
 import {
   IoCalendarClearOutline,
@@ -30,27 +30,26 @@ import {
 } from 'react-icons/io5';
 import { CircularProgress, Box, Typography, Stack } from '@mui/material';
 
-// Modern Modal Component with Glass Morphism
+// Modern Modal Component
 const ModernModal = ({ children, open, onClose, maxWidth = '800px', blur = true }) => {
   if (!open) return null;
 
   return (
     <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 ${blur ? 'backdrop-blur-md' : 'bg-black/50'}`}>
       <div 
-        className="relative bg-white/95 rounded-3xl shadow-2xl animate-in zoom-in-95 duration-300 overflow-hidden border border-white/40"
+        className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-emerald-100"
         style={{ 
           width: '90%',
           maxWidth: maxWidth,
-          maxHeight: '90vh',
-          background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)'
+          maxHeight: '90vh'
         }}
       >
         <div className="absolute top-4 right-4 z-10">
           <button 
             onClick={onClose}
-            className="p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white cursor-pointer border border-gray-200 shadow-sm"
+            className="p-2 bg-white/80 backdrop-blur-sm rounded-full border border-emerald-200 shadow-sm"
           >
-            <FiX className="text-gray-600 w-5 h-5" />
+            <FiX className="text-emerald-700 w-5 h-5" />
           </button>
         </div>
         {children}
@@ -59,68 +58,52 @@ const ModernModal = ({ children, open, onClose, maxWidth = '800px', blur = true 
   );
 };
 
-// Modern Card Component
-const GlassCard = ({ children, className = '', hover = true }) => (
-  <div className={`
-    bg-white/80 backdrop-blur-sm rounded-2xl border border-white/60 
-    shadow-lg shadow-black/5 transition-all duration-300
-    ${hover ? 'hover:shadow-xl hover:shadow-black/10 hover:-translate-y-1' : ''}
-    ${className}
-  `}>
-    {children}
-  </div>
-);
-
-// Modern Hero Banner Component
+// Modern Hero Banner Component - Matungulu Girls Theme
 const ModernHeroBanner = ({ stats, onRefresh }) => {
   return (
-    <div className="relative bg-[#0F172A] rounded-2xl md:rounded-[2.5rem] p-4 sm:p-6 md:p-10 text-white overflow-hidden shadow-2xl border border-white/5 mb-8">
-      {/* Abstract Mesh Gradient Background */}
-      <div className="absolute top-[-20%] right-[-10%] w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-blue-600/30 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-20%] left-[-10%] w-[250px] h-[250px] md:w-[400px] md:h-[400px] bg-purple-600/20 rounded-full blur-[100px] pointer-events-none" />
+    <div className="relative bg-gradient-to-r from-emerald-900 to-teal-800 rounded-2xl p-6 md:p-10 text-white overflow-hidden border border-emerald-700/30 mb-8">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
       
       <div className="relative z-10">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6 mb-6 sm:mb-8">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6">
           <div>
-            {/* Institutional Branding */}
-            <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-              <div className="h-6 sm:h-8 w-1 bg-blue-500 rounded-full shadow-[0_0_15px_rgba(59,99,235,0.5)]" />
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-8 w-1 bg-emerald-400 rounded-full shadow-[0_0_15px_rgba(52,211,153,0.5)]" />
               <div>
-                <h2 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-blue-400">
-                 Matungulu Girls High School
+                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-emerald-400">
+                  Matungulu Girls High School
                 </h2>
-                <p className="text-[8px] sm:text-[10px] italic font-medium text-white/60 tracking-widest uppercase">
-                  "Strive to Excel"               
+                <p className="text-[10px] italic font-medium text-emerald-200/60 tracking-widest uppercase">
+                  "Strive to Excel"
                 </p>
               </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-1 sm:mb-2">
-              <div className="p-1.5 sm:p-2 md:p-3 bg-white/10 backdrop-blur-md rounded-lg sm:rounded-xl md:rounded-2xl border border-white/10 w-fit">
-                <IoSparkles className="text-xl sm:text-2xl md:text-3xl text-yellow-300 drop-shadow-[0_0_8px_rgba(253,224,71,0.6)]" />
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/10">
+                <IoSchoolOutline className="text-2xl text-emerald-300" />
               </div>
-              <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight">
-                School <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-100 via-white to-blue-200">Gallery</span>
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-white tracking-tight">
+                School <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300">Gallery</span>
               </h1>
             </div>
           </div>
           
-          {/* Modern Glass Refresh Button */}
           <button
             onClick={onRefresh}
-            className="flex items-center justify-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-xl border border-white/20 px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 rounded-lg sm:rounded-xl md:rounded-2xl font-bold text-xs sm:text-sm tracking-wide transition-all hover:bg-white/20 w-full sm:w-fit"
+            className="flex items-center justify-center gap-3 bg-white/10 backdrop-blur-xl border border-white/20 px-4 py-2 rounded-xl font-bold text-sm tracking-wide text-white hover:bg-white/20 w-full sm:w-auto"
           >
-            <FiRefreshCw className="text-base sm:text-lg" />
+            <FiRefreshCw className="text-lg" />
             <span>REFRESH GALLERY</span>
           </button>
         </div>
         
-        {/* Summary Text */}
-        <div className="mb-6 sm:mb-8">
-          <p className="text-blue-100/80 text-sm sm:text-base md:text-md font-medium leading-relaxed">
-            Explore <span className="text-white font-bold underline decoration-blue-500/50 decoration-2 underline-offset-4">{stats.totalFiles} media files</span> 
-            across <span className="text-white font-bold underline decoration-purple-500/50 decoration-2 underline-offset-4 mx-1 sm:mx-2">{stats.totalCategories} categories</span> 
-            capturing our school's journey. This month: <span className="inline-flex items-center px-1.5 py-0.5 sm:px-2 sm:py-0.5 md:px-2.5 md:py-0.5 rounded-md sm:rounded-lg bg-yellow-400/20 text-yellow-300 border border-yellow-400/20 mx-1">{stats.thisMonth} new galleries</span>.
+        <div className="mb-6">
+          <p className="text-emerald-100/80 text-sm font-medium leading-relaxed">
+            Explore <span className="text-white font-bold underline decoration-emerald-500/50 underline-offset-4">{stats.totalFiles} media files</span> 
+            across <span className="text-white font-bold underline decoration-teal-500/50 underline-offset-4 mx-2">{stats.totalCategories} categories</span> 
+            capturing our school's journey. This month: <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-emerald-400/20 text-emerald-300 border border-emerald-400/20 mx-1">{stats.thisMonth} new galleries</span>.
           </p>
         </div>
       </div>
@@ -128,23 +111,22 @@ const ModernHeroBanner = ({ stats, onRefresh }) => {
   );
 };
 
-// Modern Gallery Card Component (Matching Counseling Session Card Design)
+// Modern Gallery Card Component - Matungulu Girls Design
 const ModernGalleryCard = ({ gallery, onView, onFavorite, viewMode = 'grid', onShare }) => {
-  const [isHovered, setIsHovered] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const getCategoryStyle = (category) => {
     const styles = {
       GENERAL: { 
-        gradient: 'from-blue-500 to-cyan-500', 
-        bg: 'bg-blue-50', 
-        text: 'text-blue-700',
-        border: 'border-blue-200',
-        iconBg: 'bg-blue-100',
-        iconColor: 'text-blue-600'
+        gradient: 'from-emerald-600 to-teal-600', 
+        bg: 'bg-emerald-50', 
+        text: 'text-emerald-700',
+        border: 'border-emerald-200',
+        iconBg: 'bg-emerald-100',
+        iconColor: 'text-emerald-600'
       },
       CLASSROOMS: { 
-        gradient: 'from-emerald-500 to-green-500', 
+        gradient: 'from-emerald-600 to-teal-600', 
         bg: 'bg-emerald-50', 
         text: 'text-emerald-700',
         border: 'border-emerald-200',
@@ -152,36 +134,36 @@ const ModernGalleryCard = ({ gallery, onView, onFavorite, viewMode = 'grid', onS
         iconColor: 'text-emerald-600'
       },
       TEACHING: { 
-        gradient: 'from-purple-500 to-pink-500', 
-        bg: 'bg-purple-50', 
-        text: 'text-purple-700',
-        border: 'border-purple-200',
-        iconBg: 'bg-purple-100',
-        iconColor: 'text-purple-600'
+        gradient: 'from-emerald-600 to-teal-600', 
+        bg: 'bg-emerald-50', 
+        text: 'text-emerald-700',
+        border: 'border-emerald-200',
+        iconBg: 'bg-emerald-100',
+        iconColor: 'text-emerald-600'
       },
       LABORATORIES: { 
-        gradient: 'from-indigo-500 to-purple-500', 
-        bg: 'bg-indigo-50', 
-        text: 'text-indigo-700',
-        border: 'border-indigo-200',
-        iconBg: 'bg-indigo-100',
-        iconColor: 'text-indigo-600'
+        gradient: 'from-emerald-600 to-teal-600', 
+        bg: 'bg-emerald-50', 
+        text: 'text-emerald-700',
+        border: 'border-emerald-200',
+        iconBg: 'bg-emerald-100',
+        iconColor: 'text-emerald-600'
       },
       SPORTS_DAY: { 
-        gradient: 'from-amber-500 to-orange-500', 
-        bg: 'bg-amber-50', 
-        text: 'text-amber-700',
-        border: 'border-amber-200',
-        iconBg: 'bg-amber-100',
-        iconColor: 'text-amber-600'
+        gradient: 'from-emerald-600 to-teal-600', 
+        bg: 'bg-emerald-50', 
+        text: 'text-emerald-700',
+        border: 'border-emerald-200',
+        iconBg: 'bg-emerald-100',
+        iconColor: 'text-emerald-600'
       },
       GRADUATION: { 
-        gradient: 'from-rose-500 to-red-500', 
-        bg: 'bg-rose-50', 
-        text: 'text-rose-700',
-        border: 'border-rose-200',
-        iconBg: 'bg-rose-100',
-        iconColor: 'text-rose-600'
+        gradient: 'from-emerald-600 to-teal-600', 
+        bg: 'bg-emerald-50', 
+        text: 'text-emerald-700',
+        border: 'border-emerald-200',
+        iconBg: 'bg-emerald-100',
+        iconColor: 'text-emerald-600'
       }
     };
     return styles[category] || styles.GENERAL;
@@ -200,146 +182,95 @@ const ModernGalleryCard = ({ gallery, onView, onFavorite, viewMode = 'grid', onS
     }
   };
 
-  // Modern Grid View (Matching Counseling Card)
+  // Grid View
   if (viewMode === 'grid') {
     const theme = getCategoryStyle(gallery.category);
     
     return (
       <div 
         onClick={() => onView(gallery)}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
         className="relative group cursor-pointer"
       >
-        <div className="relative bg-white rounded-[32px] border border-slate-100 shadow-sm overflow-hidden">
-          {/* 1. Static Image Header */}
-          <div className="relative h-52 w-full shrink-0">
+        <div className="relative bg-white rounded-lg border border-slate-200 overflow-hidden">
+          {/* Image Header */}
+          <div className="relative h-48 w-full">
             {gallery.files && gallery.files[0] ? (
               <img
                 src={gallery.files[0]}
                 alt={gallery.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover"
               />
             ) : (
               <div className={`w-full h-full bg-gradient-to-br ${theme.gradient}`} />
             )}
             
-            {/* Permanent Badges */}
-            <div className="absolute top-4 left-4 flex flex-col gap-2">
-              <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm border ${theme.bg} ${theme.text} ${theme.border}`}>
+            {/* Badges */}
+            <div className="absolute top-3 left-3 flex flex-col gap-2">
+              <span className={`px-2 py-1 rounded text-[10px] font-medium uppercase tracking-wider border ${theme.bg} ${theme.text} ${theme.border}`}>
                 {gallery.category.replace(/_/g, ' ') || 'Gallery'}
               </span>
-              {gallery.year && (
-                <span className="px-3 py-1 bg-slate-900/90 backdrop-blur-md text-white rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-1 shadow-sm">
-                  <IoSparkles className="text-amber-400" /> {gallery.year}
-                </span>
-              )}
             </div>
 
             {/* Action Buttons */}
-            <div className="absolute top-4 right-4 flex gap-2">
-              {/* Share Button */}
+            <div className="absolute top-3 right-3 flex gap-2">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   onShare(gallery);
                 }}
-                className="p-2.5 rounded-xl backdrop-blur-md border shadow-sm bg-white/90 border-white/10 text-slate-700 hover:bg-white"
+                className="p-2 rounded-lg bg-white/90 border border-slate-200 text-slate-700"
               >
-                <FiShare2 size={16} />
+                <FiShare2 size={14} />
               </button>
-              
-              {/* Favorite Button */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   onFavorite(gallery);
                   setIsFavorite(!isFavorite);
                 }}
-                className={`p-2.5 rounded-xl backdrop-blur-md border shadow-sm ${
+                className={`p-2 rounded-lg border ${
                   isFavorite 
                     ? 'bg-amber-500 border-amber-500 text-white' 
-                    : 'bg-white/90 border-white/10 text-slate-700 hover:bg-white'
+                    : 'bg-white/90 border-slate-200 text-slate-700'
                 }`}
               >
-                <FiBookmark className={isFavorite ? 'fill-current' : ''} size={16} />
+                <FiBookmark className={isFavorite ? 'fill-current' : ''} size={14} />
               </button>
             </div>
 
-            {/* File Count Overlay */}
-            <div className="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-black/40 to-transparent flex items-end p-4">
-              <span className="text-[10px] font-bold text-white uppercase tracking-widest">
-                {gallery.files?.length || 0} files
-              </span>
+            {/* File Count */}
+            <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/60 text-white rounded text-[10px] font-medium">
+              {gallery.files?.length || 0} files
             </div>
           </div>
 
-          {/* 2. Content Area */}
-          <div className="p-6">
-            <h3 className="text-xl font-bold text-slate-900 mb-2 line-clamp-2 leading-tight">
+          {/* Content Area */}
+          <div className="p-4">
+            <h3 className="text-base font-bold text-slate-900 mb-2 line-clamp-2">
               {gallery.title}
             </h3>
             
-            <p className="text-slate-500 text-sm mb-6 line-clamp-2 leading-relaxed">
+            <p className="text-xs text-slate-500 mb-4 line-clamp-2">
               {gallery.description || 'School gallery collection.'}
             </p>
 
-            {/* 3. Bento-Style Info Grid */}
-            <div className="grid grid-cols-2 gap-3 mb-6">
-              <div className="flex items-center gap-2.5 p-2 rounded-2xl bg-slate-50 border border-slate-100/50">
-                <div className={`p-1.5 rounded-lg ${theme.iconBg}`}>
-                  <FiCalendar className={`${theme.iconColor}`} size={14} />
-                </div>
-                <span className="text-[11px] font-bold text-slate-700 uppercase tracking-tight">
-                  {formatDate(gallery.date)}
-                </span>
+            {/* Info Row */}
+            <div className="flex items-center gap-3 text-xs text-slate-500 mb-4">
+              <div className="flex items-center gap-1">
+                <FiCalendar size={12} className="text-emerald-600" />
+                <span>{formatDate(gallery.date)}</span>
               </div>
-
-              <div className="flex items-center gap-2.5 p-2 rounded-2xl bg-slate-50 border border-slate-100/50">
-                <div className={`p-1.5 rounded-lg ${theme.iconBg}`}>
-                  <FiImage className={`${theme.iconColor}`} size={14} />
-                </div>
-                <span className="text-[11px] font-bold text-slate-700 uppercase tracking-tight truncate">
-                  {gallery.files?.length || 0} items
-                </span>
-              </div>
-
-              <div className="col-span-2 flex items-center gap-2.5 p-2 rounded-2xl bg-slate-50 border border-slate-100/50">
-                <div className={`p-1.5 rounded-lg ${theme.iconBg}`}>
-                  <FiFolder className={`${theme.iconColor}`} size={14} />
-                </div>
-                <span className="text-[11px] font-bold text-slate-700 uppercase tracking-tight truncate">
-                  {gallery.category.replace(/_/g, ' ')}
-                </span>
+              <div className="flex items-center gap-1">
+                <FiImage size={12} className="text-emerald-600" />
+                <span>{gallery.files?.length || 0}</span>
               </div>
             </div>
 
-            {/* 4. Status Indicator */}
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <div className={`w-2 h-2 rounded-full bg-emerald-500 animate-pulse`} />
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                  Active Collection
-                </span>
-              </div>
-              
-              <div className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border bg-emerald-50 text-emerald-700 border-emerald-200`}>
-                Published
-              </div>
-            </div>
-{/* 5. Final Action Button */}
-<button className="
-   sm:w-full 
-  py-2 sm:py-4 px-2 
-  bg-slate-900 text-white 
-  rounded-xl sm:rounded-2xl 
-  font-normal sm:font-bold 
-  text-xs sm:text-sm 
-  flex items-center justify-center gap-2 
-  active:scale-[0.98] transition-transform hover:shadow-lg
-">
-  View Gallery
-</button>
+            {/* View Button */}
+            <button className="w-full py-2 bg-emerald-50 text-emerald-700 rounded-lg text-xs font-medium flex items-center justify-center gap-2 border border-emerald-200">
+              View Gallery
+              <FiArrowRight size={12} />
+            </button>
           </div>
         </div>
       </div>
@@ -350,90 +281,52 @@ const ModernGalleryCard = ({ gallery, onView, onFavorite, viewMode = 'grid', onS
   return (
     <div 
       onClick={() => onView(gallery)}
-      className="relative bg-white rounded-[24px] border border-slate-100 p-4 shadow-sm cursor-pointer transition-colors active:bg-slate-50 group"
+      className="relative bg-white rounded-lg border border-slate-200 p-4 cursor-pointer"
     >
-      <div className="flex gap-5">
-        {/* Image Container */}
-        <div className="relative w-24 h-24 rounded-2xl overflow-hidden shrink-0 shadow-sm">
+      <div className="flex gap-4">
+        <div className="relative w-20 h-20 rounded-lg overflow-hidden shrink-0">
           {gallery.files && gallery.files[0] ? (
             <img
               src={gallery.files[0]}
               alt={gallery.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover"
             />
           ) : (
             <div className={`w-full h-full bg-gradient-to-br ${getCategoryStyle(gallery.category).gradient}`} />
           )}
-          <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl"></div>
         </div>
 
-        {/* Content Area */}
-        <div className="flex-1 min-w-0 flex flex-col justify-between">
-          <div>
-            {/* Metadata Row */}
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2">
-                <span className={`px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase tracking-widest border ${
-                  getCategoryStyle(gallery.category).bg
-                } ${getCategoryStyle(gallery.category).text} ${
-                  getCategoryStyle(gallery.category).border
-                }`}>
-                  {gallery.category.replace(/_/g, ' ')}
-                </span>
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-                  {formatDate(gallery.date)}
-                </span>
-              </div>
-              
-              {/* Action Buttons */}
-              <div className="flex items-center gap-1">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onShare(gallery);
-                  }}
-                  className="p-1.5 rounded-lg text-slate-300 hover:text-slate-500 transition-colors"
-                >
-                  <FiShare2 size={14} />
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onFavorite(gallery);
-                    setIsFavorite(!isFavorite);
-                  }}
-                  className={`p-1.5 rounded-lg transition-colors ${
-                    isFavorite ? 'text-amber-500 bg-amber-50' : 'text-slate-300 hover:text-slate-500'
-                  }`}
-                >
-                  <FiBookmark className={isFavorite ? 'fill-current' : ''} size={14} />
-                </button>
-              </div>
-            </div>
-
-            <h3 className="text-base font-bold text-slate-900 leading-snug line-clamp-2 mb-2">
-              {gallery.title}
-            </h3>
-
-            <p className="text-slate-500 text-xs line-clamp-2 mb-3">
-              {gallery.description || 'School gallery collection.'}
-            </p>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center justify-between mb-1">
+            <span className={`px-2 py-0.5 rounded text-[10px] font-medium uppercase tracking-wider border ${
+              getCategoryStyle(gallery.category).bg
+            } ${getCategoryStyle(gallery.category).text} ${
+              getCategoryStyle(gallery.category).border
+            }`}>
+              {gallery.category.replace(/_/g, ' ')}
+            </span>
+            <span className="text-[10px] text-slate-400">
+              {formatDate(gallery.date)}
+            </span>
           </div>
 
-          {/* Footer: Details & Action */}
-          <div className="flex items-center justify-between mt-auto">
-            <div className="flex items-center gap-4 text-xs text-slate-500">
+          <h3 className="text-sm font-bold text-slate-900 mb-1 line-clamp-1">
+            {gallery.title}
+          </h3>
+
+          <p className="text-xs text-slate-500 line-clamp-2 mb-2">
+            {gallery.description || 'School gallery collection.'}
+          </p>
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3 text-xs text-slate-500">
               <div className="flex items-center gap-1">
-                <FiImage className="text-slate-400" size={12} />
-                <span className="font-semibold">{gallery.files?.length || 0} files</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <FiCalendar className="text-slate-400" size={12} />
-                <span>{gallery.year}</span>
+                <FiImage size={12} />
+                <span>{gallery.files?.length || 0} files</span>
               </div>
             </div>
             
-            <div className="flex items-center gap-1 text-blue-600 font-bold text-[11px] uppercase tracking-wider">
+            <div className="flex items-center gap-1 text-emerald-600 text-xs font-medium">
               View
               <FiArrowRight size={12} />
             </div>
@@ -449,39 +342,25 @@ const ModernStatCard = ({ stat }) => {
   const Icon = stat.icon;
   
   return (
-    <div className="relative flex flex-col justify-between overflow-hidden bg-white border border-slate-100 p-4 md:p-6 rounded-[24px] md:rounded-[32px] shadow-sm">
-      {/* Top Section: Icon & Badge */}
-      <div className="flex items-start justify-between mb-4 md:mb-8">
-        <div className={`p-2 md:p-3 rounded-xl md:rounded-2xl bg-gradient-to-br ${stat.gradient} bg-opacity-[0.08] text-slate-700`}>
-          <Icon className="text-lg md:text-2xl" />
+    <div className="relative bg-white border border-slate-200 rounded-lg p-4">
+      <div className="flex items-start justify-between mb-3">
+        <div className={`p-2 rounded-lg bg-gradient-to-br ${stat.gradient} bg-opacity-10`}>
+          <Icon className="text-lg text-emerald-700" />
         </div>
-        
-        {/* Status Dot */}
-        <div className="hidden xs:block h-2 w-2 rounded-full bg-slate-200" />
+        <div className="h-2 w-2 rounded-full bg-slate-200" />
       </div>
 
-      {/* Content Section */}
       <div className="space-y-1">
-        {/* Label */}
-        <p className="text-[9px] md:text-[11px] font-bold uppercase tracking-[0.15em] text-slate-400">
+        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400">
           {stat.label}
         </p>
-        
-        <div className="flex items-baseline gap-1">
-          {/* Number */}
-          <h3 className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900">
-            {stat.number}
-          </h3>
-        </div>
-
-        {/* Sublabel */}
-        <p className="text-[10px] md:text-sm font-medium text-slate-500 leading-tight line-clamp-1 md:line-clamp-none">
+        <h3 className="text-xl md:text-2xl font-bold text-slate-900">
+          {stat.number}
+        </h3>
+        <p className="text-xs text-slate-500">
           {stat.sublabel}
         </p>
       </div>
-
-      {/* Decorative Background Element */}
-      <div className={`absolute -bottom-2 -right-2 w-12 h-12 md:w-20 md:h-20 opacity-[0.03] rounded-full bg-gradient-to-br ${stat.gradient} hidden md:block`} />
     </div>
   );
 };
@@ -500,8 +379,6 @@ const ShareModal = ({ isOpen, onClose, gallery }) => {
   const shareText = `${gallery.title} - ${gallery.description?.substring(0, 100)}...`;
 
   const shareOptions = [
-
-
     {
       name: 'Copy Link',
       icon: FiCopy,
@@ -514,7 +391,6 @@ const ShareModal = ({ isOpen, onClose, gallery }) => {
         setTimeout(() => setCopied(false), 2000);
       }
     },
-
     {
       name: 'WhatsApp',
       icon: FaWhatsapp,
@@ -556,98 +432,79 @@ const ShareModal = ({ isOpen, onClose, gallery }) => {
         const url = `mailto:?subject=${subject}&body=${body}`;
         window.location.href = url;
       }
-    },
-    {
-      name: 'Telegram',
-      icon: FiShare2,
-      color: 'bg-blue-50',
-      iconColor: 'text-blue-600',
-      action: () => {
-        const url = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`;
-        window.open(url, '_blank', 'noopener,noreferrer');
-      }
     }
   ];
 
   return (
     <div className="fixed inset-0 z-[250] flex items-center justify-center p-4">
-      {/* Backdrop: Semi-transparent and blur */}
       <div 
-        className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300"
+        className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
         onClick={onClose}
       />
       
-      {/* Modal Container: Handles the zooming/overflow responsiveness */}
       <div 
-        className="relative bg-white rounded-3xl w-full max-w-md max-h-[85vh] md:max-h-[90vh] flex flex-col overflow-hidden border border-slate-200 shadow-2xl animate-in zoom-in-95 duration-200"
+        className="relative bg-white rounded-lg w-full max-w-md flex flex-col overflow-hidden border border-slate-200 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Fixed Header */}
-        <div className="p-5 border-b border-slate-100 flex items-center justify-between shrink-0 bg-white z-10">
+        <div className="p-5 border-b border-slate-100 flex items-center justify-between">
           <div>
-            <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">Share Gallery</h3>
-            <p className="text-slate-500 text-[11px] font-bold uppercase tracking-wider">
-               Spread the word
-            </p>
+            <h3 className="text-lg font-bold text-slate-900">Share Gallery</h3>
+            <p className="text-xs text-slate-500">Spread the word</p>
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-slate-400 hover:text-red-500 rounded-full hover:bg-red-50 transition-colors"
+            className="p-2 text-slate-400 hover:text-red-500 rounded-lg hover:bg-red-50"
           >
-            <FiX size={20} />
+            <FiX size={18} />
           </button>
         </div>
 
-        {/* Scrollable Content Area: The fix for zooming/small screens */}
-        <div className="flex-1 overflow-y-auto p-5 space-y-6 scrollbar-thin scrollbar-thumb-slate-200">
+        <div className="flex-1 overflow-y-auto p-5 space-y-6">
           
-          {/* Item Preview */}
-          <div className="flex items-center gap-4 p-3 bg-slate-50 rounded-2xl border border-slate-100">
-            <div className="w-14 h-14 rounded-xl overflow-hidden bg-slate-200 shrink-0">
+          <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg border border-slate-100">
+            <div className="w-12 h-12 rounded-lg overflow-hidden bg-slate-200 shrink-0">
               {gallery.files?.[0] ? (
                 <img src={gallery.files[0]} alt="" className="w-full h-full object-cover" />
               ) : (
-                <div className="w-full h-full flex items-center justify-center bg-blue-600 text-white">
-                  <FiImage size={24} />
+                <div className="w-full h-full flex items-center justify-center bg-emerald-600 text-white">
+                  <FiImage size={20} />
                 </div>
               )}
             </div>
             <div className="min-w-0">
-              <h4 className="font-black text-slate-900 text-sm truncate uppercase">{gallery.title}</h4>
-              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                {gallery.files?.length || 0} Assets • Link Ready
+              <h4 className="font-bold text-slate-900 text-sm truncate">{gallery.title}</h4>
+              <p className="text-xs text-slate-500">
+                {gallery.files?.length || 0} files
               </p>
             </div>
           </div>
 
-          {/* Share Options Grid */}
           <div className="grid grid-cols-3 gap-2">
             {shareOptions.map((option, index) => (
               <button
                 key={index}
                 onClick={option.action}
-                className="group flex flex-col items-center justify-center p-3 rounded-2xl border border-transparent hover:border-slate-200 hover:bg-slate-50 transition-all active:scale-95"
+                className="flex flex-col items-center justify-center p-3 rounded-lg border border-transparent hover:border-slate-200 hover:bg-slate-50"
               >
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-2 shadow-sm transition-transform group-hover:scale-110 ${option.color}`}>
-                  <option.icon className={`text-xl ${option.iconColor}`} />
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-2 ${option.color}`}>
+                  <option.icon className={`text-lg ${option.iconColor}`} />
                 </div>
-                <span className="text-[10px] font-black text-slate-600 uppercase tracking-tighter">{option.name}</span>
+                <span className="text-[10px] font-medium text-slate-600">{option.name}</span>
                 {option.name === 'Copy Link' && copied && (
-                  <span className="text-[9px] text-emerald-600 font-black mt-1 animate-pulse">COPIED!</span>
+                  <span className="text-[8px] text-emerald-600 font-medium mt-1">COPIED!</span>
                 )}
               </button>
             ))}
           </div>
 
-          {/* URL Box */}
           <div className="space-y-2">
-            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Direct Link</span>
-            <div className="flex gap-2 p-1.5 bg-slate-50 border border-slate-200 rounded-2xl">
+            <span className="text-xs font-medium text-slate-400">Direct Link</span>
+            <div className="flex gap-2 p-1 bg-slate-50 border border-slate-200 rounded-lg">
               <input
                 type="text"
                 value={shareUrl}
                 readOnly
-                className="flex-1 px-3 bg-transparent text-xs font-bold text-slate-500 outline-none truncate"
+                className="flex-1 px-3 bg-transparent text-xs text-slate-500 outline-none truncate"
               />
               <button
                 onClick={() => {
@@ -655,7 +512,7 @@ const ShareModal = ({ isOpen, onClose, gallery }) => {
                   setCopied(true);
                   setTimeout(() => setCopied(false), 2000);
                 }}
-                className="px-4 py-2 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 transition-colors"
+                className="px-3 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-medium"
               >
                 Copy
               </button>
@@ -663,13 +520,12 @@ const ShareModal = ({ isOpen, onClose, gallery }) => {
           </div>
         </div>
 
-        {/* Fixed Footer */}
-        <div className="p-5 border-t border-slate-100 bg-slate-50/50 shrink-0">
+        <div className="p-4 border-t border-slate-100">
           <button
             onClick={onClose}
-            className="w-full py-3 bg-white border-2 border-slate-200 text-slate-900 rounded-xl font-black text-xs uppercase tracking-[0.2em] hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all"
+            className="w-full py-2.5 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-medium hover:bg-slate-50"
           >
-            Done
+            Close
           </button>
         </div>
       </div>
@@ -678,7 +534,6 @@ const ShareModal = ({ isOpen, onClose, gallery }) => {
 };
 
 // Modern Gallery Detail Modal
-// Modern Gallery Detail Modal with WORKING Download
 const ModernGalleryDetailModal = ({ gallery, onClose, onDownload, onShare }) => {
   const [activeTab, setActiveTab] = useState('preview');
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -687,15 +542,7 @@ const ModernGalleryDetailModal = ({ gallery, onClose, onDownload, onShare }) => 
   if (!gallery) return null;
 
   const getCategoryStyle = (category) => {
-    const styles = {
-      GENERAL: { gradient: 'from-blue-500 to-cyan-500', icon: FiGlobe },
-      CLASSROOMS: { gradient: 'from-emerald-500 to-green-500', icon: FiBookOpen },
-      TEACHING: { gradient: 'from-purple-500 to-pink-500', icon: FiBook },
-      LABORATORIES: { gradient: 'from-indigo-500 to-purple-500', icon: FiTarget },
-      SPORTS_DAY: { gradient: 'from-amber-500 to-orange-500', icon: FiAward },
-      GRADUATION: { gradient: 'from-rose-500 to-red-500', icon: FiAward }
-    };
-    return styles[category] || { gradient: 'from-slate-500 to-slate-600', icon: FiImage };
+    return { gradient: 'from-emerald-600 to-teal-600', icon: FiImage };
   };
 
   const categoryStyle = getCategoryStyle(gallery.category);
@@ -713,7 +560,6 @@ const ModernGalleryDetailModal = ({ gallery, onClose, onDownload, onShare }) => 
     return imageExtensions.some(ext => filename.toLowerCase().endsWith(ext));
   };
 
-  // WORKING DOWNLOAD FUNCTION - Downloads each file individually
   const downloadAllFiles = async () => {
     if (!gallery || !gallery.files || gallery.files.length === 0) {
       toast.error('No files available to download');
@@ -727,29 +573,24 @@ const ModernGalleryDetailModal = ({ gallery, onClose, onDownload, onShare }) => 
       const files = gallery.files;
       let downloadedCount = 0;
       
-      // Download each file one by one
       for (let i = 0; i < files.length; i++) {
         const fileUrl = files[i];
         const fileName = fileUrl.split('/').pop() || `file_${i + 1}`;
         
         try {
-          // Update progress
           toast.loading(`Downloading ${i + 1}/${files.length}: ${fileName}`, { id: toastId });
           
-          // Create a hidden anchor element
           const link = document.createElement('a');
           link.href = fileUrl;
           link.download = fileName;
           link.style.display = 'none';
           
-          // Add to document and trigger download
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
           
           downloadedCount++;
           
-          // Small delay between downloads to avoid browser blocking
           if (i < files.length - 1) {
             await new Promise(resolve => setTimeout(resolve, 500));
           }
@@ -759,17 +600,8 @@ const ModernGalleryDetailModal = ({ gallery, onClose, onDownload, onShare }) => 
         }
       }
       
-      // Show success message
       toast.dismiss(toastId);
-      toast.success(`Successfully downloaded ${downloadedCount}/${files.length} files!`, {
-        duration: 5000
-      });
-      
-      if (downloadedCount < files.length) {
-        toast.info(`${files.length - downloadedCount} files may need to be downloaded manually`, {
-          duration: 7000
-        });
-      }
+      toast.success(`Successfully downloaded ${downloadedCount}/${files.length} files!`);
       
     } catch (error) {
       console.error('Error in download process:', error);
@@ -780,7 +612,6 @@ const ModernGalleryDetailModal = ({ gallery, onClose, onDownload, onShare }) => 
     }
   };
 
-  // Alternative: Download selected file only
   const downloadSelectedFile = async () => {
     if (!gallery.files || !gallery.files[selectedIndex]) {
       toast.error('No file selected to download');
@@ -812,18 +643,16 @@ const ModernGalleryDetailModal = ({ gallery, onClose, onDownload, onShare }) => 
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-slate-900/90 backdrop-blur-sm">
-      <div className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-3xl bg-white sm:rounded-[40px] shadow-2xl overflow-hidden flex flex-col">
+      <div className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-3xl bg-white sm:rounded-lg shadow-2xl overflow-hidden flex flex-col">
         
-        {/* Close Button */}
         <button 
           onClick={onClose}
-          className="absolute top-5 right-5 z-50 p-2 bg-black/20 backdrop-blur-md text-white rounded-full border border-white/20 transition-all active:scale-90"
+          className="absolute top-4 right-4 z-50 p-2 bg-black/20 backdrop-blur-md text-white rounded-lg border border-white/20"
         >
-          <IoClose size={24} />
+          <IoClose size={20} />
         </button>
 
-        {/* 1. Hero Image */}
-        <div className="relative h-[40vh] sm:h-[350px] w-full shrink-0">
+        <div className="relative h-[40vh] sm:h-[300px] w-full shrink-0">
           {gallery.files && gallery.files[selectedIndex] ? (
             <img
               src={gallery.files[selectedIndex]}
@@ -835,329 +664,206 @@ const ModernGalleryDetailModal = ({ gallery, onClose, onDownload, onShare }) => 
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/20" />
           
-          {/* Badge Overlays */}
-          <div className="absolute bottom-6 left-6 flex gap-2">
-            <span className="px-4 py-1.5 bg-white shadow-xl rounded-full text-xs font-bold uppercase tracking-widest text-slate-900">
+          <div className="absolute bottom-4 left-4 flex gap-2">
+            <span className="px-3 py-1 bg-white rounded-lg text-xs font-medium text-slate-900 border border-slate-200">
               {gallery.category.replace(/_/g, ' ')}
-            </span>
-            <span className="px-4 py-1.5 bg-slate-900 text-white rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1">
-              <IoSparkles className="text-amber-400" /> {gallery.year}
             </span>
           </div>
         </div>
 
-        {/* 2. Content Area - Scrollable */}
-        <div className="flex-1 overflow-y-auto p-6 md:p-10 bg-white">
-          <div className="max-w-2xl mx-auto space-y-8">
+        <div className="flex-1 overflow-y-auto p-6 bg-white">
+          <div className="max-w-2xl mx-auto space-y-6">
             
-            {/* Title & Category */}
-            <section className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className={`p-3 rounded-2xl bg-gradient-to-r ${categoryStyle.gradient}`}>
-                  <CategoryIcon className="text-white text-2xl" />
-                </div>
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight tracking-tight">
-                    {gallery.title}
-                  </h2>
-                  <p className="text-slate-600 text-lg">{gallery.category.replace(/_/g, ' ')} Collection</p>
-                </div>
+            <div className="flex items-center gap-3">
+              <div className={`p-2 rounded-lg bg-gradient-to-r ${categoryStyle.gradient}`}>
+                <CategoryIcon className="text-white text-xl" />
               </div>
-
-              {/* Quick Info Bar */}
-              <div className="flex flex-wrap gap-y-3 gap-x-6 text-sm font-semibold text-slate-500">
-                <div className="flex items-center gap-2">
-                  <IoCalendarClearOutline className="text-blue-500 text-lg" />
-                  {new Date(gallery.date).toLocaleDateString('en-US', {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </div>
-                <div className="flex items-center gap-2">
-                  <IoPersonOutline className="text-emerald-500 text-lg" />
-                  {gallery.files?.length || 0} files
-                </div>
-                <div className="flex items-center gap-2">
-                  <IoLocationOutline className="text-rose-500 text-lg" />
-                  School Archives
-                </div>
+              <div>
+                <h2 className="text-2xl font-bold text-slate-900">
+                  {gallery.title}
+                </h2>
+                <p className="text-sm text-slate-500">{gallery.category.replace(/_/g, ' ')} Collection</p>
               </div>
-            </section>
+            </div>
 
-            {/* Tabs */}
+            <div className="flex flex-wrap gap-y-2 gap-x-4 text-xs text-slate-500">
+              <div className="flex items-center gap-1">
+                <FiCalendar size={14} className="text-emerald-600" />
+                {new Date(gallery.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </div>
+              <div className="flex items-center gap-1">
+                <FiImage size={14} className="text-emerald-600" />
+                {gallery.files?.length || 0} files
+              </div>
+            </div>
+
             <div className="border-b border-slate-200">
-              <div className="flex gap-8">
+              <div className="flex gap-6">
                 <button
-                  className={`pb-3 font-bold text-sm border-b-2 transition-colors ${
+                  className={`pb-2 text-xs font-medium border-b-2 ${
                     activeTab === 'preview' 
-                      ? `border-blue-500 text-blue-600` 
-                      : 'border-transparent text-slate-500 hover:text-slate-700'
+                      ? 'border-emerald-600 text-emerald-700' 
+                      : 'border-transparent text-slate-500'
                   }`}
                   onClick={() => setActiveTab('preview')}
                 >
-                  <FiEye className="inline mr-2" />
                   Preview
                 </button>
                 <button
-                  className={`pb-3 font-bold text-sm border-b-2 transition-colors ${
+                  className={`pb-2 text-xs font-medium border-b-2 ${
                     activeTab === 'files' 
-                      ? `border-blue-500 text-blue-600` 
-                      : 'border-transparent text-slate-500 hover:text-slate-700'
+                      ? 'border-emerald-600 text-emerald-700' 
+                      : 'border-transparent text-slate-500'
                   }`}
                   onClick={() => setActiveTab('files')}
                 >
-                  <FiImage className="inline mr-2" />
                   All Files ({gallery.files?.length || 0})
                 </button>
                 <button
-                  className={`pb-3 font-bold text-sm border-b-2 transition-colors ${
+                  className={`pb-2 text-xs font-medium border-b-2 ${
                     activeTab === 'info' 
-                      ? `border-blue-500 text-blue-600` 
-                      : 'border-transparent text-slate-500 hover:text-slate-700'
+                      ? 'border-emerald-600 text-emerald-700' 
+                      : 'border-transparent text-slate-500'
                   }`}
                   onClick={() => setActiveTab('info')}
                 >
-                  <FiInfo className="inline mr-2" />
                   Info
                 </button>
               </div>
             </div>
 
-            {/* Tab Content */}
             {activeTab === 'preview' && (
-              <section className="space-y-4">
-                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Gallery Preview</h3>
+              <div className="space-y-4">
+                <div className="text-sm text-slate-600">
+                  {gallery.description || 'No description available.'}
+                </div>
                 
-                {/* Thumbnail Grid */}
                 {gallery.files && gallery.files.length > 0 && (
-                  <div className="grid grid-cols-3 gap-3 mt-6">
+                  <div className="grid grid-cols-3 gap-2 mt-4">
                     {gallery.files.slice(0, 6).map((file, index) => (
                       <div
                         key={index}
                         onClick={() => setSelectedIndex(index)}
-                        className={`aspect-square rounded-xl overflow-hidden cursor-pointer border-2 ${
-                          selectedIndex === index ? 'border-blue-500' : 'border-transparent'
+                        className={`aspect-square rounded-lg overflow-hidden cursor-pointer border-2 ${
+                          selectedIndex === index ? 'border-emerald-600' : 'border-transparent'
                         }`}
                       >
-                        {isVideoFile(file) ? (
-                          <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-                            <FiVideo className="text-white text-xl" />
-                          </div>
-                        ) : (
-                          <img
-                            src={file}
-                            alt={`Preview ${index + 1}`}
-                            className="w-full h-full object-cover"
-                          />
-                        )}
+                        <img
+                          src={file}
+                          alt={`Preview ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                     ))}
                   </div>
                 )}
-                <div className="text-slate-700 leading-snug sm:leading-relaxed text-sm sm:text-base md:text-lg break-words">
-                  {gallery.description || 'No description available.'}
-                </div>
-              </section>
+              </div>
             )}
 
             {activeTab === 'files' && (
-              <section className="space-y-4">
-                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">All Files</h3>
-                <div className="space-y-3">
-                  {gallery.files?.map((file, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100"
-                    >
-                      <div className="p-2 bg-white rounded-lg">
-                        {isVideoFile(file) ? (
-                          <FiVideo className="text-blue-600" />
-                        ) : (
-                          <FiImage className="text-emerald-600" />
-                        )}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-slate-900 truncate">
-                          {file.split('/').pop()}
-                        </p>
-                        <p className="text-xs text-slate-500">
-                          {isVideoFile(file) ? 'Video File' : 'Image File'}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => {
-                            setSelectedIndex(index);
-                            setActiveTab('preview');
-                          }}
-                          className="px-3 py-1.5 text-xs font-medium text-blue-600 hover:bg-blue-50 rounded-lg"
-                        >
-                          View
-                        </button>
-                        <button
-                          onClick={async () => {
-                            const fileName = file.split('/').pop() || `file_${index + 1}`;
-                            try {
-                              const link = document.createElement('a');
-                              link.href = file;
-                              link.download = fileName;
-                              link.style.display = 'none';
-                              document.body.appendChild(link);
-                              link.click();
-                              document.body.removeChild(link);
-                              toast.success(`Downloaded: ${fileName}`);
-                            } catch (error) {
-                              toast.error('Failed to download file');
-                            }
-                          }}
-                          className="px-3 py-1.5 text-xs font-medium text-emerald-600 hover:bg-emerald-50 rounded-lg"
-                        >
-                          Download
-                        </button>
-                      </div>
+              <div className="space-y-2">
+                {gallery.files?.map((file, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 border border-slate-100"
+                  >
+                    <div className="p-1.5 bg-white rounded-lg">
+                      <FiImage className="text-emerald-600" size={16} />
                     </div>
-                  ))}
-                </div>
-              </section>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-slate-900 truncate">
+                        {file.split('/').pop()}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => {
+                          setSelectedIndex(index);
+                          setActiveTab('preview');
+                        }}
+                        className="px-2 py-1 text-xs text-emerald-600 hover:bg-emerald-50 rounded"
+                      >
+                        View
+                      </button>
+                      <button
+                        onClick={async () => {
+                          const fileName = file.split('/').pop() || `file_${index + 1}`;
+                          try {
+                            const link = document.createElement('a');
+                            link.href = file;
+                            link.download = fileName;
+                            link.click();
+                            toast.success(`Downloaded: ${fileName}`);
+                          } catch (error) {
+                            toast.error('Failed to download file');
+                          }
+                        }}
+                        className="px-2 py-1 text-xs text-emerald-600 hover:bg-emerald-50 rounded"
+                      >
+                        Download
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             )}
 
             {activeTab === 'info' && (
-              <section className="space-y-6">
-                <div className="space-y-4">
-                  <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Gallery Information</h3>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                      <h4 className="font-bold text-slate-900 mb-1">Category</h4>
-                      <p className="text-slate-700">{gallery.category.replace(/_/g, ' ')}</p>
-                    </div>
-                    <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                      <h4 className="font-bold text-slate-900 mb-1">Year</h4>
-                      <p className="text-slate-700">{gallery.year}</p>
-                    </div>
-                    <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                      <h4 className="font-bold text-slate-900 mb-1">Total Files</h4>
-                      <p className="text-slate-700">{gallery.files?.length || 0}</p>
-                    </div>
-                    <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                      <h4 className="font-bold text-slate-900 mb-1">Date Added</h4>
-                      <p className="text-slate-700">{new Date(gallery.date).toLocaleDateString()}</p>
-                    </div>
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="p-3 bg-slate-50 rounded-lg border border-slate-100">
+                    <p className="text-xs text-slate-500 mb-1">Category</p>
+                    <p className="text-sm font-medium text-slate-900">{gallery.category.replace(/_/g, ' ')}</p>
+                  </div>
+                  <div className="p-3 bg-slate-50 rounded-lg border border-slate-100">
+                    <p className="text-xs text-slate-500 mb-1">Total Files</p>
+                    <p className="text-sm font-medium text-slate-900">{gallery.files?.length || 0}</p>
+                  </div>
+                  <div className="p-3 bg-slate-50 rounded-lg border border-slate-100">
+                    <p className="text-xs text-slate-500 mb-1">Date Added</p>
+                    <p className="text-sm font-medium text-slate-900">{new Date(gallery.date).toLocaleDateString()}</p>
+                  </div>
+                  <div className="p-3 bg-slate-50 rounded-lg border border-slate-100">
+                    <p className="text-xs text-slate-500 mb-1">Status</p>
+                    <p className="text-sm font-medium text-emerald-600">Published</p>
                   </div>
                 </div>
-
-                <div className="space-y-4">
-                  <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">File Types</h3>
-                  <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                      <span className="text-sm text-slate-600">Images: {gallery.files?.filter(f => isImageFile(f)).length || 0}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-                      <span className="text-sm text-slate-600">Videos: {gallery.files?.filter(f => isVideoFile(f)).length || 0}</span>
-                    </div>
-                  </div>
-                </div>
-              </section>
+              </div>
             )}
-
-            {/* Gallery Stats */}
-            <section className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
-              <div className="p-4 bg-slate-50 rounded-3xl border border-slate-100">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className={`w-2 h-2 rounded-full bg-emerald-500`} />
-                  <p className="text-[10px] uppercase font-bold text-slate-400">Status</p>
-                </div>
-                <p className="font-bold text-slate-900 capitalize">Published</p>
-              </div>
-              
-              <div className="p-4 bg-slate-50 rounded-3xl border border-slate-100">
-                <div className="w-8 h-8 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-2">
-                  <FiImage size={16} />
-                </div>
-                <p className="text-[10px] uppercase font-bold text-slate-400">Images</p>
-                <p className="font-bold text-slate-900">{gallery.files?.filter(f => isImageFile(f)).length || 0}</p>
-              </div>
-
-              <div className="p-4 bg-slate-50 rounded-3xl border border-slate-100">
-                <div className="w-8 h-8 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-2">
-                  <FiVideo size={16} />
-                </div>
-                <p className="text-[10px] uppercase font-bold text-slate-400">Videos</p>
-                <p className="font-bold text-slate-900">{gallery.files?.filter(f => isVideoFile(f)).length || 0}</p>
-              </div>
-
-              <div className="p-4 bg-slate-50 rounded-3xl border border-slate-100">
-                <div className="w-8 h-8 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-2">
-                  <FiStar size={16} />
-                </div>
-                <p className="text-[10px] uppercase font-bold text-slate-400">Quality</p>
-                <p className="font-bold text-slate-900">High</p>
-              </div>
-            </section>
           </div>
         </div>
 
-        {/* 3. Action Footer - Sticky */}
- <div className="shrink-0 p-4 sm:p-6 bg-slate-50/80 backdrop-blur-md border-t border-slate-100">
-  <div className="max-w-2xl mx-auto flex flex-row gap-2 sm:gap-3 px-1">
-    
+        <div className="shrink-0 p-4 bg-slate-50 border-t border-slate-100">
+          <div className="max-w-2xl mx-auto flex flex-row gap-2">
+            <button
+              onClick={downloadSelectedFile}
+              disabled={!gallery.files || !gallery.files[selectedIndex]}
+              className="flex-1 h-10 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-medium flex items-center justify-center gap-2 disabled:opacity-50"
+            >
+              <FiDownload size={14} />
+              Download Selected
+            </button>
 
-
-    {/* Download Selected Button */}
-    <button
-      onClick={downloadSelectedFile}
-      disabled={!gallery.files || !gallery.files[selectedIndex]}
-      className={`
-        flex-1 min-w-0
-        h-11 sm:h-14
-        rounded-xl sm:rounded-2xl
-        font-semibold sm:font-bold
-        text-[10px] sm:text-sm
-        flex items-center justify-center gap-1.5 sm:gap-2
-        transition-all
-        ${
-          (!gallery.files || !gallery.files[selectedIndex])
-            ? "opacity-50 cursor-not-allowed bg-slate-200 text-slate-500"
-            : "bg-white border-2 border-slate-200 text-slate-900 active:scale-95"
-        }
-      `}
-    >
-      <FiDownload className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
-      <span className="truncate">Download Selected</span>
-    </button>
-
-    {/* Share Button */}
-    <button
-      onClick={() => onShare(gallery)}
-      className="
-        flex-1 min-w-0
-        h-11 sm:h-14
-        bg-white border-2 border-slate-200
-        text-slate-900
-        rounded-xl sm:rounded-2xl
-        font-semibold sm:font-bold
-        text-[10px] sm:text-sm
-        flex items-center justify-center gap-1.5 sm:gap-2
-        active:scale-95 transition-all
-      "
-    >
-      <FiShare2 className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
-      <span className="truncate">Share</span>
-    </button>
-
-  </div>
-</div>
-
+            <button
+              onClick={() => onShare(gallery)}
+              className="flex-1 h-10 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-medium flex items-center justify-center gap-2"
+            >
+              <FiShare2 size={14} />
+              Share
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default function ModernGallery() {
-  const [activeCategory, setActiveCategory] = useState('all'); // This is already correct
+  const [activeCategory, setActiveCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedGallery, setSelectedGallery] = useState(null);
   const [favorites, setFavorites] = useState(new Set());
@@ -1166,20 +872,17 @@ export default function ModernGallery() {
   const [refreshing, setRefreshing] = useState(false);
   const [viewMode, setViewMode] = useState('grid');
   const [selectedYear, setSelectedYear] = useState('all');
-  const [showSidebar, setShowSidebar] = useState(false);
-  const [categories, setCategories] = useState([]);
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [galleryToShare, setGalleryToShare] = useState(null);
 
-  // Categories for filtering
   const categoryOptions = [
-    { id: 'all', name: 'All Galleries', icon: FiGlobe, gradient: 'from-slate-500 to-slate-600' },
-    { id: 'GENERAL', name: 'General', icon: FiGlobe, gradient: 'from-blue-500 to-cyan-500' },
-    { id: 'CLASSROOMS', name: 'Classrooms', icon: FiBookOpen, gradient: 'from-emerald-500 to-green-500' },
-    { id: 'TEACHING', name: 'Teaching', icon: FiBook, gradient: 'from-purple-500 to-pink-500' },
-    { id: 'LABORATORIES', name: 'Laboratories', icon: FiTarget, gradient: 'from-indigo-500 to-purple-500' },
-    { id: 'SPORTS_DAY', name: 'Sports Day', icon: FiAward, gradient: 'from-amber-500 to-orange-500' },
-    { id: 'GRADUATION', name: 'Graduation', icon: FiAward, gradient: 'from-rose-500 to-red-500' }
+    { id: 'all', name: 'All Galleries', icon: FiGlobe },
+    { id: 'GENERAL', name: 'General', icon: FiGlobe },
+    { id: 'CLASSROOMS', name: 'Classrooms', icon: FiBookOpen },
+    { id: 'TEACHING', name: 'Teaching', icon: FiBook },
+    { id: 'LABORATORIES', name: 'Laboratories', icon: FiTarget },
+    { id: 'SPORTS_DAY', name: 'Sports Day', icon: FiAward },
+    { id: 'GRADUATION', name: 'Graduation', icon: FiAward }
   ];
 
   const [stats, setStats] = useState([
@@ -1188,32 +891,31 @@ export default function ModernGallery() {
       number: '0', 
       label: 'Media Files', 
       sublabel: 'Total files',
-      gradient: 'from-blue-500 to-cyan-500'
+      gradient: 'from-emerald-600 to-teal-600'
     },
     { 
       icon: FiFolder, 
       number: '0', 
       label: 'Galleries', 
       sublabel: 'Collections',
-      gradient: 'from-emerald-500 to-green-500'
+      gradient: 'from-emerald-600 to-teal-600'
     },
     { 
       icon: FiGrid, 
       number: '0', 
       label: 'Categories', 
       sublabel: 'Available',
-      gradient: 'from-purple-500 to-pink-500'
+      gradient: 'from-emerald-600 to-teal-600'
     },
     { 
       icon: FiCalendar, 
       number: new Date().getFullYear().toString(),
       label: 'Latest', 
       sublabel: 'This year',
-      gradient: 'from-amber-500 to-orange-500'
+      gradient: 'from-emerald-600 to-teal-600'
     }
   ]);
 
-  // Fetch galleries from API
   useEffect(() => {
     const fetchGalleries = async () => {
       try {
@@ -1223,42 +925,36 @@ export default function ModernGallery() {
         if (data.success && data.galleries) {
           setGalleries(data.galleries);
           
-          // Extract unique categories
-          const uniqueCategories = [...new Set(data.galleries.map(g => g?.category).filter(Boolean))];
-          setCategories(uniqueCategories);
-          
-          // Calculate file count
           const totalFiles = data.galleries.reduce((acc, gallery) => acc + (gallery?.files?.length || 0), 0);
           
-          // Update stats
           setStats([
             { 
               icon: FiImage, 
               number: totalFiles.toString(), 
               label: 'Media Files', 
               sublabel: 'Total files',
-              gradient: 'from-blue-500 to-cyan-500'
+              gradient: 'from-emerald-600 to-teal-600'
             },
             { 
               icon: FiFolder, 
               number: data.galleries.length.toString(), 
               label: 'Galleries', 
               sublabel: 'Collections',
-              gradient: 'from-emerald-500 to-green-500'
+              gradient: 'from-emerald-600 to-teal-600'
             },
             { 
               icon: FiGrid, 
-              number: uniqueCategories.length.toString(), 
+              number: '7', 
               label: 'Categories', 
               sublabel: 'Available',
-              gradient: 'from-purple-500 to-pink-500'
+              gradient: 'from-emerald-600 to-teal-600'
             },
             { 
               icon: FiCalendar, 
               number: new Date().getFullYear().toString(),
               label: 'Latest', 
               sublabel: 'This year',
-              gradient: 'from-amber-500 to-orange-500'
+              gradient: 'from-emerald-600 to-teal-600'
             }
           ]);
         }
@@ -1273,7 +969,6 @@ export default function ModernGallery() {
     fetchGalleries();
   }, []);
 
-  // Transform API data
   const transformedGalleries = useMemo(() => {
     return (galleries || []).map(gallery => ({
       id: gallery.id || Math.random().toString(),
@@ -1286,7 +981,6 @@ export default function ModernGallery() {
     }));
   }, [galleries]);
 
-  // Get available years
   const years = useMemo(() => {
     const yearSet = new Set();
     galleries.forEach(gallery => {
@@ -1298,7 +992,6 @@ export default function ModernGallery() {
     return Array.from(yearSet).sort((a, b) => b - a);
   }, [galleries]);
 
-  // Filter galleries
   const filteredGalleries = useMemo(() => {
     let filtered = transformedGalleries.filter(gallery => {
       const matchesCategory = activeCategory === 'all' || gallery.category === activeCategory;
@@ -1309,7 +1002,6 @@ export default function ModernGallery() {
       return matchesCategory && matchesYear && matchesSearch;
     });
     
-    // Sort by newest first
     filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
     
     return filtered;
@@ -1332,7 +1024,6 @@ export default function ModernGallery() {
   };
 
   const handleDownload = (gallery) => {
-    // Download all files function will be called from the modal
     setSelectedGallery(gallery);
   };
 
@@ -1349,64 +1040,50 @@ export default function ModernGallery() {
     }, 1000);
   };
 
-if (loading) {
-  return (
-    <Box 
-      className="min-h-[70vh] flex items-center justify-center p-4 bg-transparent"
-    >
-      <Stack 
-        spacing={2} 
-        alignItems="center"
-        className="w-full transition-all duration-500"
-      >
-        {/* Modern Layered Loader - Responsive sizing */}
-        <Box className="relative flex items-center justify-center scale-90 sm:scale-110">
-          <CircularProgress
-            variant="determinate"
-            value={100}
-            size={48} 
-            thickness={4.5}
-            sx={{ color: '#f1f5f9' }} 
-          />
-          <CircularProgress
-            variant="indeterminate"
-            disableShrink
-            size={48}
-            thickness={4.5}
-            sx={{
-              color: '#0f172a', // Matches your dark slate theme
-              animationDuration: '1000ms',
-              position: 'absolute',
-              [`& .MuiCircularProgress-circle`]: {
-                strokeLinecap: 'round',
-              },
-            }}
-          />
-          <Box className="absolute">
-            <IoSparkles className="text-blue-600 text-sm animate-pulse" />
-          </Box>
-        </Box>
-
-        {/* Minimalist Typography */}
-        <div className="text-center px-4">
-          <p className="text-slate-900 font-medium text-sm sm:text-base tracking-tight italic">
-            Loading school galleries...
-          </p>
-          <p className="text-slate-400 text-[10px] sm:text-xs uppercase tracking-widest mt-1 font-bold">
-            Matungulu Girls High School
-          </p>
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white p-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="min-h-[70vh] flex items-center justify-center">
+            <Stack spacing={2} alignItems="center">
+              <div className="relative flex items-center justify-center">
+                <CircularProgress
+                  variant="determinate"
+                  value={100}
+                  size={48}
+                  thickness={4.5}
+                  sx={{ color: '#f1f5f9' }}
+                />
+                <CircularProgress
+                  variant="indeterminate"
+                  disableShrink
+                  size={48}
+                  thickness={4.5}
+                  sx={{
+                    color: '#059669',
+                    animationDuration: '1000ms',
+                    position: 'absolute',
+                  }}
+                />
+              </div>
+              <div className="text-center">
+                <p className="text-slate-600 font-medium text-sm">Loading school galleries...</p>
+                <p className="text-slate-400 text-xs uppercase tracking-widest mt-1 font-bold">
+                  Matungulu Girls High School
+                </p>
+              </div>
+            </Stack>
+          </div>
         </div>
-      </Stack>
-    </Box>
-  );
-}
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20 p-4 md:p-6">
+    <div className="min-h-screen bg-white p-4 md:p-6">
       <Toaster position="top-right" richColors />
       
       <div className="max-w-7xl mx-auto space-y-6">
-        {/* Modern Hero Banner */}
         <ModernHeroBanner 
           stats={{
             totalFiles: stats[0].number,
@@ -1416,121 +1093,108 @@ if (loading) {
           onRefresh={refreshData}
         />
 
-        {/* Dynamic Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
           {stats.map((stat, index) => (
             <ModernStatCard key={index} stat={stat} />
           ))}
         </div>
 
-        {/* Main Content Layout */}
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Left Column: Galleries */}
-          <div className="flex-1 min-w-0 space-y-8">
+          <div className="flex-1 min-w-0 space-y-6">
             
-       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 px-1">
-  <div className="flex items-center gap-3">
-    <div className="p-2 sm:p-3 bg-purple-900 rounded-xl sm:rounded-2xl shadow-lg">
-      <FiImage className="text-white text-lg sm:text-xl md:text-2xl" />
-    </div>
-    <div>
-      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight">School Galleries</h2>
-      <p className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider sm:tracking-widest">
-        {filteredGalleries.length} Galleries
-      </p>
-    </div>
-  </div>
-</div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-emerald-100 rounded-lg">
+                  <FiImage className="text-emerald-700 text-lg" />
+                </div>
+                <div>
+                  <h2 className="text-lg font-bold text-slate-900">School Galleries</h2>
+                  <p className="text-xs text-slate-400 uppercase tracking-wider">
+                    {filteredGalleries.length} Galleries
+                  </p>
+                </div>
+              </div>
+            </div>
 
-{/* Modern Search & Filter Section - Optimized for Mobile */}
-<div className="bg-white/80 backdrop-blur-md border border-slate-200/60 p-3 sm:p-4 rounded-[20px] sm:rounded-[24px] md:rounded-[28px] shadow-sm">
-  <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3">
-    {/* Search - Full width on mobile */}
-    <div className="relative w-full group">
-      <div className="relative flex items-center bg-white border border-slate-200 rounded-xl sm:rounded-2xl shadow-sm transition-all focus-within:border-slate-900 focus-within:ring-2 focus-within:ring-slate-900/5">
-        <div className="pl-4 pr-2 sm:pl-5 sm:pr-3 flex items-center justify-center pointer-events-none">
-          <FiSearch className="text-slate-400 group-focus-within:text-slate-900 transition-colors" size={16} />
-        </div>
-        <input
-          type="text"
-          placeholder="Search galleries..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full py-3 sm:py-4 bg-transparent text-slate-900 placeholder:text-slate-400 font-medium text-sm focus:outline-none"
-        />
-        {searchTerm && (
-          <button
-            onClick={() => setSearchTerm('')}
-            className="pr-3 sm:pr-4 text-slate-400 hover:text-slate-600"
-          >
-            <FiX size={16} />
-          </button>
-        )}
-      </div>
-    </div>
+            <div className="bg-white border border-slate-200 rounded-lg p-3">
+              <div className="flex flex-col md:flex-row items-stretch gap-3">
+                <div className="relative w-full">
+                  <div className="relative flex items-center bg-white border border-slate-200 rounded-lg">
+                    <div className="pl-3 pr-2">
+                      <FiSearch className="text-slate-400" size={16} />
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Search galleries..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="w-full py-2.5 bg-transparent text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none"
+                    />
+                    {searchTerm && (
+                      <button
+                        onClick={() => setSearchTerm('')}
+                        className="pr-3 text-slate-400"
+                      >
+                        <FiX size={14} />
+                      </button>
+                    )}
+                  </div>
+                </div>
 
-    {/* Filter Row - Compact on mobile */}
-    <div className="grid grid-cols-2 gap-3 w-full md:flex md:items-center md:gap-2">
-      {/* Category Selector */}
-      <div className="relative w-full">
-        <select 
-          value={activeCategory}
-          onChange={(e) => setActiveCategory(e.target.value)}
-          className="w-full appearance-none px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-50 border-none rounded-lg sm:rounded-xl font-medium text-slate-600 text-xs sm:text-sm cursor-pointer focus:ring-2 focus:ring-purple-500/20 transition-all"
-        >
-          {categoryOptions.map((category) => {
-            const Icon = category.icon;
-            return (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            );
-          })}
-        </select>
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </div>
-      </div>
+                <div className="grid grid-cols-2 gap-3 w-full md:flex md:items-center md:gap-2">
+                  <div className="relative w-full">
+                    <select 
+                      value={activeCategory}
+                      onChange={(e) => setActiveCategory(e.target.value)}
+                      className="w-full appearance-none px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-600 cursor-pointer focus:border-emerald-500"
+                    >
+                      {categoryOptions.map((category) => (
+                        <option key={category.id} value={category.id}>
+                          {category.name}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
 
-      {/* Year Selector */}
-      <div className="relative w-full">
-        <select 
-          value={selectedYear}
-          onChange={(e) => setSelectedYear(e.target.value)}
-          className="w-full appearance-none px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-50 border-none rounded-lg sm:rounded-xl font-medium text-slate-600 text-xs sm:text-sm cursor-pointer focus:ring-2 focus:ring-blue-500/20 transition-all"
-        >
-          <option value="all">All Years</option>
-          {years.map(year => (
-            <option key={year} value={year}>{year}</option>
-          ))}
-        </select>
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </div>
-      </div>
+                  <div className="relative w-full">
+                    <select 
+                      value={selectedYear}
+                      onChange={(e) => setSelectedYear(e.target.value)}
+                      className="w-full appearance-none px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-600 cursor-pointer focus:border-emerald-500"
+                    >
+                      <option value="all">All Years</option>
+                      {years.map(year => (
+                        <option key={year} value={year}>{year}</option>
+                      ))}
+                    </select>
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
 
-      {/* Reset Button */}
-      <button
-        onClick={() => {
-          setSearchTerm('');
-          setActiveCategory('all');
-          setSelectedYear('all');
-        }}
-        className="col-span-2 md:col-span-1 px-4 sm:px-5 py-2.5 sm:py-3 bg-purple-600 text-white rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm shadow-md shadow-purple-200 hover:bg-purple-700 active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2"
-      >
-        <FiFilter size={14} className="sm:size-[16px]" />
-        Reset
-      </button>
-    </div>
-  </div>
-</div>
+                  <button
+                    onClick={() => {
+                      setSearchTerm('');
+                      setActiveCategory('all');
+                      setSelectedYear('all');
+                    }}
+                    className="col-span-2 px-4 py-2.5 bg-emerald-600 text-white rounded-lg text-xs font-medium flex items-center justify-center gap-1"
+                  >
+                    <FiFilter size={12} />
+                    Reset
+                  </button>
+                </div>
+              </div>
+            </div>
 
-            {/* Modern Category Pills */}
-            <div className="flex gap-2 overflow-x-auto pb-4 no-scrollbar -mx-2 px-2">
+            <div className="flex gap-2 overflow-x-auto pb-2">
               {categoryOptions.map((category) => {
                 const Icon = category.icon;
                 const isActive = activeCategory === category.id;
@@ -1538,58 +1202,56 @@ if (loading) {
                   <button
                     key={category.id}
                     onClick={() => setActiveCategory(category.id)}
-                    className={`flex items-center gap-2 px-5 py-2.5 rounded-full whitespace-nowrap text-sm font-bold transition-all border ${
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap text-xs font-medium border ${
                       isActive 
-                        ? "bg-purple-600 border-purple-600 text-white shadow-md shadow-purple-100" 
-                        : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"
+                        ? "bg-emerald-600 border-emerald-600 text-white" 
+                        : "bg-white border-slate-200 text-slate-600"
                     }`}
                   >
-                    {Icon && <Icon className={isActive ? "text-white" : "text-slate-400"} />}
+                    {Icon && <Icon size={12} />}
                     {category.name}
                   </button>
                 );
               })}
             </div>
 
-            {/* View Toggle */}
             <div className="flex items-center justify-between">
-              <div className="text-sm text-slate-600">
-                <span className="font-semibold text-slate-800">{filteredGalleries.length}</span> galleries found
+              <div className="text-xs text-slate-500">
+                <span className="font-medium text-slate-700">{filteredGalleries.length}</span> galleries found
               </div>
-              <div className="flex bg-white rounded-xl border border-slate-200 overflow-hidden">
+              <div className="flex bg-white rounded-lg border border-slate-200 overflow-hidden">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`p-3 ${viewMode === 'grid' ? 'bg-purple-50 text-purple-600' : 'text-slate-600 hover:text-slate-900'}`}
+                  className={`p-2 ${viewMode === 'grid' ? 'bg-emerald-50 text-emerald-600' : 'text-slate-500'}`}
                 >
-                  <FiGrid />
+                  <FiGrid size={16} />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`p-3 ${viewMode === 'list' ? 'bg-purple-50 text-purple-600' : 'text-slate-600 hover:text-slate-900'}`}
+                  className={`p-2 ${viewMode === 'list' ? 'bg-emerald-50 text-emerald-600' : 'text-slate-500'}`}
                 >
-                  <FiList />
+                  <FiList size={16} />
                 </button>
               </div>
             </div>
 
-            {/* Galleries Grid/List */}
             <div className="relative">
               {filteredGalleries.length === 0 ? (
-                <div className="bg-slate-50 rounded-[32px] border-2 border-dashed border-slate-200 py-16 text-center">
-                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
-                    <FiImage className="text-slate-300 text-2xl" />
+                <div className="bg-white border border-dashed border-slate-200 rounded-lg py-12 text-center">
+                  <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <FiImage className="text-slate-400 text-xl" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900">No galleries found</h3>
-                  <p className="text-slate-500 text-sm mt-1 mb-6">Try adjusting your filters or search.</p>
+                  <h3 className="text-base font-bold text-slate-900">No galleries found</h3>
+                  <p className="text-xs text-slate-500 mt-1 mb-4">Try adjusting your filters.</p>
                   <button 
                     onClick={() => { setSearchTerm(''); setActiveCategory('all'); setSelectedYear('all'); }}
-                    className="px-6 py-2.5 bg-white border border-slate-200 rounded-full font-bold text-slate-700 hover:bg-slate-50 transition-all text-sm"
+                    className="px-4 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-700"
                   >
                     Reset Filters
                   </button>
                 </div>
               ) : (
-                <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-4'}>
+                <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4' : 'space-y-3'}>
                   {filteredGalleries.map((gallery, index) => (
                     <ModernGalleryCard 
                       key={gallery.id || index} 
@@ -1605,22 +1267,18 @@ if (loading) {
             </div>
           </div>
 
-          {/* Right Column: Quick Actions & Info */}
-          <div className="lg:w-[380px] space-y-6">
-            <div className="lg:sticky lg:top-24 space-y-6">
+          <div className="lg:w-80 space-y-4">
+            <div className="lg:sticky lg:top-24 space-y-4">
               
-              {/* Quick Actions Card */}
-              <div className="bg-white border border-slate-100 rounded-[32px] p-6 shadow-sm">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center">
-                    <FiZap className="text-purple-600 text-xl" />
+              <div className="bg-white border border-slate-200 rounded-lg p-5">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
+                    <FiZap className="text-emerald-700 text-sm" />
                   </div>
-                  <h2 className="text-xl font-bold text-slate-900">Quick Actions</h2>
+                  <h2 className="text-base font-bold text-slate-900">Quick Actions</h2>
                 </div>
 
-                <div className="space-y-3">
-
-
+                <div className="space-y-2">
                   <button
                     onClick={() => {
                       const mostRecent = filteredGalleries[0];
@@ -1628,66 +1286,62 @@ if (loading) {
                         handleViewGallery(mostRecent);
                       }
                     }}
-                    className="w-full p-4 bg-emerald-50 text-emerald-700 rounded-2xl border border-emerald-100 flex items-center justify-between hover:bg-emerald-100 transition-colors"
+                    className="w-full p-3 bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100 flex items-center justify-between"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-emerald-100 rounded-xl">
-                        <FiEye className="text-emerald-600" />
+                    <div className="flex items-center gap-2">
+                      <div className="p-1.5 bg-emerald-100 rounded-lg">
+                        <FiEye className="text-emerald-600" size={14} />
                       </div>
                       <div className="text-left">
-                        <p className="font-bold">Latest Gallery</p>
-                        <p className="text-xs text-emerald-600">View most recent</p>
+                        <p className="text-xs font-bold">Latest Gallery</p>
+                        <p className="text-[10px] text-emerald-600">View most recent</p>
                       </div>
                     </div>
-                    <FiArrowRight className="text-emerald-400" />
+                    <FiArrowRight className="text-emerald-400" size={14} />
                   </button>
 
                   <button
                     onClick={() => toast.info('Favorites feature coming soon!')}
-                    className="w-full p-4 bg-amber-50 text-amber-700 rounded-2xl border border-amber-100 flex items-center justify-between hover:bg-amber-100 transition-colors"
+                    className="w-full p-3 bg-amber-50 text-amber-700 rounded-lg border border-amber-100 flex items-center justify-between"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-amber-100 rounded-xl">
-                        <FiHeart className="text-amber-600" />
+                    <div className="flex items-center gap-2">
+                      <div className="p-1.5 bg-amber-100 rounded-lg">
+                        <FiHeart className="text-amber-600" size={14} />
                       </div>
                       <div className="text-left">
-                        <p className="font-bold">My Favorites</p>
-                        <p className="text-xs text-amber-600">{favorites.size} saved</p>
+                        <p className="text-xs font-bold">My Favorites</p>
+                        <p className="text-[10px] text-amber-600">{favorites.size} saved</p>
                       </div>
                     </div>
-                    <FiArrowRight className="text-amber-400" />
+                    <FiArrowRight className="text-amber-400" size={14} />
                   </button>
                 </div>
               </div>
 
-              {/* Year Info Banner */}
-              <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-[32px] p-6 border border-blue-100">
+              <div className="bg-white border border-slate-200 rounded-lg p-5">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2.5 bg-blue-100 rounded-xl">
-                    <FiCalendar className="text-blue-600" />
+                  <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
+                    <FiCalendar className="text-emerald-700 text-sm" />
                   </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900">Gallery Years</h4>
-                    <p className="text-sm text-slate-600">Browse by year</p>
-                  </div>
+                  <h2 className="text-base font-bold text-slate-900">Years</h2>
                 </div>
                 
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 bg-white rounded-xl border border-blue-100">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between p-2 bg-slate-50 rounded-lg border border-slate-100">
                     <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                      <span className="text-sm font-medium text-slate-700">All Years</span>
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                      <span className="text-xs text-slate-600">All Years</span>
                     </div>
-                    <span className="text-xs font-bold text-blue-600">{transformedGalleries.length}</span>
+                    <span className="text-xs font-medium text-emerald-600">{transformedGalleries.length}</span>
                   </div>
                   
                   {years.slice(0, 3).map(year => (
-                    <div key={year} className="flex items-center justify-between p-3 bg-white rounded-xl border border-blue-100">
+                    <div key={year} className="flex items-center justify-between p-2 bg-slate-50 rounded-lg border border-slate-100">
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-                        <span className="text-sm font-medium text-slate-700">{year}</span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                        <span className="text-xs text-slate-600">{year}</span>
                       </div>
-                      <span className="text-xs font-bold text-blue-600">
+                      <span className="text-xs font-medium text-emerald-600">
                         {transformedGalleries.filter(g => g.year === year).length}
                       </span>
                     </div>
@@ -1695,30 +1349,26 @@ if (loading) {
                 </div>
               </div>
 
-              {/* Confidentiality Banner */}
-              <div className="bg-gradient-to-r from-purple-900 to-indigo-900 rounded-[32px] p-6 text-white overflow-hidden relative">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 blur-[50px]" />
-                <div className="relative z-10">
-                  <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mb-4">
-                    <FiLock className="text-white text-xl" />
+              <div className="bg-emerald-800 rounded-lg p-5 text-white">
+                <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3">
+                  <FaLeaf className="text-white text-sm" />
+                </div>
+                <h4 className="text-base font-bold mb-1">School Memories</h4>
+                <p className="text-xs text-emerald-100 mb-4">
+                  Preserving our school's legacy through photos and videos.
+                </p>
+                <div className="space-y-1 text-xs">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1 h-1 rounded-full bg-emerald-300"></div>
+                    <span>High quality media</span>
                   </div>
-                  <h4 className="text-lg font-bold mb-2">School Memories</h4>
-                  <p className="text-sm text-purple-200 mb-4">
-                    Preserving our school's legacy through photos and videos.
-                  </p>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
-                      <span>High quality media</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
-                      <span>Organized by category</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
-                      <span>Easy to download & share</span>
-                    </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-1 h-1 rounded-full bg-emerald-300"></div>
+                    <span>Organized by category</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-1 h-1 rounded-full bg-emerald-300"></div>
+                    <span>Easy to download & share</span>
                   </div>
                 </div>
               </div>
@@ -1726,57 +1376,30 @@ if (loading) {
           </div>
         </div>
 
-        {/* Feature Banner */}
-        <div className="relative overflow-hidden bg-gradient-to-r from-purple-900 to-indigo-800 rounded-3xl p-5 md:p-8 shadow-xl">
-          {/* Abstract Background */}
-          <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 blur-[80px] rounded-full -mr-24 -mt-24" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple-500/10 blur-[80px] rounded-full -ml-24 -mb-24" />
+        <div className="relative overflow-hidden bg-gradient-to-r from-emerald-800 to-teal-700 rounded-lg p-5">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-3xl rounded-full" />
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-emerald-500/10 blur-3xl rounded-full" />
 
-          <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-8">
+          <div className="relative z-10 flex flex-col md:flex-row items-center gap-4">
             
-            {/* Icon */}
             <div className="shrink-0">
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white flex items-center justify-center shadow-lg">
-                <FiImage className="text-purple-600 text-2xl md:text-3xl" />
+              <div className="w-12 h-12 rounded-lg bg-white flex items-center justify-center">
+                <FiImage className="text-emerald-700 text-xl" />
               </div>
             </div>
 
-            {/* Content */}
             <div className="flex-1 text-center md:text-left">
-              <h3 className="text-2xl md:text-3xl font-black text-white mb-2 tracking-tight">
+              <h3 className="text-lg font-bold text-white mb-1">
                 Preserving School History.
               </h3>
-              <p className="text-purple-200 text-sm md:text-base leading-relaxed max-w-xl mx-auto md:mx-0">
+              <p className="text-xs text-emerald-100 leading-relaxed">
                 Every photo tells a story. Explore decades of academic excellence, achievements, and memories.
               </p>
-
-              {/* Feature Grid */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
-                {[
-                  { label: 'High Quality', icon: FiStar, color: 'text-blue-300', bg: 'bg-blue-400/10' },
-                  { label: 'Organized', icon: FiFolder, color: 'text-emerald-300', bg: 'bg-emerald-400/10' },
-                  { label: 'Downloadable', icon: FiDownload, color: 'text-purple-300', bg: 'bg-purple-400/10' },
-                  { label: 'Shareable', icon: FiShare2, color: 'text-pink-300', bg: 'bg-pink-400/10' }
-                ].map((feature, idx) => (
-                  <div 
-                    key={idx} 
-                    className="flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/10"
-                  >
-                    <div className={`p-1.5 rounded-md ${feature.bg} ${feature.color} shrink-0`}>
-                      <feature.icon size={16} />
-                    </div>
-                    <span className="text-[10px] font-black uppercase tracking-wider text-purple-200 truncate">
-                      {feature.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Gallery Detail Modal */}
       {selectedGallery && (
         <ModernGalleryDetailModal
           gallery={selectedGallery}
@@ -1786,7 +1409,6 @@ if (loading) {
         />
       )}
 
-      {/* Share Modal */}
       <ShareModal
         isOpen={shareModalOpen}
         onClose={() => {
