@@ -175,21 +175,21 @@ const StaffSkeleton = ({ viewMode }) => {
   if (viewMode === 'list') {
     return (
       <div className="flex gap-6 p-6 border border-slate-200 rounded-lg bg-white/80 animate-pulse">
-        <div className="w-24 h-24 bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-lg shrink-0" />
+        <div className="w-24 h-24 bg-gradient-to-br from-teal-600 to-emerald-700 rounded-lg shrink-0" />
         <div className="flex-1 space-y-4">
-          <div className="h-6 bg-gradient-to-r from-emerald-400 to-emerald-500 rounded w-1/3" />
-          <div className="h-4 bg-gradient-to-r from-emerald-400 to-emerald-500 rounded w-1/4" />
-          <div className="h-12 bg-gradient-to-r from-emerald-400 to-emerald-500 rounded w-full" />
+          <div className="h-6 bg-gradient-to-r from-teal-600 to-emerald-700 rounded w-1/3" />
+          <div className="h-4 bg-gradient-to-r from-teal-600 to-emerald-700 rounded w-1/4" />
+          <div className="h-12 bg-gradient-to-r from-teal-600 to-emerald-700 rounded w-full" />
         </div>
       </div>
     );
   }
   return (
     <div className="border border-slate-200 rounded-lg bg-white/80 p-6 space-y-6 animate-pulse">
-      <div className="w-full aspect-[4/5] bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-lg" />
+      <div className="w-full aspect-[4/5] bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-lg" />
       <div className="space-y-3">
-        <div className="h-6 bg-gradient-to-r from-emerald-400 to-emerald-500 rounded w-3/4" />
-        <div className="h-4 bg-gradient-to-r from-emerald-400 to-emerald-500 rounded w-1/2" />
+        <div className="h-6 bg-gradient-to-r from-teal-600 to-emerald-700 rounded w-3/4" />
+        <div className="h-4 bg-gradient-to-r from-teal-600 to-emerald-700 rounded w-1/2" />
       </div>
     </div>
   );
