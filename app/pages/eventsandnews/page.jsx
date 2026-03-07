@@ -1139,7 +1139,8 @@ export default function ModernEventsNewsPage() {
       {/* Refresh & View Toggle Group */}
       <div className="flex flex-col items-center gap-3 w-full sm:w-auto">
         {/* Refresh Button */}
-        <button
+        <div>       
+           <button
           onClick={refreshData}
           disabled={refreshing}
           className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl font-bold text-[11px] sm:text-sm tracking-widest text-white hover:bg-white/20 w-full sm:w-auto transition-all disabled:opacity-70 disabled:cursor-not-allowed"
@@ -1158,7 +1159,8 @@ export default function ModernEventsNewsPage() {
               <span>REFRESH UPDATES</span>
             </>
           )}
-        </button>
+        </button></div>
+
 
         {/* View Toggle - Matching the theme */}
         <div className="flex bg-white/10 backdrop-blur-xl rounded-xl p-1 border border-white/20">
