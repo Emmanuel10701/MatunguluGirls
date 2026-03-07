@@ -1516,6 +1516,147 @@ const VisionMissionSection = ({ vision, mission, motto, videoTour, videoType, vi
     </div>
   );
 };
+
+
+// NEW: Academic Results Section Component
+const AcademicResultsSection = ({ documentData }) => {
+  const resultsData = [
+    {
+      name: 'Mock Exams',
+      pdf: documentData?.mockExamsResultsPdf,
+      pdfName: documentData?.mockExamsPdfName,
+      description: documentData?.mockExamsDescription,
+      year: documentData?.mockExamsYear,
+      term: documentData?.mockExamsTerm,
+      icon: FiFileText,
+      accent: 'text-rose-400',
+      bg: 'bg-rose-400/10'
+    },
+    {
+      name: 'KCSE Results',
+      pdf: documentData?.kcseResultsPdf,
+      pdfName: documentData?.kcsePdfName,
+      description: documentData?.kcseDescription,
+      year: documentData?.kcseYear,
+      term: documentData?.kcseTerm,
+      icon: FiTrendingUp,
+      accent: 'text-indigo-400',
+      bg: 'bg-indigo-400/10'
+    }
+  ];
+
+  const availableResults = resultsData.filter(result => result.pdf);
+  if (availableResults.length === 0) return null;
+
+  return (
+    /* Responsive Wrapper: Full width (rounded-none) on mobile, Elegant Card on desktop */
+    <div className="bg-white rounded-none md:rounded-[2.5rem] border-x-0 md:border border-slate-100 shadow-2xl overflow-hidden">
+      
+      {/* Header Section - Edge-to-edge look */}
+      <div className="relative p-6 md:p-12 bg-[#0F172A] text-white">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/20 blur-[80px] md:blur-[100px] rounded-full -mr-32 -mt-32" />
+        
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <div className="p-3 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shrink-0">
+              <IoStatsChartOutline className="text-blue-400 text-2xl md:text-3xl" />
+            </div>
+            <div className="min-w-0">
+              <h3 className="text-xl md:text-3xl font-black uppercase tracking-tighter">Academic <span className="text-blue-400">Reports</span></h3>
+              <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] mt-1">Official Performance Archives</p>
+            </div>
+          </div>
+          <div className="flex items-center self-start md:self-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl">
+            <FiAward className="text-amber-400" />
+            <span className="text-[10px] font-black uppercase tracking-widest text-white/70">Verified Data</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Grid - Results Cards */}
+      <div className="p-4 md:p-12 bg-slate-50/30">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
+          {availableResults.map((result, index) => (
+            <div 
+              key={index}
+              className="group bg-white border border-slate-200 rounded-2xl md:rounded-[2rem] p-6 transition-all hover:shadow-xl"
+            >
+              <div className="flex items-start justify-between mb-6">
+                <div className={`p-4 rounded-2xl ${result.bg} ${result.accent} shrink-0`}>
+                  <result.icon size={22} className="md:size-6" />
+                </div>
+                <div className="text-right">
+                  <span className="block text-xl font-black text-slate-900 leading-none">{result.year}</span>
+                  <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{result.term || 'Annual'}</span>
+                </div>
+              </div>
+              
+              <h4 className="font-black text-slate-900 text-[13px] md:text-sm uppercase tracking-tight mb-2 truncate">
+                {result.name}
+              </h4>
+              
+              {result.description && (
+                <p className="text-slate-400 text-[10px] font-bold leading-relaxed mb-6 line-clamp-2 min-h-[30px]">
+                  {result.description}
+                </p>
+              )}
+              
+              <a 
+                href={result.pdf}
+                download={result.pdfName}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 w-full py-4 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95"
+              >
+                <IoCloudDownloadOutline size={16} />
+                <span>Get Report</span>
+              </a>
+            </div>
+          ))}
+        </div>
+
+        {/* Additional Documents - Horizontal Bento */}
+        {documentData?.additionalDocuments && documentData.additionalDocuments.length > 0 && (
+          <div className="mt-10 md:mt-16 pt-10 border-t border-slate-200">
+            <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-6 px-1">
+              Resources & Support Docs
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {documentData.additionalDocuments.map((doc, index) => (
+                <div key={index} className="flex items-center justify-between p-4 md:p-6 bg-white rounded-2xl border border-slate-200 group transition-all">
+                  <div className="flex items-center gap-4 min-w-0">
+                    <div className="p-3 bg-slate-100 rounded-xl group-hover:bg-blue-50 transition-colors shrink-0">
+                      <IoDocumentTextOutline className="text-slate-500 group-hover:text-blue-500" />
+                    </div>
+                    <div className="min-w-0">
+                      <h5 className="font-black text-slate-900 text-[11px] uppercase tracking-wide truncate">
+                        {doc.description || doc.filename}
+                      </h5>
+                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-1">
+                        {doc.year} • {doc.term || 'General'}
+                      </p>
+                    </div>
+                  </div>
+                  <a 
+                    href={doc.filepath}
+                    download={doc.filename}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-slate-900 text-white rounded-xl active:scale-90"
+                  >
+                    <FiDownload size={14} />
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+
 const ModernFAQItem = ({ faq, index, openFaq, setOpenFaq }) => {
   const isOpen = openFaq === index;
 
@@ -1802,6 +1943,9 @@ export default function ComprehensiveAdmissions() {
       color: 'from-emerald-500 to-emerald-500'
     },
   ];
+
+
+
 
   // Admission paths - Updated based on your school's focus
   const admissionPaths = [
