@@ -84,54 +84,78 @@ const ModernModal = ({ children, open, onClose, maxWidth = '800px' }) => {
 // Modern Event Card
 const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid' }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
+// In ModernEventCard, replace the getCategoryStyle function with:
 const getCategoryStyle = (category) => {
   const styles = {
-    achievement: { 
-      bg: 'bg-amber-50', 
-      text: 'text-amber-700',
-      border: 'border-amber-200',
-      icon: <FiAward className="w-4 h-4" />
-    },
-    announcement: { 
+    academic: { 
       bg: 'bg-blue-50', 
       text: 'text-blue-700',
       border: 'border-blue-200',
-      icon: <FiBell className="w-4 h-4" />
+      iconColor: 'text-blue-600'
     },
-    development: { 
+    cultural: { 
       bg: 'bg-purple-50', 
       text: 'text-purple-700',
       border: 'border-purple-200',
-      icon: <FiTrendingUp className="w-4 h-4" />
+      iconColor: 'text-purple-600'
     },
     sports: { 
       bg: 'bg-emerald-50', 
       text: 'text-emerald-700',
       border: 'border-emerald-200',
-      icon: <FiZap className="w-4 h-4" />
+      iconColor: 'text-emerald-600'
     },
-    academic: { 
+    workshop: { 
+      bg: 'bg-amber-50', 
+      text: 'text-amber-700',
+      border: 'border-amber-200',
+      iconColor: 'text-amber-600'
+    },
+    science: { 
       bg: 'bg-cyan-50', 
       text: 'text-cyan-700',
       border: 'border-cyan-200',
-      icon: <FiBookOpen className="w-4 h-4" />
+      iconColor: 'text-cyan-600'
     },
-    event: { 
+    religious: { 
+      bg: 'bg-rose-50', 
+      text: 'text-rose-700',
+      border: 'border-rose-200',
+      iconColor: 'text-rose-600'
+    },
+    music: { 
       bg: 'bg-pink-50', 
       text: 'text-pink-700',
       border: 'border-pink-200',
-      icon: <FiCalendar className="w-4 h-4" />
+      iconColor: 'text-pink-600'
+    },
+    competition: { 
+      bg: 'bg-orange-50', 
+      text: 'text-orange-700',
+      border: 'border-orange-200',
+      iconColor: 'text-orange-600'
+    },
+    graduation: { 
+      bg: 'bg-indigo-50', 
+      text: 'text-indigo-700',
+      border: 'border-indigo-200',
+      iconColor: 'text-indigo-600'
+    },
+    meeting: { 
+      bg: 'bg-slate-50', 
+      text: 'text-slate-700',
+      border: 'border-slate-200',
+      iconColor: 'text-slate-600'
     },
     default: { 
       bg: 'bg-emerald-50', 
       text: 'text-emerald-700',
       border: 'border-emerald-200',
-      icon: <IoNewspaperOutline className="w-4 h-4" />
+      iconColor: 'text-emerald-600'
     }
   };
   return styles[category] || styles.default;
 };
-
 
 
   const formatDate = (dateString) => {
@@ -194,21 +218,20 @@ const getCategoryStyle = (category) => {
           <p className="text-xs text-slate-900 font-semibold mb-3 line-clamp-2">
             {event.description || 'Join us for this upcoming school event.'}
           </p>
-
-          <div className="space-y-2 mb-4">
-            <div className="flex items-center gap-2 text-xs text-slate-800">
-              <FiCalendar size={12} className="text-emerald-900" />
-              <span>{formatDate(event.date)}</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs text-slate-800">
-              <FiClock size={12} className="text-emerald-900" />
-              <span>{event.time || 'All Day'}</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs text-slate-800">
-              <FiMapPin size={12} className="text-emerald-900" />
-              <span className="truncate">{event.location || 'Main Campus'}</span>
-            </div>
-          </div>
+<div className="space-y-2 mb-4">
+  <div className="flex items-center gap-2 text-xs text-slate-800">
+    <FiCalendar size={12} className={theme.iconColor} />
+    <span>{formatDate(event.date)}</span>
+  </div>
+  <div className="flex items-center gap-2 text-xs text-slate-800">
+    <FiClock size={12} className={theme.iconColor} />
+    <span>{event.time || 'All Day'}</span>
+  </div>
+  <div className="flex items-center gap-2 text-xs text-slate-800">
+    <FiMapPin size={12} className={theme.iconColor} />
+    <span className="truncate">{event.location || 'Main Campus'}</span>
+  </div>
+</div>
 
           <button className="w-full py-2 bg-emerald-50 text-emerald-700 rounded-lg text-xs font-medium border border-emerald-200">
             View Details
@@ -280,8 +303,64 @@ const getCategoryStyle = (category) => {
 };
 
 // Modern News Card
+// Modern News Card
 const ModernNewsCard = ({ news, onView, onBookmark }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
+
+  const getCategoryStyle = (category) => {
+    const styles = {
+      achievement: { 
+        bg: 'bg-amber-50', 
+        text: 'text-amber-700',
+        border: 'border-amber-200',
+        icon: <FiAward className="w-4 h-4" />,
+        iconColor: 'text-amber-600'
+      },
+      announcement: { 
+        bg: 'bg-blue-50', 
+        text: 'text-blue-700',
+        border: 'border-blue-200',
+        icon: <FiBell className="w-4 h-4" />,
+        iconColor: 'text-blue-600'
+      },
+      development: { 
+        bg: 'bg-purple-50', 
+        text: 'text-purple-700',
+        border: 'border-purple-200',
+        icon: <FiTrendingUp className="w-4 h-4" />,
+        iconColor: 'text-purple-600'
+      },
+      sports: { 
+        bg: 'bg-emerald-50', 
+        text: 'text-emerald-700',
+        border: 'border-emerald-200',
+        icon: <FiZap className="w-4 h-4" />,
+        iconColor: 'text-emerald-600'
+      },
+      academic: { 
+        bg: 'bg-cyan-50', 
+        text: 'text-cyan-700',
+        border: 'border-cyan-200',
+        icon: <FiBookOpen className="w-4 h-4" />,
+        iconColor: 'text-cyan-600'
+      },
+      event: { 
+        bg: 'bg-pink-50', 
+        text: 'text-pink-700',
+        border: 'border-pink-200',
+        icon: <FiCalendar className="w-4 h-4" />,
+        iconColor: 'text-pink-600'
+      },
+      default: { 
+        bg: 'bg-emerald-50', 
+        text: 'text-emerald-700',
+        border: 'border-emerald-200',
+        icon: <IoNewspaperOutline className="w-4 h-4" />,
+        iconColor: 'text-emerald-600'
+      }
+    };
+    return styles[category] || styles.default;
+  };
 
   const formatDate = (dateString) => {
     try {
@@ -296,10 +375,12 @@ const ModernNewsCard = ({ news, onView, onBookmark }) => {
     }
   };
 
+  const theme = getCategoryStyle(news.category);
+
   return (
     <div 
       onClick={() => onView(news)}
-      className="bg-white rounded-lg border border-slate-200 overflow-hidden cursor-pointer"
+      className="bg-white rounded-lg border border-slate-200 overflow-hidden cursor-pointer hover:shadow-md transition-all group"
     >
       <div className="relative h-32 w-full">
         <img
@@ -309,9 +390,10 @@ const ModernNewsCard = ({ news, onView, onBookmark }) => {
         />
         
         <div className="absolute top-2 left-2">
-<span className={`px-2 py-0.5 rounded text-[8px] font-medium uppercase tracking-wider border ${theme.bg} ${theme.text} ${theme.border}`}>
-  {news.category || 'News'}
-</span>        </div>
+          <span className={`px-2 py-0.5 rounded text-[8px] font-medium uppercase tracking-wider border ${theme.bg} ${theme.text} ${theme.border}`}>
+            {news.category || 'News'}
+          </span>
+        </div>
 
         <button
           onClick={(e) => {
@@ -319,10 +401,10 @@ const ModernNewsCard = ({ news, onView, onBookmark }) => {
             onBookmark(news);
             setIsBookmarked(!isBookmarked);
           }}
-          className={`absolute top-2 right-2 p-1.5 rounded-lg border ${
+          className={`absolute top-2 right-2 p-1.5 rounded-lg border transition-all ${
             isBookmarked 
               ? 'bg-amber-500 border-amber-500 text-white' 
-              : 'bg-white/90 border-slate-200 text-slate-600'
+              : 'bg-white/90 border-slate-200 text-slate-600 hover:bg-slate-100'
           }`}
         >
           <FiBookmark className={`w-3 h-3 ${isBookmarked ? 'fill-current' : ''}`} />
@@ -335,21 +417,21 @@ const ModernNewsCard = ({ news, onView, onBookmark }) => {
       </div>
 
       <div className="p-3">
-        <h3 className="text-sm font-bold text-slate-900 mb-1 line-clamp-2">
+        <h3 className="text-sm font-bold text-slate-900 mb-1 line-clamp-2 group-hover:text-emerald-600 transition-colors">
           {news.title}
         </h3>
         
-        <p className="text-xs text-slate-800 mb-2 line-clamp-2">
+        <p className="text-xs text-slate-600 mb-2 line-clamp-2">
           {news.excerpt || news.description || 'Latest news from our school community.'}
         </p>
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1 text-xs text-slate-800">
-            <FiHeart size={10} className="text-emerald-600" />
+          <div className="flex items-center gap-1 text-xs text-slate-500">
+            <FiHeart size={10} className={theme.iconColor} />
             <span>{news.likes || 0}</span>
           </div>
           
-          <div className="flex items-center gap-1 text-emerald-600 text-[10px] font-medium">
+          <div className={`flex items-center gap-1 text-[10px] font-medium ${theme.text}`}>
             Read More
             <FiArrowRight size={8} />
           </div>
