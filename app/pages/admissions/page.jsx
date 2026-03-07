@@ -2256,7 +2256,6 @@ return (
 
     <div>
       <VideoTourSection videoUrl={schoolData?.videoTourUrl} />
-      
     </div>
 
     {/* 3. Admission Paths - Mobile Optimized Grid */}
