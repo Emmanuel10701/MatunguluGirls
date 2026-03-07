@@ -1646,6 +1646,133 @@ const AcademicResultsSection = ({ documentData }) => {
 };
 
 
+
+const ModernUniformRequirementsSection = ({ 
+  admissionFeeDistribution, 
+  admissionFeePdf, 
+  admissionFeePdfName,
+  admissionFeeDescription,
+  admissionFeeYear,
+  admissionFeeTerm
+}) => {
+  const uniformItems = admissionFeeDistribution || [];
+  const totalCost = uniformItems.reduce((sum, item) => sum + (item.amount || 0), 0);
+
+  return (
+    <div className="bg-white rounded-lg md:rounded-2xl border border-slate-200 overflow-hidden">
+      
+      {/* Header Section */}
+      <div className="p-6 md:p-8 bg-slate-900 text-white">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <IoShirtOutline className="text-emerald-400 text-2xl md:text-3xl" />
+            <div>
+              <h3 className="text-xl md:text-2xl font-bold tracking-tight">
+                Admission <span className="text-emerald-400">Breakdown</span>
+              </h3>
+              <div className="flex items-center gap-2 mt-1 text-sm text-slate-400">
+                <span>{admissionFeeYear || '2026'} • {admissionFeeTerm || 'Full Session'}</span>
+                {admissionFeeDescription && (
+                  <>
+                    <span>•</span>
+                    <span className="italic">{admissionFeeDescription}</span>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+          
+          {admissionFeePdf && (
+            <a 
+              href={admissionFeePdf}
+              download={admissionFeePdfName}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-medium transition-colors"
+            >
+              <IoCloudDownloadOutline className="text-lg" />
+              <span>Download PDF</span>
+            </a>
+          )}
+        </div>
+      </div>
+
+      {/* Content Section */}
+      <div className="p-6 md:p-8 bg-slate-50">
+        {uniformItems.length > 0 ? (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {uniformItems.map((item, index) => (
+                <div 
+                  key={item.id || index}
+                  className="bg-white border border-slate-200 rounded-lg p-5"
+                >
+                  <div className="flex justify-between items-start mb-3">
+                    <h4 className="font-semibold text-slate-900">
+                      {item.name}
+                    </h4>
+                    <div className={`px-2 py-1 rounded text-xs font-medium ${
+                      item.optional ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'
+                    }`}>
+                      {item.optional ? 'Optional' : 'Required'}
+                    </div>
+                  </div>
+                  
+                  {item.description && (
+                    <p className="text-sm text-slate-500 mb-4">
+                      {item.description}
+                    </p>
+                  )}
+                  
+                  <div className="flex justify-between items-center pt-3 border-t border-slate-100">
+                    <span className="text-sm text-slate-500">Amount</span>
+                    <span className="text-lg font-bold text-slate-900">
+                      KSh {parseInt(item.amount || 0).toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Total Summary */}
+            <div className="mt-6 p-6 bg-white border border-slate-200 rounded-lg">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <FiDollarSign className="text-emerald-600 text-xl" />
+                  <div>
+                    <span className="text-sm text-slate-500 block">Total Admission Cost</span>
+                    <span className="text-2xl font-bold text-slate-900">
+                      KSh {totalCost.toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="flex gap-6 text-sm">
+                  <div>
+                    <span className="text-slate-500 block">Mandatory</span>
+                    <span className="font-semibold text-slate-900">{uniformItems.filter(i => !i.optional).length} items</span>
+                  </div>
+                  <div>
+                    <span className="text-slate-500 block">Optional</span>
+                    <span className="font-semibold text-emerald-600">{uniformItems.filter(i => i.optional).length} items</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="text-center py-12">
+            <FiAlertTriangle className="w-12 h-12 text-slate-300 mx-auto mb-3" />
+            <h4 className="text-lg font-semibold text-slate-900 mb-1">No Items Available</h4>
+            <p className="text-sm text-slate-500">The admission breakdown is being updated.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+
 const ModernFAQItem = ({ faq, index, openFaq, setOpenFaq }) => {
   const isOpen = openFaq === index;
 
