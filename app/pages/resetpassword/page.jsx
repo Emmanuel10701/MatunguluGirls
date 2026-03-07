@@ -291,7 +291,6 @@ const ResetPasswordContent = () => {
               </div>
             </div>
 
-            {/* Error Message */}
             {error && <ErrorMessage message={error} />}
 
             <form onSubmit={handleSubmit} className="relative z-10 space-y-4 sm:space-y-6">
