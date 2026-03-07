@@ -1395,7 +1395,6 @@ export default function StudentCounseling() {
                 </div>
               </div>
 
-          {/* Refresh & View Toggle Group */}
 <div className="flex flex-nowrap items-center gap-2 sm:gap-3">
   {/* Refresh Button - Refined Size */}
   <button
