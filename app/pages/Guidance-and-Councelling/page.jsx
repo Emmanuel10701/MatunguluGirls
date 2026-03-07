@@ -59,13 +59,14 @@ import {
   IoTimeOutline,
   IoPersonOutline,
   IoShareOutline,
-  IoNewspaperOutline
+  IoNewspaperOutline,
+  IoSchoolOutline
 } from 'react-icons/io5';
 import { CircularProgress, Box, Typography, Stack } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Modern Modal Component with Glass Morphism - Updated to match About page
+// Modern Modal Component with Glass Morphism
 const ModernModal = ({ children, open, onClose, maxWidth = '800px', blur = true }) => {
   if (!open) return null;
 
@@ -94,17 +95,16 @@ const ModernModal = ({ children, open, onClose, maxWidth = '800px', blur = true 
   );
 };
 
-// Modern Card Component - Updated to About page style
+// Modern Card Component
 const GlassCard = ({ children, className = '' }) => (
   <div className={`bg-white rounded-[2rem] border border-slate-100 shadow-xl shadow-slate-900/5 ${className}`}>
     {children}
   </div>
 );
 
-// Modern Counseling Card with Enhanced Design - Updated to About page style
-const ModernCounselingCard = ({ session, onView, onBookmark, viewMode = 'grid' }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isBookmarked, setIsBookmarked] = useState(false);
+// Modern Counseling Card with Enhanced Design
+const ModernCounselingCard = ({ session, onView, onBookmark, viewMode = 'grid', isBookmarked: initialBookmarked }) => {
+  const [isBookmarked, setIsBookmarked] = useState(initialBookmarked || false);
 
   const getCategoryStyle = (category) => {
     const styles = {
@@ -176,10 +176,17 @@ const ModernCounselingCard = ({ session, onView, onBookmark, viewMode = 'grid' }
     }
   };
 
-  // Modern Grid View - Updated to About page style
+  const handleBookmarkClick = (e) => {
+    e.stopPropagation();
+    const newState = !isBookmarked;
+    setIsBookmarked(newState);
+    onBookmark?.(session, newState);
+  };
+
+  const theme = getCategoryStyle(session.category);
+
+  // Modern Grid View
   if (viewMode === 'grid') {
-    const theme = getCategoryStyle(session.category);
-    
     return (
       <div 
         onClick={() => onView(session)}
@@ -217,11 +224,8 @@ const ModernCounselingCard = ({ session, onView, onBookmark, viewMode = 'grid' }
           {/* Permanent Bookmark Button (Top Right) */}
           <div className="absolute top-4 right-4">
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onBookmark(session);
-              }}
-              className={`p-2.5 rounded-xl backdrop-blur-md border shadow-sm ${
+              onClick={handleBookmarkClick}
+              className={`p-2.5 rounded-xl backdrop-blur-md border shadow-sm transition-all ${
                 isBookmarked 
                   ? 'bg-emerald-500 border-emerald-500 text-white' 
                   : 'bg-white/90 border-emerald-100/20 text-slate-700'
@@ -255,7 +259,7 @@ const ModernCounselingCard = ({ session, onView, onBookmark, viewMode = 'grid' }
               <div className={`p-1.5 rounded-lg ${theme.iconBg}`}>
                 <FiCalendar className={`${theme.iconColor}`} size={14} />
               </div>
-              <span className="text-[10px] font-black text-slate-700 uppercase tracking-tight">
+              <span className="text-[10px] font-black text-slate-700 uppercase tracking-tight whitespace-nowrap">
                 {formatDate(session.date)}
               </span>
             </div>
@@ -264,7 +268,7 @@ const ModernCounselingCard = ({ session, onView, onBookmark, viewMode = 'grid' }
               <div className={`p-1.5 rounded-lg ${theme.iconBg}`}>
                 <FiClock className={`${theme.iconColor}`} size={14} />
               </div>
-              <span className="text-[10px] font-black text-slate-700 uppercase tracking-tight truncate">
+              <span className="text-[10px] font-black text-slate-700 uppercase tracking-tight whitespace-nowrap">
                 {session.time || 'Flexible'}
               </span>
             </div>
@@ -320,7 +324,7 @@ const ModernCounselingCard = ({ session, onView, onBookmark, viewMode = 'grid' }
     );
   }
 
-  // List View - Updated to About page style
+  // List View
   return (
     <div 
       onClick={() => onView(session)}
@@ -371,7 +375,7 @@ const ModernCounselingCard = ({ session, onView, onBookmark, viewMode = 'grid' }
           {/* Footer: Details & Action */}
           <div className="flex items-center justify-between mt-auto">
             <div className="flex items-center gap-2 text-[10px] text-slate-500">
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 whitespace-nowrap">
                 <FiClock className="text-slate-400" size={10} />
                 <span className="font-semibold">{session.time}</span>
               </div>
@@ -388,9 +392,8 @@ const ModernCounselingCard = ({ session, onView, onBookmark, viewMode = 'grid' }
   );
 };
 
-// Modern Support Team Card - Updated to About page style
+// Modern Support Team Card
 const ModernSupportTeamCard = ({ member, onView, onContact, viewMode = 'grid' }) => {
-  const [isHovered, setIsHovered] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const getRoleStyle = (role) => {
@@ -467,7 +470,7 @@ const ModernSupportTeamCard = ({ member, onView, onContact, viewMode = 'grid' })
           <img
             src={member.image || '/default-avatar.jpg'}
             alt={member.name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           
@@ -506,7 +509,7 @@ const ModernSupportTeamCard = ({ member, onView, onContact, viewMode = 'grid' })
           <div className="hidden sm:grid grid-cols-2 gap-3 mb-4">
             <div className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 border border-slate-100">
               <FiPhone className={roleStyle.iconColor} size={14} />
-              <span className="text-[10px] font-black text-slate-700 truncate">{member.phone || 'No Phone'}</span>
+              <span className="text-[10px] font-black text-slate-700 truncate whitespace-nowrap">{member.phone || 'No Phone'}</span>
             </div>
             <div className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 border border-slate-100">
               <FiMail className={roleStyle.iconColor} size={14} />
@@ -518,7 +521,7 @@ const ModernSupportTeamCard = ({ member, onView, onContact, viewMode = 'grid' })
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-1.5">
               <div className={`w-1.5 h-1.5 rounded-full ${isSupport ? 'bg-emerald-500 animate-pulse' : 'bg-emerald-400'}`} />
-              <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">
+              <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider whitespace-nowrap">
                 {isSupport ? '24/7' : 'Active'}
               </span>
             </div>
@@ -536,7 +539,7 @@ const ModernSupportTeamCard = ({ member, onView, onContact, viewMode = 'grid' })
     );
   }
 
-  // List View - Updated to About page style
+  // List View
   return (
     <div 
       onClick={() => onView(member)}
@@ -573,7 +576,7 @@ const ModernSupportTeamCard = ({ member, onView, onContact, viewMode = 'grid' })
           <div className="flex items-center justify-between mt-auto">
             <div className="flex items-center gap-2 text-[10px] text-slate-500">
               {member.phone && (
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 whitespace-nowrap">
                   <FiPhone className="text-slate-400" size={10} />
                   <span className="font-semibold">{member.phone}</span>
                 </div>
@@ -591,7 +594,7 @@ const ModernSupportTeamCard = ({ member, onView, onContact, viewMode = 'grid' })
   );
 };
 
-// Team Member Modal - Updated to About page style
+// Team Member Modal
 const TeamMemberModal = ({ member, isOpen, onClose }) => {
   const [activeTab, setActiveTab] = useState('overview');
 
@@ -650,7 +653,7 @@ const TeamMemberModal = ({ member, isOpen, onClose }) => {
               {['overview', 'contact', 'availability'].map((tab) => (
                 <button
                   key={tab}
-                  className={`py-3 text-[10px] sm:text-xs font-black uppercase tracking-widest border-b-2 transition-all ${
+                  className={`py-3 text-[10px] sm:text-xs font-black uppercase tracking-widest border-b-2 transition-all whitespace-nowrap ${
                     activeTab === tab ? 'border-emerald-600 text-emerald-600' : 'border-transparent text-slate-400'
                   }`}
                   onClick={() => setActiveTab(tab)}
@@ -730,7 +733,7 @@ const TeamMemberModal = ({ member, isOpen, onClose }) => {
   );
 };
 
-// Modern Detail Modal - Updated to About page style
+// Modern Detail Modal
 const ModernDetailModal = ({ session, onClose, onContact }) => {
   if (!session) return null;
 
@@ -887,15 +890,15 @@ const ModernDetailModal = ({ session, onClose, onContact }) => {
 
               {/* Quick Info Bar */}
               <div className="flex flex-wrap gap-y-2 gap-x-4 sm:gap-x-6 text-[10px] sm:text-xs font-black text-slate-500">
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 whitespace-nowrap">
                   <IoCalendarClearOutline className="text-emerald-500 text-sm sm:text-base" />
                   {formatFullDate(session.date)}
                 </div>
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 whitespace-nowrap">
                   <IoTimeOutline className="text-emerald-500 text-sm sm:text-base" />
                   {session.time || 'Flexible'}
                 </div>
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 truncate">
                   <IoPersonOutline className="text-emerald-500 text-sm sm:text-base" />
                   <span className="truncate max-w-[120px] sm:max-w-none">{session.counselor || 'Counselor'}</span>
                 </div>
@@ -961,7 +964,7 @@ const ModernDetailModal = ({ session, onClose, onContact }) => {
   );
 };
 
-// Stats Card Component - Updated to About page style
+// Stats Card Component
 const ModernStatCard = ({ stat }) => {
   const Icon = stat.icon;
   
@@ -1166,6 +1169,19 @@ export default function StudentCounseling() {
     }
   ]);
 
+  // Load bookmarks from localStorage
+  useEffect(() => {
+    const savedBookmarks = localStorage.getItem('bookmarkedCounselingSessions');
+    if (savedBookmarks) {
+      setBookmarkedSessions(new Set(JSON.parse(savedBookmarks)));
+    }
+  }, []);
+
+  // Save bookmarks to localStorage
+  useEffect(() => {
+    localStorage.setItem('bookmarkedCounselingSessions', JSON.stringify([...bookmarkedSessions]));
+  }, [bookmarkedSessions]);
+
   // Categories for filtering
   const categoryOptions = [
     { id: 'all', name: 'All Sessions', icon: FiBookOpen, gradient: 'from-emerald-500 to-emerald-600' },
@@ -1266,14 +1282,14 @@ export default function StudentCounseling() {
     return matchesTab && matchesSearch;
   });
 
-  const handleBookmark = (session) => {
+  const handleBookmark = (session, isBookmarked) => {
     const newBookmarked = new Set(bookmarkedSessions);
-    if (newBookmarked.has(session.id)) {
-      newBookmarked.delete(session.id);
-      toast.success('Removed from bookmarks');
-    } else {
+    if (isBookmarked) {
       newBookmarked.add(session.id);
       toast.success('Bookmarked session');
+    } else {
+      newBookmarked.delete(session.id);
+      toast.success('Removed from bookmarks');
     }
     setBookmarkedSessions(newBookmarked);
   };
@@ -1345,83 +1361,130 @@ export default function StudentCounseling() {
       <Toaster position="top-right" richColors />
       
       <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header - Updated to match About page */}
-        <div className="relative bg-emerald-950 rounded-[2.5rem] p-8 md:p-12 text-white overflow-hidden shadow-2xl border border-white/5 mb-8">
-          {/* Background with subtle pattern */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-600/20 rounded-full blur-[120px]"></div>
-          </div>
-
-          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-            <div className="space-y-4">
-              {/* Institutional Branding */}
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/20 backdrop-blur-md mb-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                <span className="text-[9px] font-black tracking-[0.3em] text-emerald-200 uppercase">
-                  Matungulu Girls High School
-                </span>
+        
+        {/* Modern Hero Header - Matungulu Girls Theme */}
+        <div className="relative bg-gradient-to-r from-emerald-900 to-teal-800 rounded-[2.5rem] p-6 md:p-10 text-white overflow-hidden border border-emerald-700/30 mb-8 shadow-2xl">
+          {/* Background Glows */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
+          
+          <div className="relative z-10">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6">
+              <div>
+                {/* School Branding */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-8 w-1 bg-emerald-400 rounded-full shadow-[0_0_15px_rgba(52,211,153,0.5)]" />
+                  <div>
+                    <h2 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-emerald-400">
+                      Matungulu Girls High School
+                    </h2>
+                    <p className="text-[8px] sm:text-[10px] italic font-medium text-emerald-200/60 tracking-widest uppercase">
+                      "Strive to Excel"
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Title */}
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/10">
+                    <IoSchoolOutline className="text-xl sm:text-2xl md:text-3xl text-emerald-300" />
+                  </div>
+                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white tracking-tight">
+                    Guidance & <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300">Counseling</span>
+                  </h1>
+                </div>
               </div>
 
-              {/* Title Area */}
-              <h1 className="text-xl md:text-2xl lg:text-3xl font-black tracking-tighter leading-none">
-                GUIDANCE & <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-white/70">COUNSELING</span>
-              </h1>
+              {/* Refresh & View Toggle Group */}
+              <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                {/* Refresh Button */}
+                <button
+                  onClick={refreshData}
+                  disabled={refreshing}
+                  className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl font-bold text-[11px] sm:text-sm tracking-widest text-white hover:bg-white/20 w-full sm:w-auto transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {refreshing ? (
+                    <>
+                      <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      <span>REFRESHING...</span>
+                    </>
+                  ) : (
+                    <>
+                      <FiRotateCw className="text-base sm:text-lg" />
+                      <span>REFRESH DATA</span>
+                    </>
+                  )}
+                </button>
 
-              {/* Summary Sentence */}
-              <p className="max-w-xl text-slate-300 text-xs md:text-sm font-medium leading-relaxed">
-                Professional support for <span className="text-emerald-400 font-black border-b-2 border-emerald-500/50 pb-0.5">Academic & Emotional Well-being</span>. 
-                Providing a safe space for every student to grow and thrive.
+                {/* View Toggle - Matching the theme */}
+                <div className="flex bg-white/10 backdrop-blur-xl rounded-xl p-1 border border-white/20">
+                  <button
+                    onClick={() => setViewMode('grid')}
+                    className={`p-2 sm:p-2.5 rounded-lg transition-all ${
+                      viewMode === 'grid' 
+                        ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' 
+                        : 'text-emerald-200/70 hover:text-white'
+                    }`}
+                  >
+                    <FiGrid size={16} className="sm:w-[18px] sm:h-[18px]" />
+                  </button>
+                  <button
+                    onClick={() => setViewMode('list')}
+                    className={`p-2 sm:p-2.5 rounded-lg transition-all ${
+                      viewMode === 'list' 
+                        ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' 
+                        : 'text-emerald-200/70 hover:text-white'
+                    }`}
+                  >
+                    <FiList size={16} className="sm:w-[18px] sm:h-[18px]" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Stats Summary */}
+            <div className="mb-4 sm:mb-6 px-1">
+              <p className="text-emerald-100/90 text-xs sm:text-base font-medium leading-relaxed sm:leading-loose">
+                <span className="text-white font-black text-base sm:text-xl md:text-2xl underline decoration-emerald-500/50 underline-offset-4 mr-1">
+                  {counselingSessions.length}
+                </span> 
+                <span className="tracking-tight sm:tracking-normal">counseling sessions and</span>
+                <span className="text-white font-black text-base sm:text-xl md:text-2xl underline decoration-teal-500/50 underline-offset-4 ml-1 mr-1">
+                  {teamMembers.length}
+                </span>
+                <span className="tracking-tight sm:tracking-normal">team members available</span>
               </p>
             </div>
 
-            {/* Action Group */}
-            <div className="flex flex-row items-center justify-between sm:justify-start gap-2 sm:gap-4 w-full sm:w-auto">
-              {/* View Toggle */}
-              <div className="flex bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl border border-white/10 p-1">
-                <button
-                  onClick={() => setViewMode('grid')}
-                  className={`p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all ${
-                    viewMode === 'grid' ? 'bg-emerald-500/20 text-white shadow-lg' : 'text-slate-400 hover:text-white'
-                  }`}
-                >
-                  <FiGrid size={16} className="sm:w-[18px] sm:h-[18px]" />
-                </button>
-                <button
-                  onClick={() => setViewMode('list')}
-                  className={`p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all ${
-                    viewMode === 'list' ? 'bg-emerald-500/20 text-white shadow-lg' : 'text-slate-400 hover:text-white'
-                  }`}
-                >
-                  <FiList size={16} className="sm:w-[18px] sm:h-[18px]" />
-                </button>
+            {/* Quick Stats Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Sessions</p>
+                <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{counselingSessions.length}</p>
               </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Team</p>
+                <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{teamMembers.length}</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Categories</p>
+                <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{categories.length}</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Support</p>
+                <p className="text-lg sm:text-xl md:text-2xl font-black text-white">24/7</p>
+              </div>
+            </div>
 
-              {/* Refresh Button */}
-              <button
-                onClick={refreshData}
-                disabled={refreshing}
-                className="
-                  flex-1 sm:flex-none
-                  flex items-center justify-center gap-2 sm:gap-3 
-                  bg-white text-emerald-950 
-                  px-4 sm:px-8 
-                  py-2.5 sm:py-4 
-                  rounded-xl sm:rounded-2xl 
-                  font-black text-[9px] sm:text-[10px] 
-                  tracking-[0.15em] sm:tracking-[0.2em] 
-                  uppercase transition-all active:scale-95 disabled:opacity-50
-                "
-              >
-                {refreshing ? (
-                  <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-emerald-950/20 border-t-emerald-950 rounded-full animate-spin" />
-                ) : (
-                  <FiRotateCw className="text-sm sm:text-base" />
-                )}
-                <span>{refreshing ? "LOADING" : "REFRESH"}</span>
-              </button>
+            {/* Additional Info */}
+            <div className="mt-4 text-xs sm:text-sm text-emerald-200/80">
+              <span className="inline-flex items-center gap-1">
+                <IoSparkles className="text-emerald-300" size={14} />
+                Professional support for academic & emotional well-being
+              </span>
             </div>
           </div>
         </div>
@@ -1468,6 +1531,7 @@ export default function StudentCounseling() {
                     setIsTeamModalOpen(true);
                   }}
                   onContact={handleContactSupport}
+                  viewMode="grid"
                 />
               ))}
             </div>
@@ -1610,6 +1674,7 @@ export default function StudentCounseling() {
                       onView={setSelectedSession}
                       onBookmark={handleBookmark}
                       viewMode={viewMode}
+                      isBookmarked={bookmarkedSessions.has(session.id)}
                     />
                   ))}
                 </div>
