@@ -50,40 +50,12 @@ import {
   IoShareOutline,
   IoSchoolOutline
 } from 'react-icons/io5';
-import { CircularProgress, Box, Typography, Stack } from '@mui/material';
+import { CircularProgress, Stack } from '@mui/material';
 import { FaFacebookF, FaTwitter, FaWhatsapp, FaTelegram, FaEnvelope, FaLeaf } from 'react-icons/fa';
 
-// Modern Modal Component
-const ModernModal = ({ children, open, onClose, maxWidth = '800px' }) => {
-  if (!open) return null;
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div 
-        className="relative bg-white rounded-lg shadow-2xl overflow-hidden border border-slate-200"
-        style={{ 
-          width: '90%',
-          maxWidth: maxWidth,
-          maxHeight: '90vh'
-        }}
-      >
-        <div className="absolute top-4 right-4 z-10">
-          <button 
-            onClick={onClose}
-            className="p-2 bg-slate-100 rounded-full border border-slate-200"
-          >
-            <FiX className="text-slate-600 w-5 h-5" />
-          </button>
-        </div>
-        {children}
-      </div>
-    </div>
-  );
-};
-
 // MODERN EVENT CARD - REFINED
-const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid' }) => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
+const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid', isBookmarked: initialBookmarked }) => {
+  const [isBookmarked, setIsBookmarked] = useState(initialBookmarked || false);
   const [showDetails, setShowDetails] = useState(false);
 
   const getCategoryStyle = (category) => {
@@ -100,6 +72,13 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid' }) => {
   const theme = getCategoryStyle(event.category);
   const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'TBD';
 
+  const handleBookmarkClick = (e) => {
+    e.stopPropagation();
+    const newState = !isBookmarked;
+    setIsBookmarked(newState);
+    onBookmark?.(event, newState);
+  };
+
   if (viewMode === 'grid') {
     return (
       <>
@@ -111,14 +90,14 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid' }) => {
                 {event.category || 'Event'}
               </span>
             </div>
-            <button onClick={(e) => { e.stopPropagation(); setIsBookmarked(!isBookmarked); onBookmark(event); }} 
+            <button onClick={handleBookmarkClick} 
               className={`absolute top-3 right-3 p-2 rounded-xl ${isBookmarked ? 'bg-amber-500 text-white' : 'bg-white/90 text-slate-600'} shadow-lg`}>
               <FiBookmark className={isBookmarked ? 'fill-current' : ''} />
             </button>
           </div>
           <div className="p-5">
             <h3 className="text-base font-black text-slate-900 mb-2 line-clamp-1">{event.title}</h3>
-            <p className="text-sm text-slate-600 mb-4 line-clamp-2">{event.description || 'No description available'}</p>
+            <p className="text-sm text-slate-600 mb-4 line-clamp-2">{event.description || event.excerpt || 'No description available'}</p>
             <div className="space-y-2 mb-4">
               <div className="flex items-center gap-2 text-xs font-bold text-slate-600 bg-slate-50 p-2 rounded-lg">
                 <FiCalendar className={theme.iconColor} /> {formatDate(event.date)}
@@ -153,7 +132,7 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid' }) => {
               </div>
               <div className="p-4 sm:p-6">
                 <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-3">{event.title}</h2>
-                <p className="text-sm sm:text-base text-slate-600 mb-6">{event.description || 'No description available'}</p>
+                <p className="text-sm sm:text-base text-slate-600 mb-6">{event.description || event.excerpt || 'No description available'}</p>
                 
                 <div className="space-y-3 sm:space-y-4 mb-6">
                   <div className="flex items-center gap-3 text-sm text-slate-600">
@@ -172,7 +151,7 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid' }) => {
 
                 <div className="flex flex-col sm:flex-row gap-3">
                   <button 
-                    onClick={() => { onView(event); setShowDetails(false); }}
+                    onClick={() => { onView?.(event); setShowDetails(false); }}
                     className="flex-1 py-3 bg-gradient-to-r from-emerald-800 to-teal-700 text-white rounded-xl text-sm font-black tracking-widest shadow-lg">
                     VIEW FULL DETAILS
                   </button>
@@ -202,14 +181,14 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid' }) => {
               <span className={`px-2 sm:px-3 py-1 rounded-md text-[9px] sm:text-[10px] font-black uppercase tracking-wider ${theme.bg} ${theme.text} border ${theme.border} shadow-sm`}>
                 {event.category}
               </span>
-              <FiBookmark onClick={(e) => { e.stopPropagation(); setIsBookmarked(!isBookmarked); }} 
+              <FiBookmark onClick={handleBookmarkClick} 
                 className={`cursor-pointer text-base sm:text-lg ${isBookmarked ? 'text-amber-500 fill-current' : 'text-slate-300'}`} />
             </div>
             <h3 className="text-sm sm:text-base font-black text-slate-900 truncate mb-1">{event.title}</h3>
-            <p className="text-xs text-slate-600 mb-2 line-clamp-1">{event.description || 'No description'}</p>
-            <div className="flex flex-wrap gap-2 sm:gap-3 text-[10px] sm:text-[11px] text-slate-500 font-bold">
-              <span className="flex items-center gap-1"><FiCalendar className={theme.iconColor} /> {formatDate(event.date)}</span>
-              <span className="flex items-center gap-1"><FiClock className={theme.iconColor} /> {event.time || 'All Day'}</span>
+            <p className="text-xs text-slate-600 mb-2 line-clamp-1">{event.description || event.excerpt || 'No description'}</p>
+            <div className="flex gap-2 sm:gap-3 text-[10px] sm:text-[11px] text-slate-500 font-bold">
+              <span className="flex items-center gap-1 whitespace-nowrap"><FiCalendar className={theme.iconColor} /> {formatDate(event.date)}</span>
+              <span className="flex items-center gap-1 whitespace-nowrap"><FiClock className={theme.iconColor} /> {event.time || 'All Day'}</span>
             </div>
             <button 
               onClick={() => setShowDetails(true)}
@@ -238,7 +217,7 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid' }) => {
             </div>
             <div className="p-4 sm:p-6">
               <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-3">{event.title}</h2>
-              <p className="text-sm sm:text-base text-slate-600 mb-6">{event.description || 'No description available'}</p>
+              <p className="text-sm sm:text-base text-slate-600 mb-6">{event.description || event.excerpt || 'No description available'}</p>
               
               <div className="space-y-3 sm:space-y-4 mb-6">
                 <div className="flex items-center gap-3 text-sm text-slate-600">
@@ -257,7 +236,7 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid' }) => {
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <button 
-                  onClick={() => { onView(event); setShowDetails(false); }}
+                  onClick={() => { onView?.(event); setShowDetails(false); }}
                   className="flex-1 py-3 bg-gradient-to-r from-emerald-800 to-teal-700 text-white rounded-xl text-sm font-black tracking-widest shadow-lg">
                   VIEW FULL DETAILS
                 </button>
@@ -275,15 +254,17 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid' }) => {
   );
 };
 
-// MODERN NEWS CARD - REFINED
-const ModernNewsCard = ({ news, onView, onBookmark }) => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
+// MODERN NEWS CARD - REFINED (Using excerpt from API)
+const ModernNewsCard = ({ news, onView, onBookmark, isBookmarked: initialBookmarked }) => {
+  const [isBookmarked, setIsBookmarked] = useState(initialBookmarked || false);
   const [showDetails, setShowDetails] = useState(false);
   
   const getStyle = (cat) => {
     const styles = {
       announcement: { bg: 'bg-blue-600', text: 'text-white', border: 'border-blue-700', iconColor: 'text-blue-600' },
       achievement: { bg: 'bg-amber-600', text: 'text-white', border: 'border-amber-700', iconColor: 'text-amber-600' },
+      infrastructure: { bg: 'bg-purple-600', text: 'text-white', border: 'border-purple-700', iconColor: 'text-purple-600' },
+      general: { bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-700', iconColor: 'text-emerald-600' },
       default: { bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-700', iconColor: 'text-emerald-600' }
     };
     return styles[cat?.toLowerCase()] || styles.default;
@@ -291,6 +272,13 @@ const ModernNewsCard = ({ news, onView, onBookmark }) => {
 
   const theme = getStyle(news.category);
   const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Recently';
+
+  const handleBookmarkClick = (e) => {
+    e.stopPropagation();
+    const newState = !isBookmarked;
+    setIsBookmarked(newState);
+    onBookmark?.(news, newState);
+  };
 
   return (
     <>
@@ -303,17 +291,19 @@ const ModernNewsCard = ({ news, onView, onBookmark }) => {
           <div className="absolute bottom-2 right-2 text-[9px] sm:text-[10px] text-white font-bold drop-shadow-md bg-black/30 px-2 py-1 rounded">
             {formatDate(news.date)}
           </div>
-          <button onClick={(e) => { e.stopPropagation(); setIsBookmarked(!isBookmarked); onBookmark?.(news); }} 
+          <button onClick={handleBookmarkClick} 
             className={`absolute top-2 right-2 p-1.5 rounded-full ${isBookmarked ? 'text-amber-500' : 'text-white'} drop-shadow-md text-lg`}>
             <FiBookmark className={isBookmarked ? 'fill-current' : ''} />
           </button>
         </div>
         <div className="p-3 sm:p-4">
           <h3 className="text-sm sm:text-base font-extrabold text-slate-900 mb-2 line-clamp-2 leading-snug">{news.title}</h3>
-          <p className="text-xs text-slate-600 mb-3 line-clamp-2">{news.description || 'No description available'}</p>
+          <p className="text-xs text-slate-600 mb-3 line-clamp-2">{news.excerpt || 'No description available'}</p>
           <div className="flex items-center justify-between mt-auto pt-2 border-t border-slate-100">
             <div className="flex items-center gap-1 text-[9px] sm:text-[10px] font-bold text-slate-500">
-              <span className="text-rose-500">❤</span> {news.likes || 0}
+              {news.author && (
+                <span className="truncate max-w-[100px]">By {news.author}</span>
+              )}
             </div>
             <button 
               onClick={() => setShowDetails(true)}
@@ -345,19 +335,21 @@ const ModernNewsCard = ({ news, onView, onBookmark }) => {
             </div>
             <div className="p-4 sm:p-6">
               <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-3">{news.title}</h2>
-              <p className="text-sm sm:text-base text-slate-600 mb-6">{news.description || 'No description available'}</p>
+              <p className="text-sm sm:text-base text-slate-600 mb-6">{news.excerpt || 'No description available'}</p>
               
-              {news.content && (
-                <p className="text-sm sm:text-base text-slate-600 mb-6">{news.content}</p>
+              {news.fullContent && (
+                <p className="text-sm sm:text-base text-slate-600 mb-6">{news.fullContent}</p>
               )}
 
-              <div className="flex items-center gap-2 mb-6 text-sm text-slate-500">
-                <span className="text-rose-500 text-lg">❤</span> {news.likes || 0} likes
-              </div>
+              {news.author && (
+                <div className="flex items-center gap-2 mb-6 text-sm text-slate-500">
+                  <IoPersonOutline className="text-slate-400" /> {news.author}
+                </div>
+              )}
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <button 
-                  onClick={() => { onView(news); setShowDetails(false); }}
+                  onClick={() => { onView?.(news); setShowDetails(false); }}
                   className="flex-1 py-3 bg-gradient-to-r from-emerald-800 to-teal-700 text-white rounded-xl text-sm font-black tracking-widest shadow-lg">
                   VIEW FULL ARTICLE
                 </button>
@@ -375,26 +367,7 @@ const ModernNewsCard = ({ news, onView, onBookmark }) => {
   );
 };
 
-// Modern Stat Card
-const ModernStatCard = ({ stat }) => {
-  const Icon = stat.icon;
-  
-  return (
-    <div className="bg-white border border-slate-200 rounded-lg p-4">
-      <div className="flex items-center justify-between mb-2">
-        <div className="p-1.5 bg-emerald-100 rounded">
-          <Icon size={16} className="text-emerald-700" />
-        </div>
-        <span className="text-xs text-slate-400 uppercase tracking-wider">{stat.label}</span>
-      </div>
-      
-      <p className="text-lg font-bold text-slate-900 mb-0.5">{stat.number}</p>
-      <p className="text-xs text-slate-800">{stat.sublabel}</p>
-    </div>
-  );
-};
-
-// Share Modal
+// Modern Share Modal Component
 const ModernShareModal = ({ item, type = 'event', onClose }) => {
   const [copied, setCopied] = useState(false);
 
@@ -403,7 +376,7 @@ const ModernShareModal = ({ item, type = 'event', onClose }) => {
       name: 'WhatsApp',
       icon: FaWhatsapp,
       action: () => {
-        const text = `${item.title}\n\n${type === 'event' ? 'Event:' : 'News:'}\n${item.description}\n\n${window.location.href}`;
+        const text = `${item.title}\n\n${type === 'event' ? 'Event:' : 'News:'}\n${item.excerpt || item.description}\n\n${window.location.href}`;
         window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
       }
     },
@@ -427,7 +400,7 @@ const ModernShareModal = ({ item, type = 'event', onClose }) => {
       icon: FaEnvelope,
       action: () => {
         const subject = `${item.title} - ${type}`;
-        const body = `${item.description}\n\n${window.location.href}`;
+        const body = `${item.excerpt || item.description}\n\n${window.location.href}`;
         window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       }
     },
@@ -685,32 +658,27 @@ export default function ModernEventsNewsPage() {
     { id: 'workshop', name: 'Workshops', icon: FiZap }
   ];
 
-  const stats = [
-    { 
-      icon: IoCalendarClearOutline, 
-      number: '0', 
-      label: 'Upcoming Events', 
-      sublabel: 'This month'
-    },
-    { 
-      icon: IoNewspaperOutline, 
-      number: '0', 
-      label: 'News Articles', 
-      sublabel: 'Latest updates'
-    },
-    { 
-      icon: IoRibbonOutline, 
-      number: '0', 
-      label: 'Featured', 
-      sublabel: 'Highlights'
-    },
-    { 
-      icon: IoPeopleCircle, 
-      number: '100%', 
-      label: 'Engagement', 
-      sublabel: 'Community'
+  // Load bookmarks from localStorage on initial render
+  useEffect(() => {
+    const savedEventBookmarks = localStorage.getItem('bookmarkedEvents');
+    const savedNewsBookmarks = localStorage.getItem('bookmarkedNews');
+    
+    if (savedEventBookmarks) {
+      setBookmarkedEvents(new Set(JSON.parse(savedEventBookmarks)));
     }
-  ];
+    if (savedNewsBookmarks) {
+      setBookmarkedNews(new Set(JSON.parse(savedNewsBookmarks)));
+    }
+  }, []);
+
+  // Save bookmarks to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('bookmarkedEvents', JSON.stringify([...bookmarkedEvents]));
+  }, [bookmarkedEvents]);
+
+  useEffect(() => {
+    localStorage.setItem('bookmarkedNews', JSON.stringify([...bookmarkedNews]));
+  }, [bookmarkedNews]);
 
   const fetchEvents = async (showRefresh = false) => {
     if (showRefresh) setRefreshing(true);
@@ -745,12 +713,6 @@ export default function ModernEventsNewsPage() {
     if (!showRefresh) setLoading(true);
     try {
       await Promise.all([fetchEvents(showRefresh), fetchNews(showRefresh)]);
-      
-      // Update stats with real data
-      stats[0].number = eventsData.length.toString();
-      stats[1].number = newsData.length.toString();
-      stats[2].number = (eventsData.filter(e => e.featured).length + 
-                        newsData.filter(n => n.featured).length).toString();
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -798,26 +760,26 @@ export default function ModernEventsNewsPage() {
     }
   };
 
-  const handleBookmarkEvent = (event) => {
+  const handleBookmarkEvent = (event, isBookmarked) => {
     const newBookmarked = new Set(bookmarkedEvents);
-    if (newBookmarked.has(event.id)) {
-      newBookmarked.delete(event.id);
-      toast.success('Removed from bookmarks');
-    } else {
+    if (isBookmarked) {
       newBookmarked.add(event.id);
       toast.success('Bookmarked event');
+    } else {
+      newBookmarked.delete(event.id);
+      toast.success('Removed from bookmarks');
     }
     setBookmarkedEvents(newBookmarked);
   };
 
-  const handleBookmarkNews = (news) => {
+  const handleBookmarkNews = (news, isBookmarked) => {
     const newBookmarked = new Set(bookmarkedNews);
-    if (newBookmarked.has(news.id)) {
-      newBookmarked.delete(news.id);
-      toast.success('Removed from bookmarks');
-    } else {
+    if (isBookmarked) {
       newBookmarked.add(news.id);
       toast.success('Bookmarked news');
+    } else {
+      newBookmarked.delete(news.id);
+      toast.success('Removed from bookmarks');
     }
     setBookmarkedNews(newBookmarked);
   };
@@ -825,6 +787,34 @@ export default function ModernEventsNewsPage() {
   const refreshData = () => {
     fetchData(true);
   };
+
+  // Calculate stats
+  const stats = [
+    { 
+      icon: IoCalendarClearOutline, 
+      number: eventsData.length.toString(), 
+      label: 'Upcoming Events', 
+      sublabel: 'This month'
+    },
+    { 
+      icon: IoNewspaperOutline, 
+      number: newsData.length.toString(), 
+      label: 'News Articles', 
+      sublabel: 'Latest updates'
+    },
+    { 
+      icon: IoRibbonOutline, 
+      number: (eventsData.filter(e => e.featured).length + newsData.filter(n => n.featured).length).toString(), 
+      label: 'Featured', 
+      sublabel: 'Highlights'
+    },
+    { 
+      icon: IoPeopleCircle, 
+      number: '100%', 
+      label: 'Engagement', 
+      sublabel: 'Community'
+    }
+  ];
 
   if (loading) {
     return (
@@ -872,7 +862,6 @@ export default function ModernEventsNewsPage() {
       <div className="max-w-7xl mx-auto space-y-6">
         
         {/* Header */}
-        {/* Modern Hero Banner for Events & News */}
         <div className="relative bg-gradient-to-r from-emerald-900 to-teal-800 rounded-2xl p-6 md:p-10 text-white overflow-hidden border border-emerald-700/30 mb-8">
           {/* Background Glows */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
@@ -928,7 +917,7 @@ export default function ModernEventsNewsPage() {
               </button>
             </div>
 
-            {/* Stats Summary - Proportional & Balanced */}
+            {/* Stats Summary */}
             <div className="mb-4 sm:mb-6 px-1">
               <p className="text-emerald-100/90 text-xs sm:text-base font-medium leading-relaxed sm:leading-loose">
                 <span className="text-white font-black text-base sm:text-xl md:text-2xl underline decoration-emerald-500/50 underline-offset-4 mr-1">
@@ -942,7 +931,7 @@ export default function ModernEventsNewsPage() {
               </p>
             </div>
 
-            {/* Quick Stats Grid - Bold & Responsive */}
+            {/* Quick Stats Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
                 <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Events</p>
@@ -974,7 +963,6 @@ export default function ModernEventsNewsPage() {
           </div>
         </div>
 
-      
         {/* Search & Filters */}
         <div className="bg-white border border-slate-200 rounded-lg p-4">
           <div className="flex flex-col md:flex-row gap-3">
@@ -1105,6 +1093,7 @@ export default function ModernEventsNewsPage() {
                       onView={setSelectedEvent}
                       onBookmark={handleBookmarkEvent}
                       viewMode={viewMode}
+                      isBookmarked={bookmarkedEvents.has(event.id)}
                     />
                   ))}
                 </div>
@@ -1120,44 +1109,45 @@ export default function ModernEventsNewsPage() {
             )}
           </div>
 
-  {/* News Sidebar */}
-<div className="lg:w-80">
-  <div className="bg-white border border-slate-200 rounded-lg p-5 sticky top-24 shadow-sm">
-    <div className="flex items-center gap-3 mb-2">
-      <div className="p-2 bg-emerald-100 rounded-lg">
-        <IoNewspaperOutline className="text-emerald-700 text-lg" />
-      </div>
-      <h2 className="text-lg font-bold text-slate-900">Latest News</h2>
-    </div>
+          {/* News Sidebar */}
+          <div className="lg:w-80">
+            <div className="bg-white border border-slate-200 rounded-lg p-5 sticky top-24 shadow-sm">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-2 bg-emerald-100 rounded-lg">
+                  <IoNewspaperOutline className="text-emerald-700 text-lg" />
+                </div>
+                <h2 className="text-lg font-bold text-slate-900">Latest News</h2>
+              </div>
 
-    {/* New Description Section */}
-    <p className="text-xs text-slate-500 leading-relaxed mb-5 px-1">
-      Stay updated with the latest academic milestones, CBC implementation progress, and community highlights from across the school.
-    </p>
+              {/* Description Section */}
+              <p className="text-xs text-slate-500 leading-relaxed mb-5 px-1">
+                Stay updated with the latest academic milestones, CBC implementation progress, and community highlights from across the school.
+              </p>
 
-    <div className="space-y-4">
-      {filteredNews.slice(0, 4).map((news, index) => (
-        <ModernNewsCard 
-          key={news.id || index} 
-          news={news} 
-          onView={setSelectedNews}
-          onBookmark={handleBookmarkNews}
-        />
-      ))}
-    </div>
+              <div className="space-y-4">
+                {filteredNews.slice(0, 4).map((news, index) => (
+                  <ModernNewsCard 
+                    key={news.id || index} 
+                    news={news} 
+                    onView={setSelectedNews}
+                    onBookmark={handleBookmarkNews}
+                    isBookmarked={bookmarkedNews.has(news.id)}
+                  />
+                ))}
+              </div>
 
-    {/* School Info */}
-    <div className="mt-6 pt-4 border-t border-slate-100">
-      <div className="flex items-center gap-2 text-xs text-slate-800 font-semibold">
-        <FaLeaf className="text-emerald-600" size={12} />
-        <span>Matungulu Girls High School</span>
-      </div>
-      <p className="text-[10px] text-slate-400 mt-2 italic font-medium">
-        "Strive to Excel"
-      </p>
-    </div>
-  </div>
-</div>
+              {/* School Info */}
+              <div className="mt-6 pt-4 border-t border-slate-100">
+                <div className="flex items-center gap-2 text-xs text-slate-800 font-semibold">
+                  <FaLeaf className="text-emerald-600" size={12} />
+                  <span>Matungulu Girls High School</span>
+                </div>
+                <p className="text-[10px] text-slate-400 mt-2 italic font-medium">
+                  "Strive to Excel"
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Footer Banner */}
@@ -1170,9 +1160,6 @@ export default function ModernEventsNewsPage() {
               <h3 className="text-lg font-bold mb-1">Stay Connected</h3>
               <p className="text-sm text-emerald-100">Get the latest updates delivered to your inbox</p>
             </div>
-            <button className="px-6 py-2.5 bg-white text-emerald-800 rounded-lg text-sm font-medium">
-              Subscribe
-            </button>
           </div>
         </div>
       </div>
