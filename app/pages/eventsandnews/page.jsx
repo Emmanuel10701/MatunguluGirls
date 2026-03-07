@@ -1040,14 +1040,7 @@ export default function ModernEventsNewsPage() {
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <ModernStatCard stat={{ ...stats[0], number: eventsData.length.toString() }} />
-          <ModernStatCard stat={{ ...stats[1], number: newsData.length.toString() }} />
-          <ModernStatCard stat={{ ...stats[2], number: (eventsData.filter(e => e.featured).length + newsData.filter(n => n.featured).length).toString() }} />
-          <ModernStatCard stat={stats[3]} />
-        </div>
-
+      
         {/* Search & Filters */}
         <div className="bg-white border border-slate-200 rounded-lg p-4">
           <div className="flex flex-col md:flex-row gap-3">
@@ -1193,39 +1186,44 @@ export default function ModernEventsNewsPage() {
             )}
           </div>
 
-          {/* News Sidebar */}
-          <div className="lg:w-80">
-            <div className="bg-white border border-slate-200 rounded-lg p-5 sticky top-24">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-emerald-100 rounded-lg">
-                  <IoNewspaperOutline className="text-emerald-700 text-lg" />
-                </div>
-                <h2 className="text-lg font-bold text-slate-900">Latest News</h2>
-              </div>
+  {/* News Sidebar */}
+<div className="lg:w-80">
+  <div className="bg-white border border-slate-200 rounded-lg p-5 sticky top-24 shadow-sm">
+    <div className="flex items-center gap-3 mb-2">
+      <div className="p-2 bg-emerald-100 rounded-lg">
+        <IoNewspaperOutline className="text-emerald-700 text-lg" />
+      </div>
+      <h2 className="text-lg font-bold text-slate-900">Latest News</h2>
+    </div>
 
-              <div className="space-y-4">
-                {filteredNews.slice(0, 4).map((news, index) => (
-                  <ModernNewsCard 
-                    key={news.id || index} 
-                    news={news} 
-                    onView={setSelectedNews}
-                    onBookmark={handleBookmarkNews}
-                  />
-                ))}
-              </div>
+    {/* New Description Section */}
+    <p className="text-xs text-slate-500 leading-relaxed mb-5 px-1">
+      Stay updated with the latest academic milestones, CBC implementation progress, and community highlights from across the school.
+    </p>
 
-              {/* School Info */}
-              <div className="mt-6 pt-4 border-t border-slate-100">
-                <div className="flex items-center gap-2 text-xs text-slate-800">
-                  <FaLeaf className="text-emerald-600" size={12} />
-                  <span>Matungulu Girls High School</span>
-                </div>
-                <p className="text-[10px] text-slate-400 mt-2 italic">
-                  "Prayer, Discipline and Hardwork"
-                </p>
-              </div>
-            </div>
-          </div>
+    <div className="space-y-4">
+      {filteredNews.slice(0, 4).map((news, index) => (
+        <ModernNewsCard 
+          key={news.id || index} 
+          news={news} 
+          onView={setSelectedNews}
+          onBookmark={handleBookmarkNews}
+        />
+      ))}
+    </div>
+
+    {/* School Info */}
+    <div className="mt-6 pt-4 border-t border-slate-100">
+      <div className="flex items-center gap-2 text-xs text-slate-800 font-semibold">
+        <FaLeaf className="text-emerald-600" size={12} />
+        <span>Matungulu Girls High School</span>
+      </div>
+      <p className="text-[10px] text-slate-400 mt-2 italic font-medium">
+        "Strive to Excel"
+      </p>
+    </div>
+  </div>
+</div>
         </div>
 
         {/* Footer Banner */}
