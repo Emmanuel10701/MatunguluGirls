@@ -1395,54 +1395,54 @@ export default function StudentCounseling() {
                 </div>
               </div>
 
-              {/* Refresh & View Toggle Group */}
-              <div className="flex flex-nowrap items-center gap-3 w-full sm:w-auto">
-                {/* Refresh Button */}
-                <button
-                  onClick={refreshData}
-                  disabled={refreshing}
-                  className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl font-bold text-[11px] sm:text-sm tracking-widest text-white hover:bg-white/20 w-full sm:w-auto transition-all disabled:opacity-70 disabled:cursor-not-allowed"
-                >
-                  {refreshing ? (
-                    <>
-                      <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      <span>REFRESHING...</span>
-                    </>
-                  ) : (
-                    <>
-                      <FiRotateCw className="text-base sm:text-lg" />
-                      <span>REFRESH DATA</span>
-                    </>
-                  )}
-                </button>
+          {/* Refresh & View Toggle Group */}
+<div className="flex flex-nowrap items-center gap-2 sm:gap-3">
+  {/* Refresh Button - Refined Size */}
+  <button
+    onClick={refreshData}
+    disabled={refreshing}
+    className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 h-10 px-4 sm:px-5 rounded-xl font-bold text-[10px] sm:text-xs tracking-widest text-white hover:bg-white/20 transition-all disabled:opacity-70 disabled:cursor-not-allowed shrink-0"
+  >
+    {refreshing ? (
+      <>
+        <svg className="animate-spin h-3.5 w-3.5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <span>REFRESHING</span>
+      </>
+    ) : (
+      <>
+        <FiRotateCw className="text-sm sm:text-base" />
+        <span>REFRESH</span>
+      </>
+    )}
+  </button>
 
-                {/* View Toggle - Matching the theme */}
-                <div className="flex bg-white/10 backdrop-blur-xl rounded-xl p-1 border border-white/20">
-                  <button
-                    onClick={() => setViewMode('grid')}
-                    className={`p-2 sm:p-2.5 rounded-lg transition-all ${
-                      viewMode === 'grid' 
-                        ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' 
-                        : 'text-emerald-200/70 hover:text-white'
-                    }`}
-                  >
-                    <FiGrid size={16} className="sm:w-[18px] sm:h-[18px]" />
-                  </button>
-                  <button
-                    onClick={() => setViewMode('list')}
-                    className={`p-2 sm:p-2.5 rounded-lg transition-all ${
-                      viewMode === 'list' 
-                        ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' 
-                        : 'text-emerald-200/70 hover:text-white'
-                    }`}
-                  >
-                    <FiList size={16} className="sm:w-[18px] sm:h-[18px]" />
-                  </button>
-                </div>
-              </div>
+  {/* View Toggle - Compact Size */}
+  <div className="flex bg-white/10 backdrop-blur-xl rounded-xl p-1 border border-white/20 h-10 items-center">
+    <button
+      onClick={() => setViewMode('grid')}
+      className={`h-8 w-8 sm:w-10 flex items-center justify-center rounded-lg transition-all ${
+        viewMode === 'grid' 
+          ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/40' 
+          : 'text-emerald-200/60 hover:text-white'
+      }`}
+    >
+      <FiGrid size={14} className="sm:size-[16px]" />
+    </button>
+    <button
+      onClick={() => setViewMode('list')}
+      className={`h-8 w-8 sm:w-10 flex items-center justify-center rounded-lg transition-all ${
+        viewMode === 'list' 
+          ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/40' 
+          : 'text-emerald-200/60 hover:text-white'
+      }`}
+    >
+      <FiList size={14} className="sm:size-[16px]" />
+    </button>
+  </div>
+</div>
             </div>
 
             {/* Stats Summary */}
