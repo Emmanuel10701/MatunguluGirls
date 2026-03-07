@@ -2619,7 +2619,7 @@ return (
           <h2 className="text-xl md:text-3xl font-black text-slate-900 tracking-tighter leading-[1.1] mb-4">
             Academic <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Programs</span>
           </h2>
-          <p className="text-slate-600 text-md md:text-lg font-medium leading-relaxed">
+          <p className="text-slate-900 text-base md:text-lg font-medium leading-relaxed ">
             Matungulu Girls High School offers a future-ready, holistic curriculum 
             specifically designed to cultivate critical thinking, academic excellence, 
             and global leadership. We empower our students to navigate the complexities 
