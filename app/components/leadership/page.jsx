@@ -300,7 +300,7 @@ const ModernStaffLeadership = () => {
  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-6 sm:py-12">
   {/* Balanced Badge - Smaller on mobile */}
   <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4 sm:mb-6">
-    <Sparkles className="w-3 h-3 sm:w-4 h-4 text-emerald-300" />
+    <Sparkles className="w-3 h-3 sm:w-4 text-emerald-300" />
     <span className="text-white text-[10px] sm:text-xs font-bold tracking-wider uppercase">
       Our Dedicated Team
     </span>
@@ -331,7 +331,7 @@ const ModernStaffLeadership = () => {
           : 'text-slate-600 hover:text-emerald-700'
       }`}
     >
-      <Crown className="w-3.5 h-3.5 sm:w-4 h-4" />
+      <Crown className="w-3.5 h-3.5 sm:w-4" />
       Leadership
     </button>
     <button

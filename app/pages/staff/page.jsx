@@ -623,7 +623,7 @@ export default function StaffDirectory() {
             
             <Link href="/" className="flex items-center gap-3">
               <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
-                <IoSchoolOutline className="text-emerald-700 text-xl" />
+              <img src="/MatG.jpg" alt="MatG Logo" className="w-6 h-6 object-contain" />
               </div>
               <div>
                 <span className="text-lg font-bold text-slate-900">MatG Staff</span>
