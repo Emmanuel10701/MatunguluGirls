@@ -1522,17 +1522,6 @@ const VisionMissionSection = ({ vision, mission, motto, videoTour, videoType, vi
 const AcademicResultsSection = ({ documentData }) => {
   const resultsData = [
     {
-      name: 'Mock Exams',
-      pdf: documentData?.mockExamsResultsPdf,
-      pdfName: documentData?.mockExamsPdfName,
-      description: documentData?.mockExamsDescription,
-      year: documentData?.mockExamsYear,
-      term: documentData?.mockExamsTerm,
-      icon: FiFileText,
-      accent: 'text-rose-400',
-      bg: 'bg-rose-400/10'
-    },
-    {
       name: 'KCSE Results',
       pdf: documentData?.kcseResultsPdf,
       pdfName: documentData?.kcsePdfName,
@@ -1562,7 +1551,7 @@ const AcademicResultsSection = ({ documentData }) => {
               <IoStatsChartOutline className="text-blue-400 text-2xl md:text-3xl" />
             </div>
             <div className="min-w-0">
-              <h3 className="text-xl md:text-3xl font-black uppercase tracking-tighter">Academic <span className="text-blue-400">Reports</span></h3>
+              <h3 className="text-lg md:text-3xl font-black uppercase tracking-tighter">Academic KCSE <span className="text-blue-400">Reports</span></h3>
               <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] mt-1">Official Performance Archives</p>
             </div>
           </div>
