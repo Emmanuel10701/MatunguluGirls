@@ -22,7 +22,7 @@ const ModernSchoolLayout = () => {
   const router = useRouter();
   
   const handleExplorePathways = () => {
-    router.push("/pages/admissions");
+    router.push("/pages/apply-for-admissions");
   };
 
   const whyChooseUs = [
@@ -319,7 +319,7 @@ const ModernSchoolLayout = () => {
               onClick={handleExplorePathways}
               className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-xl font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-200 hover:bg-emerald-700 transition-all active:scale-95"
             >
-              Explore All Programs
+              Admissions Page
               <FiArrowRight size={14} />
             </button>
           </div>
