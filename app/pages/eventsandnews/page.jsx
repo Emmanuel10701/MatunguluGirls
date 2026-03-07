@@ -1477,6 +1477,7 @@ export default function ModernEventsNewsPage() {
         />
       )}
 
+
       {showShareModal && (selectedEvent || selectedNews) && (
         <ModernShareModal
           item={selectedEvent || selectedNews}
