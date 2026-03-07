@@ -1137,7 +1137,7 @@ export default function ModernEventsNewsPage() {
       </div>
 
       {/* Refresh & View Toggle Group */}
-      <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+      <div className="flex flex-col items-center gap-3 w-full sm:w-auto">
         {/* Refresh Button */}
         <button
           onClick={refreshData}
