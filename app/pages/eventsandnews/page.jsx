@@ -836,28 +836,106 @@ export default function ModernEventsNewsPage() {
       <div className="max-w-7xl mx-auto space-y-6">
         
         {/* Header */}
-        <div className="bg-gradient-to-r from-emerald-900 to-teal-800 rounded-lg p-6 text-white border border-emerald-700/30">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 bg-white/10 rounded-lg">
-              <IoSchoolOutline className="text-emerald-300 text-xl" />
+        {/* Modern Hero Banner for Events & News */}
+        <div className="relative bg-gradient-to-r from-emerald-900 to-teal-800 rounded-2xl p-6 md:p-10 text-white overflow-hidden border border-emerald-700/30 mb-8">
+          {/* Background Glows */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
+          
+          <div className="relative z-10">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6">
+              <div>
+                {/* School Branding */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-8 w-1 bg-emerald-400 rounded-full shadow-[0_0_15px_rgba(52,211,153,0.5)]" />
+                  <div>
+                    <h2 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-emerald-400">
+                      Matungulu Girls High School
+                    </h2>
+                    <p className="text-[8px] sm:text-[10px] italic font-medium text-emerald-200/60 tracking-widest uppercase">
+                      "Strive to Excel"
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Title */}
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/10">
+                    <IoSchoolOutline className="text-xl sm:text-2xl md:text-3xl text-emerald-300" />
+                  </div>
+                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white tracking-tight">
+                    Events & <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300">News</span>
+                  </h1>
+                </div>
+              </div>
+              
+              {/* Refresh Button */}
+              <button
+                onClick={refreshData}
+                disabled={refreshing}
+                className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl font-bold text-[11px] sm:text-sm tracking-widest text-white hover:bg-white/20 w-full sm:w-auto transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {refreshing ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>REFRESHING...</span>
+                  </>
+                ) : (
+                  <>
+                    <FiRefreshCw className="text-base sm:text-lg" />
+                    <span>REFRESH UPDATES</span>
+                  </>
+                )}
+              </button>
             </div>
-            <div>
-              <h2 className="text-xs font-bold uppercase tracking-wider text-emerald-400">Matungulu Girls</h2>
-              <p className="text-[10px] text-emerald-200/60">"Strive to Excel"</p>
+
+            {/* Stats Summary - Proportional & Balanced */}
+            <div className="mb-4 sm:mb-6 px-1">
+              <p className="text-emerald-100/90 text-xs sm:text-base font-medium leading-relaxed sm:leading-loose">
+                <span className="text-white font-black text-base sm:text-xl md:text-2xl underline decoration-emerald-500/50 underline-offset-4 mr-1">
+                  {eventsData.length}
+                </span> 
+                <span className="tracking-tight sm:tracking-normal">upcoming events and</span>
+                <span className="text-white font-black text-base sm:text-xl md:text-2xl underline decoration-teal-500/50 underline-offset-4 ml-1 mr-1">
+                  {newsData.length}
+                </span>
+                <span className="tracking-tight sm:tracking-normal">news articles this month</span>
+              </p>
+            </div>
+
+            {/* Quick Stats Grid - Bold & Responsive */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Events</p>
+                <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{eventsData.length}</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">News</p>
+                <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{newsData.length}</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Categories</p>
+                <p className="text-lg sm:text-xl md:text-2xl font-black text-white">5</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Featured</p>
+                <p className="text-lg sm:text-xl md:text-2xl font-black text-white">
+                  {(eventsData.filter(e => e.featured).length + newsData.filter(n => n.featured).length).toString()}
+                </p>
+              </div>
+            </div>
+
+            {/* Additional Info */}
+            <div className="mt-4 text-xs sm:text-sm text-emerald-200/80">
+              <span className="inline-flex items-center gap-1">
+                <IoSparkles className="text-emerald-300" size={14} />
+                Click on any event or news item for detailed information
+              </span>
             </div>
           </div>
-          
-          <h1 className="text-2xl font-bold text-white mb-2">Events & News</h1>
-          <p className="text-sm text-emerald-100 mb-4">Stay updated with the latest happenings at Matungulu Girls High School</p>
-          
-          <button
-            onClick={refreshData}
-            disabled={refreshing}
-            className="px-4 py-2 bg-white/10 rounded-lg text-sm font-medium flex items-center gap-2 w-fit border border-white/20"
-          >
-            <FiRotateCw className={`text-sm ${refreshing ? 'animate-spin' : ''}`} />
-            {refreshing ? 'Refreshing...' : 'Refresh Updates'}
-          </button>
         </div>
 
         {/* Stats */}
