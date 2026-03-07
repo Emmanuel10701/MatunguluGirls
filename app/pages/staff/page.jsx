@@ -622,7 +622,7 @@ export default function StaffDirectory() {
             </button>
             
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-emerald-700 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-emerald-900 rounded-lg flex items-center justify-center">
               <img src="/MatG.jpg" alt="MatG Logo" className="w-8 h-8 object-contain" />
               </div>
               <div>
@@ -730,7 +730,7 @@ export default function StaffDirectory() {
                     onClick={() => setSelectedHierarchy('leadership')}
                     className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors ${
                       selectedHierarchy === 'leadership' 
-                      ? 'bg-emerald-600 text-white' 
+                      ? 'bg-emerald-900 text-white' 
                       : 'hover:bg-slate-50 text-slate-700'
                     }`}
                   >
@@ -747,7 +747,7 @@ export default function StaffDirectory() {
                     onClick={() => setSelectedHierarchy('teaching')}
                     className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors ${
                       selectedHierarchy === 'teaching' 
-                      ? 'bg-emerald-600 text-white' 
+                      ? 'bg-emerald-900 text-white' 
                       : 'hover:bg-slate-50 text-slate-700'
                     }`}
                   >
@@ -764,7 +764,7 @@ export default function StaffDirectory() {
                     onClick={() => setSelectedHierarchy('support')}
                     className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors ${
                       selectedHierarchy === 'support' 
-                      ? 'bg-emerald-600 text-white' 
+                      ? 'bg-emerald-900 text-white' 
                       : 'hover:bg-slate-50 text-slate-700'
                     }`}
                   >
@@ -786,7 +786,7 @@ export default function StaffDirectory() {
                   {selectedDepts.length > 0 && (
                     <button 
                       onClick={() => setSelectedDepts([])}
-                      className="text-xs text-emerald-600 font-medium"
+                      className="text-xs text-emerald-900 font-medium"
                     >
                       Clear
                     </button>
@@ -820,7 +820,7 @@ export default function StaffDirectory() {
               {(selectedDepts.length > 0 || searchQuery || selectedHierarchy !== 'all') && (
                 <button
                   onClick={clearAllFilters}
-                  className="w-full py-3 rounded-lg border border-emerald-600 text-emerald-600 hover:bg-emerald-50 text-sm font-medium transition-colors"
+                  className="w-full py-3 rounded-lg border border-emerald-900 text-emerald-900 hover:bg-emerald-50 text-sm font-medium transition-colors"
                 >
                   Clear All Filters
                 </button>
@@ -837,7 +837,7 @@ export default function StaffDirectory() {
               <p className="text-sm text-slate-500">
                 {loading ? 'Loading...' : `${filteredStaff.length} dedicated professionals`}
                 {!loading && filteredStaff.length !== staffData.length && (
-                  <span className="text-emerald-600 ml-1">(filtered from {staffData.length})</span>
+                  <span className="text-emerald-900 ml-1">(filtered from {staffData.length})</span>
                 )}
               </p>
             </div>
@@ -917,7 +917,7 @@ export default function StaffDirectory() {
                             onClick={() => setCurrentPage(page)}
                             className={`w-8 h-8 rounded-lg text-sm font-medium ${
                               currentPage === page 
-                                ? 'bg-emerald-600 text-white' 
+                                ? 'bg-emerald-900 text-white' 
                                 : 'text-slate-600 hover:bg-slate-50'
                             }`}
                           >
@@ -946,7 +946,7 @@ export default function StaffDirectory() {
                 <p className="text-sm text-slate-500 mb-4">Try adjusting your search or filters</p>
                 <button
                   onClick={clearAllFilters}
-                  className="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-medium"
+                  className="px-4 py-2 bg-emerald-900 text-white rounded-lg text-sm font-medium"
                 >
                   Clear All Filters
                 </button>
