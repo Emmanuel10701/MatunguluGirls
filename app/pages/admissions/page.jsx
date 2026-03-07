@@ -170,7 +170,7 @@ const CareerSearchPage = () => {
     {
       department: 'MATHEMATICS',
       icon: IoCalculatorOutline,
-      color: 'from-purple-600 to-pink-500',
+      color: 'from-emerald-600 to-emerald-500',
       description: 'Master logical thinking, problem-solving, and analytical skills',
       subjects: ['Pure Mathematics', 'Applied Mathematics', 'Statistics', 'Business Mathematics'],
       careerPaths: [
@@ -209,7 +209,7 @@ const CareerSearchPage = () => {
     {
       department: 'SCIENCES',
       icon: IoFlaskOutline,
-      color: 'from-blue-600 to-cyan-500',
+      color: 'from-teal-600 to-emerald-500',
       description: 'Explore the world through scientific inquiry and discovery',
       subjects: ['Biology', 'Chemistry', 'Physics', 'Agriculture', 'Physical Education'],
       careerPaths: [
@@ -248,7 +248,7 @@ const CareerSearchPage = () => {
     {
       department: 'LANGUAGES',
       icon: IoLanguageOutline,
-      color: 'from-green-600 to-emerald-500',
+      color: 'from-emerald-600 to-emerald-500',
       description: 'Develop communication skills and cultural understanding',
       subjects: ['English', 'Kiswahili', 'French', 'German', 'Arabic'],
       careerPaths: [
@@ -287,7 +287,7 @@ const CareerSearchPage = () => {
     {
       department: 'HUMANITIES',
       icon: IoNewspaperOutline,
-      color: 'from-amber-600 to-orange-500',
+      color: 'from-emerald-600 to-emerald-500',
       description: 'Understand human society, culture, and behavior',
       subjects: ['History', 'Geography', 'CRE/IRE/HRE', 'Life Skills', 'Government'],
       careerPaths: [
@@ -326,7 +326,7 @@ const CareerSearchPage = () => {
     {
       department: 'TECHNICAL STUDIES',
       icon: IoConstructOutline,
-      color: 'from-red-600 to-rose-500',
+      color: 'from-emerald-600 to-emerald-500',
       description: 'Develop practical skills for immediate employment',
       subjects: ['Computer Studies', 'Business Studies', 'Home Science', 'Art & Design', 'Music'],
       careerPaths: [
@@ -365,7 +365,7 @@ const CareerSearchPage = () => {
     {
       department: 'COMMERCIAL STUDIES',
       icon: IoBusinessOutline,
-      color: 'from-indigo-600 to-blue-500',
+      color: 'from-emerald-600 to-emerald-500',
       description: 'Master business principles and commercial operations',
       subjects: ['Commerce', 'Accounting', 'Economics', 'Entrepreneurship', 'Office Practice'],
       careerPaths: [
@@ -466,7 +466,7 @@ const CareerSearchPage = () => {
         {/* Header Section */}
         <div className="mb-8 text-center">
           <h1 className="text-xl md:text-3xl font-black text-slate-900 uppercase tracking-tighter leading-none mb-3">
-            Career <span className="text-blue-600">Explorer</span>
+            Career <span className="text-emerald-600">Explorer</span>
           </h1>
           <p className="text-slate-500 font-bold text-xs md:text-sm uppercase tracking-[0.2em] mb-6">
             Browse careers by high school department
@@ -483,7 +483,7 @@ const CareerSearchPage = () => {
                 <input 
                   type="text"
                   placeholder="Search careers or subjects..."
-                  className="w-full pl-12 pr-4 py-3 bg-white border border-slate-300 rounded-xl text-sm font-medium text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
+                  className="w-full pl-12 pr-4 py-3 bg-white border border-slate-300 rounded-xl text-sm font-medium text-slate-900 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none"
                   value={globalSearch}
                   onChange={(e) => {
                     setGlobalSearch(e.target.value);
@@ -498,7 +498,7 @@ const CareerSearchPage = () => {
                   <FiFilter className="text-slate-400" size={16} />
                 </div>
                 <select
-                  className="w-full pl-12 pr-4 py-3 bg-white border border-slate-300 rounded-xl text-sm font-medium text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none appearance-none"
+                  className="w-full pl-12 pr-4 py-3 bg-white border border-slate-300 rounded-xl text-sm font-medium text-slate-900 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none appearance-none"
                   value={selectedDepartment}
                   onChange={(e) => {
                     setSelectedDepartment(e.target.value);
@@ -560,11 +560,9 @@ const CareerSearchPage = () => {
                       <div className="flex items-center gap-4">
                         <div className={`p-3 rounded-lg bg-gradient-to-br ${dept.color} bg-opacity-10`}>
                           <DepartmentIcon className={`text-xl ${
-                            dept.color.includes('blue') ? 'text-blue-600' : 
-                            dept.color.includes('purple') ? 'text-purple-600' :
-                            dept.color.includes('green') ? 'text-green-600' :
-                            dept.color.includes('amber') ? 'text-amber-600' :
-                            'text-red-600'
+                            dept.color.includes('emerald') ? 'text-emerald-600' : 
+                            dept.color.includes('teal') ? 'text-teal-600' :
+                            'text-emerald-600'
                           }`} />
                         </div>
                         <div className="text-left">
@@ -578,7 +576,7 @@ const CareerSearchPage = () => {
                       </div>
                       
                   <div className="flex items-center gap-3">
-<div className="flex items-center gap-1 text-blue-700">
+<div className="flex items-center gap-1 text-emerald-700">
   <span className="text-[10px] md:text-xs font-black uppercase">
      Careers
   </span>
@@ -683,7 +681,7 @@ const CareerSearchPage = () => {
                             onClick={() => handlePageChange(pageNumber)}
                             className={`px-3 py-1.5 rounded-lg text-xs font-bold ${
                               currentPage === pageNumber
-                                ? 'bg-blue-600 text-white'
+                                ? 'bg-emerald-600 text-white'
                                 : 'text-slate-700 bg-white border border-slate-300'
                             }`}
                           >
@@ -731,7 +729,7 @@ const CareerSearchPage = () => {
             </p>
             <button 
               onClick={resetFilters}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg font-bold text-sm"
+              className="px-4 py-2 bg-emerald-600 text-white rounded-lg font-bold text-sm"
             >
               Show All Departments
             </button>
@@ -831,7 +829,7 @@ const ModernEducationSystemCard = ({ system, icon: Icon, color, description, fea
                 <div className="font-black text-white text-xl md:text-3xl leading-none tabular-nums">
                   {stage.years}
                 </div>
-                <div className="text-[8px] md:text-[9px] text-blue-400 font-black uppercase tracking-widest mt-2 md:mt-3 leading-tight">
+                <div className="text-[8px] md:text-[9px] text-emerald-400 font-black uppercase tracking-widest mt-2 md:mt-3 leading-tight">
                   {stage.name}
                 </div>
               </div>
@@ -881,7 +879,7 @@ const AdmissionPathCard = ({ path, onApply, index }) => {
     return images[type] || '/bg/9.jpeg';
   };
 
-  const themeColor = path.color.includes('blue') ? 'blue' : 'purple';
+  const themeColor = path.color.includes('emerald') ? 'emerald' : 'teal';
 
   return (
     <div className="relative bg-white rounded-none md:rounded-[3rem] border-y md:border border-slate-100 overflow-hidden flex flex-col h-full shadow-sm md:shadow-xl">
@@ -956,7 +954,7 @@ const AdmissionPathCard = ({ path, onApply, index }) => {
             </div>
             
             {/* Price/Fee Tag (Optional addition) */}
-            <span className="text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-1 rounded-md uppercase">
+            <span className="text-[9px] font-black text-emerald-600 bg-emerald-50 px-2 py-1 rounded-md uppercase">
               Apply Today
             </span>
           </div>
@@ -1023,7 +1021,7 @@ const FeatureCard = ({ feature, onLearnMore }) => {
         <div className="space-y-2 mb-4">
           {feature.features.map((feat, idx) => (
             <div key={idx} className="flex items-center gap-2 text-xs text-gray-600">
-              <IoCheckmarkCircleOutline className="text-green-500 flex-shrink-0" />
+              <IoCheckmarkCircleOutline className="text-emerald-500 flex-shrink-0" />
               <span>{feat}</span>
             </div>
           ))}
@@ -1032,7 +1030,7 @@ const FeatureCard = ({ feature, onLearnMore }) => {
         {/* Action Button */}
         <button
           onClick={onLearnMore}
-          className="w-full py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg text-sm font-semibold transition-all duration-200"
+          className="w-full py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-600 text-white rounded-lg text-sm font-semibold transition-all duration-200"
         >
           Explore Feature
         </button>
@@ -1151,7 +1149,7 @@ const SubjectCard = ({ subject, index }) => {
   return (
     <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-sm border border-gray-200/70 p-4 transition-all duration-300">
       <div className="flex items-center gap-3 mb-3">
-        <div className="p-2.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl shadow-sm">
+        <div className="p-2.5 bg-gradient-to-r from-emerald-500 to-emerald-500 rounded-xl shadow-sm">
           <SubjectIcon className="text-white text-lg" />
         </div>
         <div>
@@ -1183,7 +1181,7 @@ const ModernFeeCard = ({
         <div className="flex items-start justify-between mb-8">
           <div className="flex items-center gap-4">
             <div className={`p-3 rounded-2xl border ${
-              isDark ? 'bg-white/5 border-white/10 text-blue-400' : 'bg-blue-50 border-blue-100 text-blue-600'
+              isDark ? 'bg-white/5 border-white/10 text-emerald-400' : 'bg-emerald-50 border-emerald-100 text-emerald-600'
             }`}>
               <Icon className="text-xl md:text-2xl" />
             </div>
@@ -1198,7 +1196,7 @@ const ModernFeeCard = ({
           </div>
           {badge && (
             <span className={`px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest ${
-              isDark ? 'bg-blue-500/20 text-blue-400' : 'bg-blue-600 text-white'
+              isDark ? 'bg-emerald-500/20 text-emerald-400' : 'bg-emerald-600 text-white'
             }`}>
               {badge}
             </span>
@@ -1209,7 +1207,7 @@ const ModernFeeCard = ({
           <p className={`text-[9px] md:text-[10px] font-black uppercase tracking-widest opacity-40`}>
             Total Payable Amount
           </p>
-          <div className={`text-2xl md:text-3xl font-black tracking-tighter tabular-nums ${isDark ? 'text-blue-400' : 'text-slate-900'}`}>
+          <div className={`text-2xl md:text-3xl font-black tracking-tighter tabular-nums ${isDark ? 'text-emerald-400' : 'text-slate-900'}`}>
             KSh {total?.toLocaleString()}
           </div>
         </div>
@@ -1260,7 +1258,7 @@ const ModernFeeCard = ({
       font-black text-[10px] md:text-[11px] 
       uppercase tracking-[0.2em] 
       transition-all active:scale-95 shadow-xl
-      ${isDark ? 'bg-white text-slate-900 hover:bg-blue-50' : 'bg-slate-900 text-white hover:bg-slate-800'}
+      ${isDark ? 'bg-white text-slate-900 hover:bg-emerald-50' : 'bg-slate-900 text-white hover:bg-slate-800'}
     `}
   >
     <IoCloudDownloadOutline size={20} className="shrink-0" />
@@ -1295,7 +1293,7 @@ const VideoTourSection = ({ videoTour, videoType, videoThumbnail }) => {
     <div className="bg-gradient-to-br from-white to-slate-50/50 rounded-2xl md:rounded-3xl border border-slate-100/80 shadow-2xl overflow-hidden transition-all duration-300">
       
       {/* Header Section */}
-      <div className="relative p-4 md:p-8 bg-gradient-to-r from-indigo-600 via-blue-500 to-cyan-500 text-white">
+      <div className="relative p-4 md:p-8 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 text-white">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 blur-[80px] rounded-full -mr-32 -mt-32"></div>
         
         <div className="relative z-10 flex items-center justify-between">
@@ -1305,7 +1303,7 @@ const VideoTourSection = ({ videoTour, videoType, videoThumbnail }) => {
             </div>
             <div>
               <h3 className="text-xl md:text-3xl font-extrabold tracking-tight">Virtual School Tour</h3>
-              <p className="text-blue-100/90 text-sm md:text-base font-medium mt-1">Experience our School  in immersive detail</p>
+              <p className="text-emerald-100/90 text-sm md:text-base font-medium mt-1">Experience our School in immersive detail</p>
             </div>
           </div>
           
@@ -1327,7 +1325,7 @@ const VideoTourSection = ({ videoTour, videoType, videoThumbnail }) => {
                 className="absolute inset-0 flex items-center justify-center z-20 cursor-pointer group-hover:bg-black/20 transition-all duration-500"
                 onClick={handlePlay}
               >
-                <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-blue-600/90 backdrop-blur-md border-4 border-white/30 flex items-center justify-center shadow-2xl transform group-110 transition-transform">
+                <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-emerald-600/90 backdrop-blur-md border-4 border-white/30 flex items-center justify-center shadow-2xl transform group-110 transition-transform">
                   <FiPlay className="text-white text-xl md:text-2xl ml-1.5" />
                 </div>
                 
@@ -1370,11 +1368,11 @@ const VideoTourSection = ({ videoTour, videoType, videoThumbnail }) => {
           <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-6 px-2">
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2.5">
-                <div className="p-1.5 bg-blue-50 rounded-lg"><FiClock className="text-blue-600 font-bold" /></div>
+                <div className="p-1.5 bg-emerald-50 rounded-lg"><FiClock className="text-emerald-600 font-bold" /></div>
                 <span className="text-sm font-bold text-slate-700">3:45 Duration</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <div className="p-1.5 bg-cyan-50 rounded-lg"><FiEye className="text-cyan-600 font-bold" /></div>
+                <div className="p-1.5 bg-teal-50 rounded-lg"><FiEye className="text-teal-600 font-bold" /></div>
                 <span className="text-sm font-bold text-slate-700">Premium Quality</span>
               </div>
             </div>
@@ -1395,9 +1393,9 @@ const VideoTourSection = ({ videoTour, videoType, videoThumbnail }) => {
       <div className="p-6 md:p-8 border-t border-slate-100 bg-white">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <p className="text-slate-600 font-medium text-center sm:text-left">
-            Want a more detailed view? <span className="font-extrabold text-indigo-600">Open the Interactive Map</span>
+            Want a more detailed view? <span className="font-extrabold text-emerald-600">Open the Interactive Map</span>
           </p>
-          <button className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-3.5 bg-slate-900 hover:bg-indigo-600 text-white rounded-2xl text-sm font-bold transition-all shadow-lg active:scale-95">
+          <button className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-3.5 bg-slate-900 hover:bg-emerald-600 text-white rounded-2xl text-sm font-bold transition-all shadow-lg active:scale-95">
             <FiMapPin className="text-lg" />
             <span>Launch School Map</span>
           </button>
@@ -1420,17 +1418,17 @@ const VisionMissionSection = ({ vision, mission, motto }) => {
 {/* 1. Vision Card - Optimized Padding & Fonts */}
 <div className="md:col-span-7 bg-slate-900 rounded-none md:rounded-[2.5rem] p-5 md:p-8 relative overflow-hidden border-b border-white/5 md:border md:border-slate-800 shadow-xl flex flex-col justify-center">
   
-  <div className="absolute top-0 right-0 w-32 md:w-40 h-32 md:h-40 bg-blue-600/10 blur-[40px] md:blur-[50px] rounded-full -mr-8 -mt-8"></div>
+  <div className="absolute top-0 right-0 w-32 md:w-40 h-32 md:h-40 bg-emerald-600/10 blur-[40px] md:blur-[50px] rounded-full -mr-8 -mt-8"></div>
   
   <div className="relative z-10">
     <div className="inline-flex items-center gap-2 px-2 py-1 bg-white/5 backdrop-blur-md rounded-lg border border-white/10 mb-3 md:mb-4">
-      <IoEyeOutline className="text-blue-400 text-sm md:text-base" />
-      <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] text-blue-100">Our Vision</span>
+      <IoEyeOutline className="text-emerald-400 text-sm md:text-base" />
+      <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] text-emerald-100">Our Vision</span>
     </div>
 
     {/* Heading: Smaller, tighter leading */}
     <h3 className="text-lg md:text-xl font-black text-white mb-2 tracking-tighter uppercase italic leading-none">
-      The <span className="text-blue-500">Future</span> we build
+      The <span className="text-emerald-500">Future</span> we build
     </h3>
 
     {/* Description: Reduced from text-lg to text-sm/base */}
@@ -1444,8 +1442,8 @@ const VisionMissionSection = ({ vision, mission, motto }) => {
 <div className="md:col-span-5 bg-white rounded-none md:rounded-[2.5rem] p-5 md:p-8 border-b md:border-2 border-slate-100 shadow-md flex flex-col justify-center">
   
   {/* Icon: Smaller footprint */}
-  <div className="w-8 h-8 md:w-10 md:h-10 bg-blue-50 rounded-lg md:rounded-xl flex items-center justify-center border border-blue-100 mb-3 md:mb-4 shrink-0">
-    <FiTarget className="text-blue-600 text-lg md:text-xl" />
+  <div className="w-8 h-8 md:w-10 md:h-10 bg-emerald-50 rounded-lg md:rounded-xl flex items-center justify-center border border-emerald-100 mb-3 md:mb-4 shrink-0">
+    <FiTarget className="text-emerald-600 text-lg md:text-xl" />
   </div>
   
   <div>
@@ -1460,7 +1458,7 @@ const VisionMissionSection = ({ vision, mission, motto }) => {
 </div>
 
 {/* 3. Motto Banner - Full bleed & Tightened for mobile */}
-<div className="md:col-span-12 bg-gradient-to-br from-blue-700 to-indigo-900 rounded-none md:rounded-[3rem] p-6 md:p-10 relative overflow-hidden shadow-lg">
+<div className="md:col-span-12 bg-gradient-to-br from-emerald-700 to-teal-900 rounded-none md:rounded-[3rem] p-6 md:p-10 relative overflow-hidden shadow-lg">
   {/* Large background icon - Pushed further to the edge on mobile */}
   <FiZap className="absolute right-[-5%] md:right-[-2%] top-1/2 -translate-y-1/2 text-white/5 text-5xl md:text-6xl -rotate-12 pointer-events-none" />
   
@@ -1474,7 +1472,7 @@ const VisionMissionSection = ({ vision, mission, motto }) => {
       </div>
       
       <div className="text-left">
-        <span className="text-blue-200 text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] block mb-0">
+        <span className="text-emerald-200 text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] block mb-0">
           The Spirit of the School
         </span>
         <h3 className="text-white text-base md:text-lg font-black tracking-tighter uppercase leading-none">
@@ -1520,19 +1518,19 @@ const ModernUniformRequirementsSection = ({
       {/* Header Section: Edge-to-edge on mobile */}
       <div className="relative p-6 md:p-12 bg-[#0F172A] text-white">
         {/* Glow effect - adjusted for mobile center */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 blur-[80px] md:blur-[100px] rounded-full -mr-32 -mt-32"></div>
+        <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-600/20 blur-[80px] md:blur-[100px] rounded-full -mr-32 -mt-32"></div>
         
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div className="flex items-center gap-4">
             <div className="p-3 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shrink-0">
-              <IoShirtOutline className="text-blue-400 text-2xl md:text-3xl" />
+              <IoShirtOutline className="text-emerald-400 text-2xl md:text-3xl" />
             </div>
             <div className="min-w-0">
               <h3 className="text-xl md:text-3xl font-black uppercase tracking-tighter leading-tight">
-                Admission <span className="text-blue-500">Breakdown</span>
+                Admission <span className="text-emerald-500">Breakdown</span>
               </h3>
               <div className="flex flex-wrap items-center gap-2 mt-1">
-                <p className="text-[10px] font-black text-blue-400 uppercase tracking-widest">
+                <p className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">
                   {admissionFeeYear || '2026'} • {admissionFeeTerm || 'Full Session'}
                 </p>
                 {admissionFeeDescription && (
@@ -1553,7 +1551,7 @@ const ModernUniformRequirementsSection = ({
               download={admissionFeePdfName}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full md:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-xl shadow-blue-900/40 active:scale-95"
+              className="w-full md:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-xl shadow-emerald-900/40 active:scale-95"
             >
               <IoCloudDownloadOutline className="text-lg" />
               <span>Full Document (PDF)</span>
@@ -1569,7 +1567,7 @@ const ModernUniformRequirementsSection = ({
             {uniformItems.map((item, index) => (
               <div 
                 key={item.id || index}
-                className="group bg-white border border-slate-200 rounded-2xl p-6 transition-all shadow-sm md:hover:shadow-xl md:hover:border-blue-200"
+                className="group bg-white border border-slate-200 rounded-2xl p-6 transition-all shadow-sm md:hover:shadow-xl md:hover:border-emerald-200"
               >
                 <div className="flex justify-between items-start mb-5">
                   <div className="min-w-0">
@@ -1580,7 +1578,7 @@ const ModernUniformRequirementsSection = ({
                       {item.description || 'Standard requirement'}
                     </p>
                   </div>
-                  <div className={`p-2 rounded-xl shrink-0 ${item.optional ? 'bg-emerald-50 text-emerald-600' : 'bg-blue-50 text-blue-600'}`}>
+                  <div className={`p-2 rounded-xl shrink-0 ${item.optional ? 'bg-emerald-50 text-emerald-600' : 'bg-emerald-50 text-emerald-600'}`}>
                     {item.optional ? <FiCheckCircle size={16} /> : <IoCheckmarkCircleOutline size={16} />}
                   </div>
                 </div>
@@ -1597,7 +1595,7 @@ const ModernUniformRequirementsSection = ({
                       <span className="text-[9px] bg-emerald-100 text-emerald-700 px-2 py-1 rounded-md font-black uppercase tracking-tighter">Optional</span>
                     )}
                     {item.boardingOnly && (
-                      <span className="text-[9px] bg-blue-100 text-blue-700 px-2 py-1 rounded-md font-black uppercase tracking-tighter">Boarding</span>
+                      <span className="text-[9px] bg-emerald-100 text-emerald-700 px-2 py-1 rounded-md font-black uppercase tracking-tighter">Boarding</span>
                     )}
                   </div>
                 </div>
@@ -1605,7 +1603,7 @@ const ModernUniformRequirementsSection = ({
                 {/* Visual Progress Line */}
                 <div className="w-full h-1.5 bg-slate-100 rounded-full mt-5 overflow-hidden">
                   <div 
-                    className={`h-full transition-all duration-1000 ${item.optional ? 'bg-emerald-500' : 'bg-blue-600'}`}
+                    className={`h-full transition-all duration-1000 ${item.optional ? 'bg-emerald-500' : 'bg-emerald-600'}`}
                     style={{ width: '100%' }}
                   />
                 </div>
@@ -1624,11 +1622,11 @@ const ModernUniformRequirementsSection = ({
         {uniformItems.length > 0 && (
           <div className="mt-8 md:mt-12 p-8 md:p-12 bg-slate-900 rounded-[2rem] text-white shadow-2xl flex flex-col lg:flex-row justify-between items-center gap-10 border border-white/5">
             <div className="flex flex-col sm:flex-row items-center gap-6 w-full lg:w-auto">
-              <div className="p-5 bg-blue-600 rounded-[1.5rem] shadow-xl shadow-blue-600/20">
+              <div className="p-5 bg-emerald-600 rounded-[1.5rem] shadow-xl shadow-emerald-600/20">
                 <FiDollarSign size={28} className="text-white" />
               </div>
               <div className="text-center sm:text-left">
-                <h4 className="text-[10px] md:text-xs font-black text-blue-400 uppercase tracking-[0.4em] mb-2">
+                <h4 className="text-[10px] md:text-xs font-black text-emerald-400 uppercase tracking-[0.4em] mb-2">
                   Total Admission Cost
                 </h4>
                 <div className="text-2xl md:text-3xl font-black tracking-tighter tabular-nums leading-none">
@@ -1664,8 +1662,8 @@ const AcademicResultsSection = ({ documentData }) => {
       year: documentData?.mockExamsYear,
       term: documentData?.mockExamsTerm,
       icon: FiFileText,
-      accent: 'text-rose-400',
-      bg: 'bg-rose-400/10'
+      accent: 'text-emerald-400',
+      bg: 'bg-emerald-400/10'
     },
     {
       name: 'KCSE Results',
@@ -1675,8 +1673,8 @@ const AcademicResultsSection = ({ documentData }) => {
       year: documentData?.kcseYear,
       term: documentData?.kcseTerm,
       icon: FiTrendingUp,
-      accent: 'text-indigo-400',
-      bg: 'bg-indigo-400/10'
+      accent: 'text-teal-400',
+      bg: 'bg-teal-400/10'
     }
   ];
 
@@ -1689,15 +1687,15 @@ const AcademicResultsSection = ({ documentData }) => {
       
       {/* Header Section - Edge-to-edge look */}
       <div className="relative p-6 md:p-12 bg-[#0F172A] text-white">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/20 blur-[80px] md:blur-[100px] rounded-full -mr-32 -mt-32" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-600/20 blur-[80px] md:blur-[100px] rounded-full -mr-32 -mt-32" />
         
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="p-3 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shrink-0">
-              <IoStatsChartOutline className="text-blue-400 text-2xl md:text-3xl" />
+              <IoStatsChartOutline className="text-emerald-400 text-2xl md:text-3xl" />
             </div>
             <div className="min-w-0">
-              <h3 className="text-xl md:text-3xl font-black uppercase tracking-tighter">Academic <span className="text-blue-400">Reports</span></h3>
+              <h3 className="text-xl md:text-3xl font-black uppercase tracking-tighter">Academic <span className="text-emerald-400">Reports</span></h3>
               <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] mt-1">Official Performance Archives</p>
             </div>
           </div>
@@ -1760,8 +1758,8 @@ const AcademicResultsSection = ({ documentData }) => {
               {documentData.additionalDocuments.map((doc, index) => (
                 <div key={index} className="flex items-center justify-between p-4 md:p-6 bg-white rounded-2xl border border-slate-200 group transition-all">
                   <div className="flex items-center gap-4 min-w-0">
-                    <div className="p-3 bg-slate-100 rounded-xl group-hover:bg-blue-50 transition-colors shrink-0">
-                      <IoDocumentTextOutline className="text-slate-500 group-hover:text-blue-500" />
+                    <div className="p-3 bg-slate-100 rounded-xl group-hover:bg-emerald-50 transition-colors shrink-0">
+                      <IoDocumentTextOutline className="text-slate-500 group-hover:text-emerald-500" />
                     </div>
                     <div className="min-w-0">
                       <h5 className="font-black text-slate-900 text-[11px] uppercase tracking-wide truncate">
@@ -1799,7 +1797,7 @@ const ModernFAQItem = ({ faq, index, openFaq, setOpenFaq }) => {
     <div className={`
       transition-all duration-300 border-b md:border border-slate-200/80 
       md:rounded-2xl overflow-hidden 
-      ${isOpen ? 'bg-white shadow-xl md:shadow-blue-900/5' : 'bg-transparent md:bg-white/50'}
+      ${isOpen ? 'bg-white shadow-xl md:shadow-emerald-900/5' : 'bg-transparent md:bg-white/50'}
     `}>
       <button
         onClick={() => setOpenFaq(isOpen ? null : index)}
@@ -1809,7 +1807,7 @@ const ModernFAQItem = ({ faq, index, openFaq, setOpenFaq }) => {
           {/* Number badge - refined sizing */}
           <div className={`
             flex-shrink-0 w-7 h-7 md:w-9 md:h-9 rounded-lg flex items-center justify-center mt-0.5 transition-colors
-            ${isOpen ? 'bg-blue-600 text-white' : 'bg-blue-50 text-blue-600'}
+            ${isOpen ? 'bg-emerald-600 text-white' : 'bg-emerald-50 text-emerald-600'}
           `}>
             <span className="font-black text-[10px] md:text-xs">
               {String(index + 1).padStart(2, '0')}
@@ -1819,7 +1817,7 @@ const ModernFAQItem = ({ faq, index, openFaq, setOpenFaq }) => {
           <div className="flex-1 min-w-0">
             <h3 className={`
               font-black tracking-tight text-[13px] md:text-lg transition-colors
-              ${isOpen ? 'text-blue-600' : 'text-slate-900'}
+              ${isOpen ? 'text-emerald-600' : 'text-slate-900'}
             `}>
               {faq.question}
             </h3>
@@ -1829,9 +1827,9 @@ const ModernFAQItem = ({ faq, index, openFaq, setOpenFaq }) => {
         {/* Improved Icon with background ring */}
         <div className={`
           ml-4 flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center border transition-all
-          ${isOpen ? 'rotate-180 border-blue-200 bg-blue-50' : 'border-slate-200 bg-white'}
+          ${isOpen ? 'rotate-180 border-emerald-200 bg-emerald-50' : 'border-slate-200 bg-white'}
         `}>
-          <FiChevronDown className={isOpen ? 'text-blue-600' : 'text-slate-400'} size={14} />
+          <FiChevronDown className={isOpen ? 'text-emerald-600' : 'text-slate-400'} size={14} />
         </div>
       </button>
       
@@ -1845,8 +1843,8 @@ const ModernFAQItem = ({ faq, index, openFaq, setOpenFaq }) => {
             </p>
             
             {/* Contextual Action - Optional visual touch */}
-            <div className="mt-4 flex items-center gap-2 text-[10px] font-black text-blue-500 uppercase tracking-widest">
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+            <div className="mt-4 flex items-center gap-2 text-[10px] font-black text-emerald-500 uppercase tracking-widest">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               Official School Policy
             </div>
           </div>
@@ -1879,7 +1877,7 @@ export default function ComprehensiveAdmissions() {
         fullName: '8 Years Primary, 4 Years Secondary, 4 Years University'
       },
       icon: IoSchoolOutline,
-      color: 'from-indigo-600 to-purple-500',
+      color: 'from-emerald-600 to-emerald-500',
       description: 'The 8-4-4 system focuses on providing students with practical skills alongside academic knowledge. It emphasizes technical subjects and prepares students for both higher education and immediate employment opportunities.',
       structure: [
         { years: '8', name: 'Primary' },
@@ -1918,7 +1916,7 @@ export default function ComprehensiveAdmissions() {
         fullName: 'Competency Based Curriculum'
       },
       icon: FiBookOpen,
-      color: 'from-teal-600 to-green-500',
+      color: 'from-teal-600 to-emerald-500',
       description: 'The CBC system focuses on developing seven core competencies: communication, collaboration, critical thinking, creativity, citizenship, digital literacy, and learning to learn. It emphasizes practical skills and values over rote memorization.',
       structure: [
         { years: '2', name: 'Pre-Primary' },
@@ -1992,28 +1990,28 @@ export default function ComprehensiveAdmissions() {
       number: schoolData?.studentCount ? schoolData.studentCount.toString() : '1,200+', 
       label: 'Total Students', 
       sublabel: 'Currently Enrolled',
-      color: 'from-green-500 to-emerald-500'
+      color: 'from-emerald-500 to-emerald-500'
     },
     { 
       icon: FiTrendingUp, 
       number: schoolData?.admissionCapacity ? schoolData.admissionCapacity.toString() : '300', 
       label: 'Admission Capacity', 
       sublabel: 'Annual Intake',
-      color: 'from-blue-500 to-cyan-500'
+      color: 'from-emerald-500 to-emerald-500'
     },
     { 
       icon: IoSparkles, 
       number: schoolData?.staffCount ? `${schoolData.staffCount}:1` : '20:1', 
       label: 'Student-Teacher', 
       sublabel: 'Personalized Ratio',
-      color: 'from-purple-500 to-pink-500'
+      color: 'from-emerald-500 to-emerald-500'
     },
     { 
       icon: FiAward, 
       number: '98%', 
       label: 'Success Rate', 
       sublabel: 'Academic Excellence',
-      color: 'from-orange-500 to-red-500'
+      color: 'from-emerald-500 to-emerald-500'
     },
   ];
 
@@ -2025,7 +2023,7 @@ export default function ComprehensiveAdmissions() {
       description: 'Join our Form 1 program with comprehensive academic curriculum and extracurricular activities',
       features: ['Academic Excellence', 'Extra-curricular Activities', 'Digital Literacy', 'Talent Development'],
       deadline: schoolData?.admissionCloseDate ? new Date(schoolData.admissionCloseDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'May 30, 2024',
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-emerald-600 to-emerald-500',
       type: 'grade7'
     },
     {
@@ -2034,7 +2032,7 @@ export default function ComprehensiveAdmissions() {
       description: 'Seamless transfer from other schools with credit recognition and orientation support',
       features: ['Credit Transfer', 'Placement Assessment', 'Records Review', 'Orientation Program'],
       deadline: 'Rolling Admission',
-      color: 'from-purple-500 to-pink-500',
+      color: 'from-teal-600 to-emerald-500',
       type: 'transfer'
     }
   ];
@@ -2047,7 +2045,7 @@ export default function ComprehensiveAdmissions() {
       description: 'Comprehensive curriculum with focus on core subjects and practical skills development',
       features: ['Quality Teaching', 'Regular Assessments', 'Exam Preparation', 'Academic Support'],
       badge: 'Advanced',
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-emerald-500 to-emerald-500',
       stats: { students: '500+', success: '95%' }
     },
     {
@@ -2056,7 +2054,7 @@ export default function ComprehensiveAdmissions() {
       description: 'Focus on academic, social, emotional, and physical growth through various programs',
       features: ['Sports Programs', 'Clubs & Societies', 'Leadership Training', 'Character Building'],
       badge: 'Comprehensive',
-      color: 'from-purple-500 to-pink-500',
+      color: 'from-emerald-500 to-emerald-500',
       stats: { students: '100%', success: '98%' }
     },
     {
@@ -2065,7 +2063,7 @@ export default function ComprehensiveAdmissions() {
       description: 'Emphasis on practical competencies and real-world application of knowledge',
       features: ['Laboratory Work', 'Field Trips', 'Project Work', 'Skill Development'],
       badge: 'Practical',
-      color: 'from-green-500 to-emerald-500',
+      color: 'from-emerald-500 to-emerald-500',
       stats: { students: '300+', success: '90%' }
     }
   ];
@@ -2202,76 +2200,103 @@ export default function ComprehensiveAdmissions() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-emerald-50/20 p-4 md:p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-emerald-50/30 to-teal-50/20 p-4 md:p-6">
       <Toaster position="top-right" richColors />
       
       <div className="max-w-7xl mx-auto space-y-6">
 
-        {/* Modernized Admissions Portal Header with MUI Loader */}
-<header className="relative bg-[#0F172A] rounded-2xl md:rounded-[2rem] p-4 sm:p-5 md:p-8 text-white overflow-hidden shadow-2xl border border-white/5 mb-8">
-  {/* Subtle Mesh Accents - Adjusted for mobile position */}
-  <div className="absolute top-[-10%] right-[-5%] w-[180px] md:w-[250px] h-[180px] md:h-[250px] bg-blue-600/20 rounded-full blur-[60px] md:blur-[80px] pointer-events-none" />
+        {/* Modernized Admissions Portal Header with Matungulu Girls Theme */}
+<header className="relative bg-gradient-to-r from-emerald-900 to-teal-800 rounded-2xl md:rounded-[2rem] p-4 sm:p-5 md:p-8 text-white overflow-hidden shadow-2xl border border-emerald-700/30 mb-8">
+  {/* Background Glows */}
+  <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+  <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
   
-  <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-5 md:gap-6">
-    
-    {/* Left: Branding & Title */}
-    <div className="flex flex-col gap-2.5 md:gap-3">
-      <div className="flex items-center gap-2.5 sm:gap-3">
-        {/* Adjusted bar height for mobile */}
-        <div className="h-8 md:h-10 w-1 bg-blue-500 rounded-full shadow-[0_0_10px_rgba(59,99,235,0.5)]" />
-        <div className="flex flex-col min-w-0"> {/* min-w-0 allows truncation/proper flex shrinking */}
-          <h2 className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.15em] sm:tracking-[0.3em] text-blue-400 leading-tight truncate">
-            {schoolData?.name || 'Matungulu Girls High School School'}
+  <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6">
+    <div>
+      {/* School Branding */}
+      <div className="flex items-center gap-3 mb-4">
+        <div className="h-8 w-1 bg-emerald-400 rounded-full shadow-[0_0_15px_rgba(52,211,153,0.5)]" />
+        <div>
+          <h2 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-emerald-400">
+            {schoolData?.name || 'Matungulu Girls High School'}
           </h2>
-          <p className="text-[8px] md:text-[9px] font-bold text-white/40 tracking-[0.1em] sm:tracking-[0.2em] uppercase mt-0.5 sm:mt-1 italic">
+          <p className="text-[8px] sm:text-[10px] italic font-medium text-emerald-200/60 tracking-widest uppercase">
             "Strive to Excel"
           </p>
         </div>
       </div>
-
-      <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-        <h1 className="text-xl sm:text-2xl md:text-3xl font-black tracking-tighter uppercase leading-none">
-          Admissions <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-blue-400">Portal</span>
+      
+      {/* Title */}
+      <div className="flex items-center gap-3">
+        <div className="p-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/10">
+          <IoSchoolOutline className="text-xl sm:text-2xl md:text-3xl text-emerald-300" />
+        </div>
+        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white tracking-tight">
+          Admissions <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300">Portal</span>
         </h1>
-        {/* Mobile-friendly session badge */}
-        <span className="text-[8px] md:text-[10px] font-black px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/10 uppercase whitespace-nowrap">
-          {schoolData?.academicYear || '2026'} Session
-        </span>
       </div>
     </div>
 
-    {/* Right: Modern Compact Action Hub */}
-    <div className="flex items-center self-start md:self-center">
-      <div className="p-1 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl md:rounded-2xl">
-        <button
-          onClick={refreshData}
-          disabled={loading}
-          className="flex items-center justify-center gap-2 h-9 md:h-10 px-3 md:px-4 rounded-lg md:rounded-xl
-                     transition-all font-black text-[9px] md:text-[10px] uppercase tracking-widest
-                     bg-white/5 hover:bg-white/10 text-white
-                     active:scale-95 disabled:opacity-50"
-        >
-          {loading ? (
-          <>
-  <CircularProgress 
-    size={12} 
-    thickness={6} 
-    sx={{ color: '#ffffff' }} // Pure White
-  />
-  <span className="text-white font-black uppercase tracking-widest text-[10px]">
-    Refreshing...
-  </span>
-</>
-          ) : (
-            <>
-              <FiRefreshCw className={`text-xs md:text-base   text-white ${loading ? 'animate-spin' : ''}`} />
-              {/* Show text on small screens too, but smaller */}
-              <span className="inline text-white" >Refresh Info</span>
-            </>
-          )}
-        </button>
-      </div>
+    {/* Refresh Button */}
+    <button
+      onClick={refreshData}
+      disabled={loading}
+      className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl font-bold text-[11px] sm:text-sm tracking-widest text-white hover:bg-white/20 w-full sm:w-auto transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+    >
+      {loading ? (
+        <>
+          <CircularProgress size={12} thickness={6} sx={{ color: '#ffffff' }} />
+          <span>REFRESHING...</span>
+        </>
+      ) : (
+        <>
+          <FiRefreshCw className="text-base sm:text-lg" />
+          <span>REFRESH DATA</span>
+        </>
+      )}
+    </button>
+  </div>
+
+  {/* Stats Summary */}
+  <div className="mb-4 sm:mb-6 px-1">
+    <p className="text-emerald-100/90 text-xs sm:text-base font-medium leading-relaxed sm:leading-loose">
+      <span className="text-white font-black text-base sm:text-xl md:text-2xl underline decoration-emerald-500/50 underline-offset-4 mr-1">
+        {schoolData?.studentCount || '1,200+'}
+      </span> 
+      <span className="tracking-tight sm:tracking-normal">students enrolled with</span>
+      <span className="text-white font-black text-base sm:text-xl md:text-2xl underline decoration-teal-500/50 underline-offset-4 ml-1 mr-1">
+        {schoolData?.admissionCapacity || '300'}
+      </span>
+      <span className="tracking-tight sm:tracking-normal">admission slots available</span>
+    </p>
+  </div>
+
+  {/* Quick Stats Grid */}
+  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+      <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Students</p>
+      <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{schoolData?.studentCount || '1,200+'}</p>
     </div>
+    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+      <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Capacity</p>
+      <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{schoolData?.admissionCapacity || '300'}</p>
+    </div>
+    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+      <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Staff</p>
+      <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{schoolData?.staffCount || '60'}</p>
+    </div>
+    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+      <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Success Rate</p>
+      <p className="text-lg sm:text-xl md:text-2xl font-black text-white">98%</p>
+    </div>
+  </div>
+
+  {/* Additional Info */}
+  <div className="mt-4 text-xs sm:text-sm text-emerald-200/80">
+    <span className="inline-flex items-center gap-1">
+      <IoSparkles className="text-emerald-300" size={14} />
+      Join our community of excellence - Applications now open
+    </span>
   </div>
 </header>
 
@@ -2364,7 +2389,7 @@ return (
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-3 px-4 py-3 md:px-6 md:py-4 font-semibold transition-all whitespace-nowrap border-b-2 ${
                     activeTab === tab.id
-                      ? 'border-blue-500 text-blue-600 bg-blue-50/50'
+                      ? 'border-emerald-500 text-emerald-600 bg-emerald-50/50'
                       : 'border-transparent text-gray-600'
                   }`}
                 >
@@ -2383,24 +2408,24 @@ return (
     
     {/* 1. Hero / Introduction Section */}
     <div className="relative pt-4 pb-2 text-center px-4">
-      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-4 md:mb-6">
+      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 mb-4 md:mb-6">
         <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
         </span>
-        <span className="text-[9px] md:text-[10px] font-black uppercase tracking-wider text-blue-700">
+        <span className="text-[9px] md:text-[10px] font-black uppercase tracking-wider text-emerald-700">
           Admissions Open {new Date().getFullYear()}
         </span>
       </div>
       
       <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-900 mb-3 tracking-tight leading-[1.1] text-balance">
         Welcome to{" "}
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">
           {schoolData?.name || "Our School"}
         </span>
       </h2>
       
-      <p className="text-slate-500  mx-auto text-xs sm:text-base md:text-md leading-relaxed px-2 text-balance">
+      <p className="text-slate-500 mx-auto text-xs sm:text-base md:text-md leading-relaxed px-2 text-balance">
         {schoolData?.description || "We are committed to nurturing well-rounded learners through quality education and strong values."}
       </p>
     </div>
@@ -2417,16 +2442,16 @@ return (
     {/* 3. Admission Paths - Mobile Optimized Grid */}
 {/* 3. Admission Paths - Full Bleed on Mobile */}
 <section className="relative overflow-hidden py-12 md:py-20 bg-slate-50 rounded-none md:rounded-[40px] md:mx-4 px-0 md:px-8">
-  <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-64 h-64 bg-blue-200/20 blur-3xl rounded-full" />
+  <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-64 h-64 bg-emerald-200/20 blur-3xl rounded-full" />
   
   <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-0">
     <div className="mb-10 text-center md:text-left">
-      <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100/50 rounded-full mb-4">
-        <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
-        <span className="text-[10px] font-black uppercase tracking-widest text-blue-700">Admissions 2026</span>
+      <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-100/50 rounded-full mb-4">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+        <span className="text-[10px] font-black uppercase tracking-widest text-emerald-700">Admissions 2026</span>
       </div>
       <h3 className="text-xl md:text-3xl font-black text-slate-900 tracking-tighter mb-4 leading-none">
-        Your <span className="text-blue-600">Future</span> Starts Here
+        Your <span className="text-emerald-600">Future</span> Starts Here
       </h3>
       {/* Added additional line of description below */}
       <p className="text-slate-500 text-sm md:text-md max-w-2xl mx-auto md:mx-0 font-medium leading-relaxed">
@@ -2453,21 +2478,21 @@ return (
   <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-6 border-b-2 border-slate-100 px-4 md:px-0">
     <div className="flex-1">
       <div className="inline-flex items-center gap-2 px-2 py-1 bg-slate-100 rounded-md mb-3 border border-slate-200">
-        <div className="w-1.5 h-1.5 rounded-full bg-blue-600"></div>
-        <span className="text-[9px] font-black uppercase tracking-widest text-slate-600">SChool Profile</span>
+        <div className="w-1.5 h-1.5 rounded-full bg-emerald-600"></div>
+        <span className="text-[9px] font-black uppercase tracking-widest text-slate-600">School Profile</span>
       </div>
       <h2 className="text-xl md:text-3xl font-black text-slate-900 tracking-tighter leading-[1.1]">
-        Why <span className="text-blue-600 whitespace-nowrap">Matungulu Girls High School?</span>
+        Why <span className="text-emerald-600 whitespace-nowrap">Matungulu Girls High School?</span>
       </h2>
     </div>
     
     <div className="flex flex-wrap items-center gap-3 mt-2">
       <div className="flex items-center gap-1 text-[10px] text-slate-500 font-black uppercase">
-        <FiAward className="text-blue-600" />
+        <FiAward className="text-emerald-600" />
         <span>KICD APPROVED</span>
       </div>
       <div className="flex items-center gap-1 text-[10px] text-slate-500 font-black uppercase">
-        <FiUsers className="text-blue-600" />
+        <FiUsers className="text-emerald-600" />
         <span>COMMUNITY</span>
       </div>
     </div>
@@ -2478,12 +2503,12 @@ return (
     {/* Academic Card */}
     <div className="md:col-span-7 relative rounded-xl md:rounded-3xl bg-slate-50 border-b md:border-2 border-slate-200 p-5 md:p-6">
       <div className="flex flex-col h-full gap-3">
-        <div className="w-9 h-9 bg-white text-blue-600 rounded-lg flex items-center justify-center shadow-sm border border-slate-200 shrink-0">
+        <div className="w-9 h-9 bg-white text-emerald-600 rounded-lg flex items-center justify-center shadow-sm border border-slate-200 shrink-0">
           <IoBulbOutline size={18} />
         </div>
         <div>
           <h4 className="text-base md:text-lg font-black text-slate-900 mb-1 uppercase tracking-tight">Academic Achievement</h4>
-          <p className="text-slate-600 text-[12px] md:text-[13px] font-bold协议 leading-snug">
+          <p className="text-slate-600 text-[12px] md:text-[13px] font-bold leading-snug">
             We maintain a track record of academic excellence, consistently producing top-tier KCSE results. Our specialized focus on STEM subjects equips students with technical skills for the modern economy.
           </p>
         </div>
@@ -2497,7 +2522,7 @@ return (
           <FiUsers size={18} className="text-white" />
         </div>
         <div>
-          <h4 className="text-base md:text-lg font-black mb-1 uppercase tracking-tight text-blue-400">Expert Educators</h4>
+          <h4 className="text-base md:text-lg font-black mb-1 uppercase tracking-tight text-emerald-400">Expert Educators</h4>
           <p className="text-slate-300 text-[12px] md:text-[13px] font-bold leading-snug">
             Our faculty consists of TSC-certified professionals providing personalized mentorship, ensuring every student discovers their unique potential through innovation.
           </p>
@@ -2508,13 +2533,13 @@ return (
     {/* Infrastructure Card */}
     <div className="md:col-span-12 relative rounded-xl md:rounded-3xl bg-white border-b md:border-2 border-slate-900 p-5 md:p-8 flex flex-col gap-3">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center border border-blue-100 shrink-0">
+        <div className="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center border border-emerald-100 shrink-0">
           <FiCpu size={20} />
         </div>
         <h4 className="text-base md:text-xl font-black text-slate-900 uppercase tracking-tighter">Modern Learning Resources</h4>
       </div>
       <p className="text-slate-600 text-[12px] md:text-[14px] font-bold leading-snug max-w-4xl">
-        Our School  features state-of-the-art science laboratories and advanced computer labs. We provide tech-integrated classrooms and a vast library to foster research and self-reliance.
+        Our School features state-of-the-art science laboratories and advanced computer labs. We provide tech-integrated classrooms and a vast library to foster research and self-reliance.
       </p>
       <div className="flex items-center gap-3 mt-1 px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-200 self-start">
         <span className="text-[9px] font-black text-slate-900 uppercase tracking-widest">
@@ -2534,22 +2559,22 @@ return (
     <div className="relative pt-2">
       <div className="relative flex flex-col lg:flex-row lg:items-end justify-between gap-6 md:gap-8 border-b border-slate-100 pb-8 md:pb-12 px-2">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-600 rounded-full mb-4 md:mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-600 rounded-full mb-4 md:mb-6">
             <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-100 opacity-75"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-100 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
             </span>
             <span className="text-[9px] md:text-[10px] text-white font-black uppercase tracking-[0.2em]">Academic Excellence</span>
           </div>
           <h2 className="text-xl md:text-3xl font-black text-slate-900 tracking-tighter leading-[1.1] mb-4">
-            Academic <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Programs</span>
+            Academic <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Programs</span>
           </h2>
-       <p className="text-slate-600 text-md md:text-lg font-medium leading-relaxed ">
-  Matungulu Girls High School offers a future-ready, holistic curriculum 
-  specifically designed to cultivate critical thinking, academic excellence, 
-  and global leadership. We empower our students to navigate the complexities 
-  of the modern world with integrity, innovation, and a commitment to excellence.
-</p>
+          <p className="text-slate-600 text-md md:text-lg font-medium leading-relaxed">
+            Matungulu Girls High School offers a future-ready, holistic curriculum 
+            specifically designed to cultivate critical thinking, academic excellence, 
+            and global leadership. We empower our students to navigate the complexities 
+            of the modern world with integrity, innovation, and a commitment to excellence.
+          </p>
         </div>
 
         {/* Download Button - Fixed width for mobile */}
@@ -2560,7 +2585,7 @@ return (
             target="_blank"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-4 px-6 py-4 bg-slate-900 text-white rounded-2xl active:scale-95 transition-all shadow-xl"
           >
-            <FiDownload className="text-xl text-blue-400" />
+            <FiDownload className="text-xl text-emerald-400" />
             <div className="text-left">
               <div className="font-bold text-xs md:text-sm tracking-tight">Download Curriculum</div>
               {documentData.curriculumYear && (
@@ -2577,7 +2602,7 @@ return (
     {/* Section 2: Education Systems */}
     <section className="px-2">
       <div className="flex flex-col mb-6 md:mb-12">
-        <h3 className="text-[10px] font-black text-blue-600 uppercase tracking-[0.3em] mb-1">Paths to Success</h3>
+        <h3 className="text-[10px] font-black text-emerald-600 uppercase tracking-[0.3em] mb-1">Paths to Success</h3>
         <h4 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">Education Systems</h4>
       </div>
       
@@ -2591,8 +2616,8 @@ return (
 
     {/* Section 3 & 4: Subject Tiles & Departments (Unified Visuals) */}
     {[
-      { title: "Subjects Offered", desc: "Core and elective disciplines.", count: schoolData?.subjects?.length, data: schoolData?.subjects, iconColor: "text-blue-600", bgColor: "bg-blue-50" },
-      { title: "Departments", desc: "Academic and administrative wings.", count: schoolData?.departments?.length, data: schoolData?.departments, iconColor: "text-purple-600", bgColor: "bg-purple-50" }
+      { title: "Subjects Offered", desc: "Core and elective disciplines.", count: schoolData?.subjects?.length, data: schoolData?.subjects, iconColor: "text-emerald-600", bgColor: "bg-emerald-50" },
+      { title: "Departments", desc: "Academic and administrative wings.", count: schoolData?.departments?.length, data: schoolData?.departments, iconColor: "text-teal-600", bgColor: "bg-teal-50" }
     ].map((sect, i) => (
       <section key={i} className="relative bg-slate-50 rounded-[2rem] p-6 md:p-12 mx-1">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
@@ -2601,7 +2626,7 @@ return (
             <p className="text-slate-500 text-xs font-medium">{sect.desc}</p>
           </div>
           <div className="px-3 py-1.5 bg-white self-start rounded-full shadow-sm border border-slate-200 text-[10px] font-black text-slate-600 uppercase">
-            {sect.count || 0} Subjects
+            {sect.count || 0} {i === 0 ? 'Subjects' : 'Departments'}
           </div>
         </div>
 
@@ -2621,140 +2646,76 @@ return (
       </section>
     ))}
 
-{/* Section 5: Stats & Calendar - Refined Responsive Dates */}
-{schoolData?.openDate && (
-  <div className="relative overflow-hidden bg-slate-900 md:rounded-[3rem] p-8 md:p-16 w-full">
-    {/* Decorative Glow */}
-    <div className="absolute top-0 right-0 w-48 md:w-96 h-48 md:h-96 bg-blue-500/10 blur-[60px] md:blur-[100px] rounded-full -mr-24 -mt-24" />
-    
-    <div className="relative z-10 flex flex-col lg:flex-row justify-between items-center gap-8 md:gap-12">
-      <div className="text-center lg:text-left max-w-sm">
-        <h3 className="text-white text-lg md:text-xl font-black tracking-tight mb-3 uppercase">
-          Academic <span className="text-blue-500">Calendar</span>
-        </h3>
-        <p className="text-slate-400 text-xs md:text-md font-medium leading-relaxed">
-          Mark your journey. Stay ahead of the curve with our key enrollment dates.
-        </p>
-      </div>
-
-
-<div className="grid grid-cols-2 gap-3 md:gap-8 w-full lg:w-auto">
+    {/* Section 5: Stats & Calendar - Refined Responsive Dates */}
+    {schoolData?.openDate && (
+      <div className="relative overflow-hidden bg-slate-900 md:rounded-[3rem] p-8 md:p-16 w-full">
+        {/* Decorative Glow */}
+        <div className="absolute top-0 right-0 w-48 md:w-96 h-48 md:h-96 bg-emerald-500/10 blur-[60px] md:blur-[100px] rounded-full -mr-24 -mt-24" />
         
-  {/* Year Opens Card */}
-  <div className="bg-white/5 backdrop-blur-xl p-4 md:p-8 rounded-2xl border border-white/10 text-center min-w-0 flex flex-col justify-center">
-    <div className="text-blue-400 font-black text-[8px] md:text-[10px] uppercase tracking-[0.2em] mb-2 md:mb-3">
-      Year Opens
-    </div>
-    <div className="text-white font-black tracking-tighter tabular-nums leading-tight">
-      {/* On mobile, we use a slightly smaller, tighter font size 
-         to ensure the "Ordinal Jan Year" format fits on one line.
-      */}
-      <span className="block md:hidden text-md whitespace-nowrap">
-        {formatDateWithOrdinal(schoolData.openDate)}
-      </span>
-      {/* Desktop View */}
-      <span className="hidden md:block text-xl ">
-        {formatDateWithOrdinal(schoolData.openDate)}
-      </span>
-    </div>
-  </div>
+        <div className="relative z-10 flex flex-col lg:flex-row justify-between items-center gap-8 md:gap-12">
+          <div className="text-center lg:text-left max-w-sm">
+            <h3 className="text-white text-lg md:text-xl font-black tracking-tight mb-3 uppercase">
+              Academic <span className="text-emerald-500">Calendar</span>
+            </h3>
+            <p className="text-slate-400 text-xs md:text-md font-medium leading-relaxed">
+              Mark your journey. Stay ahead of the curve with our key enrollment dates.
+            </p>
+          </div>
 
-  {/* Year Closes Card */}
-  <div className="bg-white/5 backdrop-blur-xl p-4 md:p-8 rounded-2xl border border-white/10 text-center min-w-0 flex flex-col justify-center">
-    <div className="text-rose-400 font-black text-[8px] md:text-[10px] uppercase tracking-[0.2em] mb-2 md:mb-3">
-      Year Closes
-    </div>
-    <div className="text-white font-black tracking-tighter tabular-nums leading-tight">
-      {/* Mobile View */}
-      <span className="block md:hidden text-md whitespace-nowrap">
-        {formatDateWithOrdinal(schoolData.closeDate)}
-      </span>
-      {/* Desktop View */}
-      <span className="hidden md:block text-xl ">
-        {formatDateWithOrdinal(schoolData.closeDate)}
-      </span>
-    </div>
-  </div>
+          <div className="grid grid-cols-2 gap-3 md:gap-8 w-full lg:w-auto">
+            {/* Year Opens Card */}
+            <div className="bg-white/5 backdrop-blur-xl p-4 md:p-8 rounded-2xl border border-white/10 text-center min-w-0 flex flex-col justify-center">
+              <div className="text-emerald-400 font-black text-[8px] md:text-[10px] uppercase tracking-[0.2em] mb-2 md:mb-3">
+                Year Opens
+              </div>
+              <div className="text-white font-black tracking-tighter tabular-nums leading-tight">
+                <span className="block md:hidden text-md whitespace-nowrap">
+                  {formatDateWithOrdinal(schoolData.openDate)}
+                </span>
+                <span className="hidden md:block text-xl">
+                  {formatDateWithOrdinal(schoolData.openDate)}
+                </span>
+              </div>
+            </div>
 
-</div>
-    </div>
-  </div>
-)}
+            {/* Year Closes Card */}
+            <div className="bg-white/5 backdrop-blur-xl p-4 md:p-8 rounded-2xl border border-white/10 text-center min-w-0 flex flex-col justify-center">
+              <div className="text-teal-400 font-black text-[8px] md:text-[10px] uppercase tracking-[0.2em] mb-2 md:mb-3">
+                Year Closes
+              </div>
+              <div className="text-white font-black tracking-tighter tabular-nums leading-tight">
+                <span className="block md:hidden text-md whitespace-nowrap">
+                  {formatDateWithOrdinal(schoolData.closeDate)}
+                </span>
+                <span className="hidden md:block text-xl">
+                  {formatDateWithOrdinal(schoolData.closeDate)}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
   </div>
 )}
 
 {activeTab === 'career-paths' && (
-  <div className="space-y-10 md:space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+  <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 space-y-10 md:space-y-16">
     {/* Hero Section */}
     <div className="text-center px-4">
-      <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-100 rounded-full mb-6">
+      <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-100 rounded-full mb-6">
         <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
         </span>
-        <span className="text-[10px] font-bold uppercase tracking-wider text-blue-700">Career Readiness</span>
+        <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">Career Readiness</span>
       </div>
       <h2 className="text-xl md:text-3xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
-        Future <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Pathways</span>
+        Future <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Pathways</span>
       </h2>
       <p className="text-slate-500 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed">
         Strategic academic planning for diverse career trajectories. Our curriculum integrates industry-relevant skills with traditional excellence.
       </p>
-    </div>
-
-    {/* Career Guidance Banner - Full Width on Mobile */}
-    <div className="relative overflow-hidden bg-slate-900 md:rounded-[2.5rem] p-8 md:p-12 text-white w-full">
-      <div className="absolute top-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-blue-500/20 blur-[60px] md:blur-[100px] rounded-full -mr-32 -mt-32" />
-      
-      <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-        <div className="max-w-2xl">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl flex items-center justify-center">
-              <FiTarget className="text-blue-300 text-xl" />
-            </div>
-            <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight">Professional Development</h3>
-          </div>
-          <p className="text-slate-300 text-sm md:text-base leading-relaxed font-medium">
-            Personalized career mapping, university placement strategy, and industry immersion experiences. 
-            We bridge academic learning with professional reality.
-          </p>
-        </div>
-        <button 
-          onClick={() => router.push('/pages/contact')}
-          className="
-            /* Layout */
-            flex items-center justify-center gap-2 md:gap-3
-            w-full lg:w-auto 
-            
-            /* Sizing & Shape */
-            px-5 md:px-10 
-            py-3.5 md:py-5 
-            rounded-xl md:rounded-2xl 
-            
-            /* Aesthetics */
-            bg-white text-slate-900 
-            border border-slate-200 
-            shadow-sm
-            
-            /* Typography */
-            font-black uppercase 
-            tracking-[0.1em] md:tracking-[0.2em] 
-            text-[10px] md:text-[11px]
-            
-            /* Interactions (Simplified) */
-            transition-transform active:scale-95
-          "
-        >
-          <span className="whitespace-nowrap">
-            Schedule <span className="hidden xs:inline">Consultation</span>
-            <span className="xs:hidden">Now</span>
-          </span>
-          
-          <div className="flex-shrink-0 flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded-full bg-slate-900 text-white">
-            <FiArrowRight className="text-[10px] md:text-[12px]" />
-          </div>
-        </button>
-      </div>
     </div>
 
     {/* Render the CareerSearchPage component */}
@@ -2762,272 +2723,252 @@ return (
   </div>
 )}
 
-          {activeTab === 'requirements' && (
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 space-y-8 md:space-y-12">
-              
-              {/* Hero Header */}
-              <div className="text-center mb-8 md:mb-12 px-2 md:px-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 rounded-full mb-6">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
-                  </span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-blue-700">Admission Checklist</span>
-                </div>
-                <h2 className="text-lg sm:text-xl md:text-3xl font-black text-slate-900 tracking-tight mb-4 px-2">
-                  Application <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Requirements</span>
-                </h2>
-                <p className="text-slate-500 text-base md:text-lg max-w-3xl mx-auto leading-relaxed px-2">
-                  Everything you need to prepare for a successful application journey.
-                </p>
-              </div>
-
-              {/* Uniform Requirements - Modern Card with API Data */}
-              <ModernUniformRequirementsSection 
-                admissionFeeDistribution={documentData?.admissionFeeDistribution}
-                admissionFeePdf={documentData?.admissionFeePdf}
-                admissionFeePdfName={documentData?.admissionFeePdfName}
-                admissionFeeDescription={documentData?.admissionFeeDescription}
-                admissionFeeYear={documentData?.admissionFeeYear}
-                admissionFeeTerm={documentData?.admissionFeeTerm}
-              />
-
-      {/* Required Documents - Modern Grid */}
-<div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl p-6 md:p-10 overflow-hidden">
-  <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 gap-6">
-    <div>
-      <div className="flex items-center gap-3 mb-3">
-        <div className="p-3 bg-slate-900 rounded-2xl shadow-xl shadow-slate-200">
-          <IoDocumentTextOutline className="text-white text-xl md:text-2xl" />
-        </div>
-        <h3 className="text-xl md:text-2xl font-black text-slate-900 uppercase tracking-tighter">
-          Required Documents
-        </h3>
+{activeTab === 'requirements' && (
+  <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 space-y-8 md:space-y-12">
+    
+    {/* Hero Header */}
+    <div className="text-center mb-8 md:mb-12 px-2 md:px-4">
+      <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-200 rounded-full mb-6">
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
+        </span>
+        <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">Admission Checklist</span>
       </div>
-      <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">
-        Essential paperwork for admission processing
+      <h2 className="text-lg sm:text-xl md:text-3xl font-black text-slate-900 tracking-tight mb-4 px-2">
+        Application <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Requirements</span>
+      </h2>
+      <p className="text-slate-500 text-base md:text-lg max-w-3xl mx-auto leading-relaxed px-2">
+        Everything you need to prepare for a successful application journey.
       </p>
     </div>
-    
-    <div className="flex items-center gap-2 px-5 py-2.5 bg-blue-50 text-blue-700 rounded-2xl border border-blue-100">
-      <IoCheckmarkCircleOutline className="text-lg" />
-      <span className="text-[10px] font-black uppercase tracking-widest">Mandatory Set</span>
-    </div>
-  </div>
 
-  {/* Document Cards Grid */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-    {(schoolData?.admissionDocumentsRequired?.length > 0 ? schoolData.admissionDocumentsRequired : [
-      "Original KCPE Certificate",
-      "Birth Certificate",
-      "Passport Size Photos (4)",
-      "Medical Report",
-      "Transfer Letter (if applicable)",
-      "Previous School Reports"
-    ]).map((doc, index) => (
-      <div 
-        key={index}
-        className="group relative bg-white border-2 border-slate-50 rounded-[2rem] p-6 transition-all hover:border-blue-400 hover:shadow-2xl"
-      >
-        <div className="flex items-center gap-4">
-          <div className="relative shrink-0">
-            <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center group-hover:bg-blue-600 transition-colors">
-              <IoDocumentTextOutline className="text-slate-400 group-hover:text-white text-xl" />
-            </div>
-            <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] font-black border-4 border-white">
-              {index + 1}
-            </div>
-          </div>
-          
-          <div className="min-w-0">
-            <h4 className="font-black text-slate-900 text-sm leading-tight uppercase tracking-tight truncate group-hover:whitespace-normal">
-              {doc}
-            </h4>
-            <div className="flex items-center gap-2 mt-2">
-              <span className="text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded uppercase tracking-wider">
-                Required
-              </span>
-              {index === 0 && (
-                <span className="text-[9px] font-black text-rose-600 bg-rose-50 px-2 py-0.5 rounded uppercase tracking-wider">
-                  Original
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
+    {/* Uniform Requirements - Modern Card with API Data */}
+    <ModernUniformRequirementsSection 
+      admissionFeeDistribution={documentData?.admissionFeeDistribution}
+      admissionFeePdf={documentData?.admissionFeePdf}
+      admissionFeePdfName={documentData?.admissionFeePdfName}
+      admissionFeeDescription={documentData?.admissionFeeDescription}
+      admissionFeeYear={documentData?.admissionFeeYear}
+      admissionFeeTerm={documentData?.admissionFeeTerm}
+    />
 
-{/* Important Notes - Full-Screen Mobile Strategy */}
-<div className="mt-8 md:mt-12 p-6 md:p-12 bg-slate-900 rounded-none md:rounded-[2.5rem] relative overflow-hidden border-y border-white/5 md:border shadow-2xl">
-  {/* Amber Glow - Repositioned for mobile visibility */}
-  <div className="absolute top-0 right-0 w-48 md:w-64 h-48 md:h-64 bg-amber-500/10 blur-[60px] md:blur-[80px] rounded-full -mr-24 -mt-24 md:-mr-32 md:-mt-32"></div>
-  
-  <div className="relative z-10">
-    <div className="flex items-center gap-4 mb-8">
-      <div className="p-2.5 bg-amber-500 rounded-xl shadow-lg shadow-amber-500/20">
-        <FiAlertTriangle className="text-slate-900 text-lg md:text-xl" />
-      </div>
-      <h4 className="text-[10px] md:text-[11px] font-black text-white uppercase tracking-[0.3em] md:tracking-[0.4em]">
-        Important <span className="text-amber-500">Submission</span> Notes
-      </h4>
-    </div>
-    
-    {/* Grid: 1 column on mobile, 2 on desktop */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 md:gap-y-5">
-      {[
-        "All documents must be original or certified copies",
-        "Documents should be submitted in a clear plastic folder",
-        "Incomplete applications will not be processed",
-        "Submit copies along with originals for verification"
-      ].map((note, i) => (
-        <div key={i} className="flex items-start gap-4 group">
-          {/* Bullet Point with subtle pulse for high visibility */}
-          <div className="relative mt-1.5 shrink-0">
-            <div className="w-2 h-2 rounded-full bg-amber-500 z-10 relative" />
-            <div className="absolute inset-0 w-2 h-2 rounded-full bg-amber-500 animate-ping opacity-20" />
+    {/* Required Documents - Modern Grid */}
+    <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl p-6 md:p-10 overflow-hidden">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 gap-6">
+        <div>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="p-3 bg-slate-900 rounded-2xl shadow-xl shadow-slate-200">
+              <IoDocumentTextOutline className="text-white text-xl md:text-2xl" />
+            </div>
+            <h3 className="text-xl md:text-2xl font-black text-slate-900 uppercase tracking-tighter">
+              Required Documents
+            </h3>
           </div>
-          
-          <p className="text-[12px] md:text-[13px] font-bold text-slate-400 leading-relaxed transition-colors group-hover:text-white">
-            {note}
+          <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">
+            Essential paperwork for admission processing
           </p>
         </div>
-      ))}
-    </div>
-  </div>
-</div>
-</div>
-
-{/* Transfer Process - Modern Timeline Optimized for All Screens */}
-<div className="bg-slate-900 rounded-none md:rounded-[3rem] p-6 md:p-12 text-white relative overflow-hidden">
-  {/* Decorative Background Glow */}
-  <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 blur-[100px] rounded-full -mr-32 -mt-32 invisible md:visible" />
-
-  <div className="relative z-10">
-    <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 md:mb-16 gap-4">
-      <div>
-        <div className="flex items-center gap-3 mb-3">
-          <div className="p-2.5 bg-blue-600 rounded-xl shadow-lg shadow-blue-600/20">
-            <FiArrowRight className="text-white text-xl" />
-          </div>
-          <h3 className="text-xl md:text-xl font-black uppercase tracking-tighter">
-            Transfer <span className="text-blue-400">Process</span>
-          </h3>
+        
+        <div className="flex items-center gap-2 px-5 py-2.5 bg-emerald-50 text-emerald-700 rounded-2xl border border-emerald-100">
+          <IoCheckmarkCircleOutline className="text-lg" />
+          <span className="text-[10px] font-black uppercase tracking-widest">Mandatory Set</span>
         </div>
-        <p className="text-slate-400 text-sm md:text-base font-medium">Seamless transition with 4-step verification</p>
       </div>
-      
-      {/* Time Badge - Styled for mobile */}
-      <div className="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-full">
-        <FiClock className="text-yellow-400 text-sm" />
-        <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-300">2-3 Weeks Total</span>
-      </div>
-    </div>
 
-    {/* Steps Grid: Stacked on mobile, Grid on Tablet/Desktop */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6">
-      {transferProcess.map((step, index) => (
-        <div 
-          key={index}
-          className="group relative bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8 transition-all duration-500 hover:bg-white/[0.07]"
-        >
-          {/* Step Number Badge */}
-          <div className="absolute -top-3 -left-3 w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-black text-lg shadow-xl shadow-blue-900/40 z-20">
-            {step.step}
+      {/* Document Cards Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {(schoolData?.admissionDocumentsRequired?.length > 0 ? schoolData.admissionDocumentsRequired : [
+          "Original KCPE Certificate",
+          "Birth Certificate",
+          "Passport Size Photos (4)",
+          "Medical Report",
+          "Transfer Letter (if applicable)",
+          "Previous School Reports"
+        ]).map((doc, index) => (
+          <div 
+            key={index}
+            className="group relative bg-white border-2 border-slate-50 rounded-[2rem] p-6 transition-all hover:border-emerald-400 hover:shadow-2xl"
+          >
+            <div className="flex items-center gap-4">
+              <div className="relative shrink-0">
+                <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center group-hover:bg-emerald-600 transition-colors">
+                  <IoDocumentTextOutline className="text-slate-400 group-hover:text-white text-xl" />
+                </div>
+                <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] font-black border-4 border-white">
+                  {index + 1}
+                </div>
+              </div>
+              
+              <div className="min-w-0">
+                <h4 className="font-black text-slate-900 text-sm leading-tight uppercase tracking-tight truncate group-hover:whitespace-normal">
+                  {doc}
+                </h4>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="text-[9px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded uppercase tracking-wider">
+                    Required
+                  </span>
+                  {index === 0 && (
+                    <span className="text-[9px] font-black text-amber-600 bg-amber-50 px-2 py-0.5 rounded uppercase tracking-wider">
+                      Original
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Important Notes - Full-Screen Mobile Strategy */}
+      <div className="mt-8 md:mt-12 p-6 md:p-12 bg-slate-900 rounded-none md:rounded-[2.5rem] relative overflow-hidden border-y border-white/5 md:border shadow-2xl">
+        <div className="absolute top-0 right-0 w-48 md:w-64 h-48 md:h-64 bg-amber-500/10 blur-[60px] md:blur-[80px] rounded-full -mr-24 -mt-24 md:-mr-32 md:-mt-32"></div>
+        
+        <div className="relative z-10">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="p-2.5 bg-amber-500 rounded-xl shadow-lg shadow-amber-500/20">
+              <FiAlertTriangle className="text-slate-900 text-lg md:text-xl" />
+            </div>
+            <h4 className="text-[10px] md:text-[11px] font-black text-white uppercase tracking-[0.3em] md:tracking-[0.4em]">
+              Important <span className="text-amber-500">Submission</span> Notes
+            </h4>
           </div>
           
-          <div className="relative z-10 space-y-4">
-            <div className="flex flex-col gap-1">
-              <div className="flex items-center justify-between">
-                <h4 className="text-lg font-black uppercase tracking-tight text-white group-hover:text-blue-400 transition-colors">
-                  {step.title}
-                </h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 md:gap-y-5">
+            {[
+              "All documents must be original or certified copies",
+              "Documents should be submitted in a clear plastic folder",
+              "Incomplete applications will not be processed",
+              "Submit copies along with originals for verification"
+            ].map((note, i) => (
+              <div key={i} className="flex items-start gap-4 group">
+                <div className="relative mt-1.5 shrink-0">
+                  <div className="w-2 h-2 rounded-full bg-amber-500 z-10 relative" />
+                  <div className="absolute inset-0 w-2 h-2 rounded-full bg-amber-500 animate-ping opacity-20" />
+                </div>
+                
+                <p className="text-[12px] md:text-[13px] font-bold text-slate-400 leading-relaxed transition-colors group-hover:text-white">
+                  {note}
+                </p>
               </div>
-              <div className="flex items-center gap-1.5 text-yellow-500/80 text-[10px] font-black uppercase tracking-widest">
-                <FiClock className="text-xs" />
-                {step.duration}
-              </div>
-            </div>
-            
-            <p className="text-slate-400 text-xs md:text-sm font-bold leading-relaxed">
-              {step.description}
-            </p>
-            
-            {/* Requirements List */}
-            <div className="pt-4 border-t border-white/5 space-y-3">
-              <span className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em]">Checklist</span>
-              <ul className="space-y-2.5">
-                {step.requirements.map((req, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-[11px] md:text-xs text-slate-300 font-medium">
-                    <div className="mt-1 w-1.5 h-1.5 rounded-full bg-blue-500/50 shrink-0" />
-                    <span>{req}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            ))}
           </div>
-
-          {/* Desktop Connector Line */}
-          {index < transferProcess.length - 1 && (
-            <div className="hidden lg:block absolute -right-3 top-1/2 w-6 h-[1px] bg-white/10 z-0" />
-          )}
         </div>
-      ))}
+      </div>
     </div>
 
-    {/* CTA Footer - Bento Style */}
-    <div className="mt-12 md:mt-16 p-6 md:p-8 bg-white/[0.03] border border-white/5 rounded-2xl md:rounded-[2rem]">
-      <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
-        <div className="flex flex-col md:flex-row items-center gap-5">
-          <div className="p-4 bg-emerald-500/10 rounded-2xl border border-emerald-500/20">
-            <IoCheckmarkCircleOutline className="text-emerald-400 text-3xl" />
-          </div>
+    {/* Transfer Process - Modern Timeline Optimized for All Screens */}
+    <div className="bg-slate-900 rounded-none md:rounded-[3rem] p-6 md:p-12 text-white relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-600/10 blur-[100px] rounded-full -mr-32 -mt-32 invisible md:visible" />
+
+      <div className="relative z-10">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 md:mb-16 gap-4">
           <div>
-            <h4 className="text-xl font-black text-white">Ready to Join Us?</h4>
-            <p className="text-slate-400 text-sm font-medium">Complete all steps for official admission approval</p>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2.5 bg-emerald-600 rounded-xl shadow-lg shadow-emerald-600/20">
+                <FiArrowRight className="text-white text-xl" />
+              </div>
+              <h3 className="text-xl md:text-xl font-black uppercase tracking-tighter">
+                Transfer <span className="text-emerald-400">Process</span>
+              </h3>
+            </div>
+            <p className="text-slate-400 text-sm md:text-base font-medium">Seamless transition with 4-step verification</p>
+          </div>
+          
+          <div className="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-full">
+            <FiClock className="text-amber-400 text-sm" />
+            <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-300">2-3 Weeks Total</span>
           </div>
         </div>
-        
-  <button 
-  onClick={() => router.push('/pages/apply-for-admissions')}
-  className={`
-    /* Basic Layout */
-    flex items-center justify-center
-    w-full md:w-max md:min-w-[220px]
-    px-8 py-4 md:px-10 md:py-5 
-    
-    /* Colors & Typography */
-    bg-white text-slate-900 
-    rounded-xl md:rounded-2xl 
-    font-black uppercase 
-    tracking-[0.15em] md:tracking-widest 
-    text-[10px] md:text-[11px] 
-    
-  
-    transition-all 
-    md:hover:bg-blue-50
-    md:active:scale-95 
-    
-    /* Depth */
-    shadow-lg md:shadow-2xl shadow-white/10
-  `}
->
-  Start Application
-</button>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6">
+          {transferProcess.map((step, index) => (
+            <div 
+              key={index}
+              className="group relative bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8 transition-all duration-500 hover:bg-white/[0.07]"
+            >
+              <div className="absolute -top-3 -left-3 w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-black text-lg shadow-xl shadow-emerald-900/40 z-20">
+                {step.step}
+              </div>
+              
+              <div className="relative z-10 space-y-4">
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-lg font-black uppercase tracking-tight text-white group-hover:text-emerald-400 transition-colors">
+                      {step.title}
+                    </h4>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-amber-500/80 text-[10px] font-black uppercase tracking-widest">
+                    <FiClock className="text-xs" />
+                    {step.duration}
+                  </div>
+                </div>
+                
+                <p className="text-slate-400 text-xs md:text-sm font-bold leading-relaxed">
+                  {step.description}
+                </p>
+                
+                <div className="pt-4 border-t border-white/5 space-y-3">
+                  <span className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em]">Checklist</span>
+                  <ul className="space-y-2.5">
+                    {step.requirements.map((req, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-[11px] md:text-xs text-slate-300 font-medium">
+                        <div className="mt-1 w-1.5 h-1.5 rounded-full bg-emerald-500/50 shrink-0" />
+                        <span>{req}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {index < transferProcess.length - 1 && (
+                <div className="hidden lg:block absolute -right-3 top-1/2 w-6 h-[1px] bg-white/10 z-0" />
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 md:mt-16 p-6 md:p-8 bg-white/[0.03] border border-white/5 rounded-2xl md:rounded-[2rem]">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+            <div className="flex flex-col md:flex-row items-center gap-5">
+              <div className="p-4 bg-emerald-500/10 rounded-2xl border border-emerald-500/20">
+                <IoCheckmarkCircleOutline className="text-emerald-400 text-3xl" />
+              </div>
+              <div>
+                <h4 className="text-xl font-black text-white">Ready to Join Us?</h4>
+                <p className="text-slate-400 text-sm font-medium">Complete all steps for official admission approval</p>
+              </div>
+            </div>
+            
+            <button 
+              onClick={() => router.push('/pages/apply-for-admissions')}
+              className="
+                flex items-center justify-center
+                w-full md:w-max md:min-w-[220px]
+                px-8 py-4 md:px-10 md:py-5 
+                bg-white text-slate-900 
+                rounded-xl md:rounded-2xl 
+                font-black uppercase 
+                tracking-[0.15em] md:tracking-widest 
+                text-[10px] md:text-[11px] 
+                transition-all 
+                md:hover:bg-emerald-50
+                md:active:scale-95 
+                shadow-lg md:shadow-2xl shadow-white/10
+              "
+            >
+              Start Application
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-         
-            </div>
-          )}
+)}
 
 {activeTab === 'fees' && (
   <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 space-y-8 md:space-y-12">
     
-    {/* Layout shifts between 1 and 2 columns based on data availability */}
     <div className={`grid gap-0 md:gap-12 ${
       documentData?.feesDayDistributionJson?.length > 0 && documentData?.feesBoardingDistributionJson?.length > 0 
       ? "lg:grid-cols-2" 
@@ -3065,7 +3006,6 @@ return (
       )}
     </div>
 
-    {/* Optional: Empty State */}
     {!documentData?.feesDayDistributionJson?.length && !documentData?.feesBoardingDistributionJson?.length && (
       <div className="p-20 text-center border-2 border-dashed border-slate-200 rounded-[2rem]">
         <p className="text-slate-400 font-black uppercase tracking-widest text-xs">Fees Structure Not Available</p>
@@ -3077,18 +3017,17 @@ return (
 {activeTab === 'results' && (
   <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 space-y-6 md:space-y-12">
     
-    {/* Hero Header - Adjusted for Mobile */}
     <div className="text-center mb-6 md:mb-12 pt-4 md:pt-0">
-      <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-100 rounded-full mb-4 md:mb-6">
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-100 rounded-full mb-4 md:mb-6">
         <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
         </span>
-        <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-blue-700">Academic Performance</span>
+        <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-emerald-700">Academic Performance</span>
       </div>
       
       <h2 className="text-xl md:text-3xl font-black text-slate-900 tracking-tighter mb-4 px-4 leading-tight">
-        Examination <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Results</span>
+        Examination <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Results</span>
       </h2>
       
       <p className="text-slate-500 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed px-6">
@@ -3096,24 +3035,22 @@ return (
       </p>
     </div>
 
-    {/* Academic Results Section - This will now occupy full width on mobile inside its component */}
     <div className="-mx-4 md:mx-0">
        <AcademicResultsSection documentData={documentData} />
     </div>
 
-    {/* Results Archive Notice - Full bleed on mobile */}
-    <div className="bg-gradient-to-br from-blue-50 to-cyan-50 border-y md:border border-blue-200/60 rounded-none md:rounded-3xl p-6 md:p-8 -mx-4 md:mx-0">
+    <div className="bg-gradient-to-br from-emerald-50 to-teal-50 border-y md:border border-emerald-200/60 rounded-none md:rounded-3xl p-6 md:p-8 -mx-4 md:mx-0">
       <div className="flex flex-col md:flex-row items-start gap-4 md:gap-6">
-        <div className="p-3 bg-white rounded-2xl shadow-sm shadow-blue-200/50">
-          <FiInfo className="text-blue-500 text-xl md:text-2xl" />
+        <div className="p-3 bg-white rounded-2xl shadow-sm shadow-emerald-200/50">
+          <FiInfo className="text-emerald-500 text-xl md:text-2xl" />
         </div>
         <div className="space-y-2">
-          <h4 className="font-black text-blue-900 text-sm md:text-lg uppercase tracking-tight">
+          <h4 className="font-black text-emerald-900 text-sm md:text-lg uppercase tracking-tight">
             Results Archive Information
           </h4>
-          <p className="text-blue-700/80 text-xs md:text-base font-medium leading-relaxed">
+          <p className="text-emerald-700/80 text-xs md:text-base font-medium leading-relaxed">
             All examination results are available for download in PDF format. Results are typically uploaded 
-            within <span className="text-blue-900 font-bold">2 weeks</span> after official release. For any missing results or technical issues, please contact 
+            within <span className="text-emerald-900 font-bold">2 weeks</span> after official release. For any missing results or technical issues, please contact 
             the academic office.
           </p>
         </div>
@@ -3122,75 +3059,63 @@ return (
   </div>
 )}
 
-          {/* FAQ Tab - Modern & Responsive */}
-          {activeTab === 'faq' && (
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 space-y-8 md:space-y-10">
-              
-              {/* Hero Header */}
-              <div className="text-center mb-8 md:mb-10 px-2 md:px-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 rounded-full mb-6">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
-                  </span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-blue-700">Quick Answers</span>
-                </div>
-                <h2 className="text-xl sm:text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-4 px-2">
-                  Frequently Asked <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Questions</span>
-                </h2>
-                <p className="text-slate-500 text-base md:text-lg max-w-3xl mx-auto leading-relaxed px-2">
-                  Clear answers to common queries about admissions, curriculum, fees, and school policies.
-                </p>
-              </div>
-
-              {/* FAQ Items - Clean & Responsive */}
-              <div className="space-y-3 md:space-y-4 px-2 md:px-0">
-                {faqs.map((faq, index) => (
-                  <ModernFAQItem
-                    key={index}
-                    faq={faq}
-                    index={index}
-                    openFaq={openFaq}
-                    setOpenFaq={setOpenFaq}
-                  />
-                ))}
-              </div>
-
+{activeTab === 'faq' && (
+  <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 space-y-8 md:space-y-10">
     
-            </div>
-          )}
+    <div className="text-center mb-8 md:mb-10 px-2 md:px-4">
+      <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-200 rounded-full mb-6">
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
+        </span>
+        <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">Quick Answers</span>
+      </div>
+      <h2 className="text-xl sm:text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-4 px-2">
+        Frequently Asked <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Questions</span>
+      </h2>
+      <p className="text-slate-500 text-base md:text-lg max-w-3xl mx-auto leading-relaxed px-2">
+        Clear answers to common queries about admissions, curriculum, fees, and school policies.
+      </p>
+    </div>
+
+    <div className="space-y-3 md:space-y-4 px-2 md:px-0">
+      {faqs.map((faq, index) => (
+        <ModernFAQItem
+          key={index}
+          faq={faq}
+          index={index}
+          openFaq={openFaq}
+          setOpenFaq={setOpenFaq}
+        />
+      ))}
+    </div>
+  </div>
+)}
         </div>
 
-        {/* Modernized CTA Section - Refined Typography */}
+        {/* Modernized CTA Section */}
         <div className="relative overflow-hidden bg-slate-900 rounded-xl md:rounded-[24px] p-4 md:p-12 text-center shadow-2xl">
           
-          {/* Static Background Decoration */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-2xl bg-blue-500/10 blur-[80px] rounded-full pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-2xl bg-emerald-500/10 blur-[80px] rounded-full pointer-events-none" />
           
           <div className="relative z-10 flex flex-col items-center max-w-2xl mx-auto">
             
-            {/* 1. Modern Badge */}
             <div className="mb-4 md:mb-5 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm">
-              <span className="flex h-1.5 w-1.5 rounded-full bg-blue-500"></span>
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-200">
+              <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-200">
                 Enrollment Open {new Date().getFullYear()}
               </span>
             </div>
 
-            {/* 2. Responsive Typography (Reduced Sizes) */}
             <h2 className="text-xl md:text-3xl font-black text-white mb-4 tracking-tight leading-tight text-balance">
-              Ready to Begin Your <span className="text-blue-400">Academic Journey This year</span>
+              Ready to Begin Your <span className="text-emerald-400">Academic Journey</span>
             </h2>
             
-            {/* Description: Scaled down to base size for better reading density */}
             <p className="text-slate-400 mb-6 md:mb-8 text-sm md:text-base leading-relaxed max-w-lg mx-auto text-balance">
               Join a community dedicated to nurturing future leaders through personalized attention and holistic development.
             </p>
 
-            {/* Action Buttons – always flex row, no wrap */}
             <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto">
-              
-              {/* Primary Button */}
               <button
                 onClick={() => router.push('/pages/apply-for-admissions')}
                 className="flex-shrink-0 px-3 py-2.5 sm:px-4 sm:py-3 md:px-6 md:py-3.5 
@@ -3201,10 +3126,8 @@ return (
                 Apply Online
                 <FiArrowRight size={14} />
               </button>
-
             </div>
 
-            {/* 4. Trust Indicator */}
             <p className="mt-4 md:mt-6 text-[10px] uppercase tracking-widest text-slate-500 font-bold opacity-60">
               Application takes ~5 minutes
             </p>
