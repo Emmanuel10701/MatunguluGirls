@@ -1558,10 +1558,8 @@ export default function StudentCounseling() {
               </div>
             </div>
 
-            {/* Modern Search & Filter Section */}
             <div className="bg-white border border-slate-100 p-3 rounded-[2rem] shadow-xl shadow-slate-900/5">
               <div className="flex flex-col md:flex-row items-center gap-3">
-                {/* Search */}
                 <div className="relative w-full flex-1">
                   <div className="relative flex items-center bg-slate-50 border border-slate-200 rounded-xl transition-all focus-within:border-emerald-500 focus-within:ring-4 focus-within:ring-emerald-500/5">
                     <div className="pl-4 pr-2 flex items-center justify-center pointer-events-none">
