@@ -1391,99 +1391,159 @@ const VideoTourSection = ({ videoTour, videoType, videoThumbnail }) => {
 };
 
 
-// Vision & Mission Section
+// Vision & Mission Section - Redesigned
 const VisionMissionSection = ({ vision, mission, motto }) => {
   return (
-    /* We remove outer padding on mobile (px-0) so the cards can touch the screen edges */
-    <div className="w-full max-w-6xl mx-auto px-0 md:px-4 py-0 md:py-8">
-      {/* Bento Grid: gap-0 on mobile to stack perfectly, gap-4 on desktop */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-0 md:gap-4">
+    <div className="w-full max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12">
+      {/* Modern 3D Card Stack Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
         
-{/* 1. Vision Card - Compact & Full bleed on mobile */}
-{/* 1. Vision Card - Optimized Padding & Fonts */}
-<div className="md:col-span-7 bg-slate-900 rounded-none md:rounded-[2.5rem] p-5 md:p-8 relative overflow-hidden border-b border-white/5 md:border md:border-slate-800 shadow-xl flex flex-col justify-center">
-  
-  <div className="absolute top-0 right-0 w-32 md:w-40 h-32 md:h-40 bg-emerald-600/10 blur-[40px] md:blur-[50px] rounded-full -mr-8 -mt-8"></div>
-  
-  <div className="relative z-10">
-    <div className="inline-flex items-center gap-2 px-2 py-1 bg-white/5 backdrop-blur-md rounded-lg border border-white/10 mb-3 md:mb-4">
-      <IoEyeOutline className="text-emerald-400 text-sm md:text-base" />
-      <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] text-emerald-100">Our Vision</span>
-    </div>
+        {/* Vision Card - Floating Design */}
+        <div className="md:col-span-7 group relative">
+          {/* Background Shadow Layers */}
+          <div className="absolute inset-0 bg-emerald-900/10 rounded-[2rem] rotate-3 scale-95 blur-xl group-hover:rotate-2 transition-all duration-500" />
+          <div className="absolute inset-0 bg-emerald-800/10 rounded-[2rem] -rotate-2 scale-105 blur-lg group-hover:rotate-0 transition-all duration-700" />
+          
+          {/* Main Card */}
+          <div className="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2rem] p-8 md:p-10 overflow-hidden border border-emerald-500/20 shadow-2xl">
+            {/* Dynamic Background Pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 left-0 w-32 h-32 bg-emerald-500 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+              <div className="absolute bottom-0 right-0 w-40 h-40 bg-teal-500 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
+            </div>
+            
+            {/* Grid Pattern Overlay */}
+            <div className="absolute inset-0 opacity-5" style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+              backgroundSize: '40px 40px'
+            }} />
+            
+            <div className="relative z-10">
+              {/* Animated Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-xl rounded-full border border-white/10 mb-6 group-hover:border-emerald-400/30 transition-colors">
+                <div className="relative">
+                  <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping absolute" />
+                  <div className="w-2 h-2 rounded-full bg-emerald-400 relative" />
+                </div>
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-300">Our Vision</span>
+              </div>
 
-    {/* Heading: Smaller, tighter leading */}
-    <h3 className="text-lg md:text-xl font-black text-white mb-2 tracking-tighter uppercase italic leading-none">
-      The <span className="text-emerald-500">Future</span> we build
-    </h3>
+              {/* Content with Modern Typography */}
+              <h3 className="text-2xl md:text-3xl font-black text-white mb-4 tracking-tight">
+                The <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">Future</span>
+              </h3>
+              
+              <p className="text-slate-300 text-sm md:text-base leading-relaxed max-w-xl font-medium">
+                {vision || "To be a premier center of academic excellence in Machakos, nurturing globally competitive leaders through integrity."}
+              </p>
+              
+              {/* Decorative Element */}
+              <div className="absolute bottom-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl" />
+            </div>
+          </div>
+        </div>
 
-    {/* Description: Reduced from text-lg to text-sm/base */}
-    <p className="text-slate-400 text-[12px] md:text-[15px] font-bold leading-snug max-w-lg">
-      {vision || "To be a premier center of academic excellence in Machakos, nurturing globally competitive leaders through integrity."}
-    </p>
-  </div>
-</div>
+        {/* Mission Card - Clean & Minimal */}
+        <div className="md:col-span-5 group relative">
+          <div className="relative bg-white rounded-[2rem] p-8 md:p-10 border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden">
+            {/* Subtle Background Pattern */}
+            <div className="absolute inset-0 opacity-[0.02]" style={{
+              backgroundImage: `repeating-linear-gradient(45deg, #059669 0px, #059669 2px, transparent 2px, transparent 8px)`,
+              backgroundSize: '16px 16px'
+            }} />
+            
+            <div className="relative z-10">
+              {/* Circular Icon with Animation */}
+              <div className="relative mb-6 inline-block">
+                <div className="absolute inset-0 bg-emerald-500/20 rounded-2xl blur-xl group-hover:bg-emerald-500/30 transition-all duration-500" />
+                <div className="relative w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <FiTarget className="text-xl md:text-2xl" />
+                </div>
+              </div>
+              
+              <h3 className="text-xl md:text-2xl font-black text-slate-900 mb-4 tracking-tight">
+                Our Mission
+              </h3>
+              
+              <p className="text-slate-600 text-sm md:text-base leading-relaxed font-medium">
+                {mission || "Providing quality education via modern infrastructure, fostering discipline, innovation, and self-reliance."}
+              </p>
+              
+              {/* Progress Indicator */}
+              <div className="mt-6 pt-6 border-t border-slate-100">
+                <div className="flex items-center gap-2">
+                  <div className="h-1 flex-1 bg-slate-100 rounded-full overflow-hidden">
+                    <div className="h-full w-3/4 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full" />
+                  </div>
+                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider">2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-{/* 2. Mission Card - Optimized Padding & Fonts */}
-<div className="md:col-span-5 bg-white rounded-none md:rounded-[2.5rem] p-5 md:p-8 border-b md:border-2 border-slate-100 shadow-md flex flex-col justify-center">
-  
-  {/* Icon: Smaller footprint */}
-  <div className="w-8 h-8 md:w-10 md:h-10 bg-emerald-50 rounded-lg md:rounded-xl flex items-center justify-center border border-emerald-100 mb-3 md:mb-4 shrink-0">
-    <FiTarget className="text-emerald-600 text-lg md:text-xl" />
-  </div>
-  
-  <div>
-    <h3 className="text-sm md:text-base font-black text-slate-900 mb-1.5 uppercase tracking-tighter leading-tight">
-      Our Mission
-    </h3>
-    
-    <p className="text-slate-600 text-[12px] md:text-[14px] font-bold leading-snug">
-      {mission || "Providing quality education via modern infrastructure, fostering discipline, innovation, and self-reliance."}
-    </p>
-  </div>
-</div>
+        {/* Motto Banner - Modern Glass Design */}
+        <div className="md:col-span-12 group relative">
+          <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden">
+            {/* Animated Gradient Background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 animate-gradient-x bg-[length:200%_200%]" />
+            
+            {/* Glass Overlay */}
+            <div className="absolute inset-0 backdrop-blur-[2px] bg-white/5" />
+            
+            {/* Content Container */}
+            <div className="relative p-8 md:p-12">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+                
+                {/* Left Section with Icon */}
+                <div className="flex items-center gap-5">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-white/30 rounded-2xl blur-xl" />
+                    <div className="relative w-14 h-14 md:w-16 md:h-16 bg-white/20 backdrop-blur-xl rounded-2xl flex items-center justify-center border border-white/30 shadow-2xl">
+                      <FiAward className="text-white text-2xl md:text-3xl" />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <span className="text-white/60 text-[10px] md:text-xs font-black uppercase tracking-[0.2em] md:tracking-[0.3em] block mb-1">
+                      The Spirit of the School
+                    </span>
+                    <h3 className="text-white text-xl md:text-2xl font-black tracking-tighter">
+                      School Motto
+                    </h3>
+                  </div>
+                </div>
 
-{/* 3. Motto Banner - Full bleed & Tightened for mobile */}
-<div className="md:col-span-12 bg-gradient-to-br from-emerald-700 to-teal-900 rounded-none md:rounded-[3rem] p-6 md:p-10 relative overflow-hidden shadow-lg">
-  {/* Large background icon - Pushed further to the edge on mobile */}
-  <FiZap className="absolute right-[-5%] md:right-[-2%] top-1/2 -translate-y-1/2 text-white/5 text-5xl md:text-6xl -rotate-12 pointer-events-none" />
-  
-  <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-5 md:gap-8">
-    
-    {/* Header Part: Icon + Label */}
-    <div className="flex items-center gap-3 md:gap-5 self-start md:self-center w-full md:w-auto">
-      {/* Icon: Scaled to w-10 for mobile to match the Mission card's rhythm */}
-      <div className="w-10 h-10 md:w-14 md:h-14 bg-white/10 backdrop-blur-xl rounded-xl md:rounded-2xl flex items-center justify-center border border-white/20 shrink-0 shadow-2xl">
-        <FiAward className="text-white text-xl md:text-3xl" />
-      </div>
-      
-      <div className="text-left">
-        <span className="text-emerald-200 text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] block mb-0">
-          The Spirit of the School
-        </span>
-        <h3 className="text-white text-base md:text-lg font-black tracking-tighter uppercase leading-none">
-          School Motto
-        </h3>
-      </div>
-    </div>
+                {/* Motto Display - Modern Card */}
+                <div className="group/motto">
+                  <div className="relative">
+                    {/* Background Glow */}
+                    <div className="absolute inset-0 bg-white/20 blur-2xl rounded-[2rem] group-hover/motto:bg-white/30 transition-all duration-500" />
+                    
+                    {/* Main Card */}
+                    <div className="relative bg-white/10 backdrop-blur-xl border border-white/30 px-8 py-5 md:px-12 md:py-6 rounded-2xl md:rounded-[2rem] shadow-2xl overflow-hidden">
+                      {/* Shine Effect */}
+                      <div className="absolute inset-0 translate-x-[-100%] group-hover/motto:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                      
+                      <p className="text-white text-lg md:text-2xl font-black italic tracking-tight text-center">
+                        "{motto || "Strive for Excellence"}"
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
-    {/* Motto Card: Reduced padding for mobile (px-5 py-3) */}
-    <div className="w-full md:w-auto">
-      <div className="bg-white/10 backdrop-blur-md border border-white/20 px-5 py-3 md:px-8 md:py-5 rounded-xl md:rounded-[2rem] text-center shadow-inner active:scale-[0.98] transition-transform">
-        <p className="text-white text-md md:text-lg font-black italic tracking-tighter leading-tight md:leading-none">
-          "{motto || "Strive for Excellence"}"
-        </p>
-      </div>
-    </div>
-
-  </div>
-</div>
-
+                {/* Decorative Sparkles */}
+                <div className="absolute top-4 right-4 text-white/20">
+                  <IoSparkles className="text-3xl animate-pulse" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
-
-
 
 const ModernUniformRequirementsSection = ({ 
   admissionFeeDistribution, 
