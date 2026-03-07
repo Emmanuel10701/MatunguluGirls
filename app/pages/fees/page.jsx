@@ -20,7 +20,8 @@ import {
   FiAward,
   FiCheckCircle,
   FiPrinter,
-  FiShare2
+  FiShare2,
+  FiRefreshCw
 } from 'react-icons/fi';
 import { 
   IoSparkles,
@@ -48,6 +49,96 @@ import { FaWhatsapp, FaLeaf, FaUniversity, FaPhone, FaEnvelope } from 'react-ico
 import { CircularProgress, Stack } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
+// Modern Hero Banner for Fees
+const ModernHeroBanner = ({ stats, onRefresh }) => {
+  return (
+    <div className="relative bg-gradient-to-r from-emerald-900 to-teal-800 rounded-2xl p-6 md:p-10 text-white overflow-hidden border border-emerald-700/30 mb-8">
+      {/* Background Glows */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
+      
+      <div className="relative z-10">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6">
+          <div>
+            {/* School Branding */}
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-8 w-1 bg-emerald-400 rounded-full shadow-[0_0_15px_rgba(52,211,153,0.5)]" />
+              <div>
+                <h2 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-emerald-400">
+                  Matungulu Girls High School
+                </h2>
+                <p className="text-[8px] sm:text-[10px] italic font-medium text-emerald-200/60 tracking-widest uppercase">
+                  "Strive to Excel"
+                </p>
+              </div>
+            </div>
+            
+            {/* Title */}
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/10">
+                <IoSchoolOutline className="text-xl sm:text-2xl md:text-3xl text-emerald-300" />
+              </div>
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white tracking-tight">
+                Fee <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300">Structure</span>
+              </h1>
+            </div>
+          </div>
+          
+          {/* Refresh Button */}
+          <button
+            onClick={onRefresh}
+            className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm tracking-wide text-white hover:bg-white/20 w-full sm:w-auto transition-all"
+          >
+            <FiRefreshCw className={`text-base sm:text-lg ${stats.refreshing ? 'animate-spin' : ''}`} />
+            <span>{stats.refreshing ? 'REFRESHING...' : 'REFRESH FEES'}</span>
+          </button>
+        </div>
+        
+        {/* Stats Summary - Bold & Visible */}
+        <div className="mb-4">
+          <p className="text-emerald-100/90 text-sm sm:text-base font-medium leading-relaxed">
+            <span className="text-white font-black text-lg sm:text-xl underline decoration-emerald-500/50 underline-offset-4 mr-1">
+              {stats.totalItems}
+            </span> 
+            fee items totaling{' '}
+            <span className="text-white font-black text-lg sm:text-xl underline decoration-teal-500/50 underline-offset-4 mx-1">
+              KSh {stats.totalAmount}
+            </span>
+          </p>
+        </div>
+
+        {/* Quick Stats Grid - Bold & Responsive */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+            <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Total Items</p>
+            <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{stats.totalItems}</p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+            <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Categories</p>
+            <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{stats.categories}</p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+            <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">PDF Available</p>
+            <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{stats.pdfAvailable ? 'YES' : 'NO'}</p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+            <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Last Updated</p>
+            <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{stats.lastUpdated}</p>
+          </div>
+        </div>
+
+        {/* Additional Info */}
+        <div className="mt-4 text-xs sm:text-sm text-emerald-200/80">
+          <span className="inline-flex items-center gap-1">
+            <IoSparkles className="text-emerald-300" size={14} />
+            Click on any fee item for detailed information
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Modern Fee Card Component - Matungulu Girls Design
 const ModernFeeCard = ({ item, onInfo, index }) => {
   const getCategoryColor = (name) => {
@@ -67,7 +158,7 @@ const ModernFeeCard = ({ item, onInfo, index }) => {
   };
 
   return (
-    <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
+    <div className="bg-white border border-slate-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
       <div className="p-4">
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center gap-2">
@@ -81,7 +172,8 @@ const ModernFeeCard = ({ item, onInfo, index }) => {
           </div>
           <button
             onClick={() => onInfo(item)}
-            className="p-1.5 bg-slate-100 rounded text-slate-600"
+            className="p-1.5 bg-slate-100 rounded text-slate-600 hover:bg-slate-200 transition-colors"
+            title="View details"
           >
             <FiInfo size={14} />
           </button>
@@ -125,7 +217,7 @@ const ModernFeeCard = ({ item, onInfo, index }) => {
 // Modern PDF Card - Matungulu Girls Design
 const ModernPDFCard = ({ title, pdfUrl, fileName, fileSize, uploadDate, description, onDownload, onView }) => {
   return (
-    <div className="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 rounded-lg p-4">
+    <div className="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 rounded-lg p-4 hover:shadow-md transition-shadow">
       <div className="flex items-start gap-3">
         <div className="w-10 h-10 bg-white rounded-lg shadow-sm flex items-center justify-center">
           <IoDocumentTextOutline className="text-emerald-700 text-xl" />
@@ -137,7 +229,7 @@ const ModernPDFCard = ({ title, pdfUrl, fileName, fileSize, uploadDate, descript
             <p className="text-xs text-slate-600 mb-2">{description}</p>
           )}
           
-          <div className="flex items-center gap-3 text-xs text-slate-500 mb-3">
+          <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 mb-3">
             <span className="flex items-center gap-1">
               <FiFileText size={10} />
               {fileName || 'PDF Document'}
@@ -153,14 +245,14 @@ const ModernPDFCard = ({ title, pdfUrl, fileName, fileSize, uploadDate, descript
           <div className="flex gap-2">
             <button
               onClick={() => onView(pdfUrl)}
-              className="flex-1 py-2 bg-white text-emerald-700 rounded-lg text-xs font-medium flex items-center justify-center gap-1 border border-emerald-200"
+              className="flex-1 py-2 bg-white text-emerald-700 rounded-lg text-xs font-medium flex items-center justify-center gap-1 border border-emerald-200 hover:bg-emerald-50 transition-colors"
             >
               <IoEyeOutline size={14} />
               Preview
             </button>
             <button
               onClick={() => onDownload(pdfUrl, fileName)}
-              className="w-8 h-8 bg-emerald-700 text-white rounded-lg flex items-center justify-center"
+              className="w-8 h-8 bg-emerald-700 text-white rounded-lg flex items-center justify-center hover:bg-emerald-800 transition-colors"
             >
               <FiDownload size={14} />
             </button>
@@ -174,7 +266,7 @@ const ModernPDFCard = ({ title, pdfUrl, fileName, fileSize, uploadDate, descript
 // Modern Stat Card - Matungulu Girls Design
 const ModernStatCard = ({ icon: Icon, label, value, sublabel }) => {
   return (
-    <div className="bg-white border border-slate-200 rounded-lg p-4">
+    <div className="bg-white border border-slate-200 rounded-lg p-4 hover:shadow-md transition-shadow">
       <div className="flex items-center justify-between mb-2">
         <div className="p-1.5 bg-emerald-100 rounded">
           <Icon size={16} className="text-emerald-700" />
@@ -317,6 +409,35 @@ export default function ModernFeesPage() {
     fetchDocuments(true);
   };
 
+  // Calculate unique categories
+  const getUniqueCategories = () => {
+    const items = getCurrentFeeItems();
+    const categories = new Set(items.map(item => {
+      if (item.name?.includes('Tuition')) return 'Tuition';
+      if (item.name?.includes('Boarding')) return 'Boarding';
+      if (item.name?.includes('Uniform')) return 'Uniform';
+      if (item.name?.includes('Books')) return 'Books';
+      if (item.name?.includes('Medical')) return 'Medical';
+      return 'Other';
+    }));
+    return categories.size;
+  };
+
+  // Format last updated date
+  const getLastUpdated = () => {
+    if (!documentData?.updatedAt) return 'Today';
+    try {
+      const date = new Date(documentData.updatedAt);
+      const diff = Math.floor((new Date() - date) / (1000 * 60 * 60 * 24));
+      if (diff === 0) return 'Today';
+      if (diff === 1) return 'Yesterday';
+      if (diff < 7) return `${diff} days ago`;
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    } catch {
+      return 'Today';
+    }
+  };
+
   // Loading state
   if (loading) {
     return (
@@ -361,47 +482,29 @@ export default function ModernFeesPage() {
   const currentItems = getCurrentFeeItems();
   const totalAmount = getCurrentTotal();
 
+  // Banner stats
+  const bannerStats = {
+    totalItems: filteredItems.length,
+    totalAmount: totalAmount.toLocaleString(),
+    categories: getUniqueCategories(),
+    pdfAvailable: pdfInfo?.url ? 'YES' : 'NO',
+    lastUpdated: getLastUpdated(),
+    refreshing: refreshing
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Toaster position="top-right" richColors />
 
-      {/* Header */}
-      <div className="bg-white border-b border-slate-200 sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
-                <IoSchoolOutline className="text-emerald-700 w-5 h-5" />
-              </div>
-              <div>
-                <h1 className="text-lg font-bold text-slate-900">Fee Structure</h1>
-                <p className="text-xs text-slate-500">Matungulu Girls High School</p>
-              </div>
-            </div>
-            
-            <button
-              onClick={refreshData}
-              disabled={refreshing}
-              className="px-4 py-2 bg-emerald-50 text-emerald-700 rounded-lg text-sm font-medium border border-emerald-200 flex items-center gap-2"
-            >
-              {refreshing ? (
-                <>
-                  <CircularProgress size={16} thickness={5} sx={{ color: "#059669" }} />
-                  <span>Refreshing...</span>
-                </>
-              ) : (
-                <>
-                  <FiDownload size={14} />
-                  <span>Refresh</span>
-                </>
-              )}
-            </button>
-          </div>
-        </div>
+      {/* Modern Hero Banner */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
+        <ModernHeroBanner stats={bannerStats} onRefresh={refreshData} />
+      </div>
 
-        {/* Tabs */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 border-t border-slate-100">
-          <div className="flex gap-1">
+      {/* Tabs */}
+      <div className="border-b border-slate-200 sticky top-0 z-30 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex gap-1 overflow-x-auto pb-0.5 no-scrollbar">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -412,7 +515,7 @@ export default function ModernFeesPage() {
                     setActiveTab(tab.id);
                     setSearchTerm('');
                   }}
-                  className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 ${
+                  className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition-colors ${
                     isActive
                       ? 'border-emerald-600 text-emerald-700'
                       : 'border-transparent text-slate-500 hover:text-slate-700'
@@ -427,23 +530,8 @@ export default function ModernFeesPage() {
         </div>
       </div>
 
+      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
-        {/* Quick Stats Row */}
-        <div className="grid grid-cols-3 gap-3 mb-6">
-          <div className="bg-white border border-slate-200 rounded-lg p-4">
-            <p className="text-xs text-slate-500 mb-1">Total Items</p>
-            <p className="text-xl font-bold text-slate-900">{filteredItems.length}</p>
-          </div>
-          <div className="bg-white border border-slate-200 rounded-lg p-4">
-            <p className="text-xs text-slate-500 mb-1">Total Amount</p>
-            <p className="text-xl font-bold text-emerald-700">KSh {totalAmount.toLocaleString()}</p>
-          </div>
-          <div className="bg-white border border-slate-200 rounded-lg p-4">
-            <p className="text-xs text-slate-500 mb-1">PDF Available</p>
-            <p className="text-xl font-bold text-slate-900">{pdfInfo?.url ? 'Yes' : 'No'}</p>
-          </div>
-        </div>
-
         {/* Search Bar */}
         <div className="mb-6">
           <div className="relative">
@@ -453,12 +541,12 @@ export default function ModernFeesPage() {
               placeholder={`Search ${activeTab} fees...`}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-10 py-2.5 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-500"
+              className="w-full pl-10 pr-10 py-3 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
             />
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 bg-slate-100 rounded"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 bg-slate-100 rounded hover:bg-slate-200 transition-colors"
               >
                 <FiX size={14} className="text-slate-500" />
               </button>
@@ -477,7 +565,13 @@ export default function ModernFeesPage() {
                     <FiDollarSign className="text-slate-400 text-xl" />
                   </div>
                   <h3 className="text-base font-bold text-slate-900">No fee items found</h3>
-                  <p className="text-sm text-slate-500 mt-1">Try adjusting your search.</p>
+                  <p className="text-sm text-slate-500 mt-1 mb-4">Try adjusting your search.</p>
+                  <button
+                    onClick={() => setSearchTerm('')}
+                    className="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-medium hover:bg-emerald-700 transition-colors"
+                  >
+                    Clear Search
+                  </button>
                 </div>
               ) : (
                 filteredItems.map((item, index) => (
@@ -520,49 +614,65 @@ export default function ModernFeesPage() {
             )}
 
             {/* School Info Card */}
-            <div className="bg-white border border-slate-200 rounded-lg p-5">
-              <h3 className="font-bold text-slate-900 text-sm mb-4">Payment Information</h3>
+            <div className="bg-white border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-slate-900 text-base mb-4 flex items-center gap-2">
+                <FaUniversity className="text-emerald-600" />
+                Payment Information
+              </h3>
 
-              <div className="space-y-3">
-                <div className="flex items-center gap-3 text-sm">
-                  <FaUniversity className="text-emerald-600 w-4 h-4" />
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <FaUniversity className="text-emerald-600 w-4 h-4 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="text-xs text-slate-500">Bank Account</p>
-                    <p className="text-sm font-medium text-slate-900">1234567890 - Equity Bank</p>
+                    <p className="text-xs text-slate-500 font-medium">Bank Account</p>
+                    <p className="text-sm font-bold text-slate-900">1234567890 - Equity Bank</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 text-sm">
-                  <IoCardOutline className="text-emerald-600 w-4 h-4" />
+                
+                <div className="flex items-start gap-3">
+                  <IoCardOutline className="text-emerald-600 w-4 h-4 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="text-xs text-slate-500">Paybill</p>
-                    <p className="text-sm font-medium text-slate-900">522522 - Account: Student ID</p>
+                    <p className="text-xs text-slate-500 font-medium">Paybill</p>
+                    <p className="text-sm font-bold text-slate-900">522522 - Account: Student ID</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 text-sm">
-                  <FaPhone className="text-emerald-600 w-4 h-4" />
+                
+                <div className="flex items-start gap-3">
+                  <FaPhone className="text-emerald-600 w-4 h-4 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="text-xs text-slate-500">Finance Office</p>
-                    <p className="text-sm font-medium text-slate-900">+254 712 345 678</p>
+                    <p className="text-xs text-slate-500 font-medium">Finance Office</p>
+                    <p className="text-sm font-bold text-slate-900">+254 712 345 678</p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-4 pt-4 border-t border-slate-100">
-                <p className="text-xs text-slate-500 italic">
+                <p className="text-xs text-slate-500 italic flex items-center gap-1">
+                  <FaLeaf className="text-emerald-600" size={10} />
                   "Strive to Excel"
                 </p>
               </div>
             </div>
 
             {/* Contact Card */}
-            <div className="bg-emerald-800 rounded-lg p-5 text-white">
-              <h3 className="font-bold text-base mb-1">Need Help?</h3>
+            <div className="bg-gradient-to-br from-emerald-800 to-teal-700 rounded-lg p-5 text-white hover:shadow-lg transition-shadow">
+              <h3 className="font-bold text-base mb-2">Need Help?</h3>
               <p className="text-sm text-emerald-100 mb-4">
                 Contact our finance office for payment assistance
               </p>
+              <div className="space-y-2 mb-4">
+                <a href="tel:+254712345678" className="flex items-center gap-2 text-sm text-emerald-100 hover:text-white transition-colors">
+                  <FaPhone size={12} />
+                  <span>+254 712 345 678</span>
+                </a>
+                <a href="mailto:finance@matungulugirls.sc.ke" className="flex items-center gap-2 text-sm text-emerald-100 hover:text-white transition-colors">
+                  <FaEnvelope size={12} />
+                  <span>finance@matungulugirls.sc.ke</span>
+                </a>
+              </div>
               <button 
                 onClick={() => router.push("/pages/contact")}
-                className="w-full py-3 bg-white text-emerald-800 rounded-lg font-medium text-sm flex items-center justify-center gap-2"
+                className="w-full py-3 bg-white text-emerald-800 rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:bg-emerald-50 transition-colors"
               >
                 <FiArrowRight size={16} />
                 Contact Bursar
@@ -575,12 +685,12 @@ export default function ModernFeesPage() {
       {/* Info Modal */}
       {showInfoModal && selectedFeeItem && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white rounded-lg max-w-md w-full p-6">
+          <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-xl animate-in fade-in zoom-in-95">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-bold text-slate-900">{selectedFeeItem.name}</h3>
               <button
                 onClick={() => setShowInfoModal(false)}
-                className="p-1.5 bg-slate-100 rounded"
+                className="p-1.5 bg-slate-100 rounded hover:bg-slate-200 transition-colors"
               >
                 <IoClose size={16} className="text-slate-600" />
               </button>
@@ -603,11 +713,21 @@ export default function ModernFeesPage() {
                   <p className="text-sm font-medium text-amber-700">This fee is optional</p>
                 </div>
               )}
+              {selectedFeeItem.admissionOnly && (
+                <div className="p-3 bg-purple-50 rounded-lg border border-purple-200">
+                  <p className="text-sm font-medium text-purple-700">One-time payment (admission only)</p>
+                </div>
+              )}
+              {selectedFeeItem.boardingOnly && (
+                <div className="p-3 bg-teal-50 rounded-lg border border-teal-200">
+                  <p className="text-sm font-medium text-teal-700">Applicable to boarders only</p>
+                </div>
+              )}
             </div>
 
             <button
               onClick={() => setShowInfoModal(false)}
-              className="w-full mt-6 py-3 bg-emerald-700 text-white rounded-lg font-medium"
+              className="w-full mt-6 py-3 bg-emerald-700 text-white rounded-lg font-medium hover:bg-emerald-800 transition-colors"
             >
               Close
             </button>
