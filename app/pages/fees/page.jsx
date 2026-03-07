@@ -83,15 +83,28 @@ const ModernHeroBanner = ({ stats, onRefresh }) => {
               </h1>
             </div>
           </div>
-          
-          {/* Refresh Button */}
-          <button
-            onClick={onRefresh}
-            className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm tracking-wide text-white hover:bg-white/20 w-full sm:w-auto transition-all"
-          >
-            <FiRefreshCw className={`text-base sm:text-lg ${stats.refreshing ? 'animate-spin' : ''}`} />
-            <span>{stats.refreshing ? 'REFRESHING...' : 'REFRESH FEES'}</span>
-          </button>
+     {/* Refresh Button */}
+<button
+  onClick={onRefresh}
+  disabled={stats.refreshing}
+  className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl font-bold text-[11px] sm:text-sm tracking-widest text-white hover:bg-white/20 w-full sm:w-auto transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+>
+  {stats.refreshing ? (
+    <>
+      {/* Modern Spinner SVG */}
+      <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+      <span>REFRESHING...</span>
+    </>
+  ) : (
+    <>
+      <FiRefreshCw className="text-base sm:text-lg" />
+      <span>REFRESH FEES</span>
+    </>
+  )}
+</button>
         </div>
         
         {/* Stats Summary - Bold & Visible */}
