@@ -8,6 +8,7 @@ import {
   FiUsers, 
   FiArrowRight,
   FiShare2,
+  FiRefreshCw, 
   FiSearch,
   FiHeart,
   FiX,
