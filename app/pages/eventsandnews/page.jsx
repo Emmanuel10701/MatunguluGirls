@@ -1102,74 +1102,136 @@ export default function ModernEventsNewsPage() {
       
       <div className="max-w-7xl mx-auto space-y-6">
         
-        {/* Hero Header */}
-        <div className="relative bg-slate-950 p-4 sm:p-8 overflow-hidden rounded-3xl">
-          <div className="absolute top-0 left-1/4 w-64 h-64 bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
-          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
-
-          <div className="max-w-7xl mx-auto relative z-10">
-            <div className="flex flex-col gap-4 mb-6 sm:mb-10">
-              <div className="space-y-3">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/10 backdrop-blur-xl rounded-full border border-white/20 shadow-2xl">
-                  <IoSparkles className="text-blue-400 text-[10px] sm:text-sm animate-pulse" />
-                  <span className="text-blue-100 font-black text-[8px] sm:text-xs uppercase tracking-[0.2em]">
-                    Latest Updates
-                  </span>
-                </div>
-                
-                <div className="flex flex-col gap-3">
-                  <div className="max-w-full">
-                    <h1 className="text-2xl sm:text-4xl lg:text-6xl font-black text-white tracking-tighter leading-[1.1]">
-                      School <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-purple-400">Events & News</span>
-                    </h1>
-                    <p className="text-slate-400 text-xs sm:text-lg mt-2 font-medium leading-relaxed max-w-2xl opacity-80">
-                      Stay updated with the heartbeat and happenings at Matungulu Girls High School.
-                    </p>
-                  </div>
-
-                  <div className="flex items-center gap-3 w-full sm:w-auto mt-2">
-                    <button
-                      onClick={refreshData}
-                      disabled={refreshing}
-                      className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl bg-white hover:bg-blue-50 text-slate-950 font-black text-[10px] sm:text-xs uppercase tracking-widest transition-all active:scale-95 disabled:opacity-50 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
-                    >
-                      {refreshing ? (
-                        <div className="w-3 h-3 border-2 border-slate-900/20 border-t-slate-900 rounded-full animate-spin" />
-                      ) : (
-                        <FiRotateCw className="text-[12px] sm:text-base" />
-                      )}
-                      <span>{refreshing ? "Updating..." : "REFRESH"}</span>
-                    </button>
-
-                    <div className="flex bg-slate-900/80 backdrop-blur-2xl rounded-xl sm:rounded-2xl p-1 border border-white/10 shadow-2xl">
-                      <button
-                        onClick={() => setViewMode('grid')}
-                        className={`p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all ${
-                          viewMode === 'grid' 
-                          ? 'bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.4)]' 
-                          : 'text-slate-500 hover:text-slate-300'
-                        }`}
-                      >
-                        <FiGrid size={16} className="sm:w-[22px] sm:h-[22px]" />
-                      </button>
-                      <button
-                        onClick={() => setViewMode('list')}
-                        className={`p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all ${
-                          viewMode === 'list' 
-                          ? 'bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.4)]' 
-                          : 'text-slate-500 hover:text-slate-300'
-                        }`}
-                      >
-                        <FiList size={16} className="sm:w-[22px] sm:h-[22px]" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+{/* Modern Hero Header - Emerald/Teal Theme */}
+<div className="relative bg-gradient-to-r from-emerald-900 to-teal-800 rounded-2xl p-6 md:p-10 text-white overflow-hidden border border-emerald-700/30 mb-8">
+  {/* Background Glows */}
+  <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+  <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
+  
+  <div className="relative z-10">
+    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6">
+      <div>
+        {/* School Branding */}
+        <div className="flex items-center gap-3 mb-4">
+          <div className="h-8 w-1 bg-emerald-400 rounded-full shadow-[0_0_15px_rgba(52,211,153,0.5)]" />
+          <div>
+            <h2 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-emerald-400">
+              Matungulu Girls High School
+            </h2>
+            <p className="text-[8px] sm:text-[10px] italic font-medium text-emerald-200/60 tracking-widest uppercase">
+              "Strive to Excel"
+            </p>
           </div>
         </div>
+        
+        {/* Title */}
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/10">
+            <IoSchoolOutline className="text-xl sm:text-2xl md:text-3xl text-emerald-300" />
+          </div>
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white tracking-tight">
+            School <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300">Events & News</span>
+          </h1>
+        </div>
+      </div>
 
+      {/* Refresh & View Toggle Group */}
+      <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+        {/* Refresh Button */}
+        <button
+          onClick={refreshData}
+          disabled={refreshing}
+          className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl font-bold text-[11px] sm:text-sm tracking-widest text-white hover:bg-white/20 w-full sm:w-auto transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+        >
+          {refreshing ? (
+            <>
+              <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span>REFRESHING...</span>
+            </>
+          ) : (
+            <>
+              <FiRefreshCw className="text-base sm:text-lg" />
+              <span>REFRESH UPDATES</span>
+            </>
+          )}
+        </button>
+
+        {/* View Toggle - Matching the theme */}
+        <div className="flex bg-white/10 backdrop-blur-xl rounded-xl p-1 border border-white/20">
+          <button
+            onClick={() => setViewMode('grid')}
+            className={`p-2 sm:p-2.5 rounded-lg transition-all ${
+              viewMode === 'grid' 
+                ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' 
+                : 'text-emerald-200/70 hover:text-white'
+            }`}
+          >
+            <FiGrid size={16} className="sm:w-[18px] sm:h-[18px]" />
+          </button>
+          <button
+            onClick={() => setViewMode('list')}
+            className={`p-2 sm:p-2.5 rounded-lg transition-all ${
+              viewMode === 'list' 
+                ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' 
+                : 'text-emerald-200/70 hover:text-white'
+            }`}
+          >
+            <FiList size={16} className="sm:w-[18px] sm:h-[18px]" />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    {/* Stats Summary - Matching the fee structure style */}
+    <div className="mb-4 sm:mb-6 px-1">
+      <p className="text-emerald-100/90 text-xs sm:text-base font-medium leading-relaxed sm:leading-loose">
+        <span className="text-white font-black text-base sm:text-xl md:text-2xl underline decoration-emerald-500/50 underline-offset-4 mr-1">
+          {eventsData.length}
+        </span> 
+        <span className="tracking-tight sm:tracking-normal">upcoming events and</span>
+        <span className="text-white font-black text-base sm:text-xl md:text-2xl underline decoration-teal-500/50 underline-offset-4 ml-1 mr-1">
+          {newsData.length}
+        </span>
+        <span className="tracking-tight sm:tracking-normal">news articles this month</span>
+      </p>
+    </div>
+
+    {/* Quick Stats Grid - Matching fee structure */}
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+        <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Events</p>
+        <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{eventsData.length}</p>
+      </div>
+      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+        <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">News</p>
+        <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{newsData.length}</p>
+      </div>
+      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+        <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Categories</p>
+        <p className="text-lg sm:text-xl md:text-2xl font-black text-white">
+          {new Set([...eventsData.map(e => e.category), ...newsData.map(n => n.category)]).size}
+        </p>
+      </div>
+      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+        <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Featured</p>
+        <p className="text-lg sm:text-xl md:text-2xl font-black text-white">
+          {(eventsData.filter(e => e.featured).length + newsData.filter(n => n.featured).length).toString()}
+        </p>
+      </div>
+    </div>
+
+    {/* Additional Info */}
+    <div className="mt-4 text-xs sm:text-sm text-emerald-200/80">
+      <span className="inline-flex items-center gap-1">
+        <IoSparkles className="text-emerald-300" size={14} />
+        Click on any event or news item for detailed information
+      </span>
+    </div>
+  </div>
+</div>
         {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 mb-10">
           {stats.map((stat, index) => {
