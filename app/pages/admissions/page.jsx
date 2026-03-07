@@ -2367,12 +2367,11 @@ return (
         vision={schoolData?.vision}
         mission={schoolData?.mission}
         motto={schoolData?.motto}
+        videoUrl={schoolData?.videoTourUrl}
       />
     </div>
 
-    <div>
-      <VideoTourSection videoUrl={schoolData?.videoTourUrl} />
-    </div>
+  
 
     {/* 3. Admission Paths - Mobile Optimized Grid */}
 {/* 3. Admission Paths - Full Bleed on Mobile */}
