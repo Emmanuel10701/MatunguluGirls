@@ -106,19 +106,18 @@ const ModernHeroBanner = ({ stats, onRefresh }) => {
   )}
 </button>
         </div>
-        
-        {/* Stats Summary - Bold & Visible */}
-        <div className="mb-4">
-          <p className="text-emerald-100/90 text-sm sm:text-base font-medium leading-relaxed">
-            <span className="text-white font-black text-lg sm:text-xl underline decoration-emerald-500/50 underline-offset-4 mr-1">
-              {stats.totalItems}
-            </span> 
-            fee items totaling{' '}
-            <span className="text-white font-black text-lg sm:text-xl underline decoration-teal-500/50 underline-offset-4 mx-1">
-              KSh {stats.totalAmount}
-            </span>
-          </p>
-        </div>
+  {/* Stats Summary - Proportional & Balanced */}
+<div className="mb-4 sm:mb-6 px-1">
+  <p className="text-emerald-100/90 text-xs sm:text-base font-medium leading-relaxed sm:leading-loose">
+    <span className="text-white font-black text-base sm:text-xl md:text-2xl underline decoration-emerald-500/50 underline-offset-4 mr-1">
+      {stats.totalItems}
+    </span> 
+    <span className="tracking-tight sm:tracking-normal">fee items for annual fees totaling</span>
+    <span className="text-white font-black text-base sm:text-xl md:text-2xl underline decoration-teal-500/50 underline-offset-4 ml-1 whitespace-nowrap">
+      KSh {stats.totalAmount}
+    </span>
+  </p>
+</div>
 
         {/* Quick Stats Grid - Bold & Responsive */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
