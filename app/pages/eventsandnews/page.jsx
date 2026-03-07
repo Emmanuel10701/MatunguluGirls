@@ -8,20 +8,30 @@ import {
   FiUsers, 
   FiArrowRight,
   FiShare2,
-  FiRefreshCw, 
   FiSearch,
+  FiHeart,
   FiX,
+  FiLink,
+  FiPlus,
   FiFilter,
+  FiRotateCw,
+  FiEye,
   FiBookmark,
   FiChevronRight,
   FiChevronLeft,
   FiGrid,
   FiList,
-  FiImage,
+  FiDownload,
+  FiExternalLink,
+  FiVideo,
+  FiMusic,
+  FiAward,
+  FiTrendingUp,
+  FiZap,
+  FiGlobe,
+  FiMessageCircle,
   FiCopy,
-  FiMail,
-  FiPhone,
-  FiEye
+  FiBell
 } from 'react-icons/fi';
 import { 
   IoNewspaperOutline,
@@ -30,35 +40,38 @@ import {
   IoRibbonOutline,
   IoPeopleCircle,
   IoStatsChart,
+  IoShareSocialOutline,
   IoClose,
   IoLocationOutline,
   IoTimeOutline,
   IoPersonOutline,
+  IoShareOutline,
   IoSchoolOutline
 } from 'react-icons/io5';
 import { CircularProgress, Stack } from '@mui/material';
-import { FaWhatsapp, FaFacebookF, FaTwitter, FaLeaf } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaWhatsapp, FaTelegram, FaEnvelope, FaLeaf } from 'react-icons/fa';
 
-// Modern Modal Component
+// Modern Modal Component with Glass Morphism
 const ModernModal = ({ children, open, onClose, maxWidth = '800px', blur = true }) => {
   if (!open) return null;
 
   return (
     <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 ${blur ? 'backdrop-blur-md' : 'bg-black/50'}`}>
       <div 
-        className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-emerald-100"
+        className="relative bg-white/95 rounded-3xl shadow-2xl animate-in zoom-in-95 duration-300 overflow-hidden border border-white/40"
         style={{ 
           width: '90%',
           maxWidth: maxWidth,
-          maxHeight: '90vh'
+          maxHeight: '90vh',
+          background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)'
         }}
       >
         <div className="absolute top-4 right-4 z-10">
           <button 
             onClick={onClose}
-            className="p-2 bg-white/80 backdrop-blur-sm rounded-full border border-emerald-200 shadow-sm hover:bg-emerald-50 transition-colors"
+            className="p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white cursor-pointer border border-gray-200 shadow-sm"
           >
-            <FiX className="text-emerald-700 w-5 h-5" />
+            <FiX className="text-gray-600 w-5 h-5" />
           </button>
         </div>
         {children}
@@ -67,24 +80,65 @@ const ModernModal = ({ children, open, onClose, maxWidth = '800px', blur = true 
   );
 };
 
-// MODERN EVENT CARD - REFINED
-const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid', isBookmarked: initialBookmarked }) => {
+// Modern Event Card with Enhanced Design
+const ModernEventCard = ({ event, onView, onShare, onCalendar, onBookmark, viewMode = 'grid', isBookmarked: initialBookmarked }) => {
   const [isBookmarked, setIsBookmarked] = useState(initialBookmarked || false);
-  const [showDetails, setShowDetails] = useState(false);
 
   const getCategoryStyle = (category) => {
     const styles = {
-      academic: { bg: 'bg-blue-600', text: 'text-white', border: 'border-blue-700', iconColor: 'text-blue-600', gradient: 'from-blue-600 to-blue-700' },
-      sports: { bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-700', iconColor: 'text-emerald-600', gradient: 'from-emerald-600 to-teal-600' },
-      workshop: { bg: 'bg-amber-600', text: 'text-white', border: 'border-amber-700', iconColor: 'text-amber-600', gradient: 'from-amber-600 to-amber-700' },
-      meeting: { bg: 'bg-slate-600', text: 'text-white', border: 'border-slate-700', iconColor: 'text-slate-600', gradient: 'from-slate-600 to-slate-700' },
-      default: { bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-700', iconColor: 'text-emerald-600', gradient: 'from-emerald-600 to-teal-600' }
+      academic: { 
+        gradient: 'from-blue-500 to-cyan-500', 
+        bg: 'bg-blue-50', 
+        text: 'text-blue-700',
+        border: 'border-blue-200',
+        iconBg: 'bg-blue-100',
+        iconColor: 'text-blue-600'
+      },
+      cultural: { 
+        gradient: 'from-purple-500 to-pink-500', 
+        bg: 'bg-purple-50', 
+        text: 'text-purple-700',
+        border: 'border-purple-200',
+        iconBg: 'bg-purple-100',
+        iconColor: 'text-purple-600'
+      },
+      sports: { 
+        gradient: 'from-emerald-500 to-green-500', 
+        bg: 'bg-emerald-50', 
+        text: 'text-emerald-700',
+        border: 'border-emerald-200',
+        iconBg: 'bg-emerald-100',
+        iconColor: 'text-emerald-600'
+      },
+      workshop: { 
+        gradient: 'from-orange-500 to-amber-500', 
+        bg: 'bg-orange-50', 
+        text: 'text-orange-700',
+        border: 'border-orange-200',
+        iconBg: 'bg-orange-100',
+        iconColor: 'text-orange-600'
+      }
     };
-    return styles[category?.toLowerCase()] || styles.default;
+    return styles[category] || styles.academic;
   };
 
-  const theme = getCategoryStyle(event.category);
-  const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'TBD';
+  const formatDate = (dateString) => {
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric'
+      });
+    } catch {
+      return 'TBD';
+    }
+  };
+
+  const formatTime = (timeString) => {
+    if (!timeString) return 'All Day';
+    return timeString;
+  };
 
   const handleBookmarkClick = (e) => {
     e.stopPropagation();
@@ -93,320 +147,214 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid', isBookm
     onBookmark?.(event, newState);
   };
 
+  const theme = getCategoryStyle(event.category);
+
   if (viewMode === 'grid') {
     return (
-      <>
-        <div className="bg-white rounded-2xl border border-slate-100 overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
-          <div className="relative h-44 w-full overflow-hidden">
-            <img src={event.image || '/default-event.jpg'} alt="" className="w-full h-full object-cover" />
-            <div className="absolute top-3 left-3 flex gap-2">
-              <span className={`px-3 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider ${theme.bg} ${theme.text} border ${theme.border} shadow-lg`}>
-                {event.category || 'Event'}
+      <div 
+        onClick={() => onView(event)}
+        className="relative bg-white rounded-2xl sm:rounded-[28px] md:rounded-[32px] border border-slate-100 shadow-sm overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
+      >
+        <div className="relative h-40 sm:h-48 md:h-52 w-full shrink-0">
+          <img
+            src={event.image || '/default-event.jpg'}
+            alt={event.title}
+            className="w-full h-full object-cover"
+          />
+          
+          <div className="absolute top-3 sm:top-4 left-3 sm:left-4 flex flex-col gap-1.5 sm:gap-2">
+            <span className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[8px] sm:text-[9px] md:text-[10px] font-black uppercase tracking-widest shadow-sm border ${theme.bg} ${theme.text} ${theme.border}`}>
+              {event.category || 'Event'}
+            </span>
+            {event.featured && (
+              <span className="px-2 sm:px-3 py-0.5 sm:py-1 bg-slate-900/90 backdrop-blur-md text-white rounded-full text-[7px] sm:text-[8px] md:text-[10px] font-black uppercase tracking-widest flex items-center gap-1 shadow-sm">
+                <IoSparkles className="text-amber-400 text-[10px] sm:text-[12px]" /> Featured
               </span>
-            </div>
-            <button onClick={handleBookmarkClick} 
-              className={`absolute top-3 right-3 p-2 rounded-xl ${isBookmarked ? 'bg-amber-500 text-white' : 'bg-white/90 text-slate-600'} shadow-lg`}>
-              <FiBookmark className={isBookmarked ? 'fill-current' : ''} />
-            </button>
+            )}
           </div>
-          <div className="p-5">
-            <h3 className="text-base font-black text-slate-900 mb-2 line-clamp-1">{event.title}</h3>
-            <p className="text-sm text-slate-600 mb-4 line-clamp-2">{event.description || 'No description available'}</p>
-            <div className="space-y-2 mb-4">
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-600 bg-slate-50 p-2 rounded-lg">
-                <FiCalendar className={theme.iconColor} /> {formatDate(event.date)}
-              </div>
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-600 bg-slate-50 p-2 rounded-lg">
-                <FiMapPin className={theme.iconColor} /> <span className="truncate">{event.location || 'Main Campus'}</span>
-              </div>
-            </div>
-            <button 
-              onClick={() => setShowDetails(true)}
-              className="w-full py-3 bg-gradient-to-r from-emerald-800 to-teal-700 text-white rounded-xl text-xs font-black tracking-widest shadow-lg active:scale-95 transition-all">
-              SHORT DETAILS
+
+          <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
+            <button
+              onClick={handleBookmarkClick}
+              className={`p-1.5 sm:p-2 rounded-lg sm:rounded-xl backdrop-blur-md border shadow-sm transition-all ${
+                isBookmarked 
+                  ? 'bg-amber-500 border-amber-500 text-white' 
+                  : 'bg-white/90 border-white/10 text-slate-700'
+              }`}
+            >
+              <FiBookmark className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isBookmarked ? 'fill-current' : ''}`} />
             </button>
           </div>
         </div>
 
-        {/* Modern Event Detail Modal */}
-        {showDetails && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-slate-900/90 backdrop-blur-sm">
-            <div className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-3xl bg-white sm:rounded-lg shadow-2xl overflow-hidden flex flex-col">
-              
-              <button 
-                onClick={() => setShowDetails(false)}
-                className="absolute top-4 right-4 z-50 p-2 bg-black/20 backdrop-blur-md text-white rounded-lg border border-white/20 hover:bg-black/30 transition-colors"
-              >
-                <IoClose size={20} />
-              </button>
+        <div className="p-4 sm:p-5 md:p-6 flex flex-col flex-1">
+          <h3 className="text-base sm:text-lg md:text-xl font-bold text-slate-900 mb-1.5 sm:mb-2 line-clamp-2 leading-tight">
+            {event.title}
+          </h3>
+          
+          <p className="text-slate-500 text-xs sm:text-sm md:text-sm mb-4 sm:mb-6 line-clamp-2 sm:line-clamp-3 leading-relaxed">
+            {event.description || 'Join us for this upcoming school event.'}
+          </p>
 
-              <div className="relative h-[40vh] sm:h-[300px] w-full shrink-0">
-                <img
-                  src={event.image || '/default-event.jpg'}
-                  alt={event.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/20" />
-                
-                <div className="absolute bottom-4 left-4 flex gap-2">
-                  <span className={`px-3 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider ${theme.bg} ${theme.text} border ${theme.border} shadow-lg`}>
-                    {event.category || 'Event'}
-                  </span>
-                </div>
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 rounded-lg sm:rounded-2xl bg-slate-50 border border-slate-100/50">
+              <div className={`p-1 sm:p-1.5 rounded-lg sm:rounded-lg ${theme.iconBg}`}>
+                <FiCalendar className={`${theme.iconColor} w-3 h-3 sm:w-4 sm:h-4`} />
               </div>
+              <span className="text-[9px] sm:text-[10px] md:text-[11px] font-bold text-slate-700 uppercase tracking-tight whitespace-nowrap">
+                {formatDate(event.date)}
+              </span>
+            </div>
 
-              <div className="flex-1 overflow-y-auto p-6 bg-white">
-                <div className="max-w-2xl mx-auto space-y-6">
-                  
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg bg-gradient-to-r ${theme.gradient}`}>
-                      <FiCalendar className="text-white text-xl" />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-bold text-slate-900">
-                        {event.title}
-                      </h2>
-                      <p className="text-sm text-slate-500">{event.category || 'Event'} Event</p>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-y-2 gap-x-4 text-xs text-slate-500">
-                    <div className="flex items-center gap-1">
-                      <FiCalendar size={14} className="text-emerald-600" />
-                      {new Date(event.date).toLocaleDateString('en-US', {
-                        weekday: 'long',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      })}
-                    </div>
-                    {event.time && (
-                      <div className="flex items-center gap-1">
-                        <FiClock size={14} className="text-emerald-600" />
-                        {event.time}
-                      </div>
-                    )}
-                    {event.location && (
-                      <div className="flex items-center gap-1">
-                        <FiMapPin size={14} className="text-emerald-600" />
-                        {event.location}
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="border-b border-slate-200" />
-
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-bold text-slate-900">About This Event</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">
-                      {event.description || 'No description available.'}
-                    </p>
-                    
-                    {event.fullDescription && (
-                      <p className="text-sm text-slate-600 leading-relaxed">
-                        {event.fullDescription}
-                      </p>
-                    )}
-                  </div>
-
-                  {event.speakers && (
-                    <div className="space-y-3">
-                      <h3 className="text-lg font-bold text-slate-900">Speakers</h3>
-                      <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg border border-slate-100">
-                        <div className="p-2 bg-white rounded-lg">
-                          <FiUsers className="text-emerald-600" size={16} />
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-slate-900">{event.speakers}</p>
-                          <p className="text-xs text-slate-500">Guest Speaker</p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
+            <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 rounded-lg sm:rounded-2xl bg-slate-50 border border-slate-100/50">
+              <div className={`p-1 sm:p-1.5 rounded-lg sm:rounded-lg ${theme.iconBg}`}>
+                <FiClock className={`${theme.iconColor} w-3 h-3 sm:w-4 sm:h-4`} />
               </div>
+              <span className="text-[9px] sm:text-[10px] md:text-[11px] font-bold text-slate-700 uppercase tracking-tight whitespace-nowrap">
+                {event.time || 'TBD'}
+              </span>
+            </div>
 
-              <div className="shrink-0 p-4 bg-slate-50 border-t border-slate-100">
-                <div className="max-w-2xl mx-auto flex flex-row gap-2">
-                  <button
-                    onClick={() => {
-                      onView?.(event);
-                      setShowDetails(false);
-                    }}
-                    className="flex-1 h-10 bg-gradient-to-r from-emerald-800 to-teal-700 text-white rounded-lg text-xs font-medium flex items-center justify-center gap-2"
-                  >
-                    <FiEye size={14} />
-                    VIEW FULL DETAILS
-                  </button>
-
-                  <button
-                    onClick={() => setShowDetails(false)}
-                    className="flex-1 h-10 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-medium flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors"
-                  >
-                    CLOSE
-                  </button>
-                </div>
+            <div className="col-span-2 flex items-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 rounded-lg sm:rounded-2xl bg-slate-50 border border-slate-100/50">
+              <div className={`p-1 sm:p-1.5 rounded-lg sm:rounded-lg ${theme.iconBg} flex-shrink-0`}>
+                <FiMapPin className={`${theme.iconColor} w-3 h-3 sm:w-4 sm:h-4`} />
               </div>
+              <span className="text-[9px] sm:text-[10px] md:text-[11px] font-bold text-slate-700 uppercase tracking-tight truncate">
+                {event.location || 'Main Campus Hall'}
+              </span>
             </div>
           </div>
-        )}
-      </>
+
+          <button className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-900 text-white rounded-lg sm:rounded-xl text-xs sm:text-sm md:text-sm font-bold flex items-center justify-center gap-1.5 transition-all active:scale-95 hover:bg-slate-800">
+            View details
+          </button>
+        </div>
+      </div>
     );
   }
 
+  // List View
   return (
-    <>
-      <div className="bg-white rounded-xl border border-slate-100 p-3 sm:p-4 cursor-pointer mb-3 hover:shadow-md transition-shadow">
-        <div className="flex gap-3 sm:gap-4 items-center">
-          <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden shrink-0">
-            <img src={event.image || '/default-event.jpg'} alt="" className="w-full h-full object-cover" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center justify-between mb-1">
-              <span className={`px-2 sm:px-3 py-1 rounded-md text-[9px] sm:text-[10px] font-black uppercase tracking-wider ${theme.bg} ${theme.text} border ${theme.border} shadow-sm`}>
-                {event.category}
-              </span>
-              <FiBookmark onClick={handleBookmarkClick} 
-                className={`cursor-pointer text-base sm:text-lg ${isBookmarked ? 'text-amber-500 fill-current' : 'text-slate-300'}`} />
+    <div 
+      onClick={() => onView(event)}
+      className="group relative bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-200/60 p-3 sm:p-5 transition-all duration-300 cursor-pointer hover:shadow-xl hover:border-blue-200"
+    >
+      <div className="flex items-start gap-2.5 sm:gap-4">
+        <div className="relative w-16 h-16 sm:w-24 sm:h-24 rounded-lg sm:rounded-xl overflow-hidden flex-shrink-0">
+          <img
+            src={event.image || '/default-event.jpg'}
+            alt={event.title}
+            className="w-full h-full object-cover"
+          />
+          {event.featured && (
+            <div className="absolute top-1 right-1">
+              <IoSparkles className="text-amber-500 w-2.5 h-2.5 sm:w-3 sm:h-3" />
             </div>
-            <h3 className="text-sm sm:text-base font-black text-slate-900 truncate mb-1">{event.title}</h3>
-            <p className="text-xs text-slate-600 mb-2 line-clamp-1">{event.description || 'No description'}</p>
-            <div className="flex gap-2 sm:gap-3 text-[10px] sm:text-[11px] text-slate-500 font-bold">
-              <span className="flex items-center gap-1 whitespace-nowrap"><FiCalendar className={theme.iconColor} /> {formatDate(event.date)}</span>
-              <span className="flex items-center gap-1 whitespace-nowrap"><FiClock className={theme.iconColor} /> {event.time || 'All Day'}</span>
+          )}
+        </div>
+
+        <div className="flex-1 min-w-0">
+          <div className="flex items-start justify-between mb-1 sm:mb-2 gap-2">
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-1.5 mb-1 sm:mb-2 flex-wrap">
+                <span className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[7px] sm:text-xs font-bold text-white bg-gradient-to-r ${theme.gradient}`}>
+                  {event.category || 'Event'}
+                </span>
+                {event.featured && (
+                  <span className="px-1.5 sm:px-2 py-0.5 bg-gradient-to-r from-amber-100 to-orange-100 text-amber-700 text-[7px] sm:text-xs font-bold rounded-full">
+                    Featured
+                  </span>
+                )}
+              </div>
+              <h3 className="text-sm sm:text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+                {event.title}
+              </h3>
             </div>
-            <button 
-              onClick={() => setShowDetails(true)}
-              className={`mt-2 text-[9px] sm:text-[10px] font-black uppercase tracking-wider ${theme.text} hover:opacity-80 transition-opacity`}>
-              SHORT DETAILS →
+            <button
+              onClick={handleBookmarkClick}
+              className={`p-1 sm:p-1.5 rounded-lg transition-colors ${isBookmarked ? 'text-amber-500 bg-amber-50' : 'text-slate-300 hover:text-slate-500'}`}
+            >
+              <FiBookmark className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isBookmarked ? 'fill-current' : ''}`} />
             </button>
+          </div>
+
+          <p className="text-gray-600 text-[11px] sm:text-sm mb-2 sm:mb-3 line-clamp-2">
+            {event.description || 'Join us for an exciting event!'}
+          </p>
+
+          <div className="flex items-center gap-2 sm:gap-4 text-[10px] sm:text-sm text-gray-700 flex-wrap">
+            <div className="flex items-center gap-0.5 sm:gap-1 whitespace-nowrap">
+              <FiCalendar className="text-blue-500 w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="font-medium">{formatDate(event.date)}</span>
+            </div>
+            <div className="flex items-center gap-0.5 sm:gap-1 whitespace-nowrap">
+              <FiClock className="text-emerald-500 w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="font-medium">{formatTime(event.time)}</span>
+            </div>
+            <div className="flex items-center gap-0.5 sm:gap-1 truncate">
+              <FiMapPin className="text-rose-500 w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="font-medium truncate max-w-[80px] sm:max-w-[120px]">{event.location || 'TBD'}</span>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Modern Event Detail Modal (same as above) */}
-      {showDetails && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-slate-900/90 backdrop-blur-sm">
-          <div className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-3xl bg-white sm:rounded-lg shadow-2xl overflow-hidden flex flex-col">
-            
-            <button 
-              onClick={() => setShowDetails(false)}
-              className="absolute top-4 right-4 z-50 p-2 bg-black/20 backdrop-blur-md text-white rounded-lg border border-white/20 hover:bg-black/30 transition-colors"
-            >
-              <IoClose size={20} />
-            </button>
-
-            <div className="relative h-[40vh] sm:h-[300px] w-full shrink-0">
-              <img
-                src={event.image || '/default-event.jpg'}
-                alt={event.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/20" />
-              
-              <div className="absolute bottom-4 left-4 flex gap-2">
-                <span className={`px-3 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider ${theme.bg} ${theme.text} border ${theme.border} shadow-lg`}>
-                  {event.category || 'Event'}
-                </span>
-              </div>
-            </div>
-
-            <div className="flex-1 overflow-y-auto p-6 bg-white">
-              <div className="max-w-2xl mx-auto space-y-6">
-                
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-lg bg-gradient-to-r ${theme.gradient}`}>
-                    <FiCalendar className="text-white text-xl" />
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold text-slate-900">
-                      {event.title}
-                    </h2>
-                    <p className="text-sm text-slate-500">{event.category || 'Event'} Event</p>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-y-2 gap-x-4 text-xs text-slate-500">
-                  <div className="flex items-center gap-1">
-                    <FiCalendar size={14} className="text-emerald-600" />
-                    {new Date(event.date).toLocaleDateString('en-US', {
-                      weekday: 'long',
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </div>
-                  {event.time && (
-                    <div className="flex items-center gap-1">
-                      <FiClock size={14} className="text-emerald-600" />
-                      {event.time}
-                    </div>
-                  )}
-                  {event.location && (
-                    <div className="flex items-center gap-1">
-                      <FiMapPin size={14} className="text-emerald-600" />
-                      {event.location}
-                    </div>
-                  )}
-                </div>
-
-                <div className="border-b border-slate-200" />
-
-                <div className="space-y-4">
-                  <h3 className="text-lg font-bold text-slate-900">About This Event</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">
-                    {event.description || 'No description available.'}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="shrink-0 p-4 bg-slate-50 border-t border-slate-100">
-              <div className="max-w-2xl mx-auto flex flex-row gap-2">
-                <button
-                  onClick={() => {
-                    onView?.(event);
-                    setShowDetails(false);
-                  }}
-                  className="flex-1 h-10 bg-gradient-to-r from-emerald-800 to-teal-700 text-white rounded-lg text-xs font-medium flex items-center justify-center gap-2"
-                >
-                  <FiEye size={14} />
-                  VIEW FULL DETAILS
-                </button>
-
-                <button
-                  onClick={() => setShowDetails(false)}
-                  className="flex-1 h-10 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-medium flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors"
-                >
-                  CLOSE
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
+    </div>
   );
 };
 
-// MODERN NEWS CARD - REFINED
-const ModernNewsCard = ({ news, onView, onBookmark, isBookmarked: initialBookmarked }) => {
+// Modern News Card
+const ModernNewsCard = ({ news, onView, onShare, onBookmark, viewMode = 'grid', isBookmarked: initialBookmarked }) => {
   const [isBookmarked, setIsBookmarked] = useState(initialBookmarked || false);
-  const [showDetails, setShowDetails] = useState(false);
-  
-  const getStyle = (cat) => {
+
+  const getCategoryStyle = (category) => {
     const styles = {
-      announcement: { bg: 'bg-blue-600', text: 'text-white', border: 'border-blue-700', iconColor: 'text-blue-600', gradient: 'from-blue-600 to-blue-700' },
-      achievement: { bg: 'bg-amber-600', text: 'text-white', border: 'border-amber-700', iconColor: 'text-amber-600', gradient: 'from-amber-600 to-amber-700' },
-      infrastructure: { bg: 'bg-purple-600', text: 'text-white', border: 'border-purple-700', iconColor: 'text-purple-600', gradient: 'from-purple-600 to-purple-700' },
-      general: { bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-700', iconColor: 'text-emerald-600', gradient: 'from-emerald-600 to-teal-600' },
-      default: { bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-700', iconColor: 'text-emerald-600', gradient: 'from-emerald-600 to-teal-600' }
+      announcement: { 
+        gradient: 'from-blue-500 to-cyan-500', 
+        bg: 'bg-blue-50', 
+        text: 'text-blue-700',
+        border: 'border-blue-200',
+        iconBg: 'bg-blue-100',
+        iconColor: 'text-blue-600'
+      },
+      achievement: { 
+        gradient: 'from-emerald-500 to-green-500', 
+        bg: 'bg-emerald-50', 
+        text: 'text-emerald-700',
+        border: 'border-emerald-200',
+        iconBg: 'bg-emerald-100',
+        iconColor: 'text-emerald-600'
+      },
+      infrastructure: { 
+        gradient: 'from-purple-500 to-pink-500', 
+        bg: 'bg-purple-50', 
+        text: 'text-purple-700',
+        border: 'border-purple-200',
+        iconBg: 'bg-purple-100',
+        iconColor: 'text-purple-600'
+      },
+      general: { 
+        gradient: 'from-orange-500 to-amber-500', 
+        bg: 'bg-orange-50', 
+        text: 'text-orange-700',
+        border: 'border-orange-200',
+        iconBg: 'bg-orange-100',
+        iconColor: 'text-orange-600'
+      }
     };
-    return styles[cat?.toLowerCase()] || styles.default;
+    return styles[category?.toLowerCase()] || styles.announcement;
   };
 
-  const theme = getStyle(news.category);
-  const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Recently';
+  const formatDate = (dateString) => {
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric'
+      });
+    } catch {
+      return 'Recently';
+    }
+  };
 
   const handleBookmarkClick = (e) => {
     e.stopPropagation();
@@ -415,163 +363,504 @@ const ModernNewsCard = ({ news, onView, onBookmark, isBookmarked: initialBookmar
     onBookmark?.(news, newState);
   };
 
-  return (
-    <>
-      <div className="flex flex-col bg-white rounded-xl border border-slate-100 overflow-hidden cursor-pointer hover:shadow-md transition-shadow">
-        <div className="relative h-32 sm:h-36 w-full overflow-hidden">
-          <img src={news.image || '/default-news.jpg'} alt="" className="w-full h-full object-cover" />
-          <div className="absolute top-2 left-2 flex items-center gap-1.5 px-2 py-1 rounded-md bg-white/90 backdrop-blur-sm border border-white/50 shadow-sm">
-            <span className={`text-[9px] sm:text-[10px] font-black uppercase ${theme.text}`}>{news.category}</span>
+  const theme = getCategoryStyle(news.category);
+
+  if (viewMode === 'grid') {
+    return (
+      <div 
+        onClick={() => onView(news)}
+        className="flex flex-col bg-white rounded-2xl sm:rounded-[28px] md:rounded-[32px] border border-slate-100 shadow-sm overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
+      >
+        <div className="relative h-36 sm:h-44 md:h-48 w-full shrink-0">
+          <img
+            src={news.image || '/default-news.jpg'}
+            alt={news.title}
+            className="w-full h-full object-cover"
+          />
+          
+          <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
+            <span className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[8px] sm:text-[9px] md:text-[10px] font-black uppercase tracking-widest border shadow-sm ${theme.bg} ${theme.text} ${theme.border}`}>
+              {news.category || 'News'}
+            </span>
           </div>
-          <div className="absolute bottom-2 right-2 text-[9px] sm:text-[10px] text-white font-bold drop-shadow-md bg-black/30 px-2 py-1 rounded">
-            {formatDate(news.date)}
+
+          <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
+            <button
+              onClick={handleBookmarkClick}
+              className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl backdrop-blur-md bg-white/90 border border-white/20 text-slate-700 shadow-sm transition-all hover:bg-white"
+            >
+              <FiBookmark className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isBookmarked ? 'fill-amber-500 text-amber-500' : ''}`} />
+            </button>
           </div>
-          <button onClick={handleBookmarkClick} 
-            className={`absolute top-2 right-2 p-1.5 rounded-full ${isBookmarked ? 'text-amber-500' : 'text-white'} drop-shadow-md text-lg hover:scale-110 transition-transform`}>
-            <FiBookmark className={isBookmarked ? 'fill-current' : ''} />
+
+          <div className="absolute bottom-0 inset-x-0 h-10 sm:h-12 bg-gradient-to-t from-black/40 to-transparent flex items-end p-2 sm:p-4">
+            <span className="text-[8px] sm:text-[9px] md:text-[10px] font-bold text-white uppercase tracking-widest">
+              {formatDate(news.date)}
+            </span>
+          </div>
+        </div>
+
+        <div className="p-4 sm:p-5 md:p-6 flex flex-col flex-1">
+          <h3 className="text-base sm:text-lg md:text-xl font-bold text-slate-900 mb-2 sm:mb-3 line-clamp-2 leading-tight tracking-tight">
+            {news.title}
+          </h3>
+          
+          <p className="text-slate-500 text-xs sm:text-sm mb-4 sm:mb-6 line-clamp-2 sm:line-clamp-3 leading-relaxed">
+            {news.excerpt || 'Explore the latest updates from our school community.'}
+          </p>
+
+          <div className="flex items-center justify-between mt-auto pt-3 sm:pt-4 border-t border-slate-50 gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+              <div className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-slate-900 flex items-center justify-center text-white border border-slate-100 shadow-sm flex-shrink-0">
+                <span className="text-[8px] sm:text-[10px] font-black">{news.author?.charAt(0) || 'A'}</span>
+              </div>
+              <div className="flex flex-col min-w-0">
+                <span className="text-[9px] sm:text-[11px] font-bold text-slate-900 leading-none mb-0.5 truncate">
+                  {news.author || 'School Admin'}
+                </span>
+                <span className="text-[8px] text-slate-400 font-medium">Contributor</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-0.5 sm:gap-1 px-2 sm:px-3 py-0.5 sm:py-1 bg-slate-50 rounded-lg border border-slate-100 flex-shrink-0">
+              <FiHeart className="text-rose-500 w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="text-[9px] sm:text-[11px] font-bold text-slate-600">{news.likes || 0}</span>
+            </div>
+          </div>
+
+          <button className="mt-3 sm:mt-5 w-full py-2.5 sm:py-3.5 bg-slate-50 text-slate-900 rounded-lg sm:rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 border border-slate-100 active:bg-slate-100 transition-colors">
+            Read Full Story
+            <FiArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
         </div>
-        <div className="p-3 sm:p-4">
-          <h3 className="text-sm sm:text-base font-extrabold text-slate-900 mb-2 line-clamp-2 leading-snug">{news.title}</h3>
-          <p className="text-xs text-slate-600 mb-3 line-clamp-2">{news.excerpt || 'No description available'}</p>
-          <div className="flex items-center justify-between mt-auto pt-2 border-t border-slate-100">
-            <div className="flex items-center gap-1 text-[9px] sm:text-[10px] font-bold text-slate-500">
-              {news.author && (
-                <span className="truncate max-w-[100px]">By {news.author}</span>
-              )}
+      </div>
+    );
+  }
+
+  // List View
+  return (
+    <div 
+      onClick={() => onView(news)}
+      className="relative bg-white rounded-lg sm:rounded-[20px] border border-slate-100 p-3 sm:p-4 shadow-sm cursor-pointer transition-colors active:bg-slate-50"
+    >
+      <div className="flex gap-3 sm:gap-5">
+        
+        <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-lg sm:rounded-2xl overflow-hidden shrink-0 shadow-sm">
+          <img
+            src={news.image || '/default-news.jpg'}
+            alt={news.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <div className="flex-1 min-w-0 flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between mb-1.5 sm:mb-2 gap-2">
+              <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                <span className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg sm:rounded-lg text-[7px] sm:text-[10px] font-black uppercase tracking-widest border ${theme.bg} ${theme.text} ${theme.border}`}>
+                  {news.category || 'News'}
+                </span>
+                <span className="text-[8px] sm:text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
+                  {formatDate(news.date)}
+                </span>
+              </div>
+              
+              <button
+                onClick={handleBookmarkClick}
+                className={`p-1 sm:p-1.5 rounded-lg transition-colors ${isBookmarked ? 'text-amber-500' : 'text-slate-300 hover:text-slate-500'}`}
+              >
+                <FiBookmark className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isBookmarked ? 'fill-current' : ''}`} />
+              </button>
             </div>
-            <button 
-              onClick={() => setShowDetails(true)}
-              className={`flex items-center gap-1 text-[9px] sm:text-[10px] font-black uppercase tracking-wider ${theme.text} hover:opacity-80 transition-opacity`}>
-              VIEW DETAILS →
+
+            <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-snug line-clamp-2 mb-1.5 sm:mb-2">
+              {news.title}
+            </h3>
+          </div>
+
+          <div className="flex items-center justify-between mt-auto">
+            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+              <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-slate-900 flex items-center justify-center border border-white shadow-sm shrink-0">
+                <span className="text-[8px] text-white font-black leading-none">
+                  {news.author?.charAt(0) || 'S'}
+                </span>
+              </div>
+              <span className="text-[9px] sm:text-[11px] font-bold text-slate-600 truncate max-w-[80px] sm:max-w-[100px]">
+                {news.author || 'School Admin'}
+              </span>
+            </div>
+            
+            <div className="flex items-center gap-0.5 sm:gap-1 text-blue-600 font-bold text-[9px] sm:text-[11px] uppercase tracking-wider flex-shrink-0">
+              Read More
+              <FiArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Modern Share Modal
+const ModernShareModal = ({ item, type = 'event', onClose }) => {
+  const [copied, setCopied] = useState(false);
+
+  const socialPlatforms = [
+    {
+      name: 'WhatsApp',
+      icon: FaWhatsapp,
+      color: 'bg-green-500',
+      action: () => {
+        const text = `${item.title}\n\n${type === 'event' ? 'Event Details:' : 'News:'}\n${item.excerpt || item.description}\n\n${window.location.href}`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+      }
+    },
+    {
+      name: 'Facebook',
+      icon: FaFacebookF,
+      color: 'bg-blue-600',
+      action: () => {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+      }
+    },
+    {
+      name: 'Twitter',
+      icon: FaTwitter,
+      color: 'bg-sky-500',
+      action: () => {
+        const text = `${item.title} - Check out this ${type}!`;
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
+      }
+    },
+    {
+      name: 'Telegram',
+      icon: FaTelegram,
+      color: 'bg-blue-500',
+      action: () => {
+        const text = `${item.title}\n\n${item.excerpt || item.description}`;
+        window.open(`https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(text)}`, '_blank');
+      }
+    },
+    {
+      name: 'Email',
+      icon: FaEnvelope,
+      color: 'bg-gray-600',
+      action: () => {
+        const subject = `${item.title} - ${type === 'event' ? 'Event' : 'News'}`;
+        const body = `${item.excerpt || item.description}\n\n${window.location.href}`;
+        window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }
+    }
+  ];
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      setCopied(true);
+      toast.success('Link copied to clipboard!');
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
+  return (
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-slate-900/90 backdrop-blur-sm">
+      <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden">
+        <div className="bg-slate-900 p-8 text-white relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-3xl rounded-full -mr-16 -mt-16" />
+          
+          <div className="relative z-10 flex flex-col items-center text-center">
+            <div className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mb-4 border border-white/10">
+              <IoShareSocialOutline className="text-2xl text-white" />
+            </div>
+            <h2 className="text-2xl font-black tracking-tight">Share {type === 'event' ? 'Event' : 'News'}</h2>
+            <p className="text-slate-400 text-sm mt-1">Invite others to join</p>
+          </div>
+        </div>
+
+        <div className="p-8 bg-white">
+          <div className="grid grid-cols-5 gap-4 mb-8">
+            {socialPlatforms.map((platform, index) => {
+              const Icon = platform.icon;
+              return (
+                <button
+                  key={index}
+                  onClick={platform.action}
+                  className="flex flex-col items-center gap-2 group"
+                >
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-slate-50 text-slate-600 border border-slate-100 active:bg-slate-200">
+                    <Icon className="text-xl" />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">
+                    {platform.name}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="space-y-4">
+            <label className="text-[11px] font-black uppercase tracking-widest text-slate-400">
+              Direct Link
+            </label>
+            
+            <div className="relative group">
+              <div className="w-full p-4 bg-slate-50 rounded-2xl border border-slate-100 pr-32">
+                <p className="text-xs font-mono text-slate-500 truncate">
+                  {window.location.href}
+                </p>
+              </div>
+              
+              <button
+                onClick={copyToClipboard}
+                className={`absolute right-1.5 top-1.5 bottom-1.5 px-5 rounded-xl font-bold text-xs transition-all shadow-sm flex items-center gap-2 ${
+                  copied 
+                  ? 'bg-emerald-500 text-white' 
+                  : 'bg-slate-900 text-white active:scale-95'
+                }`}
+              >
+                {copied ? 'Done!' : <><FiCopy /> Copy</>}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Modern Detail Modal
+const ModernDetailModal = ({ item, type = 'event', onClose, onAddToCalendar, onShare }) => {
+  if (!item) return null;
+
+  const formatFullDate = (dateString) => {
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
+    } catch { return dateString || 'Date not set'; }
+  };
+
+  const getCategoryStyle = (category) => {
+    const styles = {
+      academic: 'from-blue-500 to-cyan-500',
+      cultural: 'from-purple-500 to-pink-500',
+      sports: 'from-emerald-500 to-green-500',
+      workshop: 'from-orange-500 to-amber-500',
+      announcement: 'from-blue-500 to-cyan-500',
+      achievement: 'from-emerald-500 to-green-500',
+      infrastructure: 'from-purple-500 to-pink-500',
+      general: 'from-orange-500 to-amber-500'
+    };
+    return styles[category?.toLowerCase()] || 'from-slate-500 to-slate-600';
+  };
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-slate-900/90 backdrop-blur-sm">
+      <div className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-3xl bg-white sm:rounded-[40px] shadow-2xl overflow-hidden flex flex-col">
+        
+        <button 
+          onClick={onClose}
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 z-50 p-2 bg-black/20 backdrop-blur-md text-white rounded-full border border-white/20 transition-all active:scale-90"
+        >
+          <IoClose size={20} />
+        </button>
+
+        <div className="relative h-[30vh] sm:h-[350px] w-full shrink-0">
+          <img
+            src={item.image || (type === 'event' ? '/default-event.jpg' : '/default-news.jpg')}
+            alt={item.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/20" />
+          
+          <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 flex gap-2">
+            <span className={`px-3 py-1 sm:px-4 sm:py-1.5 bg-white shadow-xl rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-900`}>
+              {item.category || type}
+            </span>
+            {item.featured && (
+              <span className="px-3 py-1 sm:px-4 sm:py-1.5 bg-slate-900 text-white rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest flex items-center gap-1">
+                <IoSparkles className="text-amber-400 w-3 h-3 sm:w-4 sm:h-4" /> 
+                <span className="hidden sm:inline">Featured</span>
+                <span className="sm:hidden">★</span>
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-10 bg-white">
+          <div className="max-w-2xl mx-auto space-y-6 sm:space-y-8">
+            
+            <section className="space-y-3 sm:space-y-4">
+              <h2 className="text-xl sm:text-3xl md:text-4xl font-black text-slate-900 leading-tight tracking-tight">
+                {item.title}
+              </h2>
+              
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-y-3 gap-x-6 text-xs sm:text-sm font-semibold text-slate-500">
+                <div className="flex items-center gap-2">
+                  <IoCalendarClearOutline className="text-blue-500 text-base sm:text-lg" />
+                  {formatFullDate(item.date)}
+                </div>
+                {type === 'event' && item.location && (
+                  <div className="flex items-center gap-2">
+                    <IoLocationOutline className="text-rose-500 text-base sm:text-lg" />
+                    {item.location}
+                  </div>
+                )}
+                {type === 'news' && (
+                  <div className="flex items-center gap-2">
+                    <IoPersonOutline className="text-purple-500 text-base sm:text-lg" />
+                    By {item.author || 'School Admin'}
+                  </div>
+                )}
+              </div>
+            </section>
+
+            <section className="space-y-3 sm:space-y-4">
+              <h3 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-slate-400">
+                About this {type}
+              </h3>
+              <div className="text-slate-700 leading-relaxed text-sm sm:text-base md:text-lg">
+                {item.description || item.excerpt || 'No description available.'}
+              </div>
+              
+              {type === 'news' && item.fullContent && (
+                <div className="pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-slate-100 text-slate-600 text-xs sm:text-sm md:text-base whitespace-pre-line italic">
+                  {item.fullContent}
+                </div>
+              )}
+            </section>
+
+            {type === 'event' && (
+              <section className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 pt-4">
+                <div className="p-3 sm:p-4 bg-slate-50 rounded-2xl sm:rounded-3xl border border-slate-100">
+                  <IoTimeOutline className="text-blue-600 mb-1 sm:mb-2 w-4 h-4 sm:w-5 sm:h-5" />
+                  <p className="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 mb-0.5 sm:mb-1">Time</p>
+                  <p className="font-bold text-slate-900 text-xs sm:text-sm md:text-base truncate">{item.time || 'All Day'}</p>
+                </div>
+                <div className="p-3 sm:p-4 bg-slate-50 rounded-2xl sm:rounded-3xl border border-slate-100">
+                  <IoPersonOutline className="text-purple-600 mb-1 sm:mb-2 w-4 h-4 sm:w-5 sm:h-5" />
+                  <p className="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 mb-0.5 sm:mb-1">Attendees</p>
+                  <p className="font-bold text-slate-900 text-xs sm:text-sm md:text-base truncate">{item.attendees || 'Open'}</p>
+                </div>
+                {item.speaker && (
+                  <div className="p-3 sm:p-4 bg-slate-50 rounded-2xl sm:rounded-3xl border border-slate-100 col-span-2 sm:col-span-1">
+                    <IoSparkles className="text-amber-500 mb-1 sm:mb-2 w-4 h-4 sm:w-5 sm:h-5" />
+                    <p className="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 mb-0.5 sm:mb-1">Speaker</p>
+                    <p className="font-bold text-slate-900 text-xs sm:text-sm md:text-base truncate">{item.speaker}</p>
+                  </div>
+                )}
+              </section>
+            )}
+          </div>
+        </div>
+
+        <div className="shrink-0 p-4 sm:p-6 bg-slate-50/80 backdrop-blur-md border-t border-slate-100">
+          <div className="max-w-2xl mx-auto flex flex-row items-center gap-2 sm:gap-3">
+            {type === 'event' ? (
+              <button
+                onClick={onAddToCalendar}
+                className="flex-[2] min-w-0 h-11 sm:h-14 bg-slate-900 text-white rounded-xl sm:rounded-2xl font-bold text-[11px] sm:text-sm flex items-center justify-center gap-1.5 active:scale-95 transition-all"
+              >
+                <IoCalendarClearOutline size={16} className="shrink-0 sm:size-[20px]" />
+                <span className="truncate">Add to Calendar</span>
+              </button>
+            ) : (
+              <button
+                className="flex-[2] min-w-0 h-11 sm:h-14 bg-slate-900 text-white rounded-xl sm:rounded-2xl font-bold text-[11px] sm:text-sm flex items-center justify-center gap-1.5 active:scale-95 transition-all"
+                onClick={onClose}
+              >
+                <IoNewspaperOutline size={16} className="shrink-0 sm:size-[20px]" />
+                <span className="truncate">Close</span>
+              </button>
+            )}
+            
+            <button
+              onClick={onShare}
+              className="flex-1 min-w-0 h-11 sm:h-14 bg-white border-2 border-slate-200 text-slate-900 rounded-xl sm:rounded-2xl font-bold text-[11px] sm:text-sm flex items-center justify-center gap-1.5 active:scale-95 transition-all"
+            >
+              <IoShareOutline size={16} className="shrink-0 sm:size-[20px]" />
+              <span className="truncate">Share</span>
             </button>
           </div>
         </div>
       </div>
+    </div>
+  );
+};
 
-      {/* Modern News Detail Modal */}
-      {showDetails && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-slate-900/90 backdrop-blur-sm">
-          <div className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-3xl bg-white sm:rounded-lg shadow-2xl overflow-hidden flex flex-col">
-            
-            <button 
-              onClick={() => setShowDetails(false)}
-              className="absolute top-4 right-4 z-50 p-2 bg-black/20 backdrop-blur-md text-white rounded-lg border border-white/20 hover:bg-black/30 transition-colors"
-            >
-              <IoClose size={20} />
-            </button>
+// Modern Pagination Component
+const ModernPagination = ({ currentPage, totalPages, onPageChange }) => {
+  if (totalPages <= 1) return null;
 
-            <div className="relative h-[40vh] sm:h-[300px] w-full shrink-0">
-              <img
-                src={news.image || '/default-news.jpg'}
-                alt={news.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/20" />
-              
-              <div className="absolute bottom-4 left-4 flex gap-2">
-                <span className={`px-3 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider ${theme.bg} ${theme.text} border ${theme.border} shadow-lg`}>
-                  {news.category || 'News'}
-                </span>
-              </div>
-              
-              <div className="absolute bottom-4 right-4">
-                <span className="px-3 py-1.5 bg-black/60 backdrop-blur-sm text-white rounded-lg text-xs font-medium">
-                  {formatDate(news.date)}
-                </span>
-              </div>
-            </div>
+  const getPageNumbers = () => {
+    const pages = [];
+    const maxVisible = 5;
+    
+    if (totalPages <= maxVisible) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      pages.push(1);
+      
+      let start = Math.max(2, currentPage - 1);
+      let end = Math.min(totalPages - 1, currentPage + 1);
+      
+      if (currentPage <= 3) {
+        start = 2;
+        end = 4;
+      } else if (currentPage >= totalPages - 2) {
+        start = totalPages - 3;
+        end = totalPages - 1;
+      }
+      
+      if (start > 2) pages.push('...');
+      
+      for (let i = start; i <= end; i++) pages.push(i);
+      
+      if (end < totalPages - 1) pages.push('...');
+      
+      pages.push(totalPages);
+    }
+    
+    return pages;
+  };
 
-            <div className="flex-1 overflow-y-auto p-6 bg-white">
-              <div className="max-w-2xl mx-auto space-y-6">
-                
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-lg bg-gradient-to-r ${theme.gradient}`}>
-                    <IoNewspaperOutline className="text-white text-xl" />
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold text-slate-900">
-                      {news.title}
-                    </h2>
-                    <p className="text-sm text-slate-500">{news.category || 'News'} Article</p>
-                  </div>
-                </div>
+  return (
+    <div className="flex items-center justify-center gap-2 mt-8 pt-8 border-t border-gray-200">
+      <button
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className="p-2 rounded-xl bg-white border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
+      >
+        <FiChevronLeft className="w-5 h-5" />
+      </button>
 
-                <div className="flex flex-wrap gap-y-2 gap-x-4 text-xs text-slate-500">
-                  <div className="flex items-center gap-1">
-                    <FiCalendar size={14} className="text-emerald-600" />
-                    {new Date(news.date).toLocaleDateString('en-US', {
-                      weekday: 'long',
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </div>
-                  {news.author && (
-                    <div className="flex items-center gap-1">
-                      <IoPersonOutline size={14} className="text-emerald-600" />
-                      By {news.author}
-                    </div>
-                  )}
-                </div>
+      <div className="flex items-center gap-1">
+        {getPageNumbers().map((page, index) => (
+          <button
+            key={index}
+            onClick={() => typeof page === 'number' && onPageChange(page)}
+            className={`w-10 h-10 flex items-center justify-center rounded-xl text-sm font-semibold transition-all ${
+              page === '...'
+                ? 'text-gray-500'
+                : currentPage === page
+                ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
+                : 'text-gray-700 hover:bg-gray-100'
+            }`}
+            disabled={page === '...'}
+          >
+            {page}
+          </button>
+        ))}
+      </div>
 
-                <div className="border-b border-slate-200" />
-
-                <div className="space-y-4">
-                  <h3 className="text-lg font-bold text-slate-900">Summary</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">
-                    {news.excerpt || 'No description available.'}
-                  </p>
-                  
-                  {news.fullContent && (
-                    <>
-                      <h3 className="text-lg font-bold text-slate-900 pt-2">Full Article</h3>
-                      <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line">
-                        {news.fullContent}
-                      </p>
-                    </>
-                  )}
-                </div>
-
-                {news.author && (
-                  <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg border border-slate-100">
-                    <div className="p-2 bg-white rounded-lg">
-                      <IoPersonOutline className="text-emerald-600" size={16} />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-slate-900">{news.author}</p>
-                      <p className="text-xs text-slate-500">Author</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div className="shrink-0 p-4 bg-slate-50 border-t border-slate-100">
-              <div className="max-w-2xl mx-auto flex flex-row gap-2">
-                <button
-                  onClick={() => {
-                    onView?.(news);
-                    setShowDetails(false);
-                  }}
-                  className="flex-1 h-10 bg-gradient-to-r from-emerald-800 to-teal-700 text-white rounded-lg text-xs font-medium flex items-center justify-center gap-2"
-                >
-                  <FiEye size={14} />
-                  VIEW FULL ARTICLE
-                </button>
-
-                <button
-                  onClick={() => setShowDetails(false)}
-                  className="flex-1 h-10 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-medium flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors"
-                >
-                  CLOSE
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
+      <button
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="p-2 rounded-xl bg-white border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
+      >
+        <FiChevronRight className="w-5 h-5" />
+      </button>
+    </div>
   );
 };
 
@@ -593,14 +882,14 @@ export default function ModernEventsNewsPage() {
   const itemsPerPage = 9;
 
   const categories = [
-    { id: 'all', name: 'All Events', icon: IoCalendarClearOutline },
-    { id: 'academic', name: 'Academic', icon: IoNewspaperOutline },
-    { id: 'cultural', name: 'Cultural', icon: FiImage },
-    { id: 'sports', name: 'Sports', icon: FiImage },
-    { id: 'workshop', name: 'Workshops', icon: FiImage }
+    { id: 'all', name: 'All Events', icon: IoCalendarClearOutline, color: 'bg-gradient-to-r from-blue-500 to-cyan-500' },
+    { id: 'academic', name: 'Academic', icon: IoNewspaperOutline, color: 'bg-gradient-to-r from-blue-500 to-purple-500' },
+    { id: 'cultural', name: 'Cultural', icon: FiMusic, color: 'bg-gradient-to-r from-purple-500 to-pink-500' },
+    { id: 'sports', name: 'Sports', icon: FiTrendingUp, color: 'bg-gradient-to-r from-emerald-500 to-green-500' },
+    { id: 'workshop', name: 'Workshops', icon: FiZap, color: 'bg-gradient-to-r from-orange-500 to-amber-500' }
   ];
 
-  // Load bookmarks from localStorage on initial render
+  // Load bookmarks from localStorage
   useEffect(() => {
     const savedEventBookmarks = localStorage.getItem('bookmarkedEvents');
     const savedNewsBookmarks = localStorage.getItem('bookmarkedNews');
@@ -613,7 +902,7 @@ export default function ModernEventsNewsPage() {
     }
   }, []);
 
-  // Save bookmarks to localStorage whenever they change
+  // Save bookmarks to localStorage
   useEffect(() => {
     localStorage.setItem('bookmarkedEvents', JSON.stringify([...bookmarkedEvents]));
   }, [bookmarkedEvents]);
@@ -633,6 +922,7 @@ export default function ModernEventsNewsPage() {
     } catch (error) {
       console.error('Error fetching events:', error);
       toast.error('Failed to load events');
+      setEventsData([]);
     } finally {
       if (showRefresh) setRefreshing(false);
     }
@@ -648,6 +938,7 @@ export default function ModernEventsNewsPage() {
     } catch (error) {
       console.error('Error fetching news:', error);
       toast.error('Failed to load news');
+      setNewsData([]);
     }
   };
 
@@ -730,46 +1021,44 @@ export default function ModernEventsNewsPage() {
     fetchData(true);
   };
 
-  // Calculate stats
-  const totalFiles = eventsData.length + newsData.length;
   const stats = [
     { 
       icon: IoCalendarClearOutline, 
-      number: eventsData.length.toString(), 
-      label: 'Events', 
-      sublabel: 'Upcoming',
-      gradient: 'from-emerald-600 to-teal-600'
+      number: eventsData.length.toString() + '+', 
+      label: 'Upcoming Events', 
+      sublabel: 'This month',
+      gradient: 'from-blue-500 to-cyan-500'
     },
     { 
       icon: IoNewspaperOutline, 
-      number: newsData.length.toString(), 
-      label: 'News', 
-      sublabel: 'Articles',
-      gradient: 'from-emerald-600 to-teal-600'
+      number: newsData.length.toString() + '+', 
+      label: 'News Articles', 
+      sublabel: 'Latest updates',
+      gradient: 'from-purple-500 to-pink-500'
     },
     { 
-      icon: FiImage, 
-      number: '5', 
-      label: 'Categories', 
-      sublabel: 'Available',
-      gradient: 'from-emerald-600 to-teal-600'
+      icon: IoRibbonOutline, 
+      number: (eventsData.filter(e => e.featured).length + newsData.filter(n => n.featured).length).toString(), 
+      label: 'Featured', 
+      sublabel: 'Highlights',
+      gradient: 'from-amber-500 to-orange-500'
     },
     { 
-      icon: FiCalendar, 
-      number: new Date().getFullYear().toString(),
-      label: 'Year', 
-      sublabel: 'Current',
-      gradient: 'from-emerald-600 to-teal-600'
+      icon: IoPeopleCircle, 
+      number: '100%', 
+      label: 'Engagement', 
+      sublabel: 'Community',
+      gradient: 'from-emerald-500 to-green-500'
     }
   ];
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white p-4">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20 p-4">
         <div className="max-w-7xl mx-auto">
           <div className="min-h-[70vh] flex items-center justify-center">
             <Stack spacing={2} alignItems="center">
-              <div className="relative flex items-center justify-center">
+              <div className="relative flex items-center justify-center scale-90 sm:scale-110">
                 <CircularProgress
                   variant="determinate"
                   value={100}
@@ -783,16 +1072,21 @@ export default function ModernEventsNewsPage() {
                   size={48}
                   thickness={4.5}
                   sx={{
-                    color: '#059669',
+                    color: '#0f172a',
                     animationDuration: '1000ms',
                     position: 'absolute',
                   }}
                 />
+                <div className="absolute">
+                  <IoSparkles className="text-blue-600 text-sm animate-pulse" />
+                </div>
               </div>
               <div className="text-center">
-                <p className="text-slate-600 text-sm">Loading updates...</p>
-                <p className="text-slate-400 text-xs uppercase tracking-widest mt-1 font-bold">
-                  Matungulu Girls
+                <p className="text-slate-900 font-medium text-sm sm:text-base tracking-tight italic">
+                  Loading events & news...
+                </p>
+                <p className="text-slate-400 text-[10px] sm:text-xs uppercase tracking-widest mt-1 font-bold">
+                  Matungulu Girls High School
                 </p>
               </div>
             </Stack>
@@ -803,253 +1097,245 @@ export default function ModernEventsNewsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white p-4 md:p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20 p-4 md:p-6">
       <Toaster position="top-right" richColors />
       
       <div className="max-w-7xl mx-auto space-y-6">
         
-        {/* Modern Hero Banner */}
-        <div className="relative bg-gradient-to-r from-emerald-900 to-teal-800 rounded-2xl p-6 md:p-10 text-white overflow-hidden border border-emerald-700/30 mb-8">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
-          
-          <div className="relative z-10">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6">
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-8 w-1 bg-emerald-400 rounded-full shadow-[0_0_15px_rgba(52,211,153,0.5)]" />
-                  <div>
-                    <h2 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-emerald-400">
-                      Matungulu Girls High School
-                    </h2>
-                    <p className="text-[8px] sm:text-[10px] italic font-medium text-emerald-200/60 tracking-widest uppercase">
-                      "Strive to Excel"
-                    </p>
-                  </div>
+        {/* Hero Header */}
+        <div className="relative bg-slate-950 p-4 sm:p-8 overflow-hidden rounded-3xl">
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
+          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
+
+          <div className="max-w-7xl mx-auto relative z-10">
+            <div className="flex flex-col gap-4 mb-6 sm:mb-10">
+              <div className="space-y-3">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/10 backdrop-blur-xl rounded-full border border-white/20 shadow-2xl">
+                  <IoSparkles className="text-blue-400 text-[10px] sm:text-sm animate-pulse" />
+                  <span className="text-blue-100 font-black text-[8px] sm:text-xs uppercase tracking-[0.2em]">
+                    Latest Updates
+                  </span>
                 </div>
                 
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/10">
-                    <IoSchoolOutline className="text-xl sm:text-2xl md:text-3xl text-emerald-300" />
+                <div className="flex flex-col gap-3">
+                  <div className="max-w-full">
+                    <h1 className="text-2xl sm:text-4xl lg:text-6xl font-black text-white tracking-tighter leading-[1.1]">
+                      School <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-purple-400">Events & News</span>
+                    </h1>
+                    <p className="text-slate-400 text-xs sm:text-lg mt-2 font-medium leading-relaxed max-w-2xl opacity-80">
+                      Stay updated with the heartbeat and happenings at Matungulu Girls High School.
+                    </p>
                   </div>
-                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white tracking-tight">
-                    Events & <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300">News</span>
-                  </h1>
+
+                  <div className="flex items-center gap-3 w-full sm:w-auto mt-2">
+                    <button
+                      onClick={refreshData}
+                      disabled={refreshing}
+                      className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl bg-white hover:bg-blue-50 text-slate-950 font-black text-[10px] sm:text-xs uppercase tracking-widest transition-all active:scale-95 disabled:opacity-50 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                    >
+                      {refreshing ? (
+                        <div className="w-3 h-3 border-2 border-slate-900/20 border-t-slate-900 rounded-full animate-spin" />
+                      ) : (
+                        <FiRotateCw className="text-[12px] sm:text-base" />
+                      )}
+                      <span>{refreshing ? "Updating..." : "REFRESH"}</span>
+                    </button>
+
+                    <div className="flex bg-slate-900/80 backdrop-blur-2xl rounded-xl sm:rounded-2xl p-1 border border-white/10 shadow-2xl">
+                      <button
+                        onClick={() => setViewMode('grid')}
+                        className={`p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all ${
+                          viewMode === 'grid' 
+                          ? 'bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.4)]' 
+                          : 'text-slate-500 hover:text-slate-300'
+                        }`}
+                      >
+                        <FiGrid size={16} className="sm:w-[22px] sm:h-[22px]" />
+                      </button>
+                      <button
+                        onClick={() => setViewMode('list')}
+                        className={`p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all ${
+                          viewMode === 'list' 
+                          ? 'bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.4)]' 
+                          : 'text-slate-500 hover:text-slate-300'
+                        }`}
+                      >
+                        <FiList size={16} className="sm:w-[22px] sm:h-[22px]" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-              
-              <button
-                onClick={refreshData}
-                disabled={refreshing}
-                className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl font-bold text-[11px] sm:text-sm tracking-widest text-white hover:bg-white/20 w-full sm:w-auto transition-all disabled:opacity-70 disabled:cursor-not-allowed"
-              >
-                {refreshing ? (
-                  <>
-                    <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span>REFRESHING...</span>
-                  </>
-                ) : (
-                  <>
-                    <FiRefreshCw className="text-base sm:text-lg" />
-                    <span>REFRESH UPDATES</span>
-                  </>
-                )}
-              </button>
-            </div>
-
-            <div className="mb-4 sm:mb-6 px-1">
-              <p className="text-emerald-100/90 text-xs sm:text-base font-medium leading-relaxed sm:leading-loose">
-                <span className="text-white font-black text-base sm:text-xl md:text-2xl underline decoration-emerald-500/50 underline-offset-4 mr-1">
-                  {eventsData.length}
-                </span> 
-                <span className="tracking-tight sm:tracking-normal">upcoming events and</span>
-                <span className="text-white font-black text-base sm:text-xl md:text-2xl underline decoration-teal-500/50 underline-offset-4 ml-1 mr-1">
-                  {newsData.length}
-                </span>
-                <span className="tracking-tight sm:tracking-normal">news articles this month</span>
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-                <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Events</p>
-                <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{eventsData.length}</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-                <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">News</p>
-                <p className="text-lg sm:text-xl md:text-2xl font-black text-white">{newsData.length}</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-                <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Categories</p>
-                <p className="text-lg sm:text-xl md:text-2xl font-black text-white">5</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-                <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Featured</p>
-                <p className="text-lg sm:text-xl md:text-2xl font-black text-white">
-                  {(eventsData.filter(e => e.featured).length + newsData.filter(n => n.featured).length).toString()}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-4 text-xs sm:text-sm text-emerald-200/80">
-              <span className="inline-flex items-center gap-1">
-                <IoSparkles className="text-emerald-300" size={14} />
-                Click on any event or news item for detailed information
-              </span>
             </div>
           </div>
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-          {stats.map((stat, index) => (
-            <div key={index} className="relative bg-white border border-slate-200 rounded-lg p-4">
-              <div className="flex items-start justify-between mb-3">
-                <div className={`p-2 rounded-lg bg-gradient-to-br ${stat.gradient} bg-opacity-10`}>
-                  <stat.icon className="text-lg text-emerald-700" />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 mb-10">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
+            return (
+              <div 
+                key={index} 
+                className="relative flex flex-col justify-between overflow-hidden bg-white border border-slate-100 p-4 md:p-6 rounded-[24px] md:rounded-[32px] shadow-sm"
+              >
+                <div className="flex items-start justify-between mb-4 md:mb-8">
+                  <div className={`p-2 md:p-3 rounded-xl md:rounded-2xl bg-gradient-to-br ${stat.gradient} bg-opacity-[0.08] text-slate-700`}>
+                    <Icon className="text-lg md:text-2xl" />
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-[9px] md:text-[11px] font-bold uppercase tracking-[0.15em] text-slate-400">
+                    {stat.label}
+                  </p>
+                  <div className="flex items-baseline gap-1">
+                    <h3 className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900">
+                      {stat.number}
+                    </h3>
+                  </div>
+                  <p className="text-[10px] md:text-sm font-medium text-slate-500 leading-tight line-clamp-1 md:line-clamp-none">
+                    {stat.sublabel}
+                  </p>
                 </div>
               </div>
-              <div className="space-y-1">
-                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400">
-                  {stat.label}
-                </p>
-                <h3 className="text-xl md:text-2xl font-bold text-slate-900">
-                  {stat.number}
-                </h3>
-                <p className="text-xs text-slate-500">
-                  {stat.sublabel}
-                </p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Search & Filters */}
-        <div className="bg-white border border-slate-200 rounded-lg p-4">
-          <div className="flex flex-col md:flex-row gap-3">
-            <div className="relative flex-1">
-              <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
-              <input
-                type="text"
-                placeholder="Search events & news..."
-                value={searchTerm}
-                onChange={(e) => {
-                  setSearchTerm(e.target.value);
-                  setCurrentPage(1);
-                }}
-                className="w-full pl-10 pr-10 py-2.5 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-500"
-              />
-              {searchTerm && (
-                <button
-                  onClick={() => setSearchTerm('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 bg-slate-100 rounded"
-                >
-                  <FiX size={12} className="text-slate-800" />
-                </button>
-              )}
-            </div>
+        <div className="relative mb-6 sm:mb-8">
+          <div className="bg-white/80 backdrop-blur-md border border-slate-200/60 p-2 sm:p-3 rounded-2xl sm:rounded-[28px] md:rounded-full shadow-lg shadow-slate-200/40">
+            <div className="flex flex-col md:flex-row items-center gap-2 sm:gap-3">
+              
+              <div className="relative w-full flex-1 group">
+                <div className="relative flex items-center bg-white border border-slate-200 rounded-xl sm:rounded-2xl shadow-sm transition-all focus-within:border-slate-900 focus-within:ring-2 sm:focus-within:ring-4 focus-within:ring-slate-900/5">
+                  <div className="pl-3 sm:pl-4 md:pl-5 pr-2 sm:pr-3 flex items-center justify-center pointer-events-none">
+                    <FiSearch className="text-slate-400 group-focus-within:text-slate-900 transition-colors" size={16} />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search events, news, or resources..."
+                    value={searchTerm}
+                    onChange={(e) => {
+                      setSearchTerm(e.target.value);
+                      setCurrentPage(1);
+                    }}
+                    className="w-full py-3 sm:py-4 bg-transparent text-slate-900 placeholder:text-slate-400 font-medium sm:font-semibold text-sm focus:outline-none placeholder:text-xs sm:placeholder:text-sm"
+                  />
+                  <div className="pr-2 flex items-center gap-1 sm:gap-2">
+                    {searchTerm ? (
+                      <button
+                        onClick={() => setSearchTerm('')}
+                        className="p-1.5 sm:p-2 bg-slate-100 text-slate-900 rounded-lg sm:rounded-xl active:scale-90 transition-transform"
+                      >
+                        <FiX className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                      </button>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
 
-            <div className="flex gap-2">
-              <select 
-                value={activeTab}
-                onChange={(e) => {
-                  setActiveTab(e.target.value);
-                  setCurrentPage(1);
-                }}
-                className="px-3 py-2.5 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 focus:border-emerald-500"
-              >
-                {categories.map((category) => (
-                  <option key={category.id} value={category.id}>{category.name}</option>
-                ))}
-              </select>
+              <div className="flex items-center w-full md:w-auto gap-2 sm:gap-3 border-t border-slate-100 md:border-t-0 md:border-l md:border-slate-100 pt-2 sm:pt-3 md:pt-0 md:pl-3">
+                
+                <div className="relative flex-1 md:flex-none min-w-0">
+                  <select 
+                    value={activeTab}
+                    onChange={(e) => {
+                      setActiveTab(e.target.value);
+                      setCurrentPage(1);
+                    }}
+                    className="w-full md:w-40 appearance-none px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 md:py-3 bg-slate-50 md:bg-transparent border-none rounded-xl sm:rounded-2xl md:rounded-full font-medium sm:font-semibold text-slate-600 text-xs sm:text-sm cursor-pointer focus:ring-1 sm:focus:ring-2 focus:ring-blue-500/20 transition-all"
+                  >
+                    {categories.map((category) => (
+                      <option key={category.id} value={category.id}>
+                        {category.name}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
 
-              <button
-                onClick={() => {
-                  setSearchTerm('');
-                  setActiveTab('all');
-                  setCurrentPage(1);
-                }}
-                className="px-4 py-2.5 bg-emerald-600 text-white rounded-lg text-sm font-medium flex items-center gap-2"
-              >
-                <FiFilter size={14} />
-                Reset
-              </button>
-
-              <div className="flex bg-white border border-slate-200 rounded-lg overflow-hidden">
                 <button
-                  onClick={() => setViewMode('grid')}
-                  className={`p-2.5 ${viewMode === 'grid' ? 'bg-emerald-50 text-emerald-600' : 'text-slate-800'}`}
+                  onClick={() => {
+                    setSearchTerm('');
+                    setActiveTab('all');
+                    setCurrentPage(1);
+                  }}
+                  className="p-2.5 sm:p-3 md:px-6 md:py-3 bg-blue-600 text-white rounded-xl sm:rounded-2xl md:rounded-full font-bold text-xs sm:text-sm shadow-md shadow-blue-200 hover:bg-blue-700 active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 flex-shrink-0"
                 >
-                  <FiGrid size={16} />
-                </button>
-                <button
-                  onClick={() => setViewMode('list')}
-                  className={`p-2.5 ${viewMode === 'list' ? 'bg-emerald-50 text-emerald-600' : 'text-slate-800'}`}
-                >
-                  <FiList size={16} />
+                  <FiFilter className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  <span className="hidden md:inline">Reset</span>
+                  <span className="md:hidden text-[10px] font-bold">Clear</span>
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Category Pills */}
-        <div className="flex gap-2 overflow-x-auto pb-2">
-          {categories.map((category) => {
-            const Icon = category.icon;
-            const isActive = activeTab === category.id;
-            return (
-              <button
-                key={category.id}
-                onClick={() => { setActiveTab(category.id); setCurrentPage(1); }}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap text-xs font-medium border ${
-                  isActive 
-                    ? "bg-emerald-600 border-emerald-600 text-white" 
-                    : "bg-white border-slate-200 text-slate-600"
-                }`}
-              >
-                <Icon size={12} />
-                {category.name}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Main Content */}
-        <div className="flex flex-col lg:flex-row gap-6">
+        {/* Main Content Layout */}
+        <div className="flex flex-col lg:flex-row gap-8">
           
-          {/* Events Column */}
-          <div className="flex-1">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-emerald-100 rounded-lg">
-                  <IoCalendarClearOutline className="text-emerald-700 text-lg" />
+          {/* Left Column: Events */}
+          <div className="flex-1 min-w-0 space-y-4 sm:space-y-8">
+            
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 px-1">
+              <div className="flex items-center gap-3 sm:gap-4">
+                <div className="p-2 sm:p-3 bg-slate-900 rounded-xl sm:rounded-2xl shadow-lg shrink-0">
+                  <IoCalendarClearOutline className="text-white text-lg sm:text-2xl" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-slate-900">Upcoming Events</h2>
-                  <p className="text-xs text-slate-400">{filteredEvents.length} found</p>
+                  <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight leading-none sm:leading-normal">
+                    Upcoming Events
+                  </h2>
+                  <p className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider sm:tracking-widest mt-0.5 sm:mt-1">
+                    {filteredEvents?.length || 0} Events Found
+                  </p>
                 </div>
               </div>
             </div>
 
-            {filteredEvents.length === 0 ? (
-              <div className="bg-white border border-dashed border-slate-200 rounded-lg p-8 text-center">
-                <IoCalendarClearOutline className="text-slate-300 text-3xl mx-auto mb-3" />
-                <h3 className="text-base font-bold text-slate-900">No events found</h3>
-                <p className="text-xs text-slate-800 mt-1 mb-4">Try adjusting your filters</p>
-                <button 
-                  onClick={() => { setSearchTerm(''); setActiveTab('all'); }}
-                  className="px-4 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-700"
-                >
-                  Reset Filters
-                </button>
-              </div>
-            ) : (
-              <>
-                <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 gap-4' : 'space-y-3'}>
+            <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar -mx-2 px-2">
+              {categories.map((category) => {
+                const Icon = category.icon;
+                const isActive = activeTab === category.id;
+                return (
+                  <button
+                    key={category.id}
+                    onClick={() => { setActiveTab(category.id); setCurrentPage(1); }}
+                    className={`flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full whitespace-nowrap text-[11px] sm:text-sm font-bold transition-all border ${
+                      isActive 
+                        ? "bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-100" 
+                        : "bg-white border-slate-200 text-slate-600"
+                    }`}
+                  >
+                    {Icon && <Icon className={`${isActive ? "text-white" : "text-slate-400"} text-xs sm:text-base`} />}
+                    {category.name}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="relative">
+              {!paginatedEvents || paginatedEvents.length === 0 ? (
+                <div className="bg-slate-50 rounded-[24px] sm:rounded-[32px] border-2 border-dashed border-slate-200 py-8 sm:py-16 text-center">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm">
+                    <IoCalendarClearOutline className="text-slate-300 text-xl sm:text-2xl" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900">No events found</h3>
+                  <p className="text-slate-500 text-xs mt-1 mb-4">Try adjusting filters.</p>
+                  <button 
+                    onClick={() => { setSearchTerm(''); setActiveTab('all'); }}
+                    className="px-4 py-2 bg-white border border-slate-200 rounded-full font-bold text-slate-700 text-xs"
+                  >
+                    Reset Filters
+                  </button>
+                </div>
+              ) : (
+                <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6' : 'space-y-3 sm:space-y-4'}>
                   {paginatedEvents.map((event, index) => (
                     <ModernEventCard 
                       key={event.id || index} 
@@ -1061,94 +1347,110 @@ export default function ModernEventsNewsPage() {
                     />
                   ))}
                 </div>
+              )}
+            </div>
 
-                {totalPages > 1 && (
-                  <div className="flex items-center justify-center gap-2 mt-6">
-                    <button
-                      onClick={() => handlePageChange(currentPage - 1)}
-                      disabled={currentPage === 1}
-                      className="p-2 rounded-lg bg-white border border-slate-200 disabled:opacity-50"
-                    >
-                      <FiChevronLeft size={16} />
-                    </button>
-
-                    <div className="flex items-center gap-1">
-                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                        <button
-                          key={page}
-                          onClick={() => handlePageChange(page)}
-                          className={`w-8 h-8 rounded-lg text-xs font-medium ${
-                            currentPage === page
-                              ? 'bg-emerald-600 text-white'
-                              : 'bg-white border border-slate-200 text-slate-600'
-                          }`}
-                        >
-                          {page}
-                        </button>
-                      ))}
-                    </div>
-
-                    <button
-                      onClick={() => handlePageChange(currentPage + 1)}
-                      disabled={currentPage === totalPages}
-                      className="p-2 rounded-lg bg-white border border-slate-200 disabled:opacity-50"
-                    >
-                      <FiChevronRight size={16} />
-                    </button>
-                  </div>
-                )}
-              </>
+            {totalPages > 1 && (
+              <div className="pt-2 sm:pt-4">
+                <ModernPagination 
+                  currentPage={currentPage} 
+                  totalPages={totalPages} 
+                  onPageChange={handlePageChange} 
+                />
+              </div>
             )}
           </div>
 
-          {/* News Sidebar */}
-          <div className="lg:w-80">
-            <div className="bg-white border border-slate-200 rounded-lg p-5 sticky top-24 shadow-sm">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-emerald-100 rounded-lg">
-                  <IoNewspaperOutline className="text-emerald-700 text-lg" />
+          {/* Right Column: News */}
+          <div className="lg:w-[380px] space-y-6">
+            <div className="lg:sticky lg:top-24 space-y-6">
+              
+              <div className="bg-white border border-slate-100 rounded-[32px] p-6 shadow-sm">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center">
+                    <IoNewspaperOutline className="text-purple-600 text-xl" />
+                  </div>
+                  <h2 className="text-xl font-bold text-slate-900">Latest News</h2>
                 </div>
-                <h2 className="text-lg font-bold text-slate-900">Latest News</h2>
+
+                <div className="space-y-5">
+                  {filteredNews?.slice(0, 4).map((news, index) => (
+                    <ModernNewsCard 
+                      key={news.id || index} 
+                      news={news} 
+                      onView={setSelectedNews}
+                      onBookmark={handleBookmarkNews}
+                      viewMode="list"
+                      isBookmarked={bookmarkedNews.has(news.id)}
+                    />
+                  ))}
+                </div>
               </div>
 
-              <p className="text-xs text-slate-500 leading-relaxed mb-5 px-1">
-                Stay updated with the latest academic milestones, CBC implementation progress, and community highlights from across the school.
-              </p>
-
-              <div className="space-y-4">
-                {filteredNews.slice(0, 4).map((news, index) => (
-                  <ModernNewsCard 
-                    key={news.id || index} 
-                    news={news} 
-                    onView={setSelectedNews}
-                    onBookmark={handleBookmarkNews}
-                    isBookmarked={bookmarkedNews.has(news.id)}
-                  />
-                ))}
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-slate-100">
-                <div className="flex items-center gap-2 text-xs text-slate-800 font-semibold">
-                  <FaLeaf className="text-emerald-600" size={12} />
-                  <span>Matungulu Girls High School</span>
+              <div className="bg-slate-900 rounded-[32px] p-6 text-white overflow-hidden relative">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/20 blur-[50px]" />
+                <h4 className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em] mb-4">Stats At A Glance</h4>
+                <div className="grid grid-cols-2 gap-4 relative z-10">
+                  <div>
+                    <p className="text-2xl font-bold">{eventsData?.length || 0}</p>
+                    <p className="text-[10px] text-slate-400 uppercase font-bold">Events</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{newsData?.length || 0}</p>
+                    <p className="text-[10px] text-slate-400 uppercase font-bold">Articles</p>
+                  </div>
+                  <div className="col-span-2 pt-2 border-t border-slate-800">
+                    <p className="text-sm font-bold text-blue-400">
+                      {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                    </p>
+                    <p className="text-[10px] text-slate-400 uppercase font-bold tracking-widest">Last Updated</p>
+                  </div>
                 </div>
-                <p className="text-[10px] text-slate-400 mt-2 italic font-medium">
-                  "Strive to Excel"
-                </p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Footer Banner */}
-        <div className="bg-emerald-800 rounded-lg p-6 text-white">
-          <div className="flex flex-col md:flex-row items-center gap-4">
-            <div className="p-3 bg-white/10 rounded-lg">
-              <FiImage className="text-white text-xl" />
+        <div className="relative overflow-hidden bg-slate-900 rounded-3xl p-5 md:p-8 shadow-xl">
+          <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/5 blur-[80px] rounded-full -mr-24 -mt-24" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple-500/5 blur-[80px] rounded-full -ml-24 -mb-24" />
+
+          <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-8">
+            <div className="shrink-0">
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white flex items-center justify-center shadow-lg">
+                <FiMessageCircle className="text-slate-900 text-2xl md:text-3xl" />
+              </div>
             </div>
+
             <div className="flex-1 text-center md:text-left">
-              <h3 className="text-lg font-bold mb-1">Stay Connected</h3>
-              <p className="text-sm text-emerald-100">Get the latest updates delivered to your inbox</p>
+              <h3 className="text-2xl md:text-3xl font-black text-white mb-2 tracking-tight">
+                Stay Connected.
+              </h3>
+              <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-xl mx-auto md:mx-0">
+                The hub for school updates. Sync schedules, collaborate, and stay on track.
+              </p>
+
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
+                {([
+                  { label: 'Sharing', icon: FiShare2, color: 'text-blue-400', bg: 'bg-blue-400/10' },
+                  { label: 'Sync', icon: FiCalendar, color: 'text-emerald-400', bg: 'bg-emerald-400/10' },
+                  { label: 'Save', icon: FiBookmark, color: 'text-amber-400', bg: 'bg-amber-400/10' },
+                  { label: 'Alerts', icon: FiBell, color: 'text-purple-400', bg: 'bg-purple-400/10' }
+                ]).map((feature, idx) => (
+                  <div 
+                    key={idx} 
+                    className="flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/10"
+                  >
+                    <div className={`p-1.5 rounded-md ${feature.bg} ${feature.color} shrink-0`}>
+                      <feature.icon size={16} />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-slate-300 truncate">
+                      {feature.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -1156,21 +1458,35 @@ export default function ModernEventsNewsPage() {
 
       {/* Modals */}
       {selectedEvent && !showShareModal && (
-        <ModernModal open={true} onClose={() => setSelectedEvent(null)} maxWidth="800px">
-          <div className="p-6">
-            <h2 className="text-2xl font-bold">{selectedEvent.title}</h2>
-            <p className="mt-4">{selectedEvent.description}</p>
-          </div>
-        </ModernModal>
+        <ModernDetailModal
+          item={selectedEvent}
+          type="event"
+          onClose={() => setSelectedEvent(null)}
+          onAddToCalendar={() => handleAddToCalendar(selectedEvent)}
+          onShare={() => setShowShareModal(true)}
+        />
       )}
 
       {selectedNews && !showShareModal && (
-        <ModernModal open={true} onClose={() => setSelectedNews(null)} maxWidth="800px">
-          <div className="p-6">
-            <h2 className="text-2xl font-bold">{selectedNews.title}</h2>
-            <p className="mt-4">{selectedNews.excerpt}</p>
-          </div>
-        </ModernModal>
+        <ModernDetailModal
+          item={selectedNews}
+          type="news"
+          onClose={() => setSelectedNews(null)}
+          onAddToCalendar={() => {}}
+          onShare={() => setShowShareModal(true)}
+        />
+      )}
+
+      {showShareModal && (selectedEvent || selectedNews) && (
+        <ModernShareModal
+          item={selectedEvent || selectedNews}
+          type={selectedEvent ? 'event' : 'news'}
+          onClose={() => {
+            setShowShareModal(false);
+            setSelectedEvent(null);
+            setSelectedNews(null);
+          }}
+        />
       )}
     </div>
   );
