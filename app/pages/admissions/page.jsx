@@ -2074,7 +2074,6 @@ export default function ComprehensiveAdmissions() {
     { id: 'academics', label: 'Academics', icon: FiBookOpen },
     { id: 'career-paths', label: 'Career compass', icon: FiBriefcase },
     { id: 'requirements', label: 'Requirements', icon: FiFileText },
-    { id: 'fees', label: 'Fee Structure', icon: IoReceiptOutline },
     { id: 'results', label: 'Results', icon: IoStatsChartOutline }, // New Results tab
     { id: 'faq', label: 'FAQ', icon: FiHelpCircle },
   ];
@@ -2966,53 +2965,7 @@ return (
   </div>
 )}
 
-{activeTab === 'fees' && (
-  <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 space-y-8 md:space-y-12">
-    
-    <div className={`grid gap-0 md:gap-12 ${
-      documentData?.feesDayDistributionJson?.length > 0 && documentData?.feesBoardingDistributionJson?.length > 0 
-      ? "lg:grid-cols-2" 
-      : "grid-cols-1"
-    }`}>
-      
-      {/* Boarding Section */}
-      {documentData?.feesBoardingDistributionJson?.length > 0 && (
-        <ModernFeeCard
-          variant="dark"
-          feeType="Boarding School"
-          total={documentData?.feesBoardingDistributionJson?.reduce((sum, i) => sum + (i.amount || 0), 0)}
-          distribution={documentData?.feesBoardingDistributionJson}
-          pdfPath={documentData?.feesBoardingDistributionPdf}
-          year={documentData?.feesBoardingYear || "2026"}
-          term={documentData?.feesBoardingTerm || "Term 1"}
-          icon={IoBookOutline}
-          badge="Full Board"
-        />
-      )}
 
-      {/* Day Section */}
-      {documentData?.feesDayDistributionJson?.length > 0 && (
-        <ModernFeeCard
-          variant="light"
-          feeType="Day School"
-          total={documentData?.feesDayDistributionJson?.reduce((sum, i) => sum + (i.amount || 0), 0)}
-          distribution={documentData?.feesDayDistributionJson}
-          pdfPath={documentData?.feesDayDistributionPdf}
-          year={documentData?.feesDayYear || "2026"}
-          term={documentData?.feesDayTerm || "Term 1"}
-          icon={FiHome}
-          badge="Standard"
-        />
-      )}
-    </div>
-
-    {!documentData?.feesDayDistributionJson?.length && !documentData?.feesBoardingDistributionJson?.length && (
-      <div className="p-20 text-center border-2 border-dashed border-slate-200 rounded-[2rem]">
-        <p className="text-slate-400 font-black uppercase tracking-widest text-xs">Fees Structure Not Available</p>
-      </div>
-    )}
-  </div>
-)}
 
 {activeTab === 'results' && (
   <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 space-y-6 md:space-y-12">
