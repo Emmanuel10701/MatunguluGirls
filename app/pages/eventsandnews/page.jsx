@@ -10,30 +10,18 @@ import {
   FiShare2,
   FiRefreshCw, 
   FiSearch,
-  FiHeart,
   FiX,
-  FiLink,
-  FiPlus,
   FiFilter,
-  FiRotateCw,
-  FiEye,
   FiBookmark,
   FiChevronRight,
   FiChevronLeft,
   FiGrid,
   FiList,
-  FiDownload,
-  FiExternalLink,
-  FiVideo,
-  FiMusic,
-  FiAward,
-  FiTrendingUp,
-  FiZap,
-  FiGlobe,
-  FiBookOpen, 
-  FiMessageCircle,
+  FiImage,
   FiCopy,
-  FiBell
+  FiMail,
+  FiPhone,
+  FiEye
 } from 'react-icons/fi';
 import { 
   IoNewspaperOutline,
@@ -42,16 +30,42 @@ import {
   IoRibbonOutline,
   IoPeopleCircle,
   IoStatsChart,
-  IoShareSocialOutline,
   IoClose,
   IoLocationOutline,
   IoTimeOutline,
   IoPersonOutline,
-  IoShareOutline,
   IoSchoolOutline
 } from 'react-icons/io5';
 import { CircularProgress, Stack } from '@mui/material';
-import { FaFacebookF, FaTwitter, FaWhatsapp, FaTelegram, FaEnvelope, FaLeaf } from 'react-icons/fa';
+import { FaWhatsapp, FaFacebookF, FaTwitter, FaLeaf } from 'react-icons/fa';
+
+// Modern Modal Component
+const ModernModal = ({ children, open, onClose, maxWidth = '800px', blur = true }) => {
+  if (!open) return null;
+
+  return (
+    <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 ${blur ? 'backdrop-blur-md' : 'bg-black/50'}`}>
+      <div 
+        className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-emerald-100"
+        style={{ 
+          width: '90%',
+          maxWidth: maxWidth,
+          maxHeight: '90vh'
+        }}
+      >
+        <div className="absolute top-4 right-4 z-10">
+          <button 
+            onClick={onClose}
+            className="p-2 bg-white/80 backdrop-blur-sm rounded-full border border-emerald-200 shadow-sm hover:bg-emerald-50 transition-colors"
+          >
+            <FiX className="text-emerald-700 w-5 h-5" />
+          </button>
+        </div>
+        {children}
+      </div>
+    </div>
+  );
+};
 
 // MODERN EVENT CARD - REFINED
 const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid', isBookmarked: initialBookmarked }) => {
@@ -60,11 +74,11 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid', isBookm
 
   const getCategoryStyle = (category) => {
     const styles = {
-      academic: { bg: 'bg-blue-600', text: 'text-white', border: 'border-blue-700', iconColor: 'text-blue-600' },
-      sports: { bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-700', iconColor: 'text-emerald-600' },
-      workshop: { bg: 'bg-amber-600', text: 'text-white', border: 'border-amber-700', iconColor: 'text-amber-600' },
-      meeting: { bg: 'bg-slate-600', text: 'text-white', border: 'border-slate-700', iconColor: 'text-slate-600' },
-      default: { bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-700', iconColor: 'text-emerald-600' }
+      academic: { bg: 'bg-blue-600', text: 'text-white', border: 'border-blue-700', iconColor: 'text-blue-600', gradient: 'from-blue-600 to-blue-700' },
+      sports: { bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-700', iconColor: 'text-emerald-600', gradient: 'from-emerald-600 to-teal-600' },
+      workshop: { bg: 'bg-amber-600', text: 'text-white', border: 'border-amber-700', iconColor: 'text-amber-600', gradient: 'from-amber-600 to-amber-700' },
+      meeting: { bg: 'bg-slate-600', text: 'text-white', border: 'border-slate-700', iconColor: 'text-slate-600', gradient: 'from-slate-600 to-slate-700' },
+      default: { bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-700', iconColor: 'text-emerald-600', gradient: 'from-emerald-600 to-teal-600' }
     };
     return styles[category?.toLowerCase()] || styles.default;
   };
@@ -82,7 +96,7 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid', isBookm
   if (viewMode === 'grid') {
     return (
       <>
-        <div className="bg-white rounded-2xl border border-slate-100 overflow-hidden cursor-pointer">
+        <div className="bg-white rounded-2xl border border-slate-100 overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
           <div className="relative h-44 w-full overflow-hidden">
             <img src={event.image || '/default-event.jpg'} alt="" className="w-full h-full object-cover" />
             <div className="absolute top-3 left-3 flex gap-2">
@@ -97,7 +111,7 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid', isBookm
           </div>
           <div className="p-5">
             <h3 className="text-base font-black text-slate-900 mb-2 line-clamp-1">{event.title}</h3>
-            <p className="text-sm text-slate-600 mb-4 line-clamp-2">{event.description || event.excerpt || 'No description available'}</p>
+            <p className="text-sm text-slate-600 mb-4 line-clamp-2">{event.description || 'No description available'}</p>
             <div className="space-y-2 mb-4">
               <div className="flex items-center gap-2 text-xs font-bold text-slate-600 bg-slate-50 p-2 rounded-lg">
                 <FiCalendar className={theme.iconColor} /> {formatDate(event.date)}
@@ -114,50 +128,121 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid', isBookm
           </div>
         </div>
 
+        {/* Modern Event Detail Modal */}
         {showDetails && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowDetails(false)}>
-            <div className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-              <div className="relative h-48 sm:h-56 w-full">
-                <img src={event.image || '/default-event.jpg'} alt="" className="w-full h-full object-cover" />
-                <button 
-                  onClick={() => setShowDetails(false)}
-                  className="absolute top-4 right-4 p-2 bg-white/90 rounded-full shadow-lg text-slate-600 text-xl font-bold">
-                  ×
-                </button>
-                <div className="absolute top-4 left-4">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-slate-900/90 backdrop-blur-sm">
+            <div className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-3xl bg-white sm:rounded-lg shadow-2xl overflow-hidden flex flex-col">
+              
+              <button 
+                onClick={() => setShowDetails(false)}
+                className="absolute top-4 right-4 z-50 p-2 bg-black/20 backdrop-blur-md text-white rounded-lg border border-white/20 hover:bg-black/30 transition-colors"
+              >
+                <IoClose size={20} />
+              </button>
+
+              <div className="relative h-[40vh] sm:h-[300px] w-full shrink-0">
+                <img
+                  src={event.image || '/default-event.jpg'}
+                  alt={event.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/20" />
+                
+                <div className="absolute bottom-4 left-4 flex gap-2">
                   <span className={`px-3 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider ${theme.bg} ${theme.text} border ${theme.border} shadow-lg`}>
                     {event.category || 'Event'}
                   </span>
                 </div>
               </div>
-              <div className="p-4 sm:p-6">
-                <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-3">{event.title}</h2>
-                <p className="text-sm sm:text-base text-slate-600 mb-6">{event.description || event.excerpt || 'No description available'}</p>
-                
-                <div className="space-y-3 sm:space-y-4 mb-6">
-                  <div className="flex items-center gap-3 text-sm text-slate-600">
-                    <FiCalendar className={`${theme.iconColor} text-lg`} />
-                    <span className="font-medium">{formatDate(event.date)}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-slate-600">
-                    <FiClock className={`${theme.iconColor} text-lg`} />
-                    <span className="font-medium">{event.time || 'All Day'}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-slate-600">
-                    <FiMapPin className={`${theme.iconColor} text-lg`} />
-                    <span className="font-medium">{event.location || 'Main Campus'}</span>
-                  </div>
-                </div>
 
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <button 
-                    onClick={() => { onView?.(event); setShowDetails(false); }}
-                    className="flex-1 py-3 bg-gradient-to-r from-emerald-800 to-teal-700 text-white rounded-xl text-sm font-black tracking-widest shadow-lg">
+              <div className="flex-1 overflow-y-auto p-6 bg-white">
+                <div className="max-w-2xl mx-auto space-y-6">
+                  
+                  <div className="flex items-center gap-3">
+                    <div className={`p-2 rounded-lg bg-gradient-to-r ${theme.gradient}`}>
+                      <FiCalendar className="text-white text-xl" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-bold text-slate-900">
+                        {event.title}
+                      </h2>
+                      <p className="text-sm text-slate-500">{event.category || 'Event'} Event</p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-y-2 gap-x-4 text-xs text-slate-500">
+                    <div className="flex items-center gap-1">
+                      <FiCalendar size={14} className="text-emerald-600" />
+                      {new Date(event.date).toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </div>
+                    {event.time && (
+                      <div className="flex items-center gap-1">
+                        <FiClock size={14} className="text-emerald-600" />
+                        {event.time}
+                      </div>
+                    )}
+                    {event.location && (
+                      <div className="flex items-center gap-1">
+                        <FiMapPin size={14} className="text-emerald-600" />
+                        {event.location}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="border-b border-slate-200" />
+
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-bold text-slate-900">About This Event</h3>
+                    <p className="text-sm text-slate-600 leading-relaxed">
+                      {event.description || 'No description available.'}
+                    </p>
+                    
+                    {event.fullDescription && (
+                      <p className="text-sm text-slate-600 leading-relaxed">
+                        {event.fullDescription}
+                      </p>
+                    )}
+                  </div>
+
+                  {event.speakers && (
+                    <div className="space-y-3">
+                      <h3 className="text-lg font-bold text-slate-900">Speakers</h3>
+                      <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg border border-slate-100">
+                        <div className="p-2 bg-white rounded-lg">
+                          <FiUsers className="text-emerald-600" size={16} />
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-slate-900">{event.speakers}</p>
+                          <p className="text-xs text-slate-500">Guest Speaker</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="shrink-0 p-4 bg-slate-50 border-t border-slate-100">
+                <div className="max-w-2xl mx-auto flex flex-row gap-2">
+                  <button
+                    onClick={() => {
+                      onView?.(event);
+                      setShowDetails(false);
+                    }}
+                    className="flex-1 h-10 bg-gradient-to-r from-emerald-800 to-teal-700 text-white rounded-lg text-xs font-medium flex items-center justify-center gap-2"
+                  >
+                    <FiEye size={14} />
                     VIEW FULL DETAILS
                   </button>
-                  <button 
+
+                  <button
                     onClick={() => setShowDetails(false)}
-                    className="px-6 py-3 border border-slate-200 rounded-xl text-sm font-black tracking-widest text-slate-600">
+                    className="flex-1 h-10 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-medium flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors"
+                  >
                     CLOSE
                   </button>
                 </div>
@@ -171,7 +256,7 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid', isBookm
 
   return (
     <>
-      <div className="bg-white rounded-xl border border-slate-100 p-3 sm:p-4 cursor-pointer mb-3">
+      <div className="bg-white rounded-xl border border-slate-100 p-3 sm:p-4 cursor-pointer mb-3 hover:shadow-md transition-shadow">
         <div className="flex gap-3 sm:gap-4 items-center">
           <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden shrink-0">
             <img src={event.image || '/default-event.jpg'} alt="" className="w-full h-full object-cover" />
@@ -185,64 +270,114 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid', isBookm
                 className={`cursor-pointer text-base sm:text-lg ${isBookmarked ? 'text-amber-500 fill-current' : 'text-slate-300'}`} />
             </div>
             <h3 className="text-sm sm:text-base font-black text-slate-900 truncate mb-1">{event.title}</h3>
-            <p className="text-xs text-slate-600 mb-2 line-clamp-1">{event.description || event.excerpt || 'No description'}</p>
+            <p className="text-xs text-slate-600 mb-2 line-clamp-1">{event.description || 'No description'}</p>
             <div className="flex gap-2 sm:gap-3 text-[10px] sm:text-[11px] text-slate-500 font-bold">
               <span className="flex items-center gap-1 whitespace-nowrap"><FiCalendar className={theme.iconColor} /> {formatDate(event.date)}</span>
               <span className="flex items-center gap-1 whitespace-nowrap"><FiClock className={theme.iconColor} /> {event.time || 'All Day'}</span>
             </div>
             <button 
               onClick={() => setShowDetails(true)}
-              className={`mt-2 text-[9px] sm:text-[10px] font-black uppercase tracking-wider ${theme.text}`}>
+              className={`mt-2 text-[9px] sm:text-[10px] font-black uppercase tracking-wider ${theme.text} hover:opacity-80 transition-opacity`}>
               SHORT DETAILS →
             </button>
           </div>
         </div>
       </div>
 
+      {/* Modern Event Detail Modal (same as above) */}
       {showDetails && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowDetails(false)}>
-          <div className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-            <div className="relative h-48 sm:h-56 w-full">
-              <img src={event.image || '/default-event.jpg'} alt="" className="w-full h-full object-cover" />
-              <button 
-                onClick={() => setShowDetails(false)}
-                className="absolute top-4 right-4 p-2 bg-white/90 rounded-full shadow-lg text-slate-600 text-xl font-bold">
-                ×
-              </button>
-              <div className="absolute top-4 left-4">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-slate-900/90 backdrop-blur-sm">
+          <div className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-3xl bg-white sm:rounded-lg shadow-2xl overflow-hidden flex flex-col">
+            
+            <button 
+              onClick={() => setShowDetails(false)}
+              className="absolute top-4 right-4 z-50 p-2 bg-black/20 backdrop-blur-md text-white rounded-lg border border-white/20 hover:bg-black/30 transition-colors"
+            >
+              <IoClose size={20} />
+            </button>
+
+            <div className="relative h-[40vh] sm:h-[300px] w-full shrink-0">
+              <img
+                src={event.image || '/default-event.jpg'}
+                alt={event.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/20" />
+              
+              <div className="absolute bottom-4 left-4 flex gap-2">
                 <span className={`px-3 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider ${theme.bg} ${theme.text} border ${theme.border} shadow-lg`}>
                   {event.category || 'Event'}
                 </span>
               </div>
             </div>
-            <div className="p-4 sm:p-6">
-              <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-3">{event.title}</h2>
-              <p className="text-sm sm:text-base text-slate-600 mb-6">{event.description || event.excerpt || 'No description available'}</p>
-              
-              <div className="space-y-3 sm:space-y-4 mb-6">
-                <div className="flex items-center gap-3 text-sm text-slate-600">
-                  <FiCalendar className={`${theme.iconColor} text-lg`} />
-                  <span className="font-medium">{formatDate(event.date)}</span>
+
+            <div className="flex-1 overflow-y-auto p-6 bg-white">
+              <div className="max-w-2xl mx-auto space-y-6">
+                
+                <div className="flex items-center gap-3">
+                  <div className={`p-2 rounded-lg bg-gradient-to-r ${theme.gradient}`}>
+                    <FiCalendar className="text-white text-xl" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-slate-900">
+                      {event.title}
+                    </h2>
+                    <p className="text-sm text-slate-500">{event.category || 'Event'} Event</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3 text-sm text-slate-600">
-                  <FiClock className={`${theme.iconColor} text-lg`} />
-                  <span className="font-medium">{event.time || 'All Day'}</span>
+
+                <div className="flex flex-wrap gap-y-2 gap-x-4 text-xs text-slate-500">
+                  <div className="flex items-center gap-1">
+                    <FiCalendar size={14} className="text-emerald-600" />
+                    {new Date(event.date).toLocaleDateString('en-US', {
+                      weekday: 'long',
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </div>
+                  {event.time && (
+                    <div className="flex items-center gap-1">
+                      <FiClock size={14} className="text-emerald-600" />
+                      {event.time}
+                    </div>
+                  )}
+                  {event.location && (
+                    <div className="flex items-center gap-1">
+                      <FiMapPin size={14} className="text-emerald-600" />
+                      {event.location}
+                    </div>
+                  )}
                 </div>
-                <div className="flex items-center gap-3 text-sm text-slate-600">
-                  <FiMapPin className={`${theme.iconColor} text-lg`} />
-                  <span className="font-medium">{event.location || 'Main Campus'}</span>
+
+                <div className="border-b border-slate-200" />
+
+                <div className="space-y-4">
+                  <h3 className="text-lg font-bold text-slate-900">About This Event</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {event.description || 'No description available.'}
+                  </p>
                 </div>
               </div>
+            </div>
 
-              <div className="flex flex-col sm:flex-row gap-3">
-                <button 
-                  onClick={() => { onView?.(event); setShowDetails(false); }}
-                  className="flex-1 py-3 bg-gradient-to-r from-emerald-800 to-teal-700 text-white rounded-xl text-sm font-black tracking-widest shadow-lg">
+            <div className="shrink-0 p-4 bg-slate-50 border-t border-slate-100">
+              <div className="max-w-2xl mx-auto flex flex-row gap-2">
+                <button
+                  onClick={() => {
+                    onView?.(event);
+                    setShowDetails(false);
+                  }}
+                  className="flex-1 h-10 bg-gradient-to-r from-emerald-800 to-teal-700 text-white rounded-lg text-xs font-medium flex items-center justify-center gap-2"
+                >
+                  <FiEye size={14} />
                   VIEW FULL DETAILS
                 </button>
-                <button 
+
+                <button
                   onClick={() => setShowDetails(false)}
-                  className="px-6 py-3 border border-slate-200 rounded-xl text-sm font-black tracking-widest text-slate-600">
+                  className="flex-1 h-10 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-medium flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors"
+                >
                   CLOSE
                 </button>
               </div>
@@ -254,18 +389,18 @@ const ModernEventCard = ({ event, onView, onBookmark, viewMode = 'grid', isBookm
   );
 };
 
-// MODERN NEWS CARD - REFINED (With proper view details)
+// MODERN NEWS CARD - REFINED
 const ModernNewsCard = ({ news, onView, onBookmark, isBookmarked: initialBookmarked }) => {
   const [isBookmarked, setIsBookmarked] = useState(initialBookmarked || false);
   const [showDetails, setShowDetails] = useState(false);
   
   const getStyle = (cat) => {
     const styles = {
-      announcement: { bg: 'bg-blue-600', text: 'text-white', border: 'border-blue-700', iconColor: 'text-blue-600' },
-      achievement: { bg: 'bg-amber-600', text: 'text-white', border: 'border-amber-700', iconColor: 'text-amber-600' },
-      infrastructure: { bg: 'bg-purple-600', text: 'text-white', border: 'border-purple-700', iconColor: 'text-purple-600' },
-      general: { bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-700', iconColor: 'text-emerald-600' },
-      default: { bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-700', iconColor: 'text-emerald-600' }
+      announcement: { bg: 'bg-blue-600', text: 'text-white', border: 'border-blue-700', iconColor: 'text-blue-600', gradient: 'from-blue-600 to-blue-700' },
+      achievement: { bg: 'bg-amber-600', text: 'text-white', border: 'border-amber-700', iconColor: 'text-amber-600', gradient: 'from-amber-600 to-amber-700' },
+      infrastructure: { bg: 'bg-purple-600', text: 'text-white', border: 'border-purple-700', iconColor: 'text-purple-600', gradient: 'from-purple-600 to-purple-700' },
+      general: { bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-700', iconColor: 'text-emerald-600', gradient: 'from-emerald-600 to-teal-600' },
+      default: { bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-700', iconColor: 'text-emerald-600', gradient: 'from-emerald-600 to-teal-600' }
     };
     return styles[cat?.toLowerCase()] || styles.default;
   };
@@ -282,7 +417,7 @@ const ModernNewsCard = ({ news, onView, onBookmark, isBookmarked: initialBookmar
 
   return (
     <>
-      <div className="flex flex-col bg-white rounded-xl border border-slate-100 overflow-hidden cursor-pointer">
+      <div className="flex flex-col bg-white rounded-xl border border-slate-100 overflow-hidden cursor-pointer hover:shadow-md transition-shadow">
         <div className="relative h-32 sm:h-36 w-full overflow-hidden">
           <img src={news.image || '/default-news.jpg'} alt="" className="w-full h-full object-cover" />
           <div className="absolute top-2 left-2 flex items-center gap-1.5 px-2 py-1 rounded-md bg-white/90 backdrop-blur-sm border border-white/50 shadow-sm">
@@ -292,7 +427,7 @@ const ModernNewsCard = ({ news, onView, onBookmark, isBookmarked: initialBookmar
             {formatDate(news.date)}
           </div>
           <button onClick={handleBookmarkClick} 
-            className={`absolute top-2 right-2 p-1.5 rounded-full ${isBookmarked ? 'text-amber-500' : 'text-white'} drop-shadow-md text-lg`}>
+            className={`absolute top-2 right-2 p-1.5 rounded-full ${isBookmarked ? 'text-amber-500' : 'text-white'} drop-shadow-md text-lg hover:scale-110 transition-transform`}>
             <FiBookmark className={isBookmarked ? 'fill-current' : ''} />
           </button>
         </div>
@@ -307,61 +442,128 @@ const ModernNewsCard = ({ news, onView, onBookmark, isBookmarked: initialBookmar
             </div>
             <button 
               onClick={() => setShowDetails(true)}
-              className={`flex items-center gap-1 text-[9px] sm:text-[10px] font-black uppercase tracking-wider ${theme.text}`}>
+              className={`flex items-center gap-1 text-[9px] sm:text-[10px] font-black uppercase tracking-wider ${theme.text} hover:opacity-80 transition-opacity`}>
               VIEW DETAILS →
             </button>
           </div>
         </div>
       </div>
 
+      {/* Modern News Detail Modal */}
       {showDetails && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowDetails(false)}>
-          <div className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-            <div className="relative h-48 sm:h-56 w-full">
-              <img src={news.image || '/default-news.jpg'} alt="" className="w-full h-full object-cover" />
-              <button 
-                onClick={() => setShowDetails(false)}
-                className="absolute top-4 right-4 p-2 bg-white/90 rounded-full shadow-lg text-slate-600 text-xl font-bold">
-                ×
-              </button>
-              <div className="absolute top-4 left-4">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-slate-900/90 backdrop-blur-sm">
+          <div className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-3xl bg-white sm:rounded-lg shadow-2xl overflow-hidden flex flex-col">
+            
+            <button 
+              onClick={() => setShowDetails(false)}
+              className="absolute top-4 right-4 z-50 p-2 bg-black/20 backdrop-blur-md text-white rounded-lg border border-white/20 hover:bg-black/30 transition-colors"
+            >
+              <IoClose size={20} />
+            </button>
+
+            <div className="relative h-[40vh] sm:h-[300px] w-full shrink-0">
+              <img
+                src={news.image || '/default-news.jpg'}
+                alt={news.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/20" />
+              
+              <div className="absolute bottom-4 left-4 flex gap-2">
                 <span className={`px-3 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider ${theme.bg} ${theme.text} border ${theme.border} shadow-lg`}>
                   {news.category || 'News'}
                 </span>
               </div>
-              <div className="absolute bottom-4 right-4 text-xs text-white font-bold drop-shadow-md bg-black/30 px-2 py-1 rounded">
-                {formatDate(news.date)}
+              
+              <div className="absolute bottom-4 right-4">
+                <span className="px-3 py-1.5 bg-black/60 backdrop-blur-sm text-white rounded-lg text-xs font-medium">
+                  {formatDate(news.date)}
+                </span>
               </div>
             </div>
-            <div className="p-4 sm:p-6">
-              <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-3">{news.title}</h2>
-              <p className="text-sm sm:text-base text-slate-600 mb-6">{news.excerpt || 'No description available'}</p>
-              
-              {news.fullContent && (
-                <div className="text-sm sm:text-base text-slate-600 mb-6 whitespace-pre-line">
-                  {news.fullContent}
-                </div>
-              )}
 
-              {news.author && (
-                <div className="flex items-center gap-2 mb-6 text-sm text-slate-500 border-t border-slate-100 pt-4">
-                  <IoPersonOutline className="text-slate-400" /> 
-                  <span className="font-medium">By {news.author}</span>
+            <div className="flex-1 overflow-y-auto p-6 bg-white">
+              <div className="max-w-2xl mx-auto space-y-6">
+                
+                <div className="flex items-center gap-3">
+                  <div className={`p-2 rounded-lg bg-gradient-to-r ${theme.gradient}`}>
+                    <IoNewspaperOutline className="text-white text-xl" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-slate-900">
+                      {news.title}
+                    </h2>
+                    <p className="text-sm text-slate-500">{news.category || 'News'} Article</p>
+                  </div>
                 </div>
-              )}
 
-              <div className="flex flex-col sm:flex-row gap-3">
-                <button 
-                  onClick={() => { 
-                    onView?.(news); 
-                    setShowDetails(false); 
+                <div className="flex flex-wrap gap-y-2 gap-x-4 text-xs text-slate-500">
+                  <div className="flex items-center gap-1">
+                    <FiCalendar size={14} className="text-emerald-600" />
+                    {new Date(news.date).toLocaleDateString('en-US', {
+                      weekday: 'long',
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </div>
+                  {news.author && (
+                    <div className="flex items-center gap-1">
+                      <IoPersonOutline size={14} className="text-emerald-600" />
+                      By {news.author}
+                    </div>
+                  )}
+                </div>
+
+                <div className="border-b border-slate-200" />
+
+                <div className="space-y-4">
+                  <h3 className="text-lg font-bold text-slate-900">Summary</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {news.excerpt || 'No description available.'}
+                  </p>
+                  
+                  {news.fullContent && (
+                    <>
+                      <h3 className="text-lg font-bold text-slate-900 pt-2">Full Article</h3>
+                      <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line">
+                        {news.fullContent}
+                      </p>
+                    </>
+                  )}
+                </div>
+
+                {news.author && (
+                  <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg border border-slate-100">
+                    <div className="p-2 bg-white rounded-lg">
+                      <IoPersonOutline className="text-emerald-600" size={16} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-slate-900">{news.author}</p>
+                      <p className="text-xs text-slate-500">Author</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="shrink-0 p-4 bg-slate-50 border-t border-slate-100">
+              <div className="max-w-2xl mx-auto flex flex-row gap-2">
+                <button
+                  onClick={() => {
+                    onView?.(news);
+                    setShowDetails(false);
                   }}
-                  className="flex-1 py-3 bg-gradient-to-r from-emerald-800 to-teal-700 text-white rounded-xl text-sm font-black tracking-widest shadow-lg">
+                  className="flex-1 h-10 bg-gradient-to-r from-emerald-800 to-teal-700 text-white rounded-lg text-xs font-medium flex items-center justify-center gap-2"
+                >
+                  <FiEye size={14} />
                   VIEW FULL ARTICLE
                 </button>
-                <button 
+
+                <button
                   onClick={() => setShowDetails(false)}
-                  className="px-6 py-3 border border-slate-200 rounded-xl text-sm font-black tracking-widest text-slate-600">
+                  className="flex-1 h-10 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-medium flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors"
+                >
                   CLOSE
                 </button>
               </div>
@@ -370,272 +572,6 @@ const ModernNewsCard = ({ news, onView, onBookmark, isBookmarked: initialBookmar
         </div>
       )}
     </>
-  );
-};
-
-// Modern Share Modal Component
-const ModernShareModal = ({ item, type = 'event', onClose }) => {
-  const [copied, setCopied] = useState(false);
-
-  const shareOptions = [
-    {
-      name: 'WhatsApp',
-      icon: FaWhatsapp,
-      action: () => {
-        const text = `${item.title}\n\n${type === 'event' ? 'Event:' : 'News:'}\n${item.excerpt || item.description}\n\n${window.location.href}`;
-        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-      }
-    },
-    {
-      name: 'Facebook',
-      icon: FaFacebookF,
-      action: () => {
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
-      }
-    },
-    {
-      name: 'Twitter',
-      icon: FaTwitter,
-      action: () => {
-        const text = `${item.title} - Check out this ${type}!`;
-        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
-      }
-    },
-    {
-      name: 'Email',
-      icon: FaEnvelope,
-      action: () => {
-        const subject = `${item.title} - ${type}`;
-        const body = `${item.excerpt || item.description}\n\n${window.location.href}`;
-        window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      }
-    },
-    {
-      name: 'Copy',
-      icon: FiCopy,
-      action: () => {
-        navigator.clipboard.writeText(window.location.href);
-        setCopied(true);
-        toast.success('Link copied!');
-        setTimeout(() => setCopied(false), 2000);
-      }
-    }
-  ];
-
-  return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div className="bg-white rounded-lg w-full max-w-md border border-slate-200">
-        <div className="p-5 border-b border-slate-100">
-          <h2 className="text-lg font-bold text-slate-900">Share {type}</h2>
-        </div>
-
-        <div className="p-5">
-          <div className="grid grid-cols-5 gap-3 mb-5">
-            {shareOptions.map((option, index) => {
-              const Icon = option.icon;
-              return (
-                <button
-                  key={index}
-                  onClick={option.action}
-                  className="flex flex-col items-center gap-2"
-                >
-                  <div className="w-10 h-10 bg-slate-50 rounded-lg flex items-center justify-center border border-slate-200">
-                    <Icon className="text-emerald-600 text-lg" />
-                  </div>
-                  <span className="text-[10px] font-medium text-slate-600">{option.name}</span>
-                  {option.name === 'Copy' && copied && (
-                    <span className="text-[8px] text-emerald-600">Copied!</span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
-            <p className="text-xs text-slate-800 truncate">{window.location.href}</p>
-          </div>
-        </div>
-
-        <div className="p-4 border-t border-slate-100">
-          <button
-            onClick={onClose}
-            className="w-full py-2.5 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-medium"
-          >
-            Close
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Detail Modal
-const ModernDetailModal = ({ item, type = 'event', onClose, onAddToCalendar, onShare }) => {
-  if (!item) return null;
-
-  const formatDate = (dateString) => {
-    try {
-      const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-    } catch {
-      return dateString || 'Date not set';
-    }
-  };
-
-  return (
-    <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div className="relative w-full max-w-2xl bg-white rounded-lg shadow-2xl border border-slate-200 max-h-[90vh] overflow-hidden flex flex-col">
-        
-        <button 
-          onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 bg-black/20 text-white rounded-lg border border-white/20"
-        >
-          <IoClose size={18} />
-        </button>
-
-        <div className="relative h-48 w-full">
-          <img
-            src={item.image || (type === 'event' ? '/default-event.jpg' : '/default-news.jpg')}
-            alt={item.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/20" />
-          
-          <div className="absolute bottom-4 left-4">
-            <span className="px-3 py-1 bg-white rounded-lg text-xs font-medium text-slate-900 border border-slate-200">
-              {item.category || type}
-            </span>
-          </div>
-        </div>
-
-        <div className="flex-1 overflow-y-auto p-6">
-          <h2 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h2>
-          
-          <div className="space-y-2 mb-4 text-sm text-slate-800">
-            {type === 'event' ? (
-              <>
-                <div className="flex items-center gap-2">
-                  <FiCalendar size={14} className="text-emerald-600" />
-                  <span>{formatDate(item.date)}</span>
-                </div>
-                {item.time && (
-                  <div className="flex items-center gap-2">
-                    <FiClock size={14} className="text-emerald-600" />
-                    <span>{item.time}</span>
-                  </div>
-                )}
-                {item.location && (
-                  <div className="flex items-center gap-2">
-                    <FiMapPin size={14} className="text-emerald-600" />
-                    <span>{item.location}</span>
-                  </div>
-                )}
-              </>
-            ) : (
-              <>
-                <div className="flex items-center gap-2">
-                  <FiCalendar size={14} className="text-emerald-600" />
-                  <span>{formatDate(item.date)}</span>
-                </div>
-                {item.author && (
-                  <div className="flex items-center gap-2">
-                    <FiUsers size={14} className="text-emerald-600" />
-                    <span>By {item.author}</span>
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-
-          <div className="prose max-w-none">
-            <p className="text-sm text-slate-600 leading-relaxed">
-              {item.description || item.excerpt || 'No description available.'}
-            </p>
-            {type === 'news' && item.fullContent && (
-              <div className="mt-4 pt-4 border-t border-slate-100 text-sm text-slate-600">
-                {item.fullContent}
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="shrink-0 p-4 bg-slate-50 border-t border-slate-100">
-          <div className="flex gap-2">
-            {type === 'event' ? (
-              <button
-                onClick={onAddToCalendar}
-                className="flex-1 py-2.5 bg-emerald-600 text-white rounded-lg text-xs font-medium flex items-center justify-center gap-2"
-              >
-                <FiCalendar size={14} />
-                Add to Calendar
-              </button>
-            ) : (
-              <button
-                className="flex-1 py-2.5 bg-emerald-600 text-white rounded-lg text-xs font-medium flex items-center justify-center gap-2"
-                onClick={onClose}
-              >
-                <IoNewspaperOutline size={14} />
-                Close
-              </button>
-            )}
-            
-            <button
-              onClick={onShare}
-              className="flex-1 py-2.5 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-medium flex items-center justify-center gap-2"
-            >
-              <FiShare2 size={14} />
-              Share
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Pagination Component
-const ModernPagination = ({ currentPage, totalPages, onPageChange }) => {
-  if (totalPages <= 1) return null;
-
-  return (
-    <div className="flex items-center justify-center gap-2 mt-6">
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className="p-2 rounded-lg bg-white border border-slate-200 disabled:opacity-50"
-      >
-        <FiChevronLeft size={16} />
-      </button>
-
-      <div className="flex items-center gap-1">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-          <button
-            key={page}
-            onClick={() => onPageChange(page)}
-            className={`w-8 h-8 rounded-lg text-xs font-medium ${
-              currentPage === page
-                ? 'bg-emerald-600 text-white'
-                : 'bg-white border border-slate-200 text-slate-600'
-            }`}
-          >
-            {page}
-          </button>
-        ))}
-      </div>
-
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className="p-2 rounded-lg bg-white border border-slate-200 disabled:opacity-50"
-      >
-        <FiChevronRight size={16} />
-      </button>
-    </div>
   );
 };
 
@@ -659,9 +595,9 @@ export default function ModernEventsNewsPage() {
   const categories = [
     { id: 'all', name: 'All Events', icon: IoCalendarClearOutline },
     { id: 'academic', name: 'Academic', icon: IoNewspaperOutline },
-    { id: 'cultural', name: 'Cultural', icon: FiMusic },
-    { id: 'sports', name: 'Sports', icon: FiTrendingUp },
-    { id: 'workshop', name: 'Workshops', icon: FiZap }
+    { id: 'cultural', name: 'Cultural', icon: FiImage },
+    { id: 'sports', name: 'Sports', icon: FiImage },
+    { id: 'workshop', name: 'Workshops', icon: FiImage }
   ];
 
   // Load bookmarks from localStorage on initial render
@@ -795,30 +731,35 @@ export default function ModernEventsNewsPage() {
   };
 
   // Calculate stats
+  const totalFiles = eventsData.length + newsData.length;
   const stats = [
     { 
       icon: IoCalendarClearOutline, 
       number: eventsData.length.toString(), 
-      label: 'Upcoming Events', 
-      sublabel: 'This month'
+      label: 'Events', 
+      sublabel: 'Upcoming',
+      gradient: 'from-emerald-600 to-teal-600'
     },
     { 
       icon: IoNewspaperOutline, 
       number: newsData.length.toString(), 
-      label: 'News Articles', 
-      sublabel: 'Latest updates'
+      label: 'News', 
+      sublabel: 'Articles',
+      gradient: 'from-emerald-600 to-teal-600'
     },
     { 
-      icon: IoRibbonOutline, 
-      number: (eventsData.filter(e => e.featured).length + newsData.filter(n => n.featured).length).toString(), 
-      label: 'Featured', 
-      sublabel: 'Highlights'
+      icon: FiImage, 
+      number: '5', 
+      label: 'Categories', 
+      sublabel: 'Available',
+      gradient: 'from-emerald-600 to-teal-600'
     },
     { 
-      icon: IoPeopleCircle, 
-      number: '100%', 
-      label: 'Engagement', 
-      sublabel: 'Community'
+      icon: FiCalendar, 
+      number: new Date().getFullYear().toString(),
+      label: 'Year', 
+      sublabel: 'Current',
+      gradient: 'from-emerald-600 to-teal-600'
     }
   ];
 
@@ -867,16 +808,14 @@ export default function ModernEventsNewsPage() {
       
       <div className="max-w-7xl mx-auto space-y-6">
         
-        {/* Header */}
+        {/* Modern Hero Banner */}
         <div className="relative bg-gradient-to-r from-emerald-900 to-teal-800 rounded-2xl p-6 md:p-10 text-white overflow-hidden border border-emerald-700/30 mb-8">
-          {/* Background Glows */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
           
           <div className="relative z-10">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6">
               <div>
-                {/* School Branding */}
                 <div className="flex items-center gap-3 mb-4">
                   <div className="h-8 w-1 bg-emerald-400 rounded-full shadow-[0_0_15px_rgba(52,211,153,0.5)]" />
                   <div>
@@ -889,7 +828,6 @@ export default function ModernEventsNewsPage() {
                   </div>
                 </div>
                 
-                {/* Title */}
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/10">
                     <IoSchoolOutline className="text-xl sm:text-2xl md:text-3xl text-emerald-300" />
@@ -900,7 +838,6 @@ export default function ModernEventsNewsPage() {
                 </div>
               </div>
               
-              {/* Refresh Button */}
               <button
                 onClick={refreshData}
                 disabled={refreshing}
@@ -923,7 +860,6 @@ export default function ModernEventsNewsPage() {
               </button>
             </div>
 
-            {/* Stats Summary */}
             <div className="mb-4 sm:mb-6 px-1">
               <p className="text-emerald-100/90 text-xs sm:text-base font-medium leading-relaxed sm:leading-loose">
                 <span className="text-white font-black text-base sm:text-xl md:text-2xl underline decoration-emerald-500/50 underline-offset-4 mr-1">
@@ -937,7 +873,6 @@ export default function ModernEventsNewsPage() {
               </p>
             </div>
 
-            {/* Quick Stats Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
                 <p className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-wider mb-1">Events</p>
@@ -959,7 +894,6 @@ export default function ModernEventsNewsPage() {
               </div>
             </div>
 
-            {/* Additional Info */}
             <div className="mt-4 text-xs sm:text-sm text-emerald-200/80">
               <span className="inline-flex items-center gap-1">
                 <IoSparkles className="text-emerald-300" size={14} />
@@ -967,6 +901,30 @@ export default function ModernEventsNewsPage() {
               </span>
             </div>
           </div>
+        </div>
+
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+          {stats.map((stat, index) => (
+            <div key={index} className="relative bg-white border border-slate-200 rounded-lg p-4">
+              <div className="flex items-start justify-between mb-3">
+                <div className={`p-2 rounded-lg bg-gradient-to-br ${stat.gradient} bg-opacity-10`}>
+                  <stat.icon className="text-lg text-emerald-700" />
+                </div>
+              </div>
+              <div className="space-y-1">
+                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400">
+                  {stat.label}
+                </p>
+                <h3 className="text-xl md:text-2xl font-bold text-slate-900">
+                  {stat.number}
+                </h3>
+                <p className="text-xs text-slate-500">
+                  {stat.sublabel}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Search & Filters */}
@@ -1105,11 +1063,39 @@ export default function ModernEventsNewsPage() {
                 </div>
 
                 {totalPages > 1 && (
-                  <ModernPagination 
-                    currentPage={currentPage} 
-                    totalPages={totalPages} 
-                    onPageChange={handlePageChange} 
-                  />
+                  <div className="flex items-center justify-center gap-2 mt-6">
+                    <button
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className="p-2 rounded-lg bg-white border border-slate-200 disabled:opacity-50"
+                    >
+                      <FiChevronLeft size={16} />
+                    </button>
+
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                        <button
+                          key={page}
+                          onClick={() => handlePageChange(page)}
+                          className={`w-8 h-8 rounded-lg text-xs font-medium ${
+                            currentPage === page
+                              ? 'bg-emerald-600 text-white'
+                              : 'bg-white border border-slate-200 text-slate-600'
+                          }`}
+                        >
+                          {page}
+                        </button>
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className="p-2 rounded-lg bg-white border border-slate-200 disabled:opacity-50"
+                    >
+                      <FiChevronRight size={16} />
+                    </button>
+                  </div>
                 )}
               </>
             )}
@@ -1125,7 +1111,6 @@ export default function ModernEventsNewsPage() {
                 <h2 className="text-lg font-bold text-slate-900">Latest News</h2>
               </div>
 
-              {/* Description Section */}
               <p className="text-xs text-slate-500 leading-relaxed mb-5 px-1">
                 Stay updated with the latest academic milestones, CBC implementation progress, and community highlights from across the school.
               </p>
@@ -1142,7 +1127,6 @@ export default function ModernEventsNewsPage() {
                 ))}
               </div>
 
-              {/* School Info */}
               <div className="mt-6 pt-4 border-t border-slate-100">
                 <div className="flex items-center gap-2 text-xs text-slate-800 font-semibold">
                   <FaLeaf className="text-emerald-600" size={12} />
@@ -1160,7 +1144,7 @@ export default function ModernEventsNewsPage() {
         <div className="bg-emerald-800 rounded-lg p-6 text-white">
           <div className="flex flex-col md:flex-row items-center gap-4">
             <div className="p-3 bg-white/10 rounded-lg">
-              <FiMessageCircle className="text-white text-xl" />
+              <FiImage className="text-white text-xl" />
             </div>
             <div className="flex-1 text-center md:text-left">
               <h3 className="text-lg font-bold mb-1">Stay Connected</h3>
@@ -1172,35 +1156,21 @@ export default function ModernEventsNewsPage() {
 
       {/* Modals */}
       {selectedEvent && !showShareModal && (
-        <ModernDetailModal
-          item={selectedEvent}
-          type="event"
-          onClose={() => setSelectedEvent(null)}
-          onAddToCalendar={() => handleAddToCalendar(selectedEvent)}
-          onShare={() => setShowShareModal(true)}
-        />
+        <ModernModal open={true} onClose={() => setSelectedEvent(null)} maxWidth="800px">
+          <div className="p-6">
+            <h2 className="text-2xl font-bold">{selectedEvent.title}</h2>
+            <p className="mt-4">{selectedEvent.description}</p>
+          </div>
+        </ModernModal>
       )}
 
       {selectedNews && !showShareModal && (
-        <ModernDetailModal
-          item={selectedNews}
-          type="news"
-          onClose={() => setSelectedNews(null)}
-          onAddToCalendar={() => {}}
-          onShare={() => setShowShareModal(true)}
-        />
-      )}
-
-      {showShareModal && (selectedEvent || selectedNews) && (
-        <ModernShareModal
-          item={selectedEvent || selectedNews}
-          type={selectedEvent ? 'event' : 'news'}
-          onClose={() => {
-            setShowShareModal(false);
-            setSelectedEvent(null);
-            setSelectedNews(null);
-          }}
-        />
+        <ModernModal open={true} onClose={() => setSelectedNews(null)} maxWidth="800px">
+          <div className="p-6">
+            <h2 className="text-2xl font-bold">{selectedNews.title}</h2>
+            <p className="mt-4">{selectedNews.excerpt}</p>
+          </div>
+        </ModernModal>
       )}
     </div>
   );
