@@ -880,104 +880,89 @@ const AdmissionPathCard = ({ path, onApply, index }) => {
   };
 
   const themeColor = path.color.includes('emerald') ? 'emerald' : 'teal';
+  const isEven = index % 2 === 0;
 
   return (
-    <div className="relative bg-white rounded-none md:rounded-[3rem] border-y md:border border-slate-100 overflow-hidden flex flex-col h-full shadow-sm md:shadow-xl">
+    <div className="group relative bg-white rounded-2xl md:rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-900/10 border border-slate-100">
       
-      <div className="relative h-44 md:h-64 overflow-hidden">
+      {/* Subtle Gradient Overlay on Hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/0 via-emerald-50/0 to-emerald-100/0 group-hover:from-emerald-50/30 group-hover:to-emerald-100/30 transition-all duration-700 pointer-events-none" />
+      
+      {/* Image Section - More Compact and Modern */}
+      <div className="relative h-48 md:h-56 overflow-hidden">
         <img
           src={getLocalImage(path.type)}
           alt={path.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent" />
         
+        {/* Floating Badge - Modern Chip Design */}
         <div className="absolute top-4 left-4">
-          <span className="flex items-center gap-1.5 backdrop-blur-md bg-white/10 border border-white/20 px-3 py-1.5 rounded-xl text-[9px] font-black uppercase tracking-widest text-white">
-            <IoFlash className="text-yellow-400" />
-            {path.deadline === 'Rolling Admission' ? 'Open Now' : 'Limited Entry'}
-          </span>
+          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/95 backdrop-blur-sm rounded-full shadow-lg border border-white/20">
+            <IoFlash className={`text-${isEven ? 'amber' : 'emerald'}-500 text-xs`} />
+            <span className="text-[9px] font-black uppercase tracking-widest text-slate-800">
+              {path.deadline === 'Rolling Admission' ? 'Open Now' : 'Limited'}
+            </span>
+          </div>
         </div>
 
-        {/* Floating Title on Image for Mobile */}
-        <div className="absolute bottom-4 left-4 right-4 md:hidden">
-          <h3 className="font-black text-white text-lg tracking-tight leading-none italic">
+        {/* Title Overlay - Always Visible */}
+        <div className="absolute bottom-4 left-4 right-4">
+          <h3 className="text-xl md:text-2xl font-black text-white tracking-tight leading-tight drop-shadow-2xl">
             {path.title}
           </h3>
         </div>
       </div>
 
-      {/* Content Body */}
-      <div className="p-6 md:p-6 flex flex-col flex-1">
-        {/* Desktop Title (Hidden on Mobile because it's on the image) */}
-        <div className="hidden md:flex items-center gap-5 mb-6">
-          <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${path.color} p-0.5 shadow-lg`}>
-            <div className="w-full h-full bg-white rounded-[calc(1rem-1px)] flex items-center justify-center">
-              {path.icon({ className: `text-2xl text-${themeColor}-600` })}
-            </div>
-          </div>
-          <h3 className="font-black text-slate-800 md:text-lg text-md tracking-tighter uppercase leading-none">
-            {path.title}
-          </h3>
-        </div>
-
-        <p className="text-slate-500 text-sm md:text-base leading-relaxed mb-6">
+      {/* Content Area - Clean & Spacious */}
+      <div className="p-6 md:p-8">
+        {/* Description */}
+        <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-2">
           {path.description}
         </p>
 
-        {/* Features - Using CSS grid that adapts naturally */}
-        <div className="grid grid-cols-2 md:grid-cols-1 gap-2 md:gap-3 mb-6">
+        {/* Features Grid - Modern Minimalist */}
+        <div className="grid grid-cols-2 gap-2 mb-8">
           {path.features.slice(0, 4).map((feature, idx) => (
             <div 
               key={idx} 
-              className="flex items-center gap-2 md:gap-3 p-2 md:p-3 bg-slate-50 rounded-lg md:rounded-xl border border-slate-100"
+              className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 border border-slate-100"
             >
-              <IoCheckmarkCircle className={`text-${themeColor}-500 text-[10px] md:text-sm shrink-0`} />
-              <span className="text-[10px] md:text-sm text-slate-700 font-bold md:font-medium truncate tracking-tight">
+              <div className={`w-5 h-5 rounded-full bg-${themeColor}-100 flex items-center justify-center flex-shrink-0`}>
+                <IoCheckmarkCircle className={`text-${themeColor}-500 text-xs`} />
+              </div>
+              <span className="text-[10px] font-bold text-slate-700 tracking-tight">
                 {feature}
               </span>
             </div>
           ))}
         </div>
 
-        {/* Footer Action */}
-        <div className="mt-auto pt-6 border-t border-slate-100 flex flex-col gap-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-slate-100 rounded-lg">
-                <IoCalendarOutline className="text-slate-500" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[9px] uppercase font-black text-slate-400 tracking-widest">Deadline</span>
-                <span className="text-xs font-black text-slate-900">{path.deadline}</span>
-              </div>
+        {/* Footer - Clean Typography */}
+        <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+          <div className="flex items-center gap-2">
+            <div className="p-1.5 bg-slate-100 rounded-lg">
+              <IoCalendarOutline className="text-slate-500 text-sm" />
             </div>
-            
-            {/* Price/Fee Tag (Optional addition) */}
-            <span className="text-[9px] font-black text-emerald-600 bg-emerald-50 px-2 py-1 rounded-md uppercase">
-              Apply Today
-            </span>
+            <div className="flex flex-col">
+              <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">Deadline</span>
+              <span className="text-xs font-black text-slate-900">{path.deadline}</span>
+            </div>
           </div>
           
           <button
             onClick={onApply}
-            className={`
-              w-full md:w-max flex items-center justify-center gap-3 
-              px-8 py-4 md:px-10 md:py-5
-              bg-gradient-to-r ${path.color} 
-              text-white rounded-xl md:rounded-2xl 
-              shadow-xl md:shadow-2xl
-              font-black text-[10px] md:text-[11px] 
-              uppercase tracking-[0.2em]
-              transition-transform duration-300
-              md:active:scale-95
-              md:hover:brightness-110
-            `}
+            className="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 text-white rounded-xl font-black text-[10px] uppercase tracking-wider transition-all hover:bg-emerald-700 active:scale-95 shadow-lg shadow-emerald-900/20"
           >
-            Apply now
+            Apply
+            <FiArrowRight className="text-emerald-200" size={14} />
           </button>
         </div>
       </div>
+
+      {/* Decorative Element */}
+      <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${path.color} opacity-5 rounded-bl-[4rem] pointer-events-none`} />
     </div>
   );
 };
