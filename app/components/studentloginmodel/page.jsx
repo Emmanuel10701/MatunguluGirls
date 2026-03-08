@@ -97,23 +97,28 @@ export default function StudentLoginModal({
     }
   };
 
+  // Updated with Kamba girls' names
   const studentExamples = [
-    { name: "Musau Mwanzia Mutuku", admission: "2903" },
-    { name: "Mwende Mumbua Kalondu", admission: "2902" },
-    { name: "Mwikali Kasimu", admission: "1234" },
-    { name: "Mutinda Kitheka", admission: "5678" },
-    { name: "Kalondu Mutua", admission: "9012" }
+    { name: "Mwende Mumbua Kalondu", admission: "2903" },
+    { name: "Mwikali Kasimu Ndanu", admission: "2902" },
+    { name: "Kasyoka Mutuku Mwende", admission: "1234" },
+    { name: "Ndanu Mumbua Mutiso", admission: "5678" },
+    { name: "Kalondu Mutua Mwende", admission: "9012" },
+    { name: "Mbula Mwanzia Nduku", admission: "3456" },
+    { name: "Mwithali Musyoka Kasyoka", admission: "7890" }
   ];
 
+  // Updated name formats with Kamba girls' names
   const nameFormats = [
-    "Musau Mutuku",
-    "Musau Mwanzia Mutuku", 
-    "MUSAU MUTUKU",
-    "musau mutuku",
-    "M. Mutuku",
-    "Mutuku Musau",
     "Mwende Mumbua",
-    "Mwikali Kasimu"
+    "Mwende Mumbua Kalondu", 
+    "MWENDE MUMBUA",
+    "mwende mumbua",
+    "M. Mumbua",
+    "Kalondu Mutua",
+    "Mwikali Kasimu",
+    "Ndanu Mumbua",
+    "Kasyoka Mutuku"
   ];
 
   return (
@@ -260,7 +265,7 @@ export default function StudentLoginModal({
                   type="text"
                   value={formData.fullName}
                   onChange={(e) => handleInputChange('fullName', e.target.value)}
-                  placeholder="e.g., Musau Mutuku, MUSAU MUTUKU"
+                  placeholder="e.g., Mwende Mumbua, MWENDE MUMBUA"
                   className={`
                     w-full px-4 py-3 
                     border-2 rounded-lg
@@ -282,9 +287,9 @@ export default function StudentLoginModal({
                   </p>
                 )}
                 <div className="mt-2">
-                  <p className="text-gray-500 text-xs mb-1">Quick fill:</p>
+                  <p className="text-gray-500 text-xs mb-1">Quick fill (Kamba girls' names):</p>
                   <div className="flex flex-wrap gap-1">
-                    {studentExamples.slice(0, 3).map((student, idx) => (
+                    {studentExamples.slice(0, 4).map((student, idx) => (
                       <button
                         key={idx}
                         type="button"
@@ -340,7 +345,7 @@ export default function StudentLoginModal({
                 <div className="mt-2">
                   <p className="text-gray-500 text-xs mb-1">Examples:</p>
                   <div className="flex flex-wrap gap-1">
-                    {['2903', '2902', '1234', '5678', '9012'].map((example, idx) => (
+                    {['2903', '2902', '1234', '5678', '9012', '3456', '7890'].map((example, idx) => (
                       <button
                         key={idx}
                         type="button"
