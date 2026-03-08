@@ -259,63 +259,63 @@ setSupportStaff(allSupportStaff);
   };
 
   // Simplified but elegant spinner
-  if (loading) {
-    return (
-      <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-b from-emerald-900/5 to-transparent">
-        <div className="text-center space-y-6 max-w-sm mx-auto px-6">
+ if (loading) {
+  return (
+    <div className="min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex items-center justify-center bg-gradient-to-b from-emerald-900/5 to-transparent px-4">
+      <div className="text-center space-y-4 sm:space-y-5 md:space-y-6 w-full max-w-[280px] xs:max-w-sm mx-auto">
+        
+        {/* Animated Spinner with Rings - Responsive sizing */}
+        <div className="relative flex justify-center">
+          {/* Outer glow - responsive sizing */}
+          <div className="absolute inset-0 rounded-full bg-emerald-400 opacity-20 animate-ping scale-75 xs:scale-90 sm:scale-100"></div>
+          <div className="absolute inset-0 rounded-full bg-emerald-500 opacity-10 animate-pulse scale-75 xs:scale-90 sm:scale-100"></div>
           
-          {/* Animated Spinner with Rings */}
-          <div className="relative flex justify-center">
-            {/* Outer glow */}
-            <div className="absolute inset-0 rounded-full bg-emerald-400 opacity-20 animate-ping"></div>
-            <div className="absolute inset-0 rounded-full bg-emerald-500 opacity-10 animate-pulse"></div>
+          {/* Double ring spinner - responsive sizing */}
+          <div className="relative w-16 h-16 xs:w-20 xs:h-20 sm:w-24 sm:h-24">
+            {/* Static background ring */}
+            <div className="absolute inset-0 rounded-full border-2 xs:border-3 sm:border-4 border-emerald-100"></div>
             
-            {/* Double ring spinner */}
-            <div className="relative w-24 h-24">
-              {/* Static background ring */}
-              <div className="absolute inset-0 rounded-full border-4 border-emerald-100"></div>
-              
-              {/* Spinning foreground ring */}
-              <div className="absolute inset-0 rounded-full border-4 border-t-emerald-600 border-r-emerald-600 border-b-transparent border-l-transparent animate-spin"></div>
-              
-              {/* Center icon */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <FiHeart className="w-10 h-10 text-emerald-600" />
-              </div>
+            {/* Spinning foreground ring */}
+            <div className="absolute inset-0 rounded-full border-2 xs:border-3 sm:border-4 border-t-emerald-600 border-r-emerald-600 border-b-transparent border-l-transparent animate-spin"></div>
+            
+            {/* Center icon - responsive sizing */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <FiHeart className="w-6 h-6 xs:w-8 xs:h-8 sm:w-10 sm:h-10 text-emerald-600" />
             </div>
-          </div>
-
-          {/* Text Content */}
-          <div className="space-y-3">
-            <h3 className="text-2xl font-black text-emerald-900 tracking-tight">
-              Matungulu Girls
-            </h3>
-            
-            <p className="text-base font-bold text-emerald-700 animate-pulse">
-              Loading Staff Directory
-            </p>
-            
-            {/* Loading dots with staggered animation */}
-            <div className="flex justify-center gap-2 mt-4">
-              <div className="w-2.5 h-2.5 bg-emerald-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-              <div className="w-2.5 h-2.5 bg-emerald-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-              <div className="w-2.5 h-2.5 bg-emerald-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
-            </div>
-
-            {/* Loading message */}
-            <p className="text-sm font-medium text-emerald-600/70 mt-6 animate-pulse">
-              Meet our dedicated team...
-            </p>
-
-            {/* School motto */}
-            <p className="text-xs font-bold text-emerald-400 uppercase tracking-wider mt-8">
-              "Strive to Excel"
-            </p>
           </div>
         </div>
+
+        {/* Text Content - Responsive typography */}
+        <div className="space-y-2 sm:space-y-3">
+          <h3 className="text-lg xs:text-xl sm:text-2xl font-black text-emerald-900 tracking-tight">
+            Matungulu Girls
+          </h3>
+          
+          <p className="text-xs xs:text-sm sm:text-base font-bold text-emerald-700 animate-pulse">
+            Loading Staff Directory
+          </p>
+          
+          {/* Loading dots with staggered animation - responsive sizing */}
+          <div className="flex justify-center gap-1.5 xs:gap-2 mt-2 xs:mt-3 sm:mt-4">
+            <div className="w-1.5 h-1.5 xs:w-2 xs:h-2 sm:w-2.5 sm:h-2.5 bg-emerald-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+            <div className="w-1.5 h-1.5 xs:w-2 xs:h-2 sm:w-2.5 sm:h-2.5 bg-emerald-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+            <div className="w-1.5 h-1.5 xs:w-2 xs:h-2 sm:w-2.5 sm:h-2.5 bg-emerald-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+          </div>
+
+          {/* Loading message - responsive */}
+          <p className="text-[10px] xs:text-xs sm:text-sm font-medium text-emerald-600/70 mt-3 xs:mt-4 sm:mt-6 animate-pulse">
+            Meet our dedicated team...
+          </p>
+
+          {/* School motto - responsive */}
+          <p className="text-[8px] xs:text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-wider mt-4 xs:mt-6 sm:mt-8">
+            "Strive to Excel"
+          </p>
+        </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   // Error state
   if (error) {
