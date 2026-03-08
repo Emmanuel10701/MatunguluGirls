@@ -46,7 +46,7 @@ const heroSlides = [
     gradient: "from-blue-500 via-cyan-400 to-teal-600",
     description: "Matungulu Girls provides rigorous academic programs with emphasis on Science, Technology, Engineering, and Mathematics, preparing students for university and professional careers.",
     background: "bg-gradient-to-br from-blue-900/90 via-cyan-900/80 to-teal-900/70",
-    image: "/hero/magk.jpg",
+    image: "/hero/MatGG.jpg",
     stats: { 
       subjects: "Diverse Curriculum", 
       teachers: "Qualified Educators", 
@@ -137,7 +137,7 @@ const ModernHero = () => {
             setMatunguluInfo({
               name: 'Matungulu Girls School',
               location: data.school.location || 'Matungulu, Machakos County',
-              established: data.school.established || '1995',
+              established: data.school.established || '1955',
               type: data.school.type || 'Public Secondary School',
               motto: data.school.motto || 'Strive to Excel',
               studentPopulation: data.school.studentPopulation || 'Female Students',
@@ -152,7 +152,7 @@ const ModernHero = () => {
         setMatunguluInfo({
           name: 'Matungulu Girls High School',
           location: 'Matungulu, Machakos County, Kenya',
-          established: '1995',
+          established: '1955',
           type: 'Public County Secondary School',
           motto: 'Strive to Excel',
           studentPopulation: 'Female Students (Mixed intake)',
