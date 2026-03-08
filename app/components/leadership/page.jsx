@@ -238,20 +238,64 @@ const ModernStaffLeadership = () => {
     };
   };
 
-  // Loading state
-  if (loading) {
-    return (
-      <div className="min-h-[60vh] flex items-center justify-center bg-gradient-to-b from-emerald-900/5 to-transparent">
-        <div className="text-center space-y-4">
-          <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-emerald-400 opacity-20 animate-ping"></div>
-            <Loader2 className="w-12 h-12 text-emerald-700 animate-spin relative z-10" />
+// Simplified but elegant spinner
+if (loading) {
+  return (
+    <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-b from-emerald-900/5 to-transparent">
+      <div className="text-center space-y-6 max-w-sm mx-auto px-6">
+        
+        {/* Animated Spinner with Rings */}
+        <div className="relative flex justify-center">
+          {/* Outer glow */}
+          <div className="absolute inset-0 rounded-full bg-emerald-400 opacity-20 animate-ping"></div>
+          <div className="absolute inset-0 rounded-full bg-emerald-500 opacity-10 animate-pulse"></div>
+          
+          {/* Double ring spinner */}
+          <div className="relative w-24 h-24">
+            {/* Static background ring */}
+            <div className="absolute inset-0 rounded-full border-4 border-emerald-100"></div>
+            
+            {/* Spinning foreground ring */}
+            <div className="absolute inset-0 rounded-full border-4 border-t-emerald-600 border-r-emerald-600 border-b-transparent border-l-transparent animate-spin"></div>
+            
+            {/* Center icon */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <FiHeart className="w-10 h-10 text-emerald-600" />
+            </div>
           </div>
-          <p className="text-emerald-800 font-medium animate-pulse">Loading leadership team...</p>
+        </div>
+
+        {/* Text Content */}
+        <div className="space-y-3">
+          <h3 className="text-2xl font-black text-emerald-900 tracking-tight">
+            Matungulu Girls
+          </h3>
+          
+          <p className="text-base font-bold text-emerald-700 animate-pulse">
+            Guidance & Counseling
+          </p>
+          
+          {/* Loading dots with staggered animation */}
+          <div className="flex justify-center gap-2 mt-4">
+            <div className="w-2.5 h-2.5 bg-emerald-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+            <div className="w-2.5 h-2.5 bg-emerald-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+            <div className="w-2.5 h-2.5 bg-emerald-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+          </div>
+
+          {/* Loading message */}
+          <p className="text-sm font-medium text-emerald-600/70 mt-6 animate-pulse">
+            Preparing your support sessions...
+          </p>
+
+          {/* School motto */}
+          <p className="text-xs font-bold text-emerald-400 uppercase tracking-wider mt-8">
+            "Strive to Excel"
+          </p>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   // Error state
   if (error) {
