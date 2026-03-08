@@ -2066,9 +2066,9 @@ export default function ComprehensiveAdmissions() {
   // Admission paths - Updated based on your school's focus
   const admissionPaths = [
     {
-      title: 'Form 1 Entry',
+      title: 'Form 1 and Grade 10 Entry',
       icon: FiBookOpen,
-      description: 'Join our Form 1 program with comprehensive academic curriculum and extracurricular activities',
+      description: 'Join our Form 1,Grade 10 program with comprehensive academic curriculum and extracurricular activities',
       features: ['Academic Excellence', 'Extra-curricular Activities', 'Digital Literacy', 'Talent Development'],
       deadline: schoolData?.admissionCloseDate ? new Date(schoolData.admissionCloseDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'May 30, 2024',
       color: 'from-emerald-600 to-emerald-500',
