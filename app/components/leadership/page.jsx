@@ -104,54 +104,57 @@ const ModernStaffLeadership = () => {
 
           // ========== HIERARCHY MAPPING (Fixed version) ==========
 
-          // 1. Find Principal - Based on role or position containing "principal"
-          const foundPrincipal = allStaff.find(s => 
-              s.id === 1 || 
-              s.position?.toLowerCase().includes('chief principal') || 
-              s.position?.toLowerCase().includes('principal') ||
-              s.role?.toLowerCase().includes('principal')
-          ) || allStaff[0];
+     // ========== HIERARCHY MAPPING (Fixed version) ==========
 
-          setPrincipal(foundPrincipal);
-          setFeaturedStaff(foundPrincipal);
+// 1. Find Principal - Mr David Muange (id: 1)
+const foundPrincipal = allStaff.find(s => 
+    s.id === 1 || // Direct ID match
+    s.role?.toLowerCase() === 'principal' || // Exact role match
+    s.role?.toLowerCase().includes('principal') || // Role contains principal
+    s.position?.toLowerCase().includes('chief principal') || // Position contains chief principal
+    s.position?.toLowerCase().includes('principal') // Position contains principal
+) || allStaff[0]; // Fallback to first staff if no principal found
 
-          // Find all deputies
-          const allDeputies = allStaff.filter(s => 
-            s.role?.toLowerCase().includes('deputy') || 
-            s.position?.toLowerCase().includes('deputy')
-          );
+setPrincipal(foundPrincipal);
+setFeaturedStaff(foundPrincipal);
 
-          // Academics Deputy - based on position containing "academics"
-          const foundAcademicsDeputy = allDeputies.find(s => 
-            s.position?.toLowerCase().includes('academics')
-          );
+// Find all deputies
+const allDeputies = allStaff.filter(s => 
+  s.role?.toLowerCase().includes('deputy') || 
+  s.position?.toLowerCase().includes('deputy')
+);
 
-          // Administration Deputy - based on position containing "admin" or "administration"
-          const foundAdminDeputy = allDeputies.find(s => 
-            s.position?.toLowerCase().includes('admin') || 
-            s.position?.toLowerCase().includes('administration')
-          );
+// Academics Deputy - based on position containing "academics"
+const foundAcademicsDeputy = allDeputies.find(s => 
+  s.position?.toLowerCase().includes('academics')
+);
 
-          setAcademicsDeputy(foundAcademicsDeputy || null);
-          setAdminDeputy(foundAdminDeputy || null);
+// Administration Deputy - based on position containing "admin" or "administration"
+const foundAdminDeputy = allDeputies.find(s => 
+  s.position?.toLowerCase().includes('admin') || 
+  s.position?.toLowerCase().includes('administration')
+);
 
-          // 5. Find ALL Teachers - Everyone with teacher role/position
-          const allTeachers = allStaff.filter(s => 
-            s.role?.toLowerCase().includes('teacher') || 
-            s.position?.toLowerCase().includes('teacher')
-          );
-          setTeachers(allTeachers);
+setAcademicsDeputy(foundAcademicsDeputy || null);
+setAdminDeputy(foundAdminDeputy || null);
 
-          // 6. Find Support Staff - Everyone else (not principal, not deputy, not teacher)
-          const allSupportStaff = allStaff.filter(s => 
-            !s.role?.toLowerCase().includes('principal') &&
-            !s.role?.toLowerCase().includes('deputy') &&
-            !s.role?.toLowerCase().includes('teacher') &&
-            !s.position?.toLowerCase().includes('principal') &&
-            !s.position?.toLowerCase().includes('deputy') &&
-            !s.position?.toLowerCase().includes('teacher')
-          );
-          setSupportStaff(allSupportStaff);
+// 5. Find ALL Teachers - Everyone with teacher role/position
+const allTeachers = allStaff.filter(s => 
+  s.role?.toLowerCase().includes('teacher') || 
+  s.position?.toLowerCase().includes('teacher')
+);
+setTeachers(allTeachers);
+
+// 6. Find Support Staff - Everyone else (not principal, not deputy, not teacher)
+const allSupportStaff = allStaff.filter(s => 
+  !s.role?.toLowerCase().includes('principal') &&
+  !s.role?.toLowerCase().includes('deputy') &&
+  !s.role?.toLowerCase().includes('teacher') &&
+  !s.position?.toLowerCase().includes('principal') &&
+  !s.position?.toLowerCase().includes('deputy') &&
+  !s.position?.toLowerCase().includes('teacher')
+);
+setSupportStaff(allSupportStaff);
 
           // ========== END OF HIERARCHY LOGIC ==========
 
