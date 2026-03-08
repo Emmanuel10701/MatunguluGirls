@@ -106,8 +106,10 @@ const ModernStaffLeadership = () => {
           
           // 1. Find Principal - Based on role/position containing "principal"
           const foundPrincipal = allStaff.find(s => 
+            s.position?.toLowerCase().includes('Chief Principal') || 
             s.position?.toLowerCase().includes('chief principal') || 
-            s.role?.toLowerCase().includes('principal') ||
+
+            s.role?.toLowerCase().includes('Principal') ||
             s.position?.toLowerCase().includes('principal')
           ) || allStaff[0];
 
