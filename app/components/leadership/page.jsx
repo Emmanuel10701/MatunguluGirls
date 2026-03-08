@@ -90,7 +90,7 @@ const ModernStaffLeadership = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Fetch staff data from API - HIERARCHY LOGIC FROM YOUR WORKING CODE
+  // Fetch staff data from API
   useEffect(() => {
     const fetchStaff = async () => {
       try {
@@ -102,69 +102,57 @@ const ModernStaffLeadership = () => {
           const allStaff = data.staff;
           setStaff(allStaff);
 
-          // ========== HIERARCHY MAPPING (From your working code) ==========
-     // ========== HIERARCHY MAPPING (Fixed version) ==========
+          // ========== HIERARCHY MAPPING (Fixed version) ==========
 
+          // 1. Find Principal - Based on role or position containing "principal"
+          const foundPrincipal = allStaff.find(s => 
+              s.id === 1 || 
+              s.position?.toLowerCase().includes('chief principal') || 
+              s.position?.toLowerCase().includes('principal') ||
+              s.role?.toLowerCase().includes('principal')
+          ) || allStaff[0];
 
+          setPrincipal(foundPrincipal);
+          setFeaturedStaff(foundPrincipal);
 
-setPrincipal(foundPrincipal);
-setFeaturedStaff(foundPrincipal);
+          // Find all deputies
+          const allDeputies = allStaff.filter(s => 
+            s.role?.toLowerCase().includes('deputy') || 
+            s.position?.toLowerCase().includes('deputy')
+          );
 
+          // Academics Deputy - based on position containing "academics"
+          const foundAcademicsDeputy = allDeputies.find(s => 
+            s.position?.toLowerCase().includes('academics')
+          );
 
+          // Administration Deputy - based on position containing "admin" or "administration"
+          const foundAdminDeputy = allDeputies.find(s => 
+            s.position?.toLowerCase().includes('admin') || 
+            s.position?.toLowerCase().includes('administration')
+          );
 
-// ========== HIERARCHY MAPPING (Fixed version) ==========
+          setAcademicsDeputy(foundAcademicsDeputy || null);
+          setAdminDeputy(foundAdminDeputy || null);
 
-// 1. Find Principal - Based on role or position containing "principal"
-const foundPrincipal = allStaff.find(s => 
-    s.id === 1 || 
-    s.position?.toLowerCase().includes('chief principal') || 
-    s.position?.toLowerCase().includes('principal') ||
-    s.role?.toLowerCase().includes('principal')
-) || allStaff[0];
+          // 5. Find ALL Teachers - Everyone with teacher role/position
+          const allTeachers = allStaff.filter(s => 
+            s.role?.toLowerCase().includes('teacher') || 
+            s.position?.toLowerCase().includes('teacher')
+          );
+          setTeachers(allTeachers);
 
-setPrincipal(foundPrincipal);
-setFeaturedStaff(foundPrincipal);
+          // 6. Find Support Staff - Everyone else (not principal, not deputy, not teacher)
+          const allSupportStaff = allStaff.filter(s => 
+            !s.role?.toLowerCase().includes('principal') &&
+            !s.role?.toLowerCase().includes('deputy') &&
+            !s.role?.toLowerCase().includes('teacher') &&
+            !s.position?.toLowerCase().includes('principal') &&
+            !s.position?.toLowerCase().includes('deputy') &&
+            !s.position?.toLowerCase().includes('teacher')
+          );
+          setSupportStaff(allSupportStaff);
 
-// Find all deputies
-const allDeputies = allStaff.filter(s => 
-  s.role?.toLowerCase().includes('deputy') || 
-  s.position?.toLowerCase().includes('deputy')
-);
-
-// Academics Deputy - based on position containing "academics"
-const foundAcademicsDeputy = allDeputies.find(s => 
-  s.position?.toLowerCase().includes('academics')
-);
-
-// Administration Deputy - based on position containing "admin" or "administration"
-const foundAdminDeputy = allDeputies.find(s => 
-  s.position?.toLowerCase().includes('admin') || 
-  s.position?.toLowerCase().includes('administration')
-);
-
-setAcademicsDeputy(foundAcademicsDeputy || null);
-setAdminDeputy(foundAdminDeputy || null);
-
-// 5. Find ALL Teachers - Everyone with teacher role/position
-const allTeachers = allStaff.filter(s => 
-  s.role?.toLowerCase().includes('teacher') || 
-  s.position?.toLowerCase().includes('teacher')
-);
-setTeachers(allTeachers);
-
-// 6. Find Support Staff - Everyone else (not principal, not deputy, not teacher)
-const allSupportStaff = allStaff.filter(s => 
-  !s.role?.toLowerCase().includes('principal') &&
-  !s.role?.toLowerCase().includes('deputy') &&
-  !s.role?.toLowerCase().includes('teacher') &&
-  !s.position?.toLowerCase().includes('principal') &&
-  !s.position?.toLowerCase().includes('deputy') &&
-  !s.position?.toLowerCase().includes('teacher')
-);
-setSupportStaff(allSupportStaff);
-
-// ========== END OF HIERARCHY LOGIC ==========
-// ========== END OF HIERARCHY LOGIC ==========
           // ========== END OF HIERARCHY LOGIC ==========
 
         } else {
@@ -270,64 +258,64 @@ setSupportStaff(allSupportStaff);
     };
   };
 
-// Simplified but elegant spinner
-if (loading) {
-  return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-b from-emerald-900/5 to-transparent">
-      <div className="text-center space-y-6 max-w-sm mx-auto px-6">
-        
-        {/* Animated Spinner with Rings */}
-        <div className="relative flex justify-center">
-          {/* Outer glow */}
-          <div className="absolute inset-0 rounded-full bg-emerald-400 opacity-20 animate-ping"></div>
-          <div className="absolute inset-0 rounded-full bg-emerald-500 opacity-10 animate-pulse"></div>
+  // Simplified but elegant spinner
+  if (loading) {
+    return (
+      <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-b from-emerald-900/5 to-transparent">
+        <div className="text-center space-y-6 max-w-sm mx-auto px-6">
           
-          {/* Double ring spinner */}
-          <div className="relative w-24 h-24">
-            {/* Static background ring */}
-            <div className="absolute inset-0 rounded-full border-4 border-emerald-100"></div>
+          {/* Animated Spinner with Rings */}
+          <div className="relative flex justify-center">
+            {/* Outer glow */}
+            <div className="absolute inset-0 rounded-full bg-emerald-400 opacity-20 animate-ping"></div>
+            <div className="absolute inset-0 rounded-full bg-emerald-500 opacity-10 animate-pulse"></div>
             
-            {/* Spinning foreground ring */}
-            <div className="absolute inset-0 rounded-full border-4 border-t-emerald-600 border-r-emerald-600 border-b-transparent border-l-transparent animate-spin"></div>
-            
-            {/* Center icon */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <FiHeart className="w-10 h-10 text-emerald-600" />
+            {/* Double ring spinner */}
+            <div className="relative w-24 h-24">
+              {/* Static background ring */}
+              <div className="absolute inset-0 rounded-full border-4 border-emerald-100"></div>
+              
+              {/* Spinning foreground ring */}
+              <div className="absolute inset-0 rounded-full border-4 border-t-emerald-600 border-r-emerald-600 border-b-transparent border-l-transparent animate-spin"></div>
+              
+              {/* Center icon */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <FiHeart className="w-10 h-10 text-emerald-600" />
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Text Content */}
-        <div className="space-y-3">
-          <h3 className="text-2xl font-black text-emerald-900 tracking-tight">
-            Matungulu Girls
-          </h3>
-          
-          <p className="text-base font-bold text-emerald-700 animate-pulse">
-            Loading Staff Directory
-          </p>
-          
-          {/* Loading dots with staggered animation */}
-          <div className="flex justify-center gap-2 mt-4">
-            <div className="w-2.5 h-2.5 bg-emerald-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-            <div className="w-2.5 h-2.5 bg-emerald-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-            <div className="w-2.5 h-2.5 bg-emerald-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+          {/* Text Content */}
+          <div className="space-y-3">
+            <h3 className="text-2xl font-black text-emerald-900 tracking-tight">
+              Matungulu Girls
+            </h3>
+            
+            <p className="text-base font-bold text-emerald-700 animate-pulse">
+              Loading Staff Directory
+            </p>
+            
+            {/* Loading dots with staggered animation */}
+            <div className="flex justify-center gap-2 mt-4">
+              <div className="w-2.5 h-2.5 bg-emerald-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+              <div className="w-2.5 h-2.5 bg-emerald-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+              <div className="w-2.5 h-2.5 bg-emerald-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+            </div>
+
+            {/* Loading message */}
+            <p className="text-sm font-medium text-emerald-600/70 mt-6 animate-pulse">
+              Meet our dedicated team...
+            </p>
+
+            {/* School motto */}
+            <p className="text-xs font-bold text-emerald-400 uppercase tracking-wider mt-8">
+              "Strive to Excel"
+            </p>
           </div>
-
-          {/* Loading message */}
-          <p className="text-sm font-medium text-emerald-600/70 mt-6 animate-pulse">
-            Meet our dedicated team...
-          </p>
-
-          {/* School motto */}
-          <p className="text-xs font-bold text-emerald-400 uppercase tracking-wider mt-8">
-            "Strive to Excel"
-          </p>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
   // Error state
   if (error) {
