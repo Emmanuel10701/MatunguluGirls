@@ -110,17 +110,22 @@ const ModernStaffLeadership = () => {
 setPrincipal(foundPrincipal);
 setFeaturedStaff(foundPrincipal);
 
+
+
+// ========== HIERARCHY MAPPING (Fixed version) ==========
+
+// 1. Find Principal - Based on role or position containing "principal"
 const foundPrincipal = allStaff.find(s => 
     s.id === 1 || 
-    s.position?.toLowerCase() === 'chief principal' || 
-    s.role?.toLowerCase() === 'principal'
-  ) || allStaff[0];
+    s.position?.toLowerCase().includes('chief principal') || 
+    s.position?.toLowerCase().includes('principal') ||
+    s.role?.toLowerCase().includes('principal')
+) || allStaff[0];
 
-  setPrincipal(foundPrincipal);
-  setFeaturedStaff(foundPrincipal);
+setPrincipal(foundPrincipal);
+setFeaturedStaff(foundPrincipal);
 
-
- // Find all deputies
+// Find all deputies
 const allDeputies = allStaff.filter(s => 
   s.role?.toLowerCase().includes('deputy') || 
   s.position?.toLowerCase().includes('deputy')
@@ -136,8 +141,9 @@ const foundAdminDeputy = allDeputies.find(s =>
   s.position?.toLowerCase().includes('admin') || 
   s.position?.toLowerCase().includes('administration')
 );
-          setAcademicsDeputy(foundAcademicsDeputy || null);
-          setAdminDeputy(foundAdminDeputy || null);
+
+setAcademicsDeputy(foundAcademicsDeputy || null);
+setAdminDeputy(foundAdminDeputy || null);
 
 // 5. Find ALL Teachers - Everyone with teacher role/position
 const allTeachers = allStaff.filter(s => 
@@ -157,6 +163,7 @@ const allSupportStaff = allStaff.filter(s =>
 );
 setSupportStaff(allSupportStaff);
 
+// ========== END OF HIERARCHY LOGIC ==========
 // ========== END OF HIERARCHY LOGIC ==========
           // ========== END OF HIERARCHY LOGIC ==========
 
