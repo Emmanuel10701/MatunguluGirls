@@ -71,7 +71,8 @@ const ModernStaffLeadership = () => {
   const [featuredStaff, setFeaturedStaff] = useState(null);
   const [academicsDeputy, setAcademicsDeputy] = useState(null);
   const [adminDeputy, setAdminDeputy] = useState(null);
-  const [teacher, setTeacher] = useState(null);
+  const [teachers, setTeachers] = useState([]);
+  const [supportStaff, setSupportStaff] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -101,24 +102,26 @@ const ModernStaffLeadership = () => {
           const allStaff = data.staff;
           setStaff(allStaff);
 
-          // Find Principal
+          // Find Principal (Priority 1)
           const foundPrincipal = allStaff.find(s => 
             s.id === 1 || 
-            s.position?.toLowerCase() === 'chief principal' || 
-            s.role?.toLowerCase() === 'principal'
+            s.position?.toLowerCase().includes('chief principal') || 
+            s.role?.toLowerCase().includes('principal') ||
+            s.position?.toLowerCase() === 'principal'
           ) || allStaff[0];
 
           setPrincipal(foundPrincipal);
           setFeaturedStaff(foundPrincipal);
 
-          // Find deputies
+          // Find Deputies (Priority 2)
           const allDeputies = allStaff.filter(s => 
             s.role?.toLowerCase().includes('deputy') || 
             s.position?.toLowerCase().includes('deputy')
           );
 
           const foundAcademicsDeputy = allDeputies.find(s => 
-            s.position?.toLowerCase().includes('academics')
+            s.position?.toLowerCase().includes('academics') ||
+            s.department?.toLowerCase().includes('academics')
           );
 
           const foundAdminDeputy = allDeputies.find(s => 
@@ -129,13 +132,25 @@ const ModernStaffLeadership = () => {
           setAcademicsDeputy(foundAcademicsDeputy || null);
           setAdminDeputy(foundAdminDeputy || null);
 
-          // Find teacher
-          const anyTeacher = allStaff.find(s => 
-            s.id === 4 || 
-            s.role?.toLowerCase().includes('teacher') || 
-            s.position?.toLowerCase().includes('teacher')
+          // Find Teachers (Priority 3)
+          const allTeachers = allStaff.filter(s => 
+            (s.role?.toLowerCase().includes('teacher') || 
+            s.position?.toLowerCase().includes('teacher')) &&
+            !s.role?.toLowerCase().includes('principal') &&
+            !s.role?.toLowerCase().includes('deputy')
           );
-          setTeacher(anyTeacher || null);
+          setTeachers(allTeachers);
+
+          // Find Support Staff (Priority 4 - everything else)
+          const allSupportStaff = allStaff.filter(s => 
+            !s.role?.toLowerCase().includes('principal') &&
+            !s.role?.toLowerCase().includes('deputy') &&
+            !s.role?.toLowerCase().includes('teacher') &&
+            !s.position?.toLowerCase().includes('principal') &&
+            !s.position?.toLowerCase().includes('deputy') &&
+            !s.position?.toLowerCase().includes('teacher')
+          );
+          setSupportStaff(allSupportStaff);
 
         } else {
           throw new Error('Format error: Expected successful staff array');
@@ -272,7 +287,7 @@ if (loading) {
           </h3>
           
           <p className="text-base font-bold text-emerald-700 animate-pulse">
-            Guidance & Counseling
+            Loading Staff Directory
           </p>
           
           {/* Loading dots with staggered animation */}
@@ -284,7 +299,7 @@ if (loading) {
 
           {/* Loading message */}
           <p className="text-sm font-medium text-emerald-600/70 mt-6 animate-pulse">
-            Preparing your support sessions...
+            Meet our dedicated team...
           </p>
 
           {/* School motto */}
@@ -329,7 +344,7 @@ if (loading) {
     );
   }
 
-  const leadershipTeam = [principal, academicsDeputy, adminDeputy, teacher].filter(Boolean);
+  const leadershipTeam = [principal, academicsDeputy, adminDeputy, ...teachers.slice(0, 2)].filter(Boolean);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-teal-50 font-sans">
@@ -341,56 +356,56 @@ if (loading) {
         <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
         
- <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-6 sm:py-12">
-  {/* Balanced Badge - Smaller on mobile */}
-  <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4 sm:mb-6">
-    <Sparkles className="w-3 h-3 sm:w-4 text-emerald-300" />
-    <span className="text-white text-[10px] sm:text-xs font-bold tracking-wider uppercase">
-      Our Dedicated Team
-    </span>
-  </div>
-  
-  {/* Balanced Title - Drastically reduced for XS screens */}
-  <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 tracking-tight leading-tight">
-    School Leadership <br className="sm:hidden" /> & Staff
-  </h1>
-  
-  {/* Balanced Paragraph - Smaller text and narrower width on mobile */}
-  <p className="text-xs sm:text-base md:text-lg text-emerald-100 max-w-xl sm:max-w-3xl mx-auto font-light leading-relaxed px-4">
-    Meet the passionate educators and administrators committed to excellence at Matungulu Girls High School
-  </p>
-</div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-6 sm:py-12">
+          {/* Balanced Badge - Smaller on mobile */}
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4 sm:mb-6">
+            <Sparkles className="w-3 h-3 sm:w-4 text-emerald-300" />
+            <span className="text-white text-[10px] sm:text-xs font-bold tracking-wider uppercase">
+              Our Dedicated Team
+            </span>
+          </div>
+          
+          {/* Balanced Title - Drastically reduced for XS screens */}
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 tracking-tight leading-tight">
+            School Leadership <br className="sm:hidden" /> & Staff
+          </h1>
+          
+          {/* Balanced Paragraph - Smaller text and narrower width on mobile */}
+          <p className="text-xs sm:text-base md:text-lg text-emerald-100 max-w-xl sm:max-w-3xl mx-auto font-light leading-relaxed px-4">
+            Meet the passionate educators and administrators committed to excellence at Matungulu Girls High School
+          </p>
+        </div>
       </div>
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 pb-20">
-   {/* Tabs */}
-<div className="flex justify-center mb-6 px-4">
-  <div className="inline-flex p-1 bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg border border-emerald-100 w-full max-w-[320px] sm:max-w-none sm:w-auto">
-    <button
-      onClick={() => setActiveTab('featured')}
-      className={`flex-1 sm:flex-none px-3 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-[11px] sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 ${
-        activeTab === 'featured'
-          ? 'bg-gradient-to-r from-emerald-800 to-teal-700 text-white shadow-md'
-          : 'text-slate-600 hover:text-emerald-700'
-      }`}
-    >
-      <Crown className="w-3.5 h-3.5 sm:w-4" />
-      Leadership
-    </button>
-    <button
-      onClick={() => setActiveTab('all')}
-      className={`flex-1 sm:flex-none px-3 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-[11px] sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 ${
-        activeTab === 'all'
-          ? 'bg-gradient-to-r from-emerald-800 to-teal-700 text-white shadow-md'
-          : 'text-slate-600 hover:text-emerald-700'
-      }`}
-    >
-      <Users className="w-3.5 h-3.5 sm:w-4 h-4" />
-      All Staff
-    </button>
-  </div>
-</div>
+        {/* Tabs */}
+        <div className="flex justify-center mb-6 px-4">
+          <div className="inline-flex p-1 bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg border border-emerald-100 w-full max-w-[320px] sm:max-w-none sm:w-auto">
+            <button
+              onClick={() => setActiveTab('featured')}
+              className={`flex-1 sm:flex-none px-3 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-[11px] sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 ${
+                activeTab === 'featured'
+                  ? 'bg-gradient-to-r from-emerald-800 to-teal-700 text-white shadow-md'
+                  : 'text-slate-600 hover:text-emerald-700'
+              }`}
+            >
+              <Crown className="w-3.5 h-3.5 sm:w-4" />
+              Leadership
+            </button>
+            <button
+              onClick={() => setActiveTab('all')}
+              className={`flex-1 sm:flex-none px-3 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-[11px] sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 ${
+                activeTab === 'all'
+                  ? 'bg-gradient-to-r from-emerald-800 to-teal-700 text-white shadow-md'
+                  : 'text-slate-600 hover:text-emerald-700'
+              }`}
+            >
+              <Users className="w-3.5 sm:w-4 h-4" />
+              All Staff
+            </button>
+          </div>
+        </div>
 
         {activeTab === 'featured' ? (
           <>
@@ -459,7 +474,7 @@ if (loading) {
                     {viewMode === 'other' && (
                       <button
                         onClick={returnToPrincipal}
-                        className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-white text-sm font-bold hover:bg-white/30 transition-all w-fit border border-white/30"
+                        className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-white text-sm hover:bg-white/30 transition-all w-fit border border-white/30"
                       >
                         <FiArrowLeft className="w-4 h-4" />
                         Back to Principal
@@ -646,14 +661,16 @@ if (loading) {
                     <div className="flex justify-between">
                       <span className="text-sm opacity-90">Leadership</span>
                       <span className="font-bold">
-                        {staff.filter(s => s.role?.toLowerCase().includes('principal') || s.role?.toLowerCase().includes('deputy')).length}
+                        {[principal, academicsDeputy, adminDeputy].filter(Boolean).length}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm opacity-90">Teaching Staff</span>
-                      <span className="font-bold">
-                        {staff.filter(s => s.role?.toLowerCase().includes('teacher')).length}
-                      </span>
+                      <span className="font-bold">{teachers.length}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm opacity-90">Support Staff</span>
+                      <span className="font-bold">{supportStaff.length}</span>
                     </div>
                   </div>
                   
@@ -669,47 +686,218 @@ if (loading) {
             </div>
           </>
         ) : (
-          /* All Staff Grid View */
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {staff.map((member) => {
-              const badge = getRoleBadge(member.role);
-              
-              return (
-                <button
-                  key={member.id}
-                  onClick={() => {
-                    handleStaffClick(member);
-                    setActiveTab('featured');
-                  }}
-                  className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1 border border-emerald-100"
-                >
-                  <div className="relative h-32 overflow-hidden bg-gradient-to-br from-emerald-100 to-teal-100">
-                    {member.image ? (
-                      <img
-                        src={getImageUrl(member.image)}
-                        alt={member.name}
-                        className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=2d6a4f&color=fff&bold=true&size=64`;
-                        }}
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <Users className="w-8 h-8 text-emerald-600/50" />
+          /* All Staff Grid View - With Proper Hierarchy */
+          <div className="space-y-8">
+            
+            {/* Principal Section */}
+            {principal && (
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 px-2">
+                  <Crown className="w-5 h-5 text-emerald-700" />
+                  <h3 className="text-sm font-black text-emerald-800 uppercase tracking-wider">School Principal</h3>
+                  <div className="h-px flex-1 bg-gradient-to-r from-emerald-200 to-transparent"></div>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                  <button
+                    key={principal.id}
+                    onClick={() => {
+                      handleStaffClick(principal);
+                      setActiveTab('featured');
+                    }}
+                    className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1 border-2 border-emerald-700/30 relative"
+                  >
+                    {/* Principal Badge */}
+                    <div className="absolute top-2 right-2 z-10">
+                      <div className="px-2 py-0.5 bg-gradient-to-r from-emerald-900 to-teal-800 text-white text-[8px] font-bold rounded-full flex items-center gap-1">
+                        <Crown className="w-3 h-3 text-yellow-300" />
+                        PRINCIPAL
                       </div>
-                    )}
-                  </div>
-                  <div className="p-3">
-                    <h4 className="font-bold text-slate-900 text-sm truncate">{member.name}</h4>
-                    <p className="text-xs text-slate-500 truncate mb-2">{member.position || member.role || 'Staff'}</p>
-                    <div className={`inline-block px-2 py-0.5 ${badge.bg} ${badge.text} text-[10px] font-bold rounded-full`}>
-                      {badge.text === 'text-white' ? member.role?.split(' ')[0] || 'Staff' : 'Staff'}
                     </div>
-                  </div>
-                </button>
-              );
-            })}
+                    <div className="relative h-32 overflow-hidden bg-gradient-to-br from-emerald-900 to-teal-800">
+                      {principal.image ? (
+                        <img
+                          src={getImageUrl(principal.image)}
+                          alt={principal.name}
+                          className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(principal.name)}&background=2d6a4f&color=fff&bold=true&size=64`;
+                          }}
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <GraduationCap className="w-8 h-8 text-white/70" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-3 bg-gradient-to-r from-emerald-50 to-white">
+                      <h4 className="font-bold text-slate-900 text-sm truncate">{principal.name}</h4>
+                      <p className="text-xs text-emerald-700 font-medium truncate">{principal.position || 'Principal'}</p>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Deputy Principals Section */}
+            {(academicsDeputy || adminDeputy) && (
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 px-2">
+                  <Medal className="w-5 h-5 text-teal-600" />
+                  <h3 className="text-sm font-black text-teal-700 uppercase tracking-wider">Deputy Principals</h3>
+                  <div className="h-px flex-1 bg-gradient-to-r from-teal-200 to-transparent"></div>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                  {[academicsDeputy, adminDeputy].filter(Boolean).map((deputy) => (
+                    <button
+                      key={deputy.id}
+                      onClick={() => {
+                        handleStaffClick(deputy);
+                        setActiveTab('featured');
+                      }}
+                      className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1 border border-teal-200"
+                    >
+                      <div className="relative h-32 overflow-hidden bg-gradient-to-br from-teal-600 to-emerald-600">
+                        {deputy.image ? (
+                          <img
+                            src={getImageUrl(deputy.image)}
+                            alt={deputy.name}
+                            className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(deputy.name)}&background=0d9488&color=fff&bold=true&size=64`;
+                            }}
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center">
+                            <Users className="w-8 h-8 text-white/70" />
+                          </div>
+                        )}
+                        {/* Deputy Badge */}
+                        <div className="absolute top-2 right-2">
+                          <div className="px-2 py-0.5 bg-gradient-to-r from-teal-700 to-emerald-700 text-white text-[8px] font-bold rounded-full">
+                            {deputy.position?.includes('Academics') ? 'ACADEMICS' : 'ADMIN'}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-3">
+                        <h4 className="font-bold text-slate-900 text-sm truncate">{deputy.name}</h4>
+                        <p className="text-xs text-slate-500 truncate">{deputy.position || 'Deputy Principal'}</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Teachers Section */}
+            {teachers.length > 0 && (
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 px-2">
+                  <BookOpen className="w-5 h-5 text-emerald-600" />
+                  <h3 className="text-sm font-black text-emerald-700 uppercase tracking-wider">Teaching Staff</h3>
+                  <div className="h-px flex-1 bg-gradient-to-r from-emerald-200 to-transparent"></div>
+                  <span className="text-xs font-bold text-emerald-600">{teachers.length} Teachers</span>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                  {teachers.map((teacher) => {
+                    const badge = getRoleBadge(teacher.role);
+                    return (
+                      <button
+                        key={teacher.id}
+                        onClick={() => {
+                          handleStaffClick(teacher);
+                          setActiveTab('featured');
+                        }}
+                        className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1 border border-emerald-100"
+                      >
+                        <div className="relative h-32 overflow-hidden bg-gradient-to-br from-emerald-100 to-teal-100">
+                          {teacher.image ? (
+                            <img
+                              src={getImageUrl(teacher.image)}
+                              alt={teacher.name}
+                              className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(teacher.name)}&background=059669&color=fff&bold=true&size=64`;
+                              }}
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center">
+                              <BookOpen className="w-8 h-8 text-emerald-600/50" />
+                            </div>
+                          )}
+                        </div>
+                        <div className="p-3">
+                          <h4 className="font-bold text-slate-900 text-sm truncate">{teacher.name}</h4>
+                          <p className="text-xs text-slate-500 truncate mb-2">{teacher.subject || teacher.department || 'Teacher'}</p>
+                          <div className={`inline-block px-2 py-0.5 ${badge.bg} ${badge.text} text-[8px] font-bold rounded-full`}>
+                            TEACHER
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Support Staff Section */}
+            {supportStaff.length > 0 && (
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 px-2">
+                  <Users className="w-5 h-5 text-slate-600" />
+                  <h3 className="text-sm font-black text-slate-700 uppercase tracking-wider">Support Staff</h3>
+                  <div className="h-px flex-1 bg-gradient-to-r from-slate-200 to-transparent"></div>
+                  <span className="text-xs font-bold text-slate-600">{supportStaff.length} Members</span>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                  {supportStaff.map((member) => {
+                    const badge = getRoleBadge(member.role);
+                    return (
+                      <button
+                        key={member.id}
+                        onClick={() => {
+                          handleStaffClick(member);
+                          setActiveTab('featured');
+                        }}
+                        className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1 border border-slate-200"
+                      >
+                        <div className="relative h-32 overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200">
+                          {member.image ? (
+                            <img
+                              src={getImageUrl(member.image)}
+                              alt={member.name}
+                              className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=64748b&color=fff&bold=true&size=64`;
+                              }}
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center">
+                              <Users className="w-8 h-8 text-slate-500/50" />
+                            </div>
+                          )}
+                        </div>
+                        <div className="p-3">
+                          <h4 className="font-bold text-slate-900 text-sm truncate">{member.name}</h4>
+                          <p className="text-xs text-slate-500 truncate">{member.position || member.role || 'Staff'}</p>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* If no staff at all */}
+            {staff.length === 0 && (
+              <div className="text-center py-12">
+                <Users className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                <p className="text-slate-500">No staff members found</p>
+              </div>
+            )}
           </div>
         )}
 
