@@ -102,16 +102,16 @@ const ModernStaffLeadership = () => {
           const allStaff = data.staff;
           setStaff(allStaff);
 
-          // Find Principal (Priority 1)
+          // Find Principal (Priority 1) - Based on actual data
           const foundPrincipal = allStaff.find(s => 
             s.id === 1 || 
-            s.position?.toLowerCase().includes('chief principal') || 
-            s.role?.toLowerCase().includes('principal') ||
-            s.position?.toLowerCase() === 'principal'
-          ) || allStaff[0];
+            s.role?.toLowerCase() === 'principal' ||
+            s.position?.toLowerCase().includes('chief principal') ||
+            s.position?.toLowerCase().includes('principal')
+          );
 
-          setPrincipal(foundPrincipal);
-          setFeaturedStaff(foundPrincipal);
+          setPrincipal(foundPrincipal || null);
+          setFeaturedStaff(foundPrincipal || allStaff[0]);
 
           // Find Deputies (Priority 2)
           const allDeputies = allStaff.filter(s => 
@@ -119,12 +119,16 @@ const ModernStaffLeadership = () => {
             s.position?.toLowerCase().includes('deputy')
           );
 
+          // Academics Deputy (Mr Paul Mwanzia - id: 2)
           const foundAcademicsDeputy = allDeputies.find(s => 
+            s.id === 2 ||
             s.position?.toLowerCase().includes('academics') ||
             s.department?.toLowerCase().includes('academics')
           );
 
+          // Admin Deputy (Madam Beatrice Olum - id: 3)
           const foundAdminDeputy = allDeputies.find(s => 
+            s.id === 3 ||
             s.position?.toLowerCase().includes('admin') || 
             s.position?.toLowerCase().includes('administration')
           );
@@ -132,7 +136,7 @@ const ModernStaffLeadership = () => {
           setAcademicsDeputy(foundAcademicsDeputy || null);
           setAdminDeputy(foundAdminDeputy || null);
 
-          // Find Teachers (Priority 3)
+          // Find Teachers (Priority 3) - Mr Denis Kanzi (id: 4) and others
           const allTeachers = allStaff.filter(s => 
             (s.role?.toLowerCase().includes('teacher') || 
             s.position?.toLowerCase().includes('teacher')) &&
@@ -212,16 +216,18 @@ const ModernStaffLeadership = () => {
   };
 
   // Get role badge with emerald/dark green theme
-  const getRoleBadge = (role) => {
-    if (!role) return { 
+  const getRoleBadge = (role, position) => {
+    if (!role && !position) return { 
       bg: 'bg-emerald-100', 
       text: 'text-emerald-800', 
       border: 'border-emerald-200',
       icon: <FiUser className="w-3 h-3 text-emerald-600" />
     };
     
-    const roleLower = role.toLowerCase();
-    if (roleLower.includes('principal')) {
+    const roleLower = role?.toLowerCase() || '';
+    const positionLower = position?.toLowerCase() || '';
+    
+    if (roleLower.includes('principal') || positionLower.includes('principal')) {
       return { 
         bg: 'bg-gradient-to-r from-emerald-900 to-teal-800', 
         text: 'text-white', 
@@ -229,7 +235,7 @@ const ModernStaffLeadership = () => {
         icon: <Crown className="w-3 h-3 text-yellow-300" />
       };
     }
-    if (roleLower.includes('deputy')) {
+    if (roleLower.includes('deputy') || positionLower.includes('deputy')) {
       return { 
         bg: 'bg-gradient-to-r from-teal-700 to-emerald-700', 
         text: 'text-white', 
@@ -237,7 +243,7 @@ const ModernStaffLeadership = () => {
         icon: <Medal className="w-3 h-3 text-yellow-200" />
       };
     }
-    if (roleLower.includes('teacher')) {
+    if (roleLower.includes('teacher') || positionLower.includes('teacher')) {
       return { 
         bg: 'bg-gradient-to-r from-emerald-600 to-teal-600', 
         text: 'text-white', 
@@ -344,7 +350,7 @@ if (loading) {
     );
   }
 
-  const leadershipTeam = [principal, academicsDeputy, adminDeputy, ...teachers.slice(0, 2)].filter(Boolean);
+  const leadershipTeam = [principal, academicsDeputy, adminDeputy].filter(Boolean);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-teal-50 font-sans">
@@ -439,7 +445,7 @@ if (loading) {
                   <div className="absolute top-6 left-6 z-20">
                     <div className="px-4 py-2 bg-emerald-900/90 backdrop-blur-sm rounded-full border border-emerald-600">
                       <span className="text-white text-sm font-bold flex items-center gap-2">
-                        {getRoleBadge(featuredStaff?.role).icon}
+                        {getRoleBadge(featuredStaff?.role, featuredStaff?.position).icon}
                         {featuredStaff?.position || featuredStaff?.role || 'Staff Member'}
                         {viewMode === 'other' && ' (Viewing)'}
                       </span>
@@ -471,7 +477,7 @@ if (loading) {
                     </div>
 
                     {/* Back to Principal Button - Show when viewing other staff */}
-                    {viewMode === 'other' && (
+                    {viewMode === 'other' && principal && (
                       <button
                         onClick={returnToPrincipal}
                         className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-white text-sm hover:bg-white/30 transition-all w-fit border border-white/30"
@@ -585,58 +591,114 @@ if (loading) {
               {/* Sidebar Cards */}
               <div className="lg:col-span-4 space-y-4 mt-4 lg:mt-0">
                 
-                {/* Leadership Cards */}
-                {leadershipTeam.map((member) => {
-                  const isActive = featuredStaff?.id === member.id;
-                  const badge = getRoleBadge(member.role);
+                {/* Leadership Cards - Principal First, then Deputies */}
+                {principal && (
+                  <button
+                    key={principal.id}
+                    onClick={() => handleStaffClick(principal)}
+                    className={`w-full group relative bg-white rounded-xl p-4 shadow-lg border-2 transition-all duration-300 text-left ${
+                      featuredStaff?.id === principal.id 
+                        ? 'border-emerald-700 bg-gradient-to-r from-emerald-50 to-white scale-[1.02]' 
+                        : 'border-emerald-100 hover:border-emerald-300 hover:shadow-xl'
+                    }`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="relative w-16 h-16 flex-shrink-0 rounded-xl overflow-hidden">
+                        {principal.image ? (
+                          <img
+                            src={getImageUrl(principal.image)}
+                            alt={principal.name}
+                            className="w-full h-full object-cover object-top"
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(principal.name)}&background=2d6a4f&color=fff&bold=true&size=64`;
+                            }}
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gradient-to-r from-emerald-900 to-teal-800 flex items-center justify-center">
+                            <Crown className="w-8 h-8 text-yellow-300" />
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="flex-grow">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="px-2 py-1 bg-gradient-to-r from-emerald-900 to-teal-800 text-white text-[10px] font-bold uppercase tracking-wider rounded-full flex items-center gap-1">
+                            <Crown className="w-3 h-3 text-yellow-300" /> PRINCIPAL
+                          </span>
+                          {featuredStaff?.id === principal.id && (
+                            <span className="flex items-center gap-1 text-emerald-700 text-xs font-bold">
+                              <FiCheck className="text-xs" /> Viewing
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                          {principal.name}
+                        </h3>
+                        <p className="text-slate-500 text-xs mt-1 line-clamp-1">
+                          {principal.position || 'Chief Principal'}
+                        </p>
+                        <div className="flex items-center gap-1 text-xs text-emerald-700 mt-2 font-bold">
+                          View Profile <FiChevronRight className="group-hover:translate-x-0.5 transition-transform" />
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                )}
+
+                {/* Deputy Principals */}
+                {[academicsDeputy, adminDeputy].filter(Boolean).map((deputy) => {
+                  const isActive = featuredStaff?.id === deputy.id;
+                  const badge = getRoleBadge(deputy.role, deputy.position);
                   
                   return (
                     <button
-                      key={member.id}
-                      onClick={() => handleStaffClick(member)}
+                      key={deputy.id}
+                      onClick={() => handleStaffClick(deputy)}
                       className={`w-full group relative bg-white rounded-xl p-4 shadow-lg border-2 transition-all duration-300 text-left ${
                         isActive 
-                          ? 'border-emerald-700 bg-gradient-to-r from-emerald-50 to-white scale-[1.02]' 
-                          : 'border-emerald-100 hover:border-emerald-300 hover:shadow-xl'
+                          ? 'border-teal-600 bg-gradient-to-r from-teal-50 to-white scale-[1.02]' 
+                          : 'border-emerald-100 hover:border-teal-300 hover:shadow-xl'
                       }`}
                     >
                       <div className="flex items-start gap-4">
                         <div className="relative w-16 h-16 flex-shrink-0 rounded-xl overflow-hidden">
-                          {member.image ? (
+                          {deputy.image ? (
                             <img
-                              src={getImageUrl(member.image)}
-                              alt={member.name}
+                              src={getImageUrl(deputy.image)}
+                              alt={deputy.name}
                               className="w-full h-full object-cover object-top"
                               onError={(e) => {
                                 e.target.onerror = null;
-                                e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=2d6a4f&color=fff&bold=true&size=64`;
+                                e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(deputy.name)}&background=0d9488&color=fff&bold=true&size=64`;
                               }}
                             />
                           ) : (
                             <div className={`w-full h-full ${badge.bg} flex items-center justify-center`}>
-                              <Users className="w-8 h-8 text-white" />
+                              <Medal className="w-8 h-8 text-yellow-200" />
                             </div>
                           )}
                         </div>
                         
                         <div className="flex-grow">
                           <div className="flex items-center justify-between mb-1">
-                            <span className={`px-2 py-1 ${badge.bg} ${badge.text} text-[10px] font-bold uppercase tracking-wider rounded-full`}>
-                              {member.role?.split(' ')[0] || 'Staff'}
+                            <span className={`px-2 py-1 ${badge.bg} ${badge.text} text-[10px] font-bold uppercase tracking-wider rounded-full flex items-center gap-1`}>
+                              <Medal className="w-3 h-3 text-yellow-200" />
+                              {deputy.position?.includes('Academics') ? 'ACADEMICS DEPUTY' : 'ADMIN DEPUTY'}
                             </span>
                             {isActive && (
-                              <span className="flex items-center gap-1 text-emerald-700 text-xs font-bold">
+                              <span className="flex items-center gap-1 text-teal-600 text-xs font-bold">
                                 <FiCheck className="text-xs" /> Viewing
                               </span>
                             )}
                           </div>
-                          <h3 className="font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
-                            {member.name}
+                          <h3 className="font-bold text-slate-900 group-hover:text-teal-600 transition-colors">
+                            {deputy.name}
                           </h3>
                           <p className="text-slate-500 text-xs mt-1 line-clamp-1">
-                            {member.position || member.department}
+                            {deputy.position}
                           </p>
-                          <div className="flex items-center gap-1 text-xs text-emerald-700 mt-2 font-bold">
+                          <div className="flex items-center gap-1 text-xs text-teal-600 mt-2 font-bold">
                             View Profile <FiChevronRight className="group-hover:translate-x-0.5 transition-transform" />
                           </div>
                         </div>
@@ -689,7 +751,7 @@ if (loading) {
           /* All Staff Grid View - With Proper Hierarchy */
           <div className="space-y-8">
             
-            {/* Principal Section */}
+            {/* Principal Section - Mr David Muange (id: 1) */}
             {principal && (
               <div className="space-y-3">
                 <div className="flex items-center gap-2 px-2">
@@ -732,7 +794,7 @@ if (loading) {
                     </div>
                     <div className="p-3 bg-gradient-to-r from-emerald-50 to-white">
                       <h4 className="font-bold text-slate-900 text-sm truncate">{principal.name}</h4>
-                      <p className="text-xs text-emerald-700 font-medium truncate">{principal.position || 'Principal'}</p>
+                      <p className="text-xs text-emerald-700 font-medium truncate">{principal.position || 'Chief Principal'}</p>
                     </div>
                   </button>
                 </div>
@@ -748,24 +810,25 @@ if (loading) {
                   <div className="h-px flex-1 bg-gradient-to-r from-teal-200 to-transparent"></div>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                  {[academicsDeputy, adminDeputy].filter(Boolean).map((deputy) => (
+                  {/* Academics Deputy - Mr Paul Mwanzia (id: 2) */}
+                  {academicsDeputy && (
                     <button
-                      key={deputy.id}
+                      key={academicsDeputy.id}
                       onClick={() => {
-                        handleStaffClick(deputy);
+                        handleStaffClick(academicsDeputy);
                         setActiveTab('featured');
                       }}
                       className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1 border border-teal-200"
                     >
                       <div className="relative h-32 overflow-hidden bg-gradient-to-br from-teal-600 to-emerald-600">
-                        {deputy.image ? (
+                        {academicsDeputy.image ? (
                           <img
-                            src={getImageUrl(deputy.image)}
-                            alt={deputy.name}
+                            src={getImageUrl(academicsDeputy.image)}
+                            alt={academicsDeputy.name}
                             className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
                             onError={(e) => {
                               e.target.onerror = null;
-                              e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(deputy.name)}&background=0d9488&color=fff&bold=true&size=64`;
+                              e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(academicsDeputy.name)}&background=0d9488&color=fff&bold=true&size=64`;
                             }}
                           />
                         ) : (
@@ -776,21 +839,61 @@ if (loading) {
                         {/* Deputy Badge */}
                         <div className="absolute top-2 right-2">
                           <div className="px-2 py-0.5 bg-gradient-to-r from-teal-700 to-emerald-700 text-white text-[8px] font-bold rounded-full">
-                            {deputy.position?.includes('Academics') ? 'ACADEMICS' : 'ADMIN'}
+                            ACADEMICS
                           </div>
                         </div>
                       </div>
                       <div className="p-3">
-                        <h4 className="font-bold text-slate-900 text-sm truncate">{deputy.name}</h4>
-                        <p className="text-xs text-slate-500 truncate">{deputy.position || 'Deputy Principal'}</p>
+                        <h4 className="font-bold text-slate-900 text-sm truncate">{academicsDeputy.name}</h4>
+                        <p className="text-xs text-slate-500 truncate">{academicsDeputy.position || 'Deputy Principal (Academics)'}</p>
                       </div>
                     </button>
-                  ))}
+                  )}
+
+                  {/* Admin Deputy - Madam Beatrice Olum (id: 3) */}
+                  {adminDeputy && (
+                    <button
+                      key={adminDeputy.id}
+                      onClick={() => {
+                        handleStaffClick(adminDeputy);
+                        setActiveTab('featured');
+                      }}
+                      className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1 border border-teal-200"
+                    >
+                      <div className="relative h-32 overflow-hidden bg-gradient-to-br from-teal-600 to-emerald-600">
+                        {adminDeputy.image ? (
+                          <img
+                            src={getImageUrl(adminDeputy.image)}
+                            alt={adminDeputy.name}
+                            className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(adminDeputy.name)}&background=0d9488&color=fff&bold=true&size=64`;
+                            }}
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center">
+                            <Users className="w-8 h-8 text-white/70" />
+                          </div>
+                        )}
+                        {/* Deputy Badge */}
+                        <div className="absolute top-2 right-2">
+                          <div className="px-2 py-0.5 bg-gradient-to-r from-teal-700 to-emerald-700 text-white text-[8px] font-bold rounded-full">
+                            ADMIN
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-3">
+                        <h4 className="font-bold text-slate-900 text-sm truncate">{adminDeputy.name}</h4>
+                        <p className="text-xs text-slate-500 truncate">{adminDeputy.position || 'Deputy Principal (Administration)'}</p>
+                      </div>
+                    </button>
+                  )}
                 </div>
               </div>
             )}
 
-            {/* Teachers Section */}
+            {/* Teachers Section - Mr Denis Kanzi (id: 4) and others */}
             {teachers.length > 0 && (
               <div className="space-y-3">
                 <div className="flex items-center gap-2 px-2">
@@ -801,7 +904,7 @@ if (loading) {
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                   {teachers.map((teacher) => {
-                    const badge = getRoleBadge(teacher.role);
+                    const badge = getRoleBadge(teacher.role, teacher.position);
                     return (
                       <button
                         key={teacher.id}
@@ -853,7 +956,7 @@ if (loading) {
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                   {supportStaff.map((member) => {
-                    const badge = getRoleBadge(member.role);
+                    const badge = getRoleBadge(member.role, member.position);
                     return (
                       <button
                         key={member.id}
