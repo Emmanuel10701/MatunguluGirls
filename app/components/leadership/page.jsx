@@ -105,15 +105,19 @@ const ModernStaffLeadership = () => {
           // ========== HIERARCHY MAPPING (From your working code) ==========
      // ========== HIERARCHY MAPPING (Fixed version) ==========
 
-// 1. Find Principal - Based on role or position containing "principal"
-const foundPrincipal = allStaff.find(s => 
-  s.role?.toLowerCase().includes('principal') || 
-  s.position?.toLowerCase().includes('chief principal') || 
-  s.position?.toLowerCase().includes('principal')
-) || allStaff[0];
+
 
 setPrincipal(foundPrincipal);
 setFeaturedStaff(foundPrincipal);
+
+const foundPrincipal = allStaff.find(s => 
+    s.id === 1 || 
+    s.position?.toLowerCase() === 'chief principal' || 
+    s.role?.toLowerCase() === 'principal'
+  ) || allStaff[0];
+
+  setPrincipal(foundPrincipal);
+  setFeaturedStaff(foundPrincipal);
 
 // 2. Find all Deputies - Anyone with deputy in role or position
 const allDeputies = allStaff.filter(s => 
