@@ -129,7 +129,6 @@ const ModernStaffLeadership = () => {
 
           // 4. Administration Deputy - Based on position containing "admin" or "administration"
           const foundAdminDeputy = allDeputies.find(s => 
-            s.position?.toLowerCase().includes('admin') || 
             s.position?.toLowerCase().includes('administration')
           );
 
