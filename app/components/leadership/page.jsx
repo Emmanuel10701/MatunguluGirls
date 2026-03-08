@@ -361,7 +361,7 @@ setSupportStaff(allSupportStaff);
         <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-6 sm:py-12">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center ">
           {/* Balanced Badge - Smaller on mobile */}
           <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4 sm:mb-6">
             <Sparkles className="w-3 h-3 sm:w-4 text-emerald-300" />
