@@ -102,9 +102,6 @@ const ModernStaffLeadership = () => {
           const allStaff = data.staff;
           setStaff(allStaff);
 
-          // ========== HIERARCHY MAPPING (Fixed version) ==========
-
-     // ========== HIERARCHY MAPPING (Fixed version) ==========
 
 // 1. Find Principal - Mr David Muange (id: 1)
 const foundPrincipal = allStaff.find(s => 
