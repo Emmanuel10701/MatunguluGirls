@@ -1518,7 +1518,6 @@ const VisionMissionSection = ({ vision, mission, motto, videoTour, videoType, vi
 };
 
 
-// NEW: Academic Results Section Component
 const AcademicResultsSection = ({ documentData }) => {
   const resultsData = [
     {
