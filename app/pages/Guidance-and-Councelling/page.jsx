@@ -1693,8 +1693,8 @@ export default function StudentCounseling() {
     })}
   </div>
 </div>
-
-<style jsx>{`
+{/* Replace the existing <style jsx> block with this: */}
+<style>{`
   /* Hide scrollbar for the scrollable container */
   div[style*="scrollbar-width: none"]::-webkit-scrollbar {
     display: none;
@@ -1707,8 +1707,65 @@ export default function StudentCounseling() {
       transition: transform 0.1s;
     }
   }
-`}</style>
 
+  /* Prevent zoom on iOS inputs */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* Touch-friendly targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Hide scrollbar for category pills */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .rounded-\\[2\\.5rem\\] {
+      border-radius: 1.5rem !important;
+    }
+    .rounded-\\[2rem\\] {
+      border-radius: 1.25rem !important;
+    }
+  }
+
+  /* Smooth animations */
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+
+  @keyframes zoom-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  
+  .animate-in {
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+  }
+  
+  .fade-in {
+    animation-name: fade-in;
+  }
+  
+  .zoom-in {
+    animation-name: zoom-in;
+  }
+`}</style>
             {/* Sessions Grid */}
             <div className="relative">
               {filteredSessions.length === 0 ? (
