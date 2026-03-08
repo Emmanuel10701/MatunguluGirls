@@ -803,12 +803,12 @@ export default function ModernStudentPortalPage() {
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 rounded-lg border border-emerald-200 
                   text-[8px] xs:text-[9px] sm:text-[10px] font-bold tracking-widest uppercase text-emerald-700 whitespace-nowrap">
                   <HiSparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-600" />
-                  Empowering Excellence Since 1978
+                  Empowering Excellence Since 1955
                 </div>
                 <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 
                   font-black tracking-tighter leading-[0.85] xs:leading-[0.9] text-slate-950">
-                  EDUCATION  
-                  <span className="block text-emerald-600 italic mt-1 xs:mt-2">IS LIGHT.</span>
+                  COMMITTED  
+                  <span className="block text-emerald-600 italic mt-1 xs:mt-2">TO EXCELLENCE.</span>
                 </h1>
                 <p className="text-sm xs:text-base sm:text-lg md:text-xl text-slate-500 font-medium 
                   max-w-full xs:max-w-xs sm:max-w-md leading-relaxed xs:leading-snug">
