@@ -1117,7 +1117,7 @@ const DEFAULT_SESSIONS = [
     priority: 'high',
     image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80',
     featured: true,
-    location: 'A.I.C Matungulu Girls'
+    location: 'Matungulu Girls'
   }
 ];
 
@@ -1624,27 +1624,90 @@ export default function StudentCounseling() {
               </div>
             </div>
 
-            {/* Modern Category Pills */}
-            <div className="flex gap-2 overflow-x-auto pb-4 no-scrollbar -mx-2 px-2">
-              {categoryOptions.map((category) => {
-                const Icon = category.icon;
-                const isActive = activeTab === category.id;
-                return (
-                  <button
-                    key={category.id}
-                    onClick={() => setActiveTab(category.id)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap text-[10px] font-black uppercase tracking-wider transition-all border ${
-                      isActive 
-                        ? "bg-emerald-600 border-emerald-600 text-white shadow-lg shadow-emerald-900/20" 
-                        : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"
-                    }`}
-                  >
-                    {Icon && <Icon className={isActive ? "text-white" : "text-slate-400"} size={12} />}
-                    {category.name}
-                  </button>
-                );
-              })}
-            </div>
+         {/* Modern Category Pills - Mobile Optimized */}
+<div className="relative -mx-4 sm:-mx-2 px-4 sm:px-2 mb-2">
+  {/* Gradient fade indicators for scroll */}
+  <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent pointer-events-none z-10 md:hidden"></div>
+  <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none z-10 md:hidden"></div>
+  
+  {/* Scrollable container */}
+  <div 
+    className="flex gap-1.5 sm:gap-2 overflow-x-auto pb-3"
+    style={{
+      msOverflowStyle: 'none',
+      scrollbarWidth: 'none',
+      WebkitOverflowScrolling: 'touch',
+      scrollSnapType: 'x mandatory'
+    }}
+  >
+    {categoryOptions.map((category) => {
+      const Icon = category.icon;
+      const isActive = activeTab === category.id;
+      return (
+        <button
+          key={category.id}
+          onClick={() => setActiveTab(category.id)}
+          style={{
+            minHeight: '44px',
+            minWidth: '44px',
+            touchAction: 'manipulation',
+            WebkitTapHighlightColor: 'transparent',
+            scrollSnapAlign: 'start'
+          }}
+          className={`
+            flex items-center gap-1.5 sm:gap-2 
+            px-3 sm:px-4 py-2.5 sm:py-2 
+            rounded-full 
+            whitespace-nowrap 
+            text-[11px] sm:text-[10px] 
+            font-black uppercase tracking-wider 
+            transition-all duration-200 
+            border-2
+            shadow-sm
+            active:scale-95
+            select-none
+            ${
+              isActive 
+                ? "bg-emerald-600 border-emerald-600 text-white shadow-lg shadow-emerald-900/20 scale-105 sm:scale-100" 
+                : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 active:bg-slate-100"
+            }
+          `}
+          aria-current={isActive ? 'true' : undefined}
+        >
+          {Icon && (
+            <Icon 
+              className={`
+                ${isActive ? "text-white" : "text-slate-400"} 
+                text-sm sm:text-xs
+                flex-shrink-0
+              `} 
+              size={16}
+              aria-hidden="true"
+            />
+          )}
+          <span className="truncate max-w-[80px] sm:max-w-none">
+            {category.name}
+          </span>
+        </button>
+      );
+    })}
+  </div>
+</div>
+
+<style jsx>{`
+  /* Hide scrollbar for the scrollable container */
+  div[style*="scrollbar-width: none"]::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Active state scale effect for mobile */
+  @media (max-width: 640px) {
+    button:active {
+      transform: scale(0.95);
+      transition: transform 0.1s;
+    }
+  }
+`}</style>
 
             {/* Sessions Grid */}
             <div className="relative">
