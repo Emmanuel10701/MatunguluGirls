@@ -2826,49 +2826,51 @@ return (
         </div>
       </div>
 
-      {/* Document Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {(schoolData?.admissionDocumentsRequired?.length > 0 ? schoolData.admissionDocumentsRequired : [
-          "Original KCPE Certificate",
-          "Birth Certificate",
-          "Passport Size Photos (4)",
-          "Medical Report",
-          "Transfer Letter (if applicable)",
-          "Previous School Reports"
-        ]).map((doc, index) => (
-          <div 
-            key={index}
-            className="group relative bg-white border-2 border-slate-50 rounded-[1rem] p-6 hover:border-emerald-400 hover:shadow-lg"
-          >
-            <div className="flex items-center gap-4">
-              <div className="relative shrink-0">
-                <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center group-hover:bg-emerald-600 transition-colors">
-                  <IoDocumentTextOutline className="text-slate-400 group-hover:text-white text-xl" />
-                </div>
-                <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] font-black border-4 border-white">
-                  {index + 1}
-                </div>
-              </div>
-              
-              <div className="min-w-0">
-                <h4 className="font-black text-slate-900 text-sm leading-tight uppercase tracking-tight truncate group-hover:whitespace-normal">
-                  {doc}
-                </h4>
-                <div className="flex items-center gap-2 mt-2">
-                  <span className="text-[9px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded uppercase tracking-wider">
-                    Required
-                  </span>
-                  {index === 0 && (
-                    <span className="text-[9px] font-black text-amber-600 bg-amber-50 px-2 py-0.5 rounded uppercase tracking-wider">
-                      Original
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
+  {/* Document Cards Grid */}
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+  {(schoolData?.admissionDocumentsRequired?.length > 0 ? schoolData.admissionDocumentsRequired : [
+    "Original KCPE  or KPSEA or KJSEA Certificate",
+    "Birth Certificate",
+    "Passport Size Photos (4)",
+    "Medical Report",
+    "Transfer Letter (if applicable)",
+    "Previous School Reports"
+  ]).map((doc, index) => (
+    <div 
+      key={index}
+      className="relative bg-white border-2 border-slate-100 rounded-[1rem] p-4 sm:p-6 shadow-sm"
+    >
+      <div className="flex items-center gap-4">
+        {/* Icon & Counter */}
+        <div className="relative shrink-0">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-50 flex items-center justify-center">
+            <IoDocumentTextOutline className="text-emerald-600 text-xl" />
           </div>
-        ))}
+          <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] font-black border-4 border-white">
+            {index + 1}
+          </div>
+        </div>
+        
+        {/* Content */}
+        <div className="min-w-0 flex-1">
+          <h4 className="font-black text-slate-900 text-sm leading-tight uppercase tracking-tight break-words">
+            {doc}
+          </h4>
+          <div className="flex flex-wrap items-center gap-2 mt-2">
+            <span className="text-[9px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded uppercase tracking-wider">
+              Required
+            </span>
+            {index === 0 && (
+              <span className="text-[9px] font-black text-amber-600 bg-amber-50 px-2 py-0.5 rounded uppercase tracking-wider">
+                Original
+              </span>
+            )}
+          </div>
+        </div>
       </div>
+    </div>
+  ))}
+</div>
 
       {/* Important Notes - Full-Screen Mobile Strategy */}
       <div className="mt-8 md:mt-12 p-6 md:p-12 bg-slate-900 rounded-none md:rounded-[2.5rem] relative overflow-hidden border-y border-white/5 md:border shadow-2xl">
