@@ -104,7 +104,6 @@ const ModernStaffLeadership = () => {
 
           // Find Principal (Priority 1) - Based on actual data
           const foundPrincipal = allStaff.find(s => 
-            s.id === 1 || 
             s.role?.toLowerCase() === 'principal' ||
             s.position?.toLowerCase().includes('chief principal') ||
             s.position?.toLowerCase().includes('principal')
@@ -121,14 +120,12 @@ const ModernStaffLeadership = () => {
 
           // Academics Deputy (Mr Paul Mwanzia - id: 2)
           const foundAcademicsDeputy = allDeputies.find(s => 
-            s.id === 2 ||
             s.position?.toLowerCase().includes('academics') ||
             s.department?.toLowerCase().includes('academics')
           );
 
           // Admin Deputy (Madam Beatrice Olum - id: 3)
           const foundAdminDeputy = allDeputies.find(s => 
-            s.id === 3 ||
             s.position?.toLowerCase().includes('admin') || 
             s.position?.toLowerCase().includes('administration')
           );
