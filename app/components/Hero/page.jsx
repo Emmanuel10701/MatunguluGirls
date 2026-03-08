@@ -12,6 +12,7 @@ import {
 import { IoRocketOutline } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
 
+
 // Enhanced Hero Slides with Modern Design - Matungulu Girls High School Focus
 const heroSlides = [
   {
