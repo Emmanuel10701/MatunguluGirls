@@ -90,7 +90,7 @@ const ModernStaffLeadership = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Fetch staff data from API
+  // Fetch staff data from API - HIERARCHY LOGIC FROM YOUR WORKING CODE
   useEffect(() => {
     const fetchStaff = async () => {
       try {
@@ -102,29 +102,30 @@ const ModernStaffLeadership = () => {
           const allStaff = data.staff;
           setStaff(allStaff);
 
-          // Find Principal (Priority 1) - Based on actual data
+          // ========== HIERARCHY MAPPING (From your working code) ==========
+          
+          // 1. Find Principal - Based on role/position containing "principal"
           const foundPrincipal = allStaff.find(s => 
-            s.role?.toLowerCase() === 'principal' ||
-            s.position?.toLowerCase().includes('chief principal') ||
+            s.position?.toLowerCase().includes('chief principal') || 
+            s.role?.toLowerCase().includes('principal') ||
             s.position?.toLowerCase().includes('principal')
-          );
+          ) || allStaff[0];
 
-          setPrincipal(foundPrincipal || null);
-          setFeaturedStaff(foundPrincipal || allStaff[0]);
+          setPrincipal(foundPrincipal);
+          setFeaturedStaff(foundPrincipal);
 
-          // Find Deputies (Priority 2)
+          // 2. Find all Deputies - Anyone with deputy in role or position
           const allDeputies = allStaff.filter(s => 
             s.role?.toLowerCase().includes('deputy') || 
             s.position?.toLowerCase().includes('deputy')
           );
 
-          // Academics Deputy (Mr Paul Mwanzia - id: 2)
+          // 3. Academics Deputy - Based on position containing "academics"
           const foundAcademicsDeputy = allDeputies.find(s => 
-            s.position?.toLowerCase().includes('academics') ||
-            s.department?.toLowerCase().includes('academics')
+            s.position?.toLowerCase().includes('academics')
           );
 
-          // Admin Deputy (Madam Beatrice Olum - id: 3)
+          // 4. Administration Deputy - Based on position containing "admin" or "administration"
           const foundAdminDeputy = allDeputies.find(s => 
             s.position?.toLowerCase().includes('admin') || 
             s.position?.toLowerCase().includes('administration')
@@ -133,16 +134,14 @@ const ModernStaffLeadership = () => {
           setAcademicsDeputy(foundAcademicsDeputy || null);
           setAdminDeputy(foundAdminDeputy || null);
 
-          // Find Teachers (Priority 3) - Mr Denis Kanzi (id: 4) and others
+          // 5. Find ALL Teachers - Everyone with teacher role/position
           const allTeachers = allStaff.filter(s => 
-            (s.role?.toLowerCase().includes('teacher') || 
-            s.position?.toLowerCase().includes('teacher')) &&
-            !s.role?.toLowerCase().includes('principal') &&
-            !s.role?.toLowerCase().includes('deputy')
+            s.role?.toLowerCase().includes('teacher') || 
+            s.position?.toLowerCase().includes('teacher')
           );
           setTeachers(allTeachers);
 
-          // Find Support Staff (Priority 4 - everything else)
+          // 6. Find Support Staff - Everyone else (not principal, not deputy, not teacher)
           const allSupportStaff = allStaff.filter(s => 
             !s.role?.toLowerCase().includes('principal') &&
             !s.role?.toLowerCase().includes('deputy') &&
@@ -152,6 +151,8 @@ const ModernStaffLeadership = () => {
             !s.position?.toLowerCase().includes('teacher')
           );
           setSupportStaff(allSupportStaff);
+
+          // ========== END OF HIERARCHY LOGIC ==========
 
         } else {
           throw new Error('Format error: Expected successful staff array');
@@ -224,7 +225,7 @@ const ModernStaffLeadership = () => {
     const roleLower = role?.toLowerCase() || '';
     const positionLower = position?.toLowerCase() || '';
     
-    if (roleLower.includes('principal') || positionLower.includes('principal')) {
+    if (roleLower.includes('principal') || positionLower.includes('chief principal') || positionLower.includes('principal')) {
       return { 
         bg: 'bg-gradient-to-r from-emerald-900 to-teal-800', 
         text: 'text-white', 
@@ -412,7 +413,7 @@ if (loading) {
 
         {activeTab === 'featured' ? (
           <>
-            {/* Main Grid - Same structure as original but with emerald theme */}
+            {/* Main Grid */}
             <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 items-start">
               
               {/* Featured Hero Card */}
@@ -588,7 +589,7 @@ if (loading) {
               {/* Sidebar Cards */}
               <div className="lg:col-span-4 space-y-4 mt-4 lg:mt-0">
                 
-                {/* Leadership Cards - Principal First, then Deputies */}
+                {/* PRINCIPAL CARD - Top of hierarchy */}
                 {principal && (
                   <button
                     key={principal.id}
@@ -643,66 +644,115 @@ if (loading) {
                   </button>
                 )}
 
-                {/* Deputy Principals */}
-                {[academicsDeputy, adminDeputy].filter(Boolean).map((deputy) => {
-                  const isActive = featuredStaff?.id === deputy.id;
-                  const badge = getRoleBadge(deputy.role, deputy.position);
-                  
-                  return (
-                    <button
-                      key={deputy.id}
-                      onClick={() => handleStaffClick(deputy)}
-                      className={`w-full group relative bg-white rounded-xl p-4 shadow-lg border-2 transition-all duration-300 text-left ${
-                        isActive 
-                          ? 'border-teal-600 bg-gradient-to-r from-teal-50 to-white scale-[1.02]' 
-                          : 'border-emerald-100 hover:border-teal-300 hover:shadow-xl'
-                      }`}
-                    >
-                      <div className="flex items-start gap-4">
-                        <div className="relative w-16 h-16 flex-shrink-0 rounded-xl overflow-hidden">
-                          {deputy.image ? (
-                            <img
-                              src={getImageUrl(deputy.image)}
-                              alt={deputy.name}
-                              className="w-full h-full object-cover object-top"
-                              onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(deputy.name)}&background=0d9488&color=fff&bold=true&size=64`;
-                              }}
-                            />
-                          ) : (
-                            <div className={`w-full h-full ${badge.bg} flex items-center justify-center`}>
-                              <Medal className="w-8 h-8 text-yellow-200" />
-                            </div>
+                {/* ACADEMICS DEPUTY CARD - Second in hierarchy */}
+                {academicsDeputy && (
+                  <button
+                    key={academicsDeputy.id}
+                    onClick={() => handleStaffClick(academicsDeputy)}
+                    className={`w-full group relative bg-white rounded-xl p-4 shadow-lg border-2 transition-all duration-300 text-left ${
+                      featuredStaff?.id === academicsDeputy.id 
+                        ? 'border-teal-600 bg-gradient-to-r from-teal-50 to-white scale-[1.02]' 
+                        : 'border-emerald-100 hover:border-teal-300 hover:shadow-xl'
+                    }`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="relative w-16 h-16 flex-shrink-0 rounded-xl overflow-hidden">
+                        {academicsDeputy.image ? (
+                          <img
+                            src={getImageUrl(academicsDeputy.image)}
+                            alt={academicsDeputy.name}
+                            className="w-full h-full object-cover object-top"
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(academicsDeputy.name)}&background=0d9488&color=fff&bold=true&size=64`;
+                            }}
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gradient-to-r from-teal-700 to-emerald-700 flex items-center justify-center">
+                            <Medal className="w-8 h-8 text-yellow-200" />
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="flex-grow">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="px-2 py-1 bg-gradient-to-r from-teal-700 to-emerald-700 text-white text-[10px] font-bold uppercase tracking-wider rounded-full flex items-center gap-1">
+                            <Medal className="w-3 h-3 text-yellow-200" /> ACADEMICS DEPUTY
+                          </span>
+                          {featuredStaff?.id === academicsDeputy.id && (
+                            <span className="flex items-center gap-1 text-teal-600 text-xs font-bold">
+                              <FiCheck className="text-xs" /> Viewing
+                            </span>
                           )}
                         </div>
-                        
-                        <div className="flex-grow">
-                          <div className="flex items-center justify-between mb-1">
-                            <span className={`px-2 py-1 ${badge.bg} ${badge.text} text-[10px] font-bold uppercase tracking-wider rounded-full flex items-center gap-1`}>
-                              <Medal className="w-3 h-3 text-yellow-200" />
-                              {deputy.position?.includes('Academics') ? 'ACADEMICS DEPUTY' : 'ADMIN DEPUTY'}
-                            </span>
-                            {isActive && (
-                              <span className="flex items-center gap-1 text-teal-600 text-xs font-bold">
-                                <FiCheck className="text-xs" /> Viewing
-                              </span>
-                            )}
-                          </div>
-                          <h3 className="font-bold text-slate-900 group-hover:text-teal-600 transition-colors">
-                            {deputy.name}
-                          </h3>
-                          <p className="text-slate-500 text-xs mt-1 line-clamp-1">
-                            {deputy.position}
-                          </p>
-                          <div className="flex items-center gap-1 text-xs text-teal-600 mt-2 font-bold">
-                            View Profile <FiChevronRight className="group-hover:translate-x-0.5 transition-transform" />
-                          </div>
+                        <h3 className="font-bold text-slate-900 group-hover:text-teal-600 transition-colors">
+                          {academicsDeputy.name}
+                        </h3>
+                        <p className="text-slate-500 text-xs mt-1 line-clamp-1">
+                          {academicsDeputy.position || 'Deputy Principal (Academics)'}
+                        </p>
+                        <div className="flex items-center gap-1 text-xs text-teal-600 mt-2 font-bold">
+                          View Profile <FiChevronRight className="group-hover:translate-x-0.5 transition-transform" />
                         </div>
                       </div>
-                    </button>
-                  );
-                })}
+                    </div>
+                  </button>
+                )}
+
+                {/* ADMIN DEPUTY CARD - Third in hierarchy */}
+                {adminDeputy && (
+                  <button
+                    key={adminDeputy.id}
+                    onClick={() => handleStaffClick(adminDeputy)}
+                    className={`w-full group relative bg-white rounded-xl p-4 shadow-lg border-2 transition-all duration-300 text-left ${
+                      featuredStaff?.id === adminDeputy.id 
+                        ? 'border-teal-600 bg-gradient-to-r from-teal-50 to-white scale-[1.02]' 
+                        : 'border-emerald-100 hover:border-teal-300 hover:shadow-xl'
+                    }`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="relative w-16 h-16 flex-shrink-0 rounded-xl overflow-hidden">
+                        {adminDeputy.image ? (
+                          <img
+                            src={getImageUrl(adminDeputy.image)}
+                            alt={adminDeputy.name}
+                            className="w-full h-full object-cover object-top"
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(adminDeputy.name)}&background=0d9488&color=fff&bold=true&size=64`;
+                            }}
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gradient-to-r from-teal-700 to-emerald-700 flex items-center justify-center">
+                            <Medal className="w-8 h-8 text-yellow-200" />
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="flex-grow">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="px-2 py-1 bg-gradient-to-r from-teal-700 to-emerald-700 text-white text-[10px] font-bold uppercase tracking-wider rounded-full flex items-center gap-1">
+                            <Medal className="w-3 h-3 text-yellow-200" /> ADMIN DEPUTY
+                          </span>
+                          {featuredStaff?.id === adminDeputy.id && (
+                            <span className="flex items-center gap-1 text-teal-600 text-xs font-bold">
+                              <FiCheck className="text-xs" /> Viewing
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="font-bold text-slate-900 group-hover:text-teal-600 transition-colors">
+                          {adminDeputy.name}
+                        </h3>
+                        <p className="text-slate-500 text-xs mt-1 line-clamp-1">
+                          {adminDeputy.position || 'Deputy Principal (Administration)'}
+                        </p>
+                        <div className="flex items-center gap-1 text-xs text-teal-600 mt-2 font-bold">
+                          View Profile <FiChevronRight className="group-hover:translate-x-0.5 transition-transform" />
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                )}
 
                 {/* Stats Card */}
                 <div className="bg-gradient-to-br from-emerald-900 to-teal-800 rounded-xl p-6 text-white shadow-xl">
@@ -748,7 +798,7 @@ if (loading) {
           /* All Staff Grid View - With Proper Hierarchy */
           <div className="space-y-8">
             
-            {/* Principal Section - Mr David Muange (id: 1) */}
+            {/* PRINCIPAL SECTION - Top of hierarchy */}
             {principal && (
               <div className="space-y-3">
                 <div className="flex items-center gap-2 px-2">
@@ -798,7 +848,7 @@ if (loading) {
               </div>
             )}
 
-            {/* Deputy Principals Section */}
+            {/* DEPUTY PRINCIPALS SECTION - Second in hierarchy */}
             {(academicsDeputy || adminDeputy) && (
               <div className="space-y-3">
                 <div className="flex items-center gap-2 px-2">
@@ -807,7 +857,7 @@ if (loading) {
                   <div className="h-px flex-1 bg-gradient-to-r from-teal-200 to-transparent"></div>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                  {/* Academics Deputy - Mr Paul Mwanzia (id: 2) */}
+                  {/* Academics Deputy */}
                   {academicsDeputy && (
                     <button
                       key={academicsDeputy.id}
@@ -847,7 +897,7 @@ if (loading) {
                     </button>
                   )}
 
-                  {/* Admin Deputy - Madam Beatrice Olum (id: 3) */}
+                  {/* Admin Deputy */}
                   {adminDeputy && (
                     <button
                       key={adminDeputy.id}
@@ -890,7 +940,7 @@ if (loading) {
               </div>
             )}
 
-            {/* Teachers Section - Mr Denis Kanzi (id: 4) and others */}
+            {/* TEACHERS SECTION - Third in hierarchy */}
             {teachers.length > 0 && (
               <div className="space-y-3">
                 <div className="flex items-center gap-2 px-2">
@@ -942,7 +992,7 @@ if (loading) {
               </div>
             )}
 
-            {/* Support Staff Section */}
+            {/* SUPPORT STAFF SECTION - Fourth in hierarchy */}
             {supportStaff.length > 0 && (
               <div className="space-y-3">
                 <div className="flex items-center gap-2 px-2">
