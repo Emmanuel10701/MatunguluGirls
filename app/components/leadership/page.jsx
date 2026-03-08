@@ -108,7 +108,6 @@ const ModernStaffLeadership = () => {
           const foundPrincipal = allStaff.find(s => 
             s.position?.toLowerCase().includes('Chief Principal') || 
             s.position?.toLowerCase().includes('chief principal') || 
-
             s.role?.toLowerCase().includes('Principal') ||
             s.position?.toLowerCase().includes('principal')
           ) || allStaff[0];
@@ -116,24 +115,25 @@ const ModernStaffLeadership = () => {
           setPrincipal(foundPrincipal);
           setFeaturedStaff(foundPrincipal);
 
-          // 2. Find all Deputies - Anyone with deputy in role or position
-          const allDeputies = allStaff.filter(s => 
-            s.role?.toLowerCase().includes('deputy') || 
-            s.position?.toLowerCase().includes('deputy')
-          );
+// Find all deputies
+const allDeputies = allStaff.filter(s => 
+  s.role?.toLowerCase().includes('deputy') || 
+  s.position?.toLowerCase().includes('deputy')
+);
 
-          // 3. Academics Deputy - Based on position containing "academics"
-          const foundAcademicsDeputy = allDeputies.find(s => 
-            s.position?.toLowerCase().includes('academics')
-          );
+// Academics Deputy - Based on position containing "academics"
+const foundAcademicsDeputy = allDeputies.find(s => 
+  s.position?.toLowerCase().includes('academics')
+);
 
-          // 4. Administration Deputy - Based on position containing "admin" or "administration"
-          const foundAdminDeputy = allDeputies.find(s => 
-            s.position?.toLowerCase().includes('administration')
-          );
+// Administration Deputy - Based on position containing "administration" or "admin"
+const foundAdminDeputy = allDeputies.find(s => 
+  s.position?.toLowerCase().includes('administration') || 
+  s.position?.toLowerCase().includes('admin')
+);
 
-          setAcademicsDeputy(foundAcademicsDeputy || null);
-          setAdminDeputy(foundAdminDeputy || null);
+setAcademicsDeputy(foundAcademicsDeputy || null);
+setAdminDeputy(foundAdminDeputy || null);
 
           // 5. Find ALL Teachers - Everyone with teacher role/position
           const allTeachers = allStaff.filter(s => 
