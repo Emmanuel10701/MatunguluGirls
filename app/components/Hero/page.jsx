@@ -46,7 +46,7 @@ const heroSlides = [
     gradient: "from-blue-500 via-cyan-400 to-teal-600",
     description: "Matungulu Girls provides rigorous academic programs with emphasis on Science, Technology, Engineering, and Mathematics, preparing students for university and professional careers.",
     background: "bg-gradient-to-br from-blue-900/90 via-cyan-900/80 to-teal-900/70",
-    image: "/hero/matG1.jpg",
+    image: "/mat.jpg",
     stats: { 
       subjects: "Diverse Curriculum", 
       teachers: "Qualified Educators", 
