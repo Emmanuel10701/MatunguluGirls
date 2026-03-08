@@ -1428,7 +1428,7 @@ export default function StudentCounseling() {
           : 'text-emerald-200/60 hover:text-white'
       }`}
     >
-      <FiGrid size={14} className="sm:size-[16px]" />
+      <FiGrid size={12} className="sm:size-[16px]" />
     </button>
     <button
       onClick={() => setViewMode('list')}
@@ -1438,7 +1438,7 @@ export default function StudentCounseling() {
           : 'text-emerald-200/60 hover:text-white'
       }`}
     >
-      <FiList size={14} className="sm:size-[16px]" />
+      <FiList size={12} className="sm:size-[16px]" />
     </button>
   </div>
 </div>
