@@ -135,7 +135,6 @@ const foundAdminDeputy = allDeputies.find(s =>
 setAcademicsDeputy(foundAcademicsDeputy || null);
 setAdminDeputy(foundAdminDeputy || null);
 
-          // 5. Find ALL Teachers - Everyone with teacher role/position
           const allTeachers = allStaff.filter(s => 
             s.role?.toLowerCase().includes('teacher') || 
             s.position?.toLowerCase().includes('teacher')
