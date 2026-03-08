@@ -20,7 +20,7 @@ const heroSlides = [
     gradient: "from-emerald-500 via-teal-400 to-green-600",
     description: "A leading public secondary school in Matungulu sub-county dedicated to academic excellence, character development, and empowering young women through quality education and holistic development.",
     background: "bg-gradient-to-br from-emerald-900/90 via-teal-900/80 to-green-900/70",
-    image: "/hero/matG.jpg",
+    image: "/hero/MatG1.jpg",
     stats: { 
       established: "Est. 1956", 
       students: "County School", 
@@ -70,7 +70,7 @@ const heroSlides = [
     gradient: "from-purple-500 via-pink-400 to-red-600",
     description: "Beyond academics, Matungulu Girls develops well-rounded individuals through sports, cultural activities, leadership training, and community service programs.",
     background: "bg-gradient-to-br from-purple-900/90 via-pink-900/80 to-red-900/70",
-    image: "/bg/MatG1.jpg",
+    image: "/hero/MatG1.jpg",
     stats: { 
       sports: "Athletic Programs", 
       clubs: "Student Societies", 
