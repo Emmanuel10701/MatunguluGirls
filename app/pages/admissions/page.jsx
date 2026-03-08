@@ -2838,11 +2838,11 @@ return (
         ]).map((doc, index) => (
           <div 
             key={index}
-            className="group relative bg-white border-2 border-slate-50 rounded-[2rem] p-6 transition-all hover:border-emerald-400 hover:shadow-2xl"
+            className="group relative bg-white border-2 border-slate-50 rounded-[1rem] p-6 hover:border-emerald-400 hover:shadow-lg"
           >
             <div className="flex items-center gap-4">
               <div className="relative shrink-0">
-                <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center group-hover:bg-emerald-600 transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center group-hover:bg-emerald-600 transition-colors">
                   <IoDocumentTextOutline className="text-slate-400 group-hover:text-white text-xl" />
                 </div>
                 <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] font-black border-4 border-white">
