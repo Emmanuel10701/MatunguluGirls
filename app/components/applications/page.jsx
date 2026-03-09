@@ -2116,7 +2116,7 @@ const EmptyState = () => (
                <td className="p-5">
 <td className="p-5">
   <div className="inline-flex items-baseline gap-1 bg-emerald-50 px-3 py-1 rounded-lg">
-    <span className="text-lg font-black text-emerald-800">{application.kcpeMarks || 0}</span>
+    <span className="text-lg font-black text-emerald-800">{application.kpseaMarks || 0}</span>  // ← FIXED
     <span className="text-[10px] font-bold text-emerald-600 uppercase">/100</span>
   </div>
 </td>
