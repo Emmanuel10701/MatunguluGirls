@@ -90,86 +90,100 @@ const ModernStaffLeadership = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Fetch staff data from API
-  useEffect(() => {
-    const fetchStaff = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('/api/staff');
-        const data = await response.json();
+// Fetch staff data from API
+useEffect(() => {
+  const fetchStaff = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('/api/staff');
+      const data = await response.json();
 
-        if (data.success && Array.isArray(data.staff)) {
-          const allStaff = data.staff;
-          setStaff(allStaff);
+      if (data.success && Array.isArray(data.staff)) {
+        const allStaff = data.staff;
+        setStaff(allStaff);
 
+        // ========== CORRECTED HIERARCHY LOGIC ==========
 
-// 1. Find Principal - Mr David Muange (id: 1)
-const foundPrincipal = allStaff.find(s => 
-    s.id === 1 || // Direct ID match
-    s.role?.toLowerCase() === 'principal' || // Exact role match
-    s.role?.toLowerCase().includes('principal') || // Role contains principal
-    s.position?.toLowerCase().includes('chief principal') || // Position contains chief principal
-    s.position?.toLowerCase().includes('principal') // Position contains principal
-) || allStaff[0]; // Fallback to first staff if no principal found
+        // 1. Find Principal - EXACT MATCH only (no partial matches)
+        const foundPrincipal = allStaff.find(s => 
+          // Direct ID match for Mr David Muange
+          s.id === 1 ||
+          // Exact role match - check for "Principal" exactly
+          s.role === 'Principal' ||
+          s.role?.toLowerCase() === 'principal' ||
+          // Position contains principal BUT ensure it's not a deputy
+          (s.position && (
+            s.position.toLowerCase().includes('chief principal') || 
+            s.position.toLowerCase().includes('principal')
+          ) && !s.position.toLowerCase().includes('deputy'))
+        );
 
-setPrincipal(foundPrincipal);
-setFeaturedStaff(foundPrincipal);
+        // Set principal - use found principal or first staff as fallback
+        const selectedPrincipal = foundPrincipal || allStaff[0];
+        setPrincipal(selectedPrincipal);
+        setFeaturedStaff(selectedPrincipal);
 
-// Find all deputies
-const allDeputies = allStaff.filter(s => 
-  s.role?.toLowerCase().includes('deputy') || 
-  s.position?.toLowerCase().includes('deputy')
-);
+        // 2. Find all deputies (excluding the principal)
+        const allDeputies = allStaff.filter(s => 
+          (s.role?.toLowerCase().includes('deputy') || 
+           s.position?.toLowerCase().includes('deputy')) &&
+          s.id !== selectedPrincipal.id // Exclude the principal
+        );
 
-// Academics Deputy - based on position containing "academics"
-const foundAcademicsDeputy = allDeputies.find(s => 
-  s.position?.toLowerCase().includes('academics')
-);
+        // 3. Academics Deputy - based on position containing "academics"
+        const foundAcademicsDeputy = allDeputies.find(s => 
+          s.position?.toLowerCase().includes('academics')
+        );
 
-// Administration Deputy - based on position containing "admin" or "administration"
-const foundAdminDeputy = allDeputies.find(s => 
-  s.position?.toLowerCase().includes('admin') || 
-  s.position?.toLowerCase().includes('administration')
-);
+        // 4. Administration Deputy - based on position containing "admin" or "administration"
+        const foundAdminDeputy = allDeputies.find(s => 
+          s.position?.toLowerCase().includes('admin') || 
+          s.position?.toLowerCase().includes('administration')
+        );
 
-setAcademicsDeputy(foundAcademicsDeputy || null);
-setAdminDeputy(foundAdminDeputy || null);
+        setAcademicsDeputy(foundAcademicsDeputy || null);
+        setAdminDeputy(foundAdminDeputy || null);
 
-// 5. Find ALL Teachers - Everyone with teacher role/position
-const allTeachers = allStaff.filter(s => 
-  s.role?.toLowerCase().includes('teacher') || 
-  s.position?.toLowerCase().includes('teacher')
-);
-setTeachers(allTeachers);
+        // 5. Find ALL Teachers - Everyone with teacher role/position
+        const allTeachers = allStaff.filter(s => 
+          (s.role?.toLowerCase().includes('teacher') || 
+           s.position?.toLowerCase().includes('teacher')) &&
+          s.id !== selectedPrincipal.id && // Not principal
+          !allDeputies.includes(s) // Not a deputy
+        );
+        setTeachers(allTeachers);
 
-// 6. Find Support Staff - Everyone else (not principal, not deputy, not teacher)
-const allSupportStaff = allStaff.filter(s => 
-  !s.role?.toLowerCase().includes('principal') &&
-  !s.role?.toLowerCase().includes('deputy') &&
-  !s.role?.toLowerCase().includes('teacher') &&
-  !s.position?.toLowerCase().includes('principal') &&
-  !s.position?.toLowerCase().includes('deputy') &&
-  !s.position?.toLowerCase().includes('teacher')
-);
-setSupportStaff(allSupportStaff);
+        // 6. Find Support Staff - Everyone else
+        const allSupportStaff = allStaff.filter(s => 
+          s.id !== selectedPrincipal.id && // Not principal
+          !allDeputies.includes(s) && // Not a deputy
+          !allTeachers.includes(s) // Not a teacher
+        );
+        setSupportStaff(allSupportStaff);
 
-          // ========== END OF HIERARCHY LOGIC ==========
+        // Debug: Log the hierarchy to verify
+        console.log('✅ HIERARCHY ASSIGNMENT:');
+        console.log('Principal:', selectedPrincipal?.name);
+        console.log('Academics Deputy:', foundAcademicsDeputy?.name || 'None');
+        console.log('Admin Deputy:', foundAdminDeputy?.name || 'None');
+        console.log('Teachers:', allTeachers.length);
+        console.log('Support Staff:', allSupportStaff.length);
 
-        } else {
-          throw new Error('Format error: Expected successful staff array');
-        }
-      } catch (err) {
-        console.error('Fetch Error:', err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
+        // ========== END OF HIERARCHY LOGIC ==========
+
+      } else {
+        throw new Error('Format error: Expected successful staff array');
       }
-    };
+    } catch (err) {
+      console.error('Fetch Error:', err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchStaff();
-  }, []);
-
-  // Handle staff click
+  fetchStaff();
+}, []);  // Handle staff click
   const handleStaffClick = (staffMember) => {
     if (principal?.id === staffMember.id) {
       setViewMode('principal');
