@@ -24,7 +24,7 @@ const heroSlides = [
     image: "/hero/MatG1.jpg",
     stats: { 
       established: "Est. 1956", 
-      students: "County School", 
+      students: "Extra County School", 
       excellence: "Quality Education" 
     },
     features: ["STEM Excellence", "Leadership Programs", "Sports & Arts", "Community Outreach"],
