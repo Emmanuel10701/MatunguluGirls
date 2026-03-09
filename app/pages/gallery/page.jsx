@@ -123,47 +123,77 @@ const ModernGalleryCard = ({ gallery, onView, onFavorite, viewMode = 'grid', onS
         text: 'text-emerald-700',
         border: 'border-emerald-200',
         iconBg: 'bg-emerald-100',
-        iconColor: 'text-emerald-600'
+        iconColor: 'text-emerald-600',
+        darkBg: 'bg-emerald-900/20',
+        darkBorder: 'border-emerald-800/30',
+        darkText: 'text-emerald-400',
+        buttonBg: 'bg-emerald-600 hover:bg-emerald-700',
+        lightBg: 'bg-emerald-600'
       },
       CLASSROOMS: { 
-        gradient: 'from-emerald-600 to-teal-600', 
-        bg: 'bg-emerald-50', 
-        text: 'text-emerald-700',
-        border: 'border-emerald-200',
-        iconBg: 'bg-emerald-100',
-        iconColor: 'text-emerald-600'
+        gradient: 'from-blue-600 to-cyan-600', 
+        bg: 'bg-blue-50', 
+        text: 'text-blue-700',
+        border: 'border-blue-200',
+        iconBg: 'bg-blue-100',
+        iconColor: 'text-blue-600',
+        darkBg: 'bg-blue-900/20',
+        darkBorder: 'border-blue-800/30',
+        darkText: 'text-blue-400',
+        buttonBg: 'bg-blue-600 hover:bg-blue-700',
+        lightBg: 'bg-blue-600'
       },
       TEACHING: { 
-        gradient: 'from-emerald-600 to-teal-600', 
-        bg: 'bg-emerald-50', 
-        text: 'text-emerald-700',
-        border: 'border-emerald-200',
-        iconBg: 'bg-emerald-100',
-        iconColor: 'text-emerald-600'
+        gradient: 'from-purple-600 to-pink-600', 
+        bg: 'bg-purple-50', 
+        text: 'text-purple-700',
+        border: 'border-purple-200',
+        iconBg: 'bg-purple-100',
+        iconColor: 'text-purple-600',
+        darkBg: 'bg-purple-900/20',
+        darkBorder: 'border-purple-800/30',
+        darkText: 'text-purple-400',
+        buttonBg: 'bg-purple-600 hover:bg-purple-700',
+        lightBg: 'bg-purple-600'
       },
       LABORATORIES: { 
-        gradient: 'from-emerald-600 to-teal-600', 
-        bg: 'bg-emerald-50', 
-        text: 'text-emerald-700',
-        border: 'border-emerald-200',
-        iconBg: 'bg-emerald-100',
-        iconColor: 'text-emerald-600'
+        gradient: 'from-amber-600 to-orange-600', 
+        bg: 'bg-amber-50', 
+        text: 'text-amber-700',
+        border: 'border-amber-200',
+        iconBg: 'bg-amber-100',
+        iconColor: 'text-amber-600',
+        darkBg: 'bg-amber-900/20',
+        darkBorder: 'border-amber-800/30',
+        darkText: 'text-amber-400',
+        buttonBg: 'bg-amber-600 hover:bg-amber-700',
+        lightBg: 'bg-amber-600'
       },
       SPORTS_DAY: { 
-        gradient: 'from-emerald-600 to-teal-600', 
-        bg: 'bg-emerald-50', 
-        text: 'text-emerald-700',
-        border: 'border-emerald-200',
-        iconBg: 'bg-emerald-100',
-        iconColor: 'text-emerald-600'
+        gradient: 'from-red-600 to-rose-600', 
+        bg: 'bg-red-50', 
+        text: 'text-red-700',
+        border: 'border-red-200',
+        iconBg: 'bg-red-100',
+        iconColor: 'text-red-600',
+        darkBg: 'bg-red-900/20',
+        darkBorder: 'border-red-800/30',
+        darkText: 'text-red-400',
+        buttonBg: 'bg-red-600 hover:bg-red-700',
+        lightBg: 'bg-red-600'
       },
       GRADUATION: { 
-        gradient: 'from-emerald-600 to-teal-600', 
-        bg: 'bg-emerald-50', 
-        text: 'text-emerald-700',
-        border: 'border-emerald-200',
-        iconBg: 'bg-emerald-100',
-        iconColor: 'text-emerald-600'
+        gradient: 'from-violet-600 to-indigo-600', 
+        bg: 'bg-violet-50', 
+        text: 'text-violet-700',
+        border: 'border-violet-200',
+        iconBg: 'bg-violet-100',
+        iconColor: 'text-violet-600',
+        darkBg: 'bg-violet-900/20',
+        darkBorder: 'border-violet-800/30',
+        darkText: 'text-violet-400',
+        buttonBg: 'bg-violet-600 hover:bg-violet-700',
+        lightBg: 'bg-violet-600'
       }
     };
     return styles[category] || styles.GENERAL;
@@ -189,38 +219,44 @@ const ModernGalleryCard = ({ gallery, onView, onFavorite, viewMode = 'grid', onS
     return (
       <div 
         onClick={() => onView(gallery)}
-        className="relative group cursor-pointer"
+        className="relative group cursor-pointer transform transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1"
       >
-        <div className="relative bg-white rounded-lg border border-slate-200 overflow-hidden">
-          {/* Image Header */}
-          <div className="relative h-48 w-full">
+        <div className="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden border border-slate-700/50 shadow-2xl hover:shadow-3xl hover:border-slate-600/50 transition-all duration-300">
+          {/* Glow Effect */}
+          <div className={`absolute -inset-0.5 bg-gradient-to-r ${theme.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-2xl`} />
+          
+          {/* Image Header with Overlay */}
+          <div className="relative h-56 w-full">
             {gallery.files && gallery.files[0] ? (
-              <img
-                src={gallery.files[0]}
-                alt={gallery.title}
-                className="w-full h-full object-cover"
-              />
+              <>
+                <img
+                  src={gallery.files[0]}
+                  alt={gallery.title}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
+              </>
             ) : (
               <div className={`w-full h-full bg-gradient-to-br ${theme.gradient}`} />
             )}
             
-            {/* Badges */}
-            <div className="absolute top-3 left-3 flex flex-col gap-2">
-              <span className={`px-2 py-1 rounded text-[10px] font-medium uppercase tracking-wider border ${theme.bg} ${theme.text} ${theme.border}`}>
+            {/* Category Badge */}
+            <div className="absolute top-4 left-4 flex flex-col gap-2">
+              <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border ${theme.darkBg} ${theme.darkText} ${theme.darkBorder} backdrop-blur-sm`}>
                 {gallery.category.replace(/_/g, ' ') || 'Gallery'}
               </span>
             </div>
 
             {/* Action Buttons */}
-            <div className="absolute top-3 right-3 flex gap-2">
+            <div className="absolute top-4 right-4 flex gap-2">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   onShare(gallery);
                 }}
-                className="p-2 rounded-lg bg-white/90 border border-slate-200 text-slate-700"
+                className="p-2.5 rounded-xl bg-slate-800/80 backdrop-blur-sm border border-slate-600/50 text-slate-300 hover:text-white hover:bg-slate-700 transition-all duration-200"
               >
-                <FiShare2 size={14} />
+                <FiShare2 size={16} />
               </button>
               <button
                 onClick={(e) => {
@@ -228,107 +264,141 @@ const ModernGalleryCard = ({ gallery, onView, onFavorite, viewMode = 'grid', onS
                   onFavorite(gallery);
                   setIsFavorite(!isFavorite);
                 }}
-                className={`p-2 rounded-lg border ${
+                className={`p-2.5 rounded-xl backdrop-blur-sm border transition-all duration-200 ${
                   isFavorite 
-                    ? 'bg-amber-500 border-amber-500 text-white' 
-                    : 'bg-white/90 border-slate-200 text-slate-700'
+                    ? 'bg-amber-500/20 border-amber-500/50 text-amber-400' 
+                    : 'bg-slate-800/80 border-slate-600/50 text-slate-300 hover:text-white hover:bg-slate-700'
                 }`}
               >
-                <FiBookmark className={isFavorite ? 'fill-current' : ''} size={14} />
+                <FiBookmark className={isFavorite ? 'fill-current' : ''} size={16} />
               </button>
             </div>
 
             {/* File Count */}
-            <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/60 text-white rounded text-[10px] font-medium">
-              {gallery.files?.length || 0} files
+            <div className="absolute bottom-4 right-4 px-3 py-1.5 bg-slate-900/80 backdrop-blur-sm text-white rounded-xl text-xs font-medium border border-slate-700/50">
+              <span className="flex items-center gap-1.5">
+                <FiImage size={12} className="opacity-70" />
+                {gallery.files?.length || 0} files
+              </span>
+            </div>
+
+            {/* Title Overlay */}
+            <div className="absolute bottom-4 left-4 right-16">
+              <h3 className="text-xl font-bold text-white mb-1 line-clamp-2 drop-shadow-lg">
+                {gallery.title}
+              </h3>
             </div>
           </div>
 
           {/* Content Area */}
-          <div className="p-4">
-            <h3 className="text-base font-bold text-slate-900 mb-2 line-clamp-2">
-              {gallery.title}
-            </h3>
-            
-            <p className="text-xs text-slate-500 mb-4 line-clamp-2">
-              {gallery.description || 'School gallery collection.'}
+          <div className="p-5 bg-slate-800/50">
+            <p className="text-sm text-slate-300 mb-4 line-clamp-2 leading-relaxed">
+              {gallery.description || 'School gallery collection capturing memorable moments.'}
             </p>
 
             {/* Info Row */}
-            <div className="flex items-center gap-3 text-xs text-slate-500 mb-4">
-              <div className="flex items-center gap-1">
-                <FiCalendar size={12} className="text-emerald-600" />
+            <div className="flex items-center justify-between mb-5 text-xs text-slate-400">
+              <div className="flex items-center gap-1.5">
+                <FiCalendar size={14} className={theme.darkText} />
                 <span>{formatDate(gallery.date)}</span>
               </div>
-              <div className="flex items-center gap-1">
-                <FiImage size={12} className="text-emerald-600" />
-                <span>{gallery.files?.length || 0}</span>
+              <div className="flex items-center gap-1.5">
+                <FiImage size={14} className={theme.darkText} />
+                <span>{gallery.files?.length || 0} items</span>
               </div>
             </div>
 
-            {/* View Button */}
-            <button className="w-full py-2 bg-emerald-50 text-emerald-700 rounded-lg text-xs font-medium flex items-center justify-center gap-2 border border-emerald-200">
-              View Gallery
-              <FiArrowRight size={12} />
+            {/* Modern Full-width Button */}
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                onView(gallery);
+              }}
+              className={`w-full py-3.5 ${theme.buttonBg} text-white rounded-xl text-sm font-bold flex items-center justify-center gap-2 group/btn transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5`}
+            >
+              <span>VIEW GALLERY</span>
+              <FiArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform duration-200" />
             </button>
+
+            {/* Decorative Element */}
+            <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${theme.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
           </div>
         </div>
       </div>
     );
   }
 
-  // List View
+  // List View - Also modernized
   return (
     <div 
       onClick={() => onView(gallery)}
-      className="relative bg-white rounded-lg border border-slate-200 p-4 cursor-pointer"
+      className="relative group cursor-pointer transform transition-all duration-300 hover:scale-[1.01] hover:-translate-y-1"
     >
-      <div className="flex gap-4">
-        <div className="relative w-20 h-20 rounded-lg overflow-hidden shrink-0">
-          {gallery.files && gallery.files[0] ? (
-            <img
-              src={gallery.files[0]}
-              alt={gallery.title}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className={`w-full h-full bg-gradient-to-br ${getCategoryStyle(gallery.category).gradient}`} />
-          )}
-        </div>
-
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between mb-1">
-            <span className={`px-2 py-0.5 rounded text-[10px] font-medium uppercase tracking-wider border ${
-              getCategoryStyle(gallery.category).bg
-            } ${getCategoryStyle(gallery.category).text} ${
-              getCategoryStyle(gallery.category).border
-            }`}>
-              {gallery.category.replace(/_/g, ' ')}
-            </span>
-            <span className="text-[10px] text-slate-400">
-              {formatDate(gallery.date)}
-            </span>
+      <div className="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden border border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-300 p-4">
+        {/* Glow Effect */}
+        <div className={`absolute -inset-0.5 bg-gradient-to-r ${getCategoryStyle(gallery.category).gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-2xl`} />
+        
+        <div className="relative flex gap-5">
+          {/* Image Thumbnail */}
+          <div className="relative w-28 h-28 rounded-xl overflow-hidden shrink-0">
+            {gallery.files && gallery.files[0] ? (
+              <>
+                <img
+                  src={gallery.files[0]}
+                  alt={gallery.title}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent" />
+              </>
+            ) : (
+              <div className={`w-full h-full bg-gradient-to-br ${getCategoryStyle(gallery.category).gradient}`} />
+            )}
           </div>
 
-          <h3 className="text-sm font-bold text-slate-900 mb-1 line-clamp-1">
-            {gallery.title}
-          </h3>
-
-          <p className="text-xs text-slate-500 line-clamp-2 mb-2">
-            {gallery.description || 'School gallery collection.'}
-          </p>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3 text-xs text-slate-500">
-              <div className="flex items-center gap-1">
-                <FiImage size={12} />
-                <span>{gallery.files?.length || 0} files</span>
+          {/* Content */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between mb-2">
+              <div>
+                <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
+                  getCategoryStyle(gallery.category).darkBg
+                } ${
+                  getCategoryStyle(gallery.category).darkText
+                } ${
+                  getCategoryStyle(gallery.category).darkBorder
+                } backdrop-blur-sm mb-2`}>
+                  {gallery.category.replace(/_/g, ' ')}
+                </span>
+                <h3 className="text-lg font-bold text-white mb-1 line-clamp-1">
+                  {gallery.title}
+                </h3>
               </div>
+              <span className="text-xs text-slate-400 bg-slate-800/80 px-2 py-1 rounded-lg">
+                {formatDate(gallery.date)}
+              </span>
             </div>
-            
-            <div className="flex items-center gap-1 text-emerald-600 text-xs font-medium">
-              View
-              <FiArrowRight size={12} />
+
+            <p className="text-sm text-slate-300 line-clamp-2 mb-3">
+              {gallery.description || 'School gallery collection.'}
+            </p>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3 text-xs text-slate-400">
+                <div className="flex items-center gap-1.5">
+                  <FiImage size={14} className={getCategoryStyle(gallery.category).darkText} />
+                  <span>{gallery.files?.length || 0} files</span>
+                </div>
+              </div>
+              
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onView(gallery);
+                }}
+                className={`px-5 py-2 ${getCategoryStyle(gallery.category).buttonBg} text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2 group/btn transition-all duration-300 shadow-lg hover:shadow-xl`}
+              >
+                <span>VIEW</span>
+                <FiArrowRight size={12} className="group-hover/btn:translate-x-1 transition-transform" />
+              </button>
             </div>
           </div>
         </div>
@@ -336,7 +406,6 @@ const ModernGalleryCard = ({ gallery, onView, onFavorite, viewMode = 'grid', onS
     </div>
   );
 };
-
 // Modern Stats Card Component
 const ModernStatCard = ({ stat }) => {
   const Icon = stat.icon;
@@ -1217,7 +1286,7 @@ export default function ModernGallery() {
 
             <div className="flex items-center justify-between">
               <div className="text-xs text-slate-500">
-                <span className="font-medium text-slate-700">{filteredGalleries.length}</span> galleries found
+                <span className="font-bold text-blue-900">{filteredGalleries.length}</span> galleries found
               </div>
               <div className="flex bg-white rounded-lg border border-slate-200 overflow-hidden">
                 <button
