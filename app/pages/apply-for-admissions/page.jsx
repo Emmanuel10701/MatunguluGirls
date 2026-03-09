@@ -215,10 +215,28 @@ const prepareSubmissionData = () => {
   };
 };
 
+const validateAllFields = () => {
+  const requiredFields = [
+    'firstName', 'lastName', 'gender', 'dateOfBirth',
+    'nationality', 'county', 'constituency', 'ward',
+    'postalAddress', 'previousSchool', 'previousClass'
+  ];
+
+  const missingFields = requiredFields.filter(field => !formData[field]?.trim());
+  
+  if (missingFields.length > 0) {
+    showModernNotification(`Missing required fields: ${missingFields.join(', ')}`, 'error');
+    return false;
+  }
+  return true;
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateStep(4)) return;
+    if (!validateAllFields()) return;
+
 
     setLoading(true);
     
