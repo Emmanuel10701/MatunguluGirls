@@ -1164,7 +1164,7 @@ export default function ModernEventsNewsPage() {
   </button>
 
   {/* View Toggle - Compact & Matching Height */}
-  <div className="flex bg-white/10 backdrop-blur-xl rounded-xl p-1 border border-white/20 h-10 items-center">
+  <div className="flex bg-white/10 backdrop-blur-xl rounded-xl p-1 border border-white/20 h-12 items-center">
     <button
       onClick={() => setViewMode('grid')}
       className={`h-8 w-8 sm:w-10 flex items-center justify-center rounded-lg transition-all ${

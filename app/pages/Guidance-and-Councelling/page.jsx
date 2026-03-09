@@ -1422,23 +1422,23 @@ export default function StudentCounseling() {
   <div className="flex bg-white/10 backdrop-blur-xl rounded-xl p-1 border border-white/20 h-10 items-center">
     <button
       onClick={() => setViewMode('grid')}
-      className={`h-8 w-8 sm:w-10 flex items-center justify-center rounded-lg transition-all ${
+      className={`h-8 w-8  flex items-center justify-center rounded-lg transition-all ${
         viewMode === 'grid' 
           ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/40' 
           : 'text-emerald-200/60 hover:text-white'
       }`}
     >
-      <FiGrid size={12} className="sm:size-[16px]" />
+      <FiGrid size={14} className="sm:size-[16px]" />
     </button>
     <button
       onClick={() => setViewMode('list')}
-      className={`h-8 w-8 sm:w-10 flex items-center justify-center rounded-lg transition-all ${
+      className={`h-8 w-8 flex items-center justify-center rounded-lg transition-all ${
         viewMode === 'list' 
           ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/40' 
           : 'text-emerald-200/60 hover:text-white'
       }`}
     >
-      <FiList size={12} className="sm:size-[16px]" />
+      <FiList size={14} className="sm:size-[16px]" />
     </button>
   </div>
 </div>
