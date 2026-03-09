@@ -232,69 +232,83 @@ const validateAllFields = () => {
 };
 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateStep(4)) return;
-    if (!validateAllFields()) return;
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+  // Validate all required fields
+  const requiredFields = [
+    'firstName', 'lastName', 'gender', 'dateOfBirth',
+    'nationality', 'county', 'constituency', 'ward',
+    'postalAddress', 'previousSchool', 'previousClass'
+  ];
 
+  const missingFields = requiredFields.filter(field => !formData[field]?.trim());
+  if (missingFields.length > 0) {
+    showModernNotification(`Missing required fields: ${missingFields.join(', ')}`, 'error');
+    return;
+  }
 
-    setLoading(true);
-    
-    // Show submission in progress notification
-    showModernNotification('Submitting your application...', 'warning');
-    
-    try {
-      const response = await fetch(API_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-body: JSON.stringify(prepareSubmissionData()),
+  setLoading(true);
+  showModernNotification('Submitting your application...', 'warning');
+  
+  try {
+    // Prepare data with proper parsing
+    const submissionData = {
+      ...formData,
+      kpseaYear: formData.kpseaYear ? parseInt(formData.kpseaYear) : null,
+      kpseaMarks: formData.kpseaMarks ? parseFloat(formData.kpseaMarks) : null,
+    };
+
+    const response = await fetch(API_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(submissionData),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      setApplicationNumber(data.applicationNumber);
+      setSubmittedData({
+        ...formData,
+        applicationNumber: data.applicationNumber,
+        submissionDate: new Date().toLocaleDateString(),
+        submissionTime: new Date().toLocaleTimeString()
       });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setApplicationNumber(data.applicationNumber);
-        setSubmittedData({
-          ...formData,
-          applicationNumber: data.applicationNumber,
-          submissionDate: new Date().toLocaleDateString(),
-          submissionTime: new Date().toLocaleTimeString()
-        });
-        
-        // Show success notification
-        showModernNotification('Application submitted successfully! Check your confirmation details below.', 'success');
-        
-        // Reset form
-        setFormData({
-          firstName: '', middleName: '', lastName: '', gender: '', dateOfBirth: '',
-          nationality: 'Kenyan', county: '', constituency: '', ward: '', village: '',
-          email: '', phone: '', alternativePhone: '', postalAddress: '', postalCode: '',
-          fatherName: '', fatherPhone: '', fatherEmail: '', fatherOccupation: '',
-          motherName: '', motherPhone: '', motherEmail: '', motherOccupation: '',
-          guardianName: '', guardianPhone: '', guardianEmail: '', guardianOccupation: '',
-  previousSchool: '', previousClass: '', 
-  kpseaYear: '', kpseaIndex: '',  // ← FIXED - use new field names
-  kpseaMarks: '', kjseaGrade: '',  // ← FIXED - use new field names
-          medicalCondition: '', allergies: '',
-          sportsInterests: '', clubsInterests: '', talents: ''
-        });
-        setStep(5);
-        setShowSuccess(true);
-        setTimeout(() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 100);
-      } else {
-        showModernNotification(data.error || 'Failed to submit application. Please try again.', 'error');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      showModernNotification('Network error. Please check your connection and try again.', 'error');
-    } finally {
-      setLoading(false);
+      
+      showModernNotification('Application submitted successfully!', 'success');
+      
+      // Reset form with CORRECT field names
+      setFormData({
+        firstName: '', middleName: '', lastName: '', gender: '', dateOfBirth: '',
+        nationality: 'Kenyan', county: '', constituency: '', ward: '', village: '',
+        email: '', phone: '', alternativePhone: '', postalAddress: '', postalCode: '',
+        fatherName: '', fatherPhone: '', fatherEmail: '', fatherOccupation: '',
+        motherName: '', motherPhone: '', motherEmail: '', motherOccupation: '',
+        guardianName: '', guardianPhone: '', guardianEmail: '', guardianOccupation: '',
+        previousSchool: '', previousClass: '', 
+        kpseaYear: '', kpseaIndex: '',  // ← FIXED: using new field names
+        kpseaMarks: '', kjseaGrade: '',  // ← FIXED: using new field names
+        medicalCondition: '', allergies: '',
+        sportsInterests: '', clubsInterests: '', talents: ''
+      });
+      setStep(5);
+      setShowSuccess(true);
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
+    } else {
+      showModernNotification(data.error || 'Failed to submit application', 'error');
     }
-  };
+  } catch (error) {
+    console.error('Error:', error);
+    showModernNotification('Network error. Please try again.', 'error');
+  } finally {
+    setLoading(false);
+  }
+};
 
   const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
   const meanGrades = ['A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'E'];
@@ -1453,157 +1467,214 @@ body: JSON.stringify(prepareSubmissionData()),
       </div>
     )}
 
-    {step === 4 && (
-      <div className="space-y-6 sm:space-y-8">
-        {/* Review Header */}
-        <div className="bg-gradient-to-r from-green-50 to-emerald-100 rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 border border-green-200">
-          <div className="flex items-center">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-              <FiEye className="text-lg sm:text-xl md:text-2xl text-green-600" />
-            </div>
-            <div>
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-green-800 mb-1 sm:mb-2">
-                Review Your Application
-              </h3>
-              <p className="text-green-700 text-sm sm:text-base font-semibold">
-                Please verify all information carefully. Once submitted, changes cannot be made.
-              </p>
-            </div>
+{step === 4 && (
+  <div className="space-y-6 sm:space-y-8">
+    {/* Review Header */}
+    <div className="bg-gradient-to-r from-green-50 to-emerald-100 rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 border border-green-200">
+      <div className="flex items-center">
+        <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
+          <FiEye className="text-lg sm:text-xl md:text-2xl text-green-600" />
+        </div>
+        <div>
+          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-green-800 mb-1 sm:mb-2">
+            Review Your Application
+          </h3>
+          <p className="text-green-700 text-sm sm:text-base font-semibold">
+            Please verify all information carefully. Once submitted, changes cannot be made.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Review Sections */}
+    {[
+      {
+        title: '👤 Personal Information',
+        icon: FiUser,
+        color: 'blue',
+        fields: [
+          { label: 'Full Name', value: `${formData.firstName} ${formData.middleName || ''} ${formData.lastName}`.trim() },
+          { label: 'Gender', value: formData.gender },
+          { label: 'Date of Birth', value: formData.dateOfBirth, extra: formData.dateOfBirth ? `(Age: ${calculateAge(formData.dateOfBirth)} years)` : '' },
+          { label: 'Nationality', value: formData.nationality },
+          { label: 'County', value: formData.county },
+          { label: 'Constituency', value: formData.constituency },
+          { label: 'Ward', value: formData.ward },
+          { label: 'Village', value: formData.village || 'Not provided' },
+        ]
+      },
+      {
+        title: '📱 Contact Information',
+        icon: FiPhone,
+        color: 'purple',
+        fields: [
+          { label: 'Email', value: formData.email },
+          { label: 'Phone', value: formData.phone || 'Not provided' },
+          { label: 'Alternative Phone', value: formData.alternativePhone || 'Not provided' },
+          { label: 'Postal Address', value: formData.postalAddress },
+          { label: 'Postal Code', value: formData.postalCode || 'Not provided' },
+        ]
+      },
+      {
+        title: '👨‍👩‍👧‍👦 Parent/Guardian Information',
+        icon: FiUsers,
+        color: 'pink',
+        fields: [
+          { label: "Father's Name", value: formData.fatherName || 'Not provided' },
+          { label: "Father's Phone", value: formData.fatherPhone || 'Not provided' },
+          { label: "Father's Email", value: formData.fatherEmail || 'Not provided' },
+          { label: "Father's Occupation", value: formData.fatherOccupation || 'Not provided' },
+          { label: "Mother's Name", value: formData.motherName || 'Not provided' },
+          { label: "Mother's Phone", value: formData.motherPhone || 'Not provided' },
+          { label: "Mother's Email", value: formData.motherEmail || 'Not provided' },
+          { label: "Mother's Occupation", value: formData.motherOccupation || 'Not provided' },
+          { label: "Guardian's Name", value: formData.guardianName || 'Not provided' },
+          { label: "Guardian's Phone", value: formData.guardianPhone || 'Not provided' },
+          { label: "Guardian's Email", value: formData.guardianEmail || 'Not provided' },
+          { label: "Guardian's Occupation", value: formData.guardianOccupation || 'Not provided' },
+        ]
+      },
+      {
+        title: '🎓 Academic Information',
+        icon: FiBook,
+        color: 'yellow',
+        fields: [
+          { label: 'Previous School', value: formData.previousSchool || 'Not provided' },
+          { label: 'Previous Class', value: formData.previousClass || 'Not provided' },
+          // CBC Assessment Results - Only show if provided
+          ...(formData.kpseaYear ? [{ label: 'KPSEA Year', value: formData.kpseaYear }] : []),
+          ...(formData.kpseaIndex ? [{ label: 'Assessment Number', value: formData.kpseaIndex }] : []),
+          ...(formData.kpseaMarks ? [{ 
+            label: 'KPSEA Score', 
+            value: `${formData.kpseaMarks}/100`,
+            extra: formData.kpseaMarks ? `(${
+              formData.kpseaMarks >= 76 ? 'Exceeding Expectations' :
+              formData.kpseaMarks >= 52 ? 'Meeting Expectations' :
+              formData.kpseaMarks >= 28 ? 'Approaching Expectations' : 'Below Expectations'
+            })` : ''
+          }] : []),
+          ...(formData.kjseaGrade ? [{ 
+            label: 'KJSEA Grade', 
+            value: formData.kjseaGrade,
+            extra: formData.kjseaGrade ? `(${
+              formData.kjseaGrade.includes('ADV') ? 'Advanced' :
+              formData.kjseaGrade.includes('PRF') ? 'Proficient' :
+              formData.kjseaGrade.includes('DEV') ? 'Developing' :
+              formData.kjseaGrade.includes('APR') ? 'Approaching' :
+              formData.kjseaGrade.includes('NOV') ? 'Novice' :
+              formData.kjseaGrade.includes('BEG') ? 'Beginning' : 'Needs Improvement'
+            })` : ''
+          }] : []),
+        ]
+      },
+      {
+        title: '⚕️ Health & Interests',
+        icon: FiActivity,
+        color: 'green',
+        fields: [
+          { label: 'Medical Conditions', value: formData.medicalCondition || 'None reported' },
+          { label: 'Allergies', value: formData.allergies || 'None reported' },
+          { label: 'Sports Interests', value: formData.sportsInterests || 'Not specified' },
+          { label: 'Clubs Interests', value: formData.clubsInterests || 'Not specified' },
+          { label: 'Special Talents', value: formData.talents || 'Not specified' },
+        ]
+      }
+    ].map((section, sectionIndex) => (
+      <div 
+        key={section.title}
+        className="border-2 border-gray-200 rounded-xl sm:rounded-2xl overflow-hidden"
+      >
+        <div className={`bg-gradient-to-r from-${section.color}-50 to-${section.color}-100 px-4 sm:px-6 py-3 sm:py-4 border-b border-${section.color}-200`}>
+          <h4 className="font-bold text-gray-800 text-base sm:text-lg flex items-center">
+            <section.icon className={`mr-2 sm:mr-3 text-${section.color}-600`} />
+            {section.title}
+          </h4>
+        </div>
+        <div className="p-4 sm:p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            {section.fields.map((field, fieldIndex) => (
+              <div key={fieldIndex} className="space-y-1">
+                <div className="text-xs sm:text-sm text-gray-700 font-semibold">{field.label}</div>
+                <div className="font-semibold text-gray-900 text-sm sm:text-base md:text-lg">
+                  {field.value}
+                  {field.extra && (
+                    <span className="text-xs sm:text-sm text-gray-600 ml-2 font-normal">{field.extra}</span>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
+      </div>
+    ))}
 
-        {/* Review Sections */}
-        {[
-          {
-            title: '👤 Personal Information',
-            icon: FiUser,
-            color: 'blue',
-            fields: [
-              { label: 'Full Name', value: `${formData.firstName} ${formData.middleName || ''} ${formData.lastName}`.trim() },
-              { label: 'Gender', value: formData.gender },
-              { label: 'Date of Birth', value: formData.dateOfBirth, extra: formData.dateOfBirth ? `(Age: ${calculateAge(formData.dateOfBirth)} years)` : '' },
-              { label: 'Nationality', value: formData.nationality },
-              { label: 'County', value: formData.county },
-              { label: 'Constituency', value: formData.constituency },
-              { label: 'Ward', value: formData.ward },
-              { label: 'Village', value: formData.village || 'Not provided' },
-            ]
-          },
-          {
-            title: '📱 Contact Information',
-            icon: FiPhone,
-            color: 'purple',
-            fields: [
-              { label: 'Email', value: formData.email },
-              { label: 'Phone', value: formData.phone || 'Not provided' },
-              { label: 'Alternative Phone', value: formData.alternativePhone || 'Not provided' },
-              { label: 'Postal Address', value: formData.postalAddress },
-              { label: 'Postal Code', value: formData.postalCode || 'Not provided' },
-            ]
-          },
-          {
-            title: '👨‍👩‍👧‍👦 Parent/Guardian Information',
-            icon: FiUsers,
-            color: 'pink',
-            fields: [
-              { label: "Father's Name", value: formData.fatherName || 'Not provided' },
-              { label: "Father's Phone", value: formData.fatherPhone || 'Not provided' },
-              { label: "Mother's Name", value: formData.motherName || 'Not provided' },
-              { label: "Mother's Phone", value: formData.motherPhone || 'Not provided' },
-            ]
-          },
-       {
-  title: '🎓 Academic Information',
-  icon: FiBook,
-  color: 'yellow',
-  fields: [
-    { label: 'Previous School', value: formData.previousSchool },
-    { label: 'Previous Class', value: formData.previousClass },
-    ...(formData.kpseaYear ? [{ label: 'KPSEA Year', value: formData.kpseaYear }] : []), // ← FIXED
-    ...(formData.kpseaIndex ? [{ label: 'Assessment Number', value: formData.kpseaIndex }] : []), // ← FIXED
-    ...(formData.kpseaMarks ? [{ label: 'KPSEA Score', value: `${formData.kpseaMarks}/100` }] : []), // ← FIXED
-    ...(formData.kjseaGrade ? [{ label: 'KJSEA Grade', value: formData.kjseaGrade }] : []), // ← FIXED
-  ]
-          },
-          {
-            title: '⚕️ Health & Interests',
-            icon: FiActivity,
-            color: 'green',
-            fields: [
-              { label: 'Medical Conditions', value: formData.medicalCondition || 'None reported' },
-              { label: 'Allergies', value: formData.allergies || 'None reported' },
-              { label: 'Sports Interests', value: formData.sportsInterests || 'Not specified' },
-              { label: 'Clubs Interests', value: formData.clubsInterests || 'Not specified' },
-              { label: 'Special Talents', value: formData.talents || 'Not specified' },
-            ]
-          }
-        ].map((section, sectionIndex) => (
-          <div 
-            key={section.title}
-            className="border-2 border-gray-200 rounded-xl sm:rounded-2xl overflow-hidden"
-          >
-            <div className={`bg-gradient-to-r from-${section.color}-50 to-${section.color}-100 px-4 sm:px-6 py-3 sm:py-4 border-b border-${section.color}-200`}>
-              <h4 className="font-bold text-gray-800 text-base sm:text-lg flex items-center">
-                <section.icon className={`mr-2 sm:mr-3 text-${section.color}-600`} />
-                {section.title}
-              </h4>
-            </div>
-            <div className="p-4 sm:p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                {section.fields.map((field, fieldIndex) => (
-                  <div key={fieldIndex} className="space-y-1">
-                    <div className="text-xs sm:text-sm text-gray-700 font-semibold">{field.label}</div>
-                    <div className="font-semibold text-gray-900 text-sm sm:text-base md:text-lg">
-                      {field.value}
-                      {field.extra && (
-                        <span className="text-xs sm:text-sm text-gray-600 ml-2">{field.extra}</span>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+    {/* Summary Card for Academic Performance */}
+    {formData.kpseaMarks && (
+      <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-4 sm:p-6 border border-emerald-200">
+        <h4 className="font-bold text-emerald-800 mb-3 flex items-center text-base sm:text-lg">
+          <FiAward className="mr-2" /> Academic Performance Summary
+        </h4>
+        <div className="flex items-center gap-4 flex-wrap">
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-semibold text-gray-600">KPSEA Score:</span>
+            <span className="text-lg font-black text-emerald-700">{formData.kpseaMarks}/100</span>
           </div>
-        ))}
-
-        {/* Terms and Conditions */}
-        <div className="space-y-4 sm:space-y-6">
-          <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800">📜 Terms & Conditions</h3>
-          <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg sm:rounded-xl p-4 sm:p-6 space-y-3 sm:space-y-4 border border-gray-200">
-            <label className="flex items-start space-x-2 sm:space-x-3 cursor-pointer">
-              <input
-                type="checkbox"
-                required
-                className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 rounded focus:ring-blue-500 mt-0.5 sm:mt-1"
-              />
-              <span className="text-xs sm:text-sm md:text-base text-gray-800 font-semibold">
-                I certify that all information provided is accurate to the best of my knowledge and belief.
-              </span>
-            </label>
-            <label className="flex items-start space-x-2 sm:space-x-3 cursor-pointer">
-              <input
-                type="checkbox"
-                required
-                className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 rounded focus:ring-blue-500 mt-0.5 sm:mt-1"
-              />
-              <span className="text-xs sm:text-sm md:text-base text-gray-800 font-semibold">
-                I agree to the terms and conditions of Matungulu Girls High School's admission process.
-              </span>
-            </label>
-            <label className="flex items-start space-x-2 sm:space-x-3 cursor-pointer">
-              <input
-                type="checkbox"
-                required
-                className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 rounded focus:ring-blue-500 mt-0.5 sm:mt-1"
-              />
-              <span className="text-xs sm:text-sm md:text-base text-gray-800 font-semibold">
-                I consent to the school processing my personal data for admission purposes.
-              </span>
-            </label>
+          <div className="w-px h-6 bg-emerald-200 hidden sm:block"></div>
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-semibold text-gray-600">Performance Level:</span>
+            <span className={`px-3 py-1 rounded-full text-xs font-bold ${
+              formData.kpseaMarks >= 76 ? 'bg-emerald-200 text-emerald-800' :
+              formData.kpseaMarks >= 52 ? 'bg-blue-200 text-blue-800' :
+              formData.kpseaMarks >= 28 ? 'bg-yellow-200 text-yellow-800' :
+              'bg-red-200 text-red-800'
+            }`}>
+              {formData.kpseaMarks >= 76 ? 'Exceeding Expectations' :
+               formData.kpseaMarks >= 52 ? 'Meeting Expectations' :
+               formData.kpseaMarks >= 28 ? 'Approaching Expectations' : 'Below Expectations'}
+            </span>
           </div>
         </div>
       </div>
     )}
+
+    {/* Terms and Conditions */}
+    <div className="space-y-4 sm:space-y-6">
+      <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800">📜 Terms & Conditions</h3>
+      <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg sm:rounded-xl p-4 sm:p-6 space-y-3 sm:space-y-4 border border-gray-200">
+        <label className="flex items-start space-x-2 sm:space-x-3 cursor-pointer">
+          <input
+            type="checkbox"
+            required
+            className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 rounded focus:ring-blue-500 mt-0.5 sm:mt-1"
+          />
+          <span className="text-xs sm:text-sm md:text-base text-gray-800 font-semibold">
+            I certify that all information provided is accurate to the best of my knowledge and belief.
+          </span>
+        </label>
+        <label className="flex items-start space-x-2 sm:space-x-3 cursor-pointer">
+          <input
+            type="checkbox"
+            required
+            className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 rounded focus:ring-blue-500 mt-0.5 sm:mt-1"
+          />
+          <span className="text-xs sm:text-sm md:text-base text-gray-800 font-semibold">
+            I agree to the terms and conditions of Katwanyaa High School's admission process.
+          </span>
+        </label>
+        <label className="flex items-start space-x-2 sm:space-x-3 cursor-pointer">
+          <input
+            type="checkbox"
+            required
+            className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 rounded focus:ring-blue-500 mt-0.5 sm:mt-1"
+          />
+          <span className="text-xs sm:text-sm md:text-base text-gray-800 font-semibold">
+            I consent to the school processing my personal data for admission purposes.
+          </span>
+        </label>
+      </div>
+    </div>
+  </div>
+)}
   </div>
 
   {/* Form Footer with Navigation */}
