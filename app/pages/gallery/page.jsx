@@ -112,6 +112,7 @@ const ModernHeroBanner = ({ stats, onRefresh }) => {
 };
 
 // Modern Gallery Card Component - Matungulu Girls Design
+// Modern Gallery Card Component - Matungulu Girls Design
 const ModernGalleryCard = ({ gallery, onView, onFavorite, viewMode = 'grid', onShare }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
