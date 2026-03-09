@@ -111,278 +111,276 @@ const ModernHeroBanner = ({ stats, onRefresh }) => {
   );
 };
 
-// Modern Gallery Card Component - Matungulu Girls Design
-// Modern Gallery Card Component - Matungulu Girls Design
 const ModernGalleryCard = ({ gallery, onView, onFavorite, viewMode = 'grid', onShare }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-const getCategoryStyle = (category) => {
-  const styles = {
-    // Original categories
-    GENERAL: { 
-      gradient: 'from-emerald-600 to-teal-600', 
-      bg: 'bg-emerald-50', 
-      text: 'text-emerald-700',
-      border: 'border-emerald-200',
-      iconBg: 'bg-emerald-100',
-      iconColor: 'text-emerald-600',
-      buttonBg: 'bg-emerald-600 hover:bg-emerald-700',
-    },
-    CLASSROOMS: { 
-      gradient: 'from-blue-600 to-cyan-600', 
-      bg: 'bg-blue-50', 
-      text: 'text-blue-700',
-      border: 'border-blue-200',
-      iconBg: 'bg-blue-100',
-      iconColor: 'text-blue-600',
-      buttonBg: 'bg-blue-600 hover:bg-blue-700',
-    },
-    LABORATORIES: { 
-      gradient: 'from-amber-600 to-orange-600', 
-      bg: 'bg-amber-50', 
-      text: 'text-amber-700',
-      border: 'border-amber-200',
-      iconBg: 'bg-amber-100',
-      iconColor: 'text-amber-600',
-      buttonBg: 'bg-amber-600 hover:bg-amber-700',
-    },
-    DORMITORIES: { 
-      gradient: 'from-purple-600 to-pink-600', 
-      bg: 'bg-purple-50', 
-      text: 'text-purple-700',
-      border: 'border-purple-200',
-      iconBg: 'bg-purple-100',
-      iconColor: 'text-purple-600',
-      buttonBg: 'bg-purple-600 hover:bg-purple-700',
-    },
-    DINING_HALL: { 
-      gradient: 'from-orange-600 to-red-600', 
-      bg: 'bg-orange-50', 
-      text: 'text-orange-700',
-      border: 'border-orange-200',
-      iconBg: 'bg-orange-100',
-      iconColor: 'text-orange-600',
-      buttonBg: 'bg-orange-600 hover:bg-orange-700',
-    },
-    SPORTS_FACILITIES: { 
-      gradient: 'from-green-600 to-lime-600', 
-      bg: 'bg-green-50', 
-      text: 'text-green-700',
-      border: 'border-green-200',
-      iconBg: 'bg-green-100',
-      iconColor: 'text-green-600',
-      buttonBg: 'bg-green-600 hover:bg-green-700',
-    },
-    TEACHING: { 
-      gradient: 'from-indigo-600 to-purple-600', 
-      bg: 'bg-indigo-50', 
-      text: 'text-indigo-700',
-      border: 'border-indigo-200',
-      iconBg: 'bg-indigo-100',
-      iconColor: 'text-indigo-600',
-      buttonBg: 'bg-indigo-600 hover:bg-indigo-700',
-    },
-    SCIENCE_LAB: { 
-      gradient: 'from-cyan-600 to-blue-600', 
-      bg: 'bg-cyan-50', 
-      text: 'text-cyan-700',
-      border: 'border-cyan-200',
-      iconBg: 'bg-cyan-100',
-      iconColor: 'text-cyan-600',
-      buttonBg: 'bg-cyan-600 hover:bg-cyan-700',
-    },
-    COMPUTER_LAB: { 
-      gradient: 'from-sky-600 to-indigo-600', 
-      bg: 'bg-sky-50', 
-      text: 'text-sky-700',
-      border: 'border-sky-200',
-      iconBg: 'bg-sky-100',
-      iconColor: 'text-sky-600',
-      buttonBg: 'bg-sky-600 hover:bg-sky-700',
-    },
-    SPORTS_DAY: { 
-      gradient: 'from-red-600 to-rose-600', 
-      bg: 'bg-red-50', 
-      text: 'text-red-700',
-      border: 'border-red-200',
-      iconBg: 'bg-red-100',
-      iconColor: 'text-red-600',
-      buttonBg: 'bg-red-600 hover:bg-red-700',
-    },
-    MUSIC_FESTIVAL: { 
-      gradient: 'from-fuchsia-600 to-pink-600', 
-      bg: 'bg-fuchsia-50', 
-      text: 'text-fuchsia-700',
-      border: 'border-fuchsia-200',
-      iconBg: 'bg-fuchsia-100',
-      iconColor: 'text-fuchsia-600',
-      buttonBg: 'bg-fuchsia-600 hover:bg-fuchsia-700',
-    },
-    DRAMA_PERFORMANCE: { 
-      gradient: 'from-pink-600 to-rose-600', 
-      bg: 'bg-pink-50', 
-      text: 'text-pink-700',
-      border: 'border-pink-200',
-      iconBg: 'bg-pink-100',
-      iconColor: 'text-pink-600',
-      buttonBg: 'bg-pink-600 hover:bg-pink-700',
-    },
-    ART_EXHIBITION: { 
-      gradient: 'from-violet-600 to-purple-600', 
-      bg: 'bg-violet-50', 
-      text: 'text-violet-700',
-      border: 'border-violet-200',
-      iconBg: 'bg-violet-100',
-      iconColor: 'text-violet-600',
-      buttonBg: 'bg-violet-600 hover:bg-violet-700',
-    },
-    DEBATE_COMPETITION: { 
-      gradient: 'from-teal-600 to-emerald-600', 
-      bg: 'bg-teal-50', 
-      text: 'text-teal-700',
-      border: 'border-teal-200',
-      iconBg: 'bg-teal-100',
-      iconColor: 'text-teal-600',
-      buttonBg: 'bg-teal-600 hover:bg-teal-700',
-    },
-    SCIENCE_FAIR: { 
-      gradient: 'from-lime-600 to-green-600', 
-      bg: 'bg-lime-50', 
-      text: 'text-lime-700',
-      border: 'border-lime-200',
-      iconBg: 'bg-lime-100',
-      iconColor: 'text-lime-600',
-      buttonBg: 'bg-lime-600 hover:bg-lime-700',
-    },
-    ADMIN_OFFICES: { 
-      gradient: 'from-slate-600 to-gray-600', 
-      bg: 'bg-slate-50', 
-      text: 'text-slate-700',
-      border: 'border-slate-200',
-      iconBg: 'bg-slate-100',
-      iconColor: 'text-slate-600',
-      buttonBg: 'bg-slate-600 hover:bg-slate-700',
-    },
-    STAFF: { 
-      gradient: 'from-gray-600 to-zinc-600', 
-      bg: 'bg-gray-50', 
-      text: 'text-gray-700',
-      border: 'border-gray-200',
-      iconBg: 'bg-gray-100',
-      iconColor: 'text-gray-600',
-      buttonBg: 'bg-gray-600 hover:bg-gray-700',
-    },
-    PRINCIPAL: { 
-      gradient: 'from-yellow-600 to-amber-600', 
-      bg: 'bg-yellow-50', 
-      text: 'text-yellow-700',
-      border: 'border-yellow-200',
-      iconBg: 'bg-yellow-100',
-      iconColor: 'text-yellow-600',
-      buttonBg: 'bg-yellow-600 hover:bg-yellow-700',
-    },
-    BOARD: { 
-      gradient: 'from-stone-600 to-neutral-600', 
-      bg: 'bg-stone-50', 
-      text: 'text-stone-700',
-      border: 'border-stone-200',
-      iconBg: 'bg-stone-100',
-      iconColor: 'text-stone-600',
-      buttonBg: 'bg-stone-600 hover:bg-stone-700',
-    },
-    GRADUATION: { 
-      gradient: 'from-emerald-600 to-green-600', 
-      bg: 'bg-emerald-50', 
-      text: 'text-emerald-700',
-      border: 'border-emerald-200',
-      iconBg: 'bg-emerald-100',
-      iconColor: 'text-emerald-600',
-      buttonBg: 'bg-emerald-600 hover:bg-emerald-700',
-    },
-    AWARD_CEREMONY: { 
-      gradient: 'from-amber-600 to-yellow-600', 
-      bg: 'bg-amber-50', 
-      text: 'text-amber-700',
-      border: 'border-amber-200',
-      iconBg: 'bg-amber-100',
-      iconColor: 'text-amber-600',
-      buttonBg: 'bg-amber-600 hover:bg-amber-700',
-    },
-    PARENTS_DAY: { 
-      gradient: 'from-rose-600 to-pink-600', 
-      bg: 'bg-rose-50', 
-      text: 'text-rose-700',
-      border: 'border-rose-200',
-      iconBg: 'bg-rose-100',
-      iconColor: 'text-rose-600',
-      buttonBg: 'bg-rose-600 hover:bg-rose-700',
-    },
-    OPEN_DAY: { 
-      gradient: 'from-sky-600 to-blue-600', 
-      bg: 'bg-sky-50', 
-      text: 'text-sky-700',
-      border: 'border-sky-200',
-      iconBg: 'bg-sky-100',
-      iconColor: 'text-sky-600',
-      buttonBg: 'bg-sky-600 hover:bg-sky-700',
-    },
-    VISITORS: { 
-      gradient: 'from-violet-600 to-indigo-600', 
-      bg: 'bg-violet-50', 
-      text: 'text-violet-700',
-      border: 'border-violet-200',
-      iconBg: 'bg-violet-100',
-      iconColor: 'text-violet-600',
-      buttonBg: 'bg-violet-600 hover:bg-violet-700',
-    },
-    STUDENT_ACTIVITIES: { 
-      gradient: 'from-orange-600 to-amber-600', 
-      bg: 'bg-orange-50', 
-      text: 'text-orange-700',
-      border: 'border-orange-200',
-      iconBg: 'bg-orange-100',
-      iconColor: 'text-orange-600',
-      buttonBg: 'bg-orange-600 hover:bg-orange-700',
-    },
-    CLUBS: { 
-      gradient: 'from-fuchsia-600 to-purple-600', 
-      bg: 'bg-fuchsia-50', 
-      text: 'text-fuchsia-700',
-      border: 'border-fuchsia-200',
-      iconBg: 'bg-fuchsia-100',
-      iconColor: 'text-fuchsia-600',
-      buttonBg: 'bg-fuchsia-600 hover:bg-fuchsia-700',
-    },
-    COUNCIL: { 
-      gradient: 'from-indigo-600 to-blue-600', 
-      bg: 'bg-indigo-50', 
-      text: 'text-indigo-700',
-      border: 'border-indigo-200',
-      iconBg: 'bg-indigo-100',
-      iconColor: 'text-indigo-600',
-      buttonBg: 'bg-indigo-600 hover:bg-indigo-700',
-    },
-    LEADERSHIP: { 
-      gradient: 'from-purple-600 to-violet-600', 
-      bg: 'bg-purple-50', 
-      text: 'text-purple-700',
-      border: 'border-purple-200',
-      iconBg: 'bg-purple-100',
-      iconColor: 'text-purple-600',
-      buttonBg: 'bg-purple-600 hover:bg-purple-700',
-    },
-    OTHER: { 
-      gradient: 'from-gray-600 to-slate-600', 
-      bg: 'bg-gray-50', 
-      text: 'text-gray-700',
-      border: 'border-gray-200',
-      iconBg: 'bg-gray-100',
-      iconColor: 'text-gray-600',
-      buttonBg: 'bg-gray-600 hover:bg-gray-700',
-    }
+  const getCategoryStyle = (category) => {
+    const styles = {
+      // Original categories
+      GENERAL: { 
+        gradient: 'from-emerald-600 to-teal-600', 
+        bg: 'bg-emerald-50', 
+        text: 'text-emerald-700',
+        border: 'border-emerald-200',
+        iconBg: 'bg-emerald-100',
+        iconColor: 'text-emerald-600',
+        buttonBg: 'bg-emerald-600',
+      },
+      CLASSROOMS: { 
+        gradient: 'from-blue-600 to-cyan-600', 
+        bg: 'bg-blue-50', 
+        text: 'text-blue-700',
+        border: 'border-blue-200',
+        iconBg: 'bg-blue-100',
+        iconColor: 'text-blue-600',
+        buttonBg: 'bg-blue-600',
+      },
+      LABORATORIES: { 
+        gradient: 'from-amber-600 to-orange-600', 
+        bg: 'bg-amber-50', 
+        text: 'text-amber-700',
+        border: 'border-amber-200',
+        iconBg: 'bg-amber-100',
+        iconColor: 'text-amber-600',
+        buttonBg: 'bg-amber-600',
+      },
+      DORMITORIES: { 
+        gradient: 'from-purple-600 to-pink-600', 
+        bg: 'bg-purple-50', 
+        text: 'text-purple-700',
+        border: 'border-purple-200',
+        iconBg: 'bg-purple-100',
+        iconColor: 'text-purple-600',
+        buttonBg: 'bg-purple-600',
+      },
+      DINING_HALL: { 
+        gradient: 'from-orange-600 to-red-600', 
+        bg: 'bg-orange-50', 
+        text: 'text-orange-700',
+        border: 'border-orange-200',
+        iconBg: 'bg-orange-100',
+        iconColor: 'text-orange-600',
+        buttonBg: 'bg-orange-600',
+      },
+      SPORTS_FACILITIES: { 
+        gradient: 'from-green-600 to-lime-600', 
+        bg: 'bg-green-50', 
+        text: 'text-green-700',
+        border: 'border-green-200',
+        iconBg: 'bg-green-100',
+        iconColor: 'text-green-600',
+        buttonBg: 'bg-green-600',
+      },
+      TEACHING: { 
+        gradient: 'from-indigo-600 to-purple-600', 
+        bg: 'bg-indigo-50', 
+        text: 'text-indigo-700',
+        border: 'border-indigo-200',
+        iconBg: 'bg-indigo-100',
+        iconColor: 'text-indigo-600',
+        buttonBg: 'bg-indigo-600',
+      },
+      SCIENCE_LAB: { 
+        gradient: 'from-cyan-600 to-blue-600', 
+        bg: 'bg-cyan-50', 
+        text: 'text-cyan-700',
+        border: 'border-cyan-200',
+        iconBg: 'bg-cyan-100',
+        iconColor: 'text-cyan-600',
+        buttonBg: 'bg-cyan-600',
+      },
+      COMPUTER_LAB: { 
+        gradient: 'from-sky-600 to-indigo-600', 
+        bg: 'bg-sky-50', 
+        text: 'text-sky-700',
+        border: 'border-sky-200',
+        iconBg: 'bg-sky-100',
+        iconColor: 'text-sky-600',
+        buttonBg: 'bg-sky-600',
+      },
+      SPORTS_DAY: { 
+        gradient: 'from-red-600 to-rose-600', 
+        bg: 'bg-red-50', 
+        text: 'text-red-700',
+        border: 'border-red-200',
+        iconBg: 'bg-red-100',
+        iconColor: 'text-red-600',
+        buttonBg: 'bg-red-600',
+      },
+      MUSIC_FESTIVAL: { 
+        gradient: 'from-fuchsia-600 to-pink-600', 
+        bg: 'bg-fuchsia-50', 
+        text: 'text-fuchsia-700',
+        border: 'border-fuchsia-200',
+        iconBg: 'bg-fuchsia-100',
+        iconColor: 'text-fuchsia-600',
+        buttonBg: 'bg-fuchsia-600',
+      },
+      DRAMA_PERFORMANCE: { 
+        gradient: 'from-pink-600 to-rose-600', 
+        bg: 'bg-pink-50', 
+        text: 'text-pink-700',
+        border: 'border-pink-200',
+        iconBg: 'bg-pink-100',
+        iconColor: 'text-pink-600',
+        buttonBg: 'bg-pink-600',
+      },
+      ART_EXHIBITION: { 
+        gradient: 'from-violet-600 to-purple-600', 
+        bg: 'bg-violet-50', 
+        text: 'text-violet-700',
+        border: 'border-violet-200',
+        iconBg: 'bg-violet-100',
+        iconColor: 'text-violet-600',
+        buttonBg: 'bg-violet-600',
+      },
+      DEBATE_COMPETITION: { 
+        gradient: 'from-teal-600 to-emerald-600', 
+        bg: 'bg-teal-50', 
+        text: 'text-teal-700',
+        border: 'border-teal-200',
+        iconBg: 'bg-teal-100',
+        iconColor: 'text-teal-600',
+        buttonBg: 'bg-teal-600',
+      },
+      SCIENCE_FAIR: { 
+        gradient: 'from-lime-600 to-green-600', 
+        bg: 'bg-lime-50', 
+        text: 'text-lime-700',
+        border: 'border-lime-200',
+        iconBg: 'bg-lime-100',
+        iconColor: 'text-lime-600',
+        buttonBg: 'bg-lime-600',
+      },
+      ADMIN_OFFICES: { 
+        gradient: 'from-slate-600 to-gray-600', 
+        bg: 'bg-slate-50', 
+        text: 'text-slate-700',
+        border: 'border-slate-200',
+        iconBg: 'bg-slate-100',
+        iconColor: 'text-slate-600',
+        buttonBg: 'bg-slate-600',
+      },
+      STAFF: { 
+        gradient: 'from-gray-600 to-zinc-600', 
+        bg: 'bg-gray-50', 
+        text: 'text-gray-700',
+        border: 'border-gray-200',
+        iconBg: 'bg-gray-100',
+        iconColor: 'text-gray-600',
+        buttonBg: 'bg-gray-600',
+      },
+      PRINCIPAL: { 
+        gradient: 'from-yellow-600 to-amber-600', 
+        bg: 'bg-yellow-50', 
+        text: 'text-yellow-700',
+        border: 'border-yellow-200',
+        iconBg: 'bg-yellow-100',
+        iconColor: 'text-yellow-600',
+        buttonBg: 'bg-yellow-600',
+      },
+      BOARD: { 
+        gradient: 'from-stone-600 to-neutral-600', 
+        bg: 'bg-stone-50', 
+        text: 'text-stone-700',
+        border: 'border-stone-200',
+        iconBg: 'bg-stone-100',
+        iconColor: 'text-stone-600',
+        buttonBg: 'bg-stone-600',
+      },
+      GRADUATION: { 
+        gradient: 'from-emerald-600 to-green-600', 
+        bg: 'bg-emerald-50', 
+        text: 'text-emerald-700',
+        border: 'border-emerald-200',
+        iconBg: 'bg-emerald-100',
+        iconColor: 'text-emerald-600',
+        buttonBg: 'bg-emerald-600',
+      },
+      AWARD_CEREMONY: { 
+        gradient: 'from-amber-600 to-yellow-600', 
+        bg: 'bg-amber-50', 
+        text: 'text-amber-700',
+        border: 'border-amber-200',
+        iconBg: 'bg-amber-100',
+        iconColor: 'text-amber-600',
+        buttonBg: 'bg-amber-600',
+      },
+      PARENTS_DAY: { 
+        gradient: 'from-rose-600 to-pink-600', 
+        bg: 'bg-rose-50', 
+        text: 'text-rose-700',
+        border: 'border-rose-200',
+        iconBg: 'bg-rose-100',
+        iconColor: 'text-rose-600',
+        buttonBg: 'bg-rose-600',
+      },
+      OPEN_DAY: { 
+        gradient: 'from-sky-600 to-blue-600', 
+        bg: 'bg-sky-50', 
+        text: 'text-sky-700',
+        border: 'border-sky-200',
+        iconBg: 'bg-sky-100',
+        iconColor: 'text-sky-600',
+        buttonBg: 'bg-sky-600',
+      },
+      VISITORS: { 
+        gradient: 'from-violet-600 to-indigo-600', 
+        bg: 'bg-violet-50', 
+        text: 'text-violet-700',
+        border: 'border-violet-200',
+        iconBg: 'bg-violet-100',
+        iconColor: 'text-violet-600',
+        buttonBg: 'bg-violet-600',
+      },
+      STUDENT_ACTIVITIES: { 
+        gradient: 'from-orange-600 to-amber-600', 
+        bg: 'bg-orange-50', 
+        text: 'text-orange-700',
+        border: 'border-orange-200',
+        iconBg: 'bg-orange-100',
+        iconColor: 'text-orange-600',
+        buttonBg: 'bg-orange-600',
+      },
+      CLUBS: { 
+        gradient: 'from-fuchsia-600 to-purple-600', 
+        bg: 'bg-fuchsia-50', 
+        text: 'text-fuchsia-700',
+        border: 'border-fuchsia-200',
+        iconBg: 'bg-fuchsia-100',
+        iconColor: 'text-fuchsia-600',
+        buttonBg: 'bg-fuchsia-600',
+      },
+      COUNCIL: { 
+        gradient: 'from-indigo-600 to-blue-600', 
+        bg: 'bg-indigo-50', 
+        text: 'text-indigo-700',
+        border: 'border-indigo-200',
+        iconBg: 'bg-indigo-100',
+        iconColor: 'text-indigo-600',
+        buttonBg: 'bg-indigo-600',
+      },
+      LEADERSHIP: { 
+        gradient: 'from-purple-600 to-violet-600', 
+        bg: 'bg-purple-50', 
+        text: 'text-purple-700',
+        border: 'border-purple-200',
+        iconBg: 'bg-purple-100',
+        iconColor: 'text-purple-600',
+        buttonBg: 'bg-purple-600',
+      },
+      OTHER: { 
+        gradient: 'from-gray-600 to-slate-600', 
+        bg: 'bg-gray-50', 
+        text: 'text-gray-700',
+        border: 'border-gray-200',
+        iconBg: 'bg-gray-100',
+        iconColor: 'text-gray-600',
+        buttonBg: 'bg-gray-600',
+      }
+    };
+    return styles[category] || styles.GENERAL;
   };
-  return styles[category] || styles.GENERAL;
-};
 
   const formatDate = (dateString) => {
     try {
@@ -404,11 +402,9 @@ const getCategoryStyle = (category) => {
     return (
       <div 
         onClick={() => onView(gallery)}
-        className="relative group cursor-pointer transform transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1"
+        className="relative cursor-pointer"
       >
-        <div className="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden border border-slate-700/50 shadow-2xl hover:shadow-3xl hover:border-slate-600/50 transition-all duration-300">
-          {/* Glow Effect */}
-          <div className={`absolute -inset-0.5 bg-gradient-to-r ${theme.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-2xl`} />
+        <div className="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden border border-slate-700/50 shadow-2xl">
           
           {/* Image Header with Overlay */}
           <div className="relative h-56 w-full">
@@ -417,7 +413,7 @@ const getCategoryStyle = (category) => {
                 <img
                   src={gallery.files[0]}
                   alt={gallery.title}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
               </>
@@ -439,7 +435,7 @@ const getCategoryStyle = (category) => {
                   e.stopPropagation();
                   onShare(gallery);
                 }}
-                className="p-2.5 rounded-xl bg-slate-800/80 backdrop-blur-sm border border-slate-600/50 text-slate-300 hover:text-white hover:bg-slate-700 transition-all duration-200"
+                className="p-2.5 rounded-xl bg-slate-800/80 backdrop-blur-sm border border-slate-600/50 text-slate-300"
               >
                 <FiShare2 size={16} />
               </button>
@@ -449,10 +445,10 @@ const getCategoryStyle = (category) => {
                   onFavorite(gallery);
                   setIsFavorite(!isFavorite);
                 }}
-                className={`p-2.5 rounded-xl backdrop-blur-sm border transition-all duration-200 ${
+                className={`p-2.5 rounded-xl backdrop-blur-sm border ${
                   isFavorite 
                     ? 'bg-amber-500/20 border-amber-500/50 text-amber-400' 
-                    : 'bg-slate-800/80 border-slate-600/50 text-slate-300 hover:text-white hover:bg-slate-700'
+                    : 'bg-slate-800/80 border-slate-600/50 text-slate-300'
                 }`}
               >
                 <FiBookmark className={isFavorite ? 'fill-current' : ''} size={16} />
@@ -493,35 +489,30 @@ const getCategoryStyle = (category) => {
               </div>
             </div>
 
-            {/* Modern Full-width Button */}
+            {/* Modern Full-width Button - No hover effects */}
             <button 
               onClick={(e) => {
                 e.stopPropagation();
                 onView(gallery);
               }}
-              className={`w-full py-3.5 ${theme.buttonBg} text-white rounded-xl text-sm font-bold flex items-center justify-center gap-2 group/btn transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5`}
+              className={`w-full py-3.5 ${theme.buttonBg} text-white rounded-xl text-sm font-bold flex items-center justify-center gap-2 shadow-lg`}
             >
               <span>VIEW GALLERY</span>
-              <FiArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform duration-200" />
+              <FiArrowRight size={16} />
             </button>
-
-            {/* Decorative Element */}
-            <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${theme.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
           </div>
         </div>
       </div>
     );
   }
 
-  // List View - Also modernized
+  // List View - Also with hover effects removed
   return (
     <div 
       onClick={() => onView(gallery)}
-      className="relative group cursor-pointer transform transition-all duration-300 hover:scale-[1.01] hover:-translate-y-1"
+      className="relative cursor-pointer"
     >
-      <div className="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden border border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-300 p-4">
-        {/* Glow Effect */}
-        <div className={`absolute -inset-0.5 bg-gradient-to-r ${getCategoryStyle(gallery.category).gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-2xl`} />
+      <div className="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden border border-slate-700/50 shadow-xl p-4">
         
         <div className="relative flex gap-5">
           {/* Image Thumbnail */}
@@ -531,7 +522,7 @@ const getCategoryStyle = (category) => {
                 <img
                   src={gallery.files[0]}
                   alt={gallery.title}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent" />
               </>
@@ -579,10 +570,10 @@ const getCategoryStyle = (category) => {
                   e.stopPropagation();
                   onView(gallery);
                 }}
-                className={`px-5 py-2 ${getCategoryStyle(gallery.category).buttonBg} text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2 group/btn transition-all duration-300 shadow-lg hover:shadow-xl`}
+                className={`px-5 py-2 ${getCategoryStyle(gallery.category).buttonBg} text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-lg`}
               >
                 <span>VIEW</span>
-                <FiArrowRight size={12} className="group-hover/btn:translate-x-1 transition-transform" />
+                <FiArrowRight size={12} />
               </button>
             </div>
           </div>
