@@ -620,10 +620,11 @@ const ModernShareModal = ({ item, type = 'event', onClose }) => {
               >
                 {copied ? 'Done!' : <><FiCopy /> Copy</>}
               </button>
-              <button onClick={onClose} className="absolute right-1.5 top-1.5 bottom-1.5 px-5 rounded-xl font-bold text-xs bg-slate-300 text-slate-700 active:bg-slate-400 transition-all shadow-sm flex items-center gap-2">
+             
+            </div>
+             <button onClick={onClose} className="absolute right-1.5 top-1.5 bottom-1.5 px-5 rounded-xl font-bold text-xs bg-slate-300 text-slate-700 active:bg-slate-400 transition-all shadow-sm flex items-center gap-2">
                 close
               </button>
-            </div>
           </div>
         </div>
       </div>
