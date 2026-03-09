@@ -334,10 +334,10 @@ const ApplicationDetailModal = ({ application, open, onClose }) => {
   fields: [
     { label: "Previous School", value: application.previousSchool },
     { label: "Previous Grade", value: application.previousClass },
-    { label: "KPSEA Year", value: application.kcpeYear || application.kpseaYear || "Not provided" },
-    { label: "Assessment Number", value: application.kcpeIndex || application.kpseaIndex || "Not provided" },
-    { label: "KPSEA Score", value: application.kcpeMarks ? `${application.kcpeMarks}/100` : "Not provided", highlight: true },
-    { label: "KJSEA Grade", value: application.meanGrade || application.kjseaGrade || "Not provided" },
+    { label: "KPSEA Year", value: application.kpseaYear || "Not provided" },  // ← FIXED
+    { label: "Assessment Number", value: application.kpseaIndex || "Not provided" },  // ← FIXED
+    { label: "KPSEA Score", value: application.kpseaMarks ? `${application.kpseaMarks}/100` : "Not provided", highlight: true },  // ← FIXED
+    { label: "KJSEA Grade", value: application.kjseaGrade || "Not provided" },  // ← FIXED
   ]
 },
     {
@@ -837,7 +837,7 @@ const columns = [
   }, [applications, searchTerm, filterStatus, startDate, endDate, activeView, sortBy, topPerformersFilter, minMarks, maxMarks])
   
 const topPerformersStats = useMemo(() => {
-  const marks = applications.map(a => a.kcpeMarks || 0).filter(m => m > 0)
+  const marks = applications.map(a => a.kpseaMarks || 0).filter(m => m > 0)  // ← FIXED
   if (marks.length === 0) return { average: 0, highest: 0, lowest: 0, top10Threshold: 0 }
   
   marks.sort((a, b) => b - a)
@@ -879,12 +879,11 @@ const topPerformersStats = useMemo(() => {
   // Calculate application score
   const getApplicationScore = (application) => {
     let score = 0
-    
-    if (application.kcpeMarks) {
-      score += (application.kcpeMarks / 500) * 40
-    }
-    
-    if (application.meanGrade && ['A', 'A-'].includes(application.meanGrade.toUpperCase())) score += 20
+     if (application.kpseaMarks) {  // ← FIXED
+          score += (application.kpseaMarks / 100) * 40  // ← FIXED (changed from 500 to 100 since it's /100)
+        }
+  
+      if (application.kjseaGrade && ['7 - ADV', '6 - PRF'].includes(application.kjseaGrade)) score += 20  
     
     const hasExtracurricular = application.sportsInterests || application.clubsInterests || application.talents
     if (hasExtracurricular) score += 10
