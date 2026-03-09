@@ -13,7 +13,6 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS,
   },
 });
-
 const SCHOOL_NAME = 'Matungulu Girls High  School';
 const SCHOOL_LOCATION = 'Matungulu, Machakos County';
 const SCHOOL_MOTTO = 'Strive to Excel';
@@ -37,7 +36,7 @@ function calculateAge(dateOfBirth) {
 function generateApplicationNumber() {
   const year = new Date().getFullYear();
   const randomNum = randomBytes(4).toString('hex').toUpperCase();
-  return `MatG/${year}/${randomNum}`;
+  return `MATG/${year}/${randomNum}`;
 }
 
 function validatePhone(phone) {
@@ -1332,26 +1331,17 @@ if (data.kjseaGrade && data.kjseaGrade.trim() !== '') {
       guardianOccupation: data.guardianOccupation?.trim(),
       
     // Academic - CBC System
+
+
 // Academic - CBC System
 previousSchool: data.previousSchool.trim(),
 previousClass: data.previousClass.trim(),
 
-// New CBC fields
+// CBC fields - USE ONLY THESE (remove all duplicates)
 kpseaYear: data.kpseaYear ? parseInt(data.kpseaYear) : null,
 kpseaIndex: data.kpseaIndex?.trim(),
 kpseaMarks: data.kpseaMarks ? parseInt(data.kpseaMarks) : null,
 kjseaGrade: data.kjseaGrade?.trim(),
-
-// Keep old fields for backward compatibility
-kcpeYear: data.kpseaYear ? parseInt(data.kpseaYear) : null,
-kcpeIndex: data.kpseaIndex?.trim(),
-kcpeMarks: data.kpseaMarks ? parseInt(data.kpseaMarks) : null,
-meanGrade: data.kjseaGrade?.trim(),
-// Keep old fields for backward compatibility
-kcpeYear: data.kpseaYear ? parseInt(data.kpseaYear) : null,
-kcpeIndex: data.kpseaIndex?.trim(),
-kcpeMarks: data.kpseaMarks ? parseInt(data.kpseaMarks) : null,
-meanGrade: data.kjseaGrade?.trim(),
       // Medical
       medicalCondition: data.medicalCondition?.trim(),
       allergies: data.allergies?.trim(),
