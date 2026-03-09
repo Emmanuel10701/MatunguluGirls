@@ -242,8 +242,9 @@ kjseaGrade: '',         // Changed from meanGrade
           fatherName: '', fatherPhone: '', fatherEmail: '', fatherOccupation: '',
           motherName: '', motherPhone: '', motherEmail: '', motherOccupation: '',
           guardianName: '', guardianPhone: '', guardianEmail: '', guardianOccupation: '',
-          previousSchool: '', previousClass: '', kcpeYear: '', kcpeIndex: '',
-          kcpeMarks: '', meanGrade: '',
+  previousSchool: '', previousClass: '', 
+  kpseaYear: '', kpseaIndex: '',  // ← FIXED - use new field names
+  kpseaMarks: '', kjseaGrade: '',  // ← FIXED - use new field names
           medicalCondition: '', allergies: '',
           sportsInterests: '', clubsInterests: '', talents: ''
         });
