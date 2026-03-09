@@ -546,7 +546,7 @@ const ModernGalleryCard = ({ gallery, onView, onFavorite, viewMode = 'grid', onS
                   {gallery.title}
                 </h3>
               </div>
-              <span className="text-xs text-slate-400 bg-slate-800/80 px-2 py-1 rounded-lg">
+              <span className="text-xs text-slate-100 bg-slate-800/80 px-2 py-1 rounded-lg">
                 {formatDate(gallery.date)}
               </span>
             </div>
