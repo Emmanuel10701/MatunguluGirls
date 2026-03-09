@@ -535,11 +535,9 @@ const ModernGalleryCard = ({ gallery, onView, onFavorite, viewMode = 'grid', onS
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between mb-2">
               <div>
-                <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
+                <span className={`inline-block px-3 py-1 text-white rounded-full text-[10px] font-bold uppercase tracking-wider border ${
                   getCategoryStyle(gallery.category).darkBg
-                } ${
-                  getCategoryStyle(gallery.category).darkText
-                } ${
+                } $${
                   getCategoryStyle(gallery.category).darkBorder
                 } backdrop-blur-sm mb-2`}>
                   {gallery.category.replace(/_/g, ' ')}
