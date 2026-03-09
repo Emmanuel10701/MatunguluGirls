@@ -202,6 +202,20 @@ kjseaGrade: '',         // Changed from meanGrade
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+
+// Add this function before handleSubmit
+const prepareSubmissionData = () => {
+  // Your backend now expects only these fields, so no mapping needed
+  // But we'll ensure all required fields are present
+  return {
+    ...formData,
+    // Ensure numbers are properly parsed
+    kpseaYear: formData.kpseaYear ? parseInt(formData.kpseaYear) : null,
+    kpseaMarks: formData.kpseaMarks ? parseFloat(formData.kpseaMarks) : null,
+  };
+};
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateStep(4)) return;
@@ -217,7 +231,7 @@ kjseaGrade: '',         // Changed from meanGrade
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+body: JSON.stringify(prepareSubmissionData()),
       });
 
       const data = await response.json();
@@ -1480,17 +1494,18 @@ kjseaGrade: '',         // Changed from meanGrade
               { label: "Mother's Phone", value: formData.motherPhone || 'Not provided' },
             ]
           },
-          {
-            title: '🎓 Academic Information',
-            icon: FiBook,
-            color: 'yellow',
-            fields: [
-              { label: 'Previous School', value: formData.previousSchool },
-              { label: 'Previous Class', value: formData.previousClass },
-              ...(formData.kcpeYear ? [{ label: 'KCPE Year', value: formData.kcpeYear }] : []),
-              ...(formData.kcpeMarks ? [{ label: 'KCPE Marks', value: formData.kcpeMarks }] : []),
-              ...(formData.meanGrade ? [{ label: 'Mean Grade', value: formData.meanGrade }] : []),
-            ]
+       {
+  title: '🎓 Academic Information',
+  icon: FiBook,
+  color: 'yellow',
+  fields: [
+    { label: 'Previous School', value: formData.previousSchool },
+    { label: 'Previous Class', value: formData.previousClass },
+    ...(formData.kpseaYear ? [{ label: 'KPSEA Year', value: formData.kpseaYear }] : []), // ← FIXED
+    ...(formData.kpseaIndex ? [{ label: 'Assessment Number', value: formData.kpseaIndex }] : []), // ← FIXED
+    ...(formData.kpseaMarks ? [{ label: 'KPSEA Score', value: `${formData.kpseaMarks}/100` }] : []), // ← FIXED
+    ...(formData.kjseaGrade ? [{ label: 'KJSEA Grade', value: formData.kjseaGrade }] : []), // ← FIXED
+  ]
           },
           {
             title: '⚕️ Health & Interests',
