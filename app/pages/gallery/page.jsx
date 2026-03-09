@@ -423,7 +423,7 @@ const ModernGalleryCard = ({ gallery, onView, onFavorite, viewMode = 'grid', onS
             
             {/* Category Badge */}
             <div className="absolute top-4 left-4 flex flex-col gap-2">
-              <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border ${theme.darkBg} ${theme.darkText} ${theme.darkBorder} backdrop-blur-sm`}>
+              <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border ${theme.darkBg} text-white ${theme.darkBorder} backdrop-blur-sm`}>
                 {gallery.category.replace(/_/g, ' ') || 'Gallery'}
               </span>
             </div>
