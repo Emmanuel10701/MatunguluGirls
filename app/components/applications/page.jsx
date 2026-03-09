@@ -1295,13 +1295,15 @@ const deleteApplications = async () => {
 };
   // Export applications
   const exportApplications = () => {
-  const dataToExport = filteredApplications.map(app => ({
+   const dataToExport = filteredApplications.map(app => ({
     'Application Number': app.applicationNumber,
     'First Name': app.firstName,
     'Last Name': app.lastName,
     'Email': app.email,
     'Phone': app.phone,
-    'KPSEA Score': app.kcpeMarks,  // ← CHANGE THIS LINE
+    'KPSEA Score': app.kpseaMarks,  // ← FIXED
+    'KJSEA Grade': app.kjseaGrade,  // ← ADD THIS
+    'KPSEA Year': app.kpseaYear,    // ← ADD THIS
     'Preferred Stream': app.preferredStream,
     'Status': app.status,
     'Submitted Date': formatDate(app.createdAt),
@@ -2191,10 +2193,10 @@ const EmptyState = () => (
                     <p className="text-sm text-slate-500 truncate max-w-[160px]">{application.email}</p>
                   </div>
                 </div>
-                    <div className="text-right">
-                      <div className="text-lg font-black text-emerald-800 leading-none">{application.kcpeMarks || 0}</div>
-                      <div className="text-[10px] font-bold text-emerald-600 uppercase tracking-tighter">/100</div>
-                    </div>
+             <div className="text-right">
+                <div className="text-lg font-black text-emerald-800 leading-none">{application.kpseaMarks || 0}</div>  // ← FIXED
+                <div className="text-[10px] font-bold text-emerald-600 uppercase tracking-tighter">/100</div>
+              </div>
               </div>
 
               <div className="flex items-center justify-between py-3 border-y border-slate-50">
