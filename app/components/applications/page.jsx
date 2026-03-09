@@ -825,9 +825,9 @@ const columns = [
           case 'name-desc':
             return `${b.firstName || ''} ${b.lastName || ''}`.localeCompare(`${a.firstName || ''} ${a.lastName || ''}`)
           case 'score-high':
-            return (b.kcpeMarks || 0) - (a.kcpeMarks || 0)
+            return (b.kpseaMarks || 0) - (a.kpseaMarks || 0)  // ← FIXED
           case 'score-low':
-            return (a.kcpeMarks || 0) - (b.kcpeMarks || 0)
+            return (a.kpseaMarks || 0) - (b.kpseaMarks || 0)  // ← FIXED
           default:
             return 0
         }
