@@ -620,13 +620,14 @@ const [decisionData, setDecisionData] = useState({
 const columns = [
   { key: 'select', label: '', width: 'w-12' },
   { key: 'applicant', label: 'Applicant', width: 'w-48' },
-  { key: 'kcpeMarks', label: 'KPSEA Score', width: 'w-28' }, // Changed from KJSEA % to KPSEA Score
+  { key: 'kpseaMarks', label: 'KPSEA Score', width: 'w-28' }, // ← FIXED
   { key: 'status', label: 'Status', width: 'w-36' },
   { key: 'submitted', label: 'Submitted', width: 'w-36' },
   { key: 'actions', label: 'Actions', width: 'w-24' }
 ]
-  
-  // Helper function to group applications by date
+
+
+// Helper function to group applications by date
   const groupApplicationsByDate = (apps) => {
     if (!apps || !apps.length) return [];
     
@@ -787,7 +788,7 @@ const columns = [
         
         // NEW: Apply top performers filter based on KCPE marks
         let matchesTopPerformer = true
-        const marks = app.kcpeMarks || 0
+        const marks = app.kpseaMarks || 0  // ← FIXED
         
         if (topPerformersFilter === 'top10') {
           // Get top 10% threshold
