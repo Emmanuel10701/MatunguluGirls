@@ -1157,7 +1157,7 @@ const categoryOptions = [
       number: '0', 
       label: 'Media Files', 
       sublabel: 'Total files',
-      gradient: 'from-emerald-600 to-teal-600'
+      gradient: 'from-blue-900 to-slate-900'
     },
     { 
       icon: FiFolder, 
@@ -1171,14 +1171,14 @@ const categoryOptions = [
       number: '0', 
       label: 'Categories', 
       sublabel: 'Available',
-      gradient: 'from-emerald-600 to-teal-600'
+      gradient: 'from-amber-800 to-red-800'
     },
     { 
       icon: FiCalendar, 
       number: new Date().getFullYear().toString(),
       label: 'Latest', 
       sublabel: 'This year',
-      gradient: 'from-emerald-600 to-teal-600'
+      gradient: 'from-purple-900 to-blue-900'
     }
   ]);
 
