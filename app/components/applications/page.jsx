@@ -455,7 +455,7 @@ const ApplicationDetailModal = ({ application, open, onClose }) => {
 <div className="text-sm text-gray-600">
   <span className="font-medium">Application Score: </span>
   <span className="font-bold text-emerald-600">
-    {application.kcpeMarks ? `${application.kcpeMarks}/100` : 'Not calculated'}
+    {application.kpseaMarks ? `${application.kpseaMarks}/100` : 'Not calculated'}  // ← FIXED
   </span>
 </div>
           <div className="flex gap-2">
