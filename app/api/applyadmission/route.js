@@ -1412,6 +1412,7 @@ kjseaGrade: data.kjseaGrade?.trim(),
 // ====================================================================
 // GET HANDLER - GET ALL APPLICATIONS
 // ====================================================================
+// GET HANDLER - GET ALL APPLICATIONS
 
 export async function GET(req) {
   try {
@@ -1425,34 +1426,33 @@ export async function GET(req) {
     
     let applications;
     
- // If searching by specific criteria
-if (applicationNumber) {
-  applications = await prisma.admissionApplication.findUnique({
-    where: { applicationNumber }
-  });
-  applications = applications ? [applications] : [];
-} 
-else if (email) {
-  // ✅ FIXED: Use findMany for email since it's not unique
-  applications = await prisma.admissionApplication.findMany({
-    where: { email: email },
-    orderBy: { createdAt: "desc" }
-  });
-}
-else if (phone) {
-  applications = await prisma.admissionApplication.findMany({
-    where: { phone: { contains: phone } },
-    orderBy: { createdAt: "desc" }
-  });
-}
-else {
-  // Get all applications
-  applications = await prisma.admissionApplication.findMany({
-    orderBy: { createdAt: "desc" },
-  });
-}
+    // If searching by specific criteria
+    if (applicationNumber) {
+      applications = await prisma.admissionApplication.findUnique({
+        where: { applicationNumber }
+      });
+      applications = applications ? [applications] : [];
+    } 
+    else if (email) {
+      applications = await prisma.admissionApplication.findMany({
+        where: { email: email },
+        orderBy: { createdAt: "desc" }
+      });
+    }
+    else if (phone) {
+      applications = await prisma.admissionApplication.findMany({
+        where: { phone: { contains: phone } },
+        orderBy: { createdAt: "desc" }
+      });
+    }
+    else {
+      // Get all applications
+      applications = await prisma.admissionApplication.findMany({
+        orderBy: { createdAt: "desc" },
+      });
+    }
 
-    // Format the applications
+    // Format the applications - USING ONLY NEW CBC FIELDS
     const formattedApplications = applications.map(app => ({
       id: app.id,
       applicationNumber: app.applicationNumber,
@@ -1490,21 +1490,16 @@ else {
       guardianEmail: app.guardianEmail,
       guardianOccupation: app.guardianOccupation,
       
-     // Academic - CBC System
-previousSchool: app.previousSchool,
-previousClass: app.previousClass,
-
-// New CBC fields
-kpseaYear: app.kpseaYear || app.kcpeYear,
-kpseaIndex: app.kpseaIndex || app.kcpeIndex,
-kpseaMarks: app.kpseaMarks || app.kcpeMarks,
-kjseaGrade: app.kjseaGrade || app.meanGrade,
-
-// Keep old fields for backward compatibility
-kcpeYear: app.kcpeYear || app.kpseaYear,
-kcpeIndex: app.kcpeIndex || app.kpseaIndex,
-kcpeMarks: app.kcpeMarks || app.kpseaMarks,
-meanGrade: app.meanGrade || app.kjseaGrade,
+      // Academic - CBC System - ONLY NEW FIELDS
+      previousSchool: app.previousSchool,
+      previousClass: app.previousClass,
+      kpseaYear: app.kpseaYear,
+      kpseaIndex: app.kpseaIndex,
+      kpseaMarks: app.kpseaMarks,
+      kjseaGrade: app.kjseaGrade,
+      
+      // REMOVED ALL OLD FIELD REFERENCES
+      // NO: kcpeYear, kcpeIndex, kcpeMarks, meanGrade
       
       // Medical
       medicalCondition: app.medicalCondition,
@@ -1569,4 +1564,4 @@ meanGrade: app.meanGrade || app.kjseaGrade,
       { status: 500 }
     );
   }
-} 
+}
