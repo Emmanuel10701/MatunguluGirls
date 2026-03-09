@@ -10,7 +10,7 @@ import {
   FiFacebook, FiTwitter, FiFileText, FiInfo, FiRefreshCw, FiEye,
   FiBookmark, FiExternalLink, FiZap, FiTrendingUp, FiCopy, FiBell,
   FiUserPlus, FiArrowRight, FiPlus, FiRotateCw, FiEdit3, FiTrash2,
-  FiSave, FiUpload, FiMapPin, FiAlertTriangle, FiMail, FiPhone, FiFolder, FiLock 
+  FiSave, FiUpload, FiMapPin, FiAlertTriangle, FiMail, FiPhone, FiFolder, FiLock, FiMonitor 
 } from 'react-icons/fi';
 import { FaWhatsapp, FaFacebookF, FaTwitter, FaCopy, FaLeaf } from 'react-icons/fa';
 import { 
